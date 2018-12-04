@@ -23,13 +23,13 @@ React.Js, https://reactjs.org/ and Babel.js, https://babeljs.io/, for front-end 
 
 # This project integrates data from several API sources:  
 
-[MapBox](https://www.mapbox.com/)
+[MapBox](https://www.mapbox.com/) - for mapping services
 
-[Yelp](https://www.yelp.com/developers)
+[Yelp](https://www.yelp.com/developers) - for sourcing local vendors, produce, farms and grocers
 
-[YouTube](https://www.youtube.com/yt/dev/)
+[YouTube](https://www.youtube.com/yt/dev/) - for the videos
 
-[Spoonalar](https://spoonacular.com/food-api)
+[Spoonalar](https://spoonacular.com/food-api) - for the recipes and ingredients
 
 # Standards:
 
