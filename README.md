@@ -3,7 +3,7 @@ Daniel Perez, Captsone - Team TreeHouse FSJS Project, "The Chef's Kitchen"
 
 Status: the web app is not online, yet, still in development
 
-# My Captsone Project, "The Chief's Kitchen":
+# My Captsone Project, "The Chef's Kitchen":
 
 Inspired by my wife, who is a great chef, it is excellent way to showcase all the latest software technologies made possible by our ever connected world!
 
@@ -19,14 +19,17 @@ This project uses Node.js, https://nodejs.org/ and Express.Js,"https://expressjs
 
 I use Mongoose, https://mongoosejs.com/", for db backend.
 
-React.Js, href="https://reactjs.org/"> and Babel.js, href="https://babeljs.io/">, for front-end UI/UX.
+React.Js, https://reactjs.org/ and Babel.js, https://babeljs.io/, for front-end UI/UX.
 
 # This project integrates data from several API sources:  
 
-MapBox, https://www.mapbox.com/
-Yelp, https://www.yelp.com/developers?country=US
-YouTube, https://www.youtube.com/yt/dev/
-Spoonalar, https://spoonacular.com/food-api
+(MapBox)[https://www.mapbox.com/]
+
+(Yelp)[https://www.yelp.com/developers]
+
+(YouTube)[https://www.youtube.com/yt/dev/]
+
+(Spoonalar)[https://spoonacular.com/food-api]
 
 # Standards:
 
