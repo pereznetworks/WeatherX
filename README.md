@@ -1,9 +1,11 @@
 # TD-Project12
-Daniel Perez, Captsone - Team TreeHouse FSJS Project, "The Chief's Kitchen"
+Daniel Perez, Captsone - Team TreeHouse FSJS Project, "The Chef's Kitchen"
+
+Status: the web app is not online, yet, still in development
 
 # My Captsone Project, "The Chief's Kitchen":
 
-Inspired by my wife, who is a great chef herself, it is excellent way to showcase all the latest software technologies made possible by our ever connected world!
+Inspired by my wife, who is a great chef, it is excellent way to showcase all the latest software technologies made possible by our ever connected world!
 
 With this app, a chef will be able to get recipes, source local ingredients, find cookware and cooking utensils and even watch videos of the recipes being made.
 
