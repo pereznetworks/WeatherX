@@ -25,7 +25,9 @@ React.Js, https://reactjs.org/ and Babel.js, https://babeljs.io/, for front-end 
 
 [MapBox](https://www.mapbox.com/) - for mapping services
 
-[Yelp](https://www.yelp.com/developers) - for sourcing local vendors, produce, farms and grocers
+[Yelp](https://www.yelp.com/developers) - for mappiong and sourcing local vendors, produce, farms and grocers
+
+[Wikapedia](https://www.mediawiki.org/wiki/API:Web_APIs_hub) for info about and how-tos for items searched 
 
 [YouTube](https://www.youtube.com/yt/dev/) - for the videos
 
