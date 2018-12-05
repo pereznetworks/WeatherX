@@ -9,7 +9,7 @@ Inspired by my wife, who is a great chef, it is excellent way to showcase all th
 
 With this app, a chef will be able to get recipes, source local ingredients, find cookware and cooking utensils and even watch videos of the recipes being made.
 
-Also, a chef will be able use a "create your own kitchen", save all the favorites and come back to them later.
+Also, a chef will be able use a "create your own kitchen" feature, save all the favorites and come back to them later.
 
 # Technologies Used:
 
@@ -32,6 +32,8 @@ React.Js, https://reactjs.org/ and Babel.js, https://babeljs.io/, for front-end 
 [YouTube](https://www.youtube.com/yt/dev/) - for the videos
 
 [Spoonalar](https://spoonacular.com/food-api) - for the recipes and ingredients
+
+[Pinterest](https://developers.pinterest.com/) - for saving items of interest
 
 # Standards:
 
