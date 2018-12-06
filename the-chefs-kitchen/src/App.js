@@ -1,6 +1,8 @@
+// importing modules
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-// import logo from './logo.svg';
+
+// importing css
 import './App.css';
 import {
   Grid,
@@ -12,6 +14,7 @@ import {
   Jumbotron
 } from 'react-bootstrap';
 import './custom.css';
+
 class App extends Component {
   render() {
     return (
@@ -107,7 +110,6 @@ function MainRow() {
         <p>then....</p>
         <p>Create your own Kitchen:</p>
         <p>
-          {' '}
           ... Save, organize and come back to your favorite recipes, links to
           sources for local ingredients and cookware and links to your favorite
           recipe videos
@@ -176,4 +178,5 @@ function FooterRow() {
     </Row>
   );
 }
+
 export default App;
