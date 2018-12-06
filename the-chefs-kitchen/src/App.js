@@ -19,12 +19,12 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" component={CustomNavbar} />
+          <CustomNavbar />
           <Route exact path="/" component={CustomJumbotron} />
           <Grid>
             {/* TODO: will need to dynamically place components here */}
             <Route exact path="/" component={AboutRow} />
-            <Route exact path="/" component={FooterRow} />
+            <FooterRow />
           </Grid>
         </div>
       </Router>
