@@ -22,10 +22,10 @@ class App extends Component {
           <CustomNavbar />
           <Route exact path="/" component={CustomJumbotron} />
           <Grid>
-            {/* TODO: using Route can dynamically place search result, recipe, cookware, myKitchen components here */}
+            {/* TODO: using Route can dynamically place search result, recipe, cookware and myKitchen components here */}
             <Route exact path="/" component={AboutRow} />
-            <FooterRow />
           </Grid>
+          <FooterRow />
         </div>
       </Router>
 
