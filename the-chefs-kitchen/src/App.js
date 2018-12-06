@@ -13,6 +13,7 @@ import './App.css';
 import { Grid } from 'react-bootstrap';
 import './custom.css';
 
+// main app
 class App extends Component {
   render() {
     return (
