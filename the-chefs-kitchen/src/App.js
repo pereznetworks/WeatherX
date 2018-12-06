@@ -22,6 +22,7 @@ class App extends Component {
           <Route exact path="/" component={CustomNavbar} />
           <Route exact path="/" component={CustomJumbotron} />
           <Grid>
+            {/* TODO: will need to dynamically place components here */}
             <Route exact path="/" component={AboutRow} />
             <Route exact path="/" component={FooterRow} />
           </Grid>
@@ -33,11 +34,6 @@ class App extends Component {
            need to use react-bootstrap property equavilant ?
            for now using custom css to fix these issues
           */
-
-      /* TODO: create custom components for simpler, reusable code
-            ... with everything needed
-            ... import and use in jsx code
-        */
     );
   }
 }
