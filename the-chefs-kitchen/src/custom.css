@@ -58,3 +58,13 @@
 #footer {
   text-align: center;
 }
+
+#searchInput {
+  width: 400px;
+  margin: auto;
+}
+
+#formCmpnt {
+  width: 100%;
+  margin: auto;
+}

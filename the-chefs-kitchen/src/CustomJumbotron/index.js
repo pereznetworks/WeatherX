@@ -1,6 +1,9 @@
 // importing modules
 import React, { Component } from 'react';
 
+// import custom searchForm component
+import CustomSearchForm from '../CustomSearchForm';
+
 // importing css
 import '../App.css';
 import { Jumbotron } from 'react-bootstrap';
@@ -22,6 +25,7 @@ class CustomJumbotron extends Component {
             THE APP for Chefs and anyone who loves to cook!
           </p>
         </div>
+        <CustomSearchForm />
       </Jumbotron>
     );
   }
