@@ -47,4 +47,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 # LICENSE:
 
-[MIT](./LICENSE)
+[MIT](TD-Project12/LICENSE)
