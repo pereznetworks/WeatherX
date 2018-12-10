@@ -42,3 +42,7 @@ And it's all javascript es2015, web-app best-practices, TSL2 security and html5 
 # More to come: ...
 
 Will eventually be an in-depth look at the making of "The Chef's Kitchen"
+
+# License:
+
+[MIT](./LICENSE.MD)
