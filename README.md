@@ -45,4 +45,4 @@ Will eventually be an in-depth look at the making of "The Chef's Kitchen"
 
 # License:
 
-[MIT](./LICENSE.MD)
+[MIT](./LICENSE)
