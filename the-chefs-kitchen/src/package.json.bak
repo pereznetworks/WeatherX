@@ -10,8 +10,6 @@
     "react": "^16.6.3",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.6.3",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1"
   },
   "lint-staged": {
@@ -21,6 +19,7 @@
     ]
   },
   "scripts": {
+    "precommit": "lint-staged",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -39,10 +38,5 @@
   "main": "src/index.js",
   "devDependencies": {},
   "author": "Daniel Perez",
-  "license": "MIT",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  }
+  "license": "MIT"
 }
