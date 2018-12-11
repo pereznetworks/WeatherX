@@ -6,7 +6,7 @@
 
 ##  This project was created by a React bootstrapping:
 
-The project using was created using the cmd...
+The project using was created using the create-react-app cmd.
 
 ### `npx create-react-app my-app`
 
