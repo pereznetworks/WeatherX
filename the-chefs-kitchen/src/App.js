@@ -23,7 +23,7 @@ class App extends Component {
         <div class="right">Column</div>
         <div className="footer">
           <p><strong>Note:</strong></p>
-          <p>If you are using Internet Explorer or Edge, that's too bad for you.</p>
+          <p>If you are using Internet Explorer or Edge, too bad for you.</p>
         </div>
       </div>
      </div>
