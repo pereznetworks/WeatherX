@@ -6,7 +6,9 @@
 
 ##  This project was created by a React bootstrapping:
 
-The project using was created using the cmd, npx create-react-app my-app.
+The project using was created using the cmd...
+
+### npx create-react-app my-app.
 
 [Create React App](https://github.com/facebook/create-react-app).
 
