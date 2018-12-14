@@ -1,5 +1,5 @@
 # TD-Project12
-Daniel Perez, Captsone - Team TreeHouse FSJS Project, "The Chef's Kitchen"
+Daniel Perez, Captsone - Team TreeHouse FSJS Project
 
 Status: the web app is not online, yet, still in development
 
