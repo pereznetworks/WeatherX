@@ -3,9 +3,11 @@ Daniel Perez, Captsone - Team TreeHouse FSJS Project
 
 Status: the web app is not online, yet, still in development
 
-# My Captsone Project:
+# My Captsone Project:  Weather forecast service  
 
-....
+For a given State, City, ZipCode displays up to the minute weather data.
+
+Weather data is displayed in a table format and on a map.
 
 # Technologies Used:
 
@@ -21,13 +23,13 @@ React.Js, https://reactjs.org/ and Babel.js, https://babeljs.io/, for front-end 
 
 [MapBox](https://www.mapbox.com/) - for mapping services
 
+[Forcast.io](https://darksky.net/dev/docs) - for forecast data
+
+[timezonedb](https://timezonedb.com/api) - for timezone data
+
 # Standards:
 
 And it's all javascript es2015, web-app best-practices, TSL2 security and html5 web-standards compliant!
-
-# More to come: ...
-
-...
 
 # License:
 
