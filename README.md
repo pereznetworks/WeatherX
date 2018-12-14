@@ -23,7 +23,7 @@ React.Js, https://reactjs.org/ and Babel.js, https://babeljs.io/, for front-end 
 
 [MapBox](https://www.mapbox.com/) - for mapping services
 
-[Forcast.io](https://darksky.net/dev/docs) - for forecast data
+[Forcast.io](https://darksky.net/dev/docs) - for weather forecast data
 
 [timezonedb](https://timezonedb.com/api) - for timezone data
 
