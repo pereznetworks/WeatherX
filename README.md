@@ -3,13 +3,9 @@ Daniel Perez, Captsone - Team TreeHouse FSJS Project, "The Chef's Kitchen"
 
 Status: the web app is not online, yet, still in development
 
-# My Captsone Project, "The Chef's Kitchen":
+# My Captsone Project:
 
-Inspired by my wife, who is a great chef, it is excellent way to showcase all the latest software technologies made possible by our ever connected world!
-
-With this app, a chef will be able to get recipes, source local ingredients, find cookware and cooking utensils and even watch videos of the recipes being made.
-
-Also, a chef will be able use a "create your own kitchen" feature, save all the favorites and come back to them later.
+....
 
 # Technologies Used:
 
@@ -24,16 +20,6 @@ React.Js, https://reactjs.org/ and Babel.js, https://babeljs.io/, for front-end 
 # This project integrates data from several API sources:  
 
 [MapBox](https://www.mapbox.com/) - for mapping services
-
-[Yelp](https://www.yelp.com/developers) - for mapping and sourcing local vendors, produce, farms and grocers
-
-[Wikipedia](https://www.mediawiki.org/wiki/API:Web_APIs_hub) for info about and how-tos for items searched
-
-[YouTube](https://www.youtube.com/yt/dev/) - for the videos
-
-[Spoonalar](https://spoonacular.com/food-api) - for the recipes and ingredients
-
-[Pinterest](https://developers.pinterest.com/) - for saving items of interest
 
 # Standards:
 
