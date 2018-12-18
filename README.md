@@ -5,11 +5,15 @@ Status: the web app is not online, yet, still in development
 
 # My Captsone Project:  Weather forecast service  
 
-For a given State, City, ZipCode displays up to the minute weather data.
+For a given State, City, ZipCode display the current and forecast weather.
 
-Weather data is displayed in a table format and on a map.
+Weather filtering and map controls allow user full-control of data presented.
 
-[WeatherX ReadMe](https://github.com/pereznetworks/TD-Project12/blob/master/WeatherX/README.md)
+The weather data is displayed visually on a street or satellite map.
+
+Additional weather stats, warning and alerts will be displayed on side-bar-like area.
+
+[Details and Status of WeatherX Service and App](https://github.com/pereznetworks/TD-Project12/blob/master/WeatherX/README.md)
 
 # Technologies Used:
 
