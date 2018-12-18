@@ -9,7 +9,7 @@ For a given State, City, ZipCode displays up to the minute weather data.
 
 Weather data is displayed in a table format and on a map.
 
-[WeatherX ReadMe](WeatherX/README,md)
+[WeatherX ReadMe](https://github.com/pereznetworks/TD-Project12/blob/master/WeatherX/README.md)
 
 # Technologies Used:
 
