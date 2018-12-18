@@ -1,5 +1,9 @@
 ## A Weather visualization, forecasting and mapping service
 
+# License:
+
+[MIT](https://github.com/pereznetworks/TD-Project12/blob/master/LICENSE)
+
 ## Now Working:  
 
 A: UI
