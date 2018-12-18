@@ -22,6 +22,7 @@ h2 {
 }
 
 /* The grid container */
+/* set protrait style, for thinner mobile devices */
 .grid-container {
   display: grid;
   grid-template-areas:
@@ -74,7 +75,7 @@ h2 {
   text-align: center;
 }
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+/* sets a landscape layout - if screen is wide enough*/
 @media (min-width: 680px) {
   .grid-container  {
     grid-template-areas:

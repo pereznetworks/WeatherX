@@ -16,8 +16,8 @@ const mapBoxStyle = {
 }; // decalred out here because other Component functions need to access it
 
 const containerStyle = {
-  height: "100vh",
-  width: "100vw"
+  height: '100vh',
+  width: '100vw'
 }; // might change the way I set this up ...
 
 function MapView(props){
@@ -38,36 +38,52 @@ class App extends Component {
     super(props);
     this.state = {
       style:{active:'mapbox://styles/pereznetworks/cjplq61wx05gd2sqjpnwkbxoo'},
+      styleLabel: 'Street',
       // just assigning the 'street' style url as default, for now...
       date: new Date()
       // not using right now, but will be with timezonedb api
     };
-    // needed to make `this` when with callbacks in App component jsx code 
+    // needed to make `this` when with callbacks in App component jsx code
     this.toggleMapStyle = this.toggleMapStyle.bind(this);
 
   } // end constructor()
 
-
-  toggleMapStyle(){
-    var style = this.state.style
-    if (style.active !== mapBoxStyle.Street){
-      this.setState({style:{active:mapBoxStyle.Street}})
-    } else {
-       this.setState({style:{active:mapBoxStyle.Satellite}})
-     }
+  toggleMapStyle(e){
+    console.log(e.target.value)
+    let mapViewType = document.getElementById('mapViewType');
+    if ('Street' === e.target.value){
+       this.setState({
+                        style:{active:mapBoxStyle.Street},
+                        styleLabel:'Street'
+                      });
+        mapViewType.innerHTML = 'Street';
+    } else if ('Satellite' === e.target.value){
+      this.setState({
+                     style:{active:mapBoxStyle.Satellite},
+                     styleLabel:'Satellite'
+                   });
+      mapViewType.innerHTML = 'Satellite';
+    }
   } // end toggleMapStyle() from Street to Satellite view
 
   componentDidMount(){
     // make sure first map controls input button gets focus
    this.firstInput.focus();
+   document.getElementById('mapViewType').textContent = this.state.styleLabel
+
  } // componentDidMount() may need to do more here...
 
   render() {
     return (
       <div className="App" style={{flex:1}}>
         <header className="App-header" style={{flex:1}}>
+          <p id='mapViewType'></p>
+        </header>
+        <MapView style={this.state.style}/>
+        {/*<div className='testDiv' style={{flex:1}} ><img className='testImg' style={{flex:1}}/></div>*/}
+        <footer className="App-header" style={{flex:1}}>
           {/*<img src={logo} className="App-logo" alt="logo" />*/}
-          <a className="App-link" href="/" target="_blank" rel="noopener noreferrer">
+          <a className="App-link" href="http://dap-dev.herokuapp.com" target="_blank" rel="noopener noreferrer">
             Mapping by Daniel's AppWorks
           </a>
           <form className="map-controls">
@@ -77,8 +93,7 @@ class App extends Component {
             <input type='button' value='Satellite' className="buttonRight"
             onClick={this.toggleMapStyle} />
           </form>
-        </header>
-        <MapView style={this.state.style}/>
+        </footer>
       </div>
     );
   } // end render()
