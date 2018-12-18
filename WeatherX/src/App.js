@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactMap from "react-mapbox-gl";
 // import logo from './logo.svg';
 import './App.css';
+import './custom-grid.css';
 
 import accessToken from './config.js';
 // importing mapbox accessToken from separate gitgnored file
@@ -23,6 +24,7 @@ const containerStyle = {
 function MapView(props){
   return (<Map
             id="map-container"
+            className='middle'
             style={props.style.active}
             containerStyle={containerStyle}
             center={[-122.420679,37.772537]}
@@ -76,12 +78,12 @@ class App extends Component {
   render() {
     return (
       <div className="App" style={{flex:1}}>
-        <header className="App-header" style={{flex:1}}>
+        <header className="header" style={{flex:1}}>
           <p id='mapViewType'></p>
         </header>
         <MapView style={this.state.style}/>
         {/*<div className='testDiv' style={{flex:1}} ><img className='testImg' style={{flex:1}}/></div>*/}
-        <footer className="App-header" style={{flex:1}}>
+        <footer className="footer" style={{flex:1}}>
           {/*<img src={logo} className="App-logo" alt="logo" />*/}
           <a className="App-link" href="http://dap-dev.herokuapp.com" target="_blank" rel="noopener noreferrer">
             Mapping by Daniel's AppWorks
