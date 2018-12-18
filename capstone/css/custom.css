@@ -38,7 +38,7 @@
   max-width: 240px;
   margin: 5px auto;
   border: 1px solid gray;
-  border-radius: 5px;
+  border-radius: 24px;
   background-color: #808080;/* #8d9aa5; */
   background: linear-gradient(#000, #545d66);
   background: linear-gradient(linear, left top, left bottom, from(#EDEDED), to(#808080));
