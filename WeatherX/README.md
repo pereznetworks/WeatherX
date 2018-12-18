@@ -1,4 +1,4 @@
-## A Weather forecasting and Mapping service
+## A Weather visualization, forecasting and mapping service
 
 ## Now Working:  
 
