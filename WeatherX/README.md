@@ -15,7 +15,13 @@ B: MapBox api
 
 ## To Do:
 
-A: Attribution
+A: Geocoding and Geolocation
+  - 1: Form present choice
+       a: 'use my location': uses geolocation
+          * so will not be auto-geolocating 
+       b: text input of zip-code, city, state uses geocoding
+
+B: Attribution
   - 1: for all of these..
     need to place a logo somewhere on the screen...
       or a 'powered by ... ' menu that then shows...
@@ -25,7 +31,7 @@ A: Attribution
     - c: TimeZoneDb
     - d: Google Earth, if I use them
 
-B: Integrate other API
+C: Integrate other API
   - 1: Mapbox
         implement more features
   - 2: Forecast.io, now called Darksky
