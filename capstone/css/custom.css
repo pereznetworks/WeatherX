@@ -4,6 +4,56 @@
   font-size: 1rem;
 }
 
+.appButton {
+  text-decoration: none;
+  background-color: #000;
+  border: none;
+  color:#61dafb;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.8em;
+  cursor: pointer;
+  margin: 2px;
+  padding: 5px;
+  border-radius: 12px;
+}
+
+.appButton:hover {
+  color: #000;
+  background-color:#4a525a;
+}
+
+.link {
+  display: inline-block;
+  color:#61dafb;
+  text-decoration: none;
+  text-align: center;
+  font-weight: lighter;
+  font-size: 1.8em;
+  line-height: 1em;
+  padding: 12px;
+  width: auto;
+  height: auto;
+  max-width: 240px;
+  margin: 5px auto;
+  border: 1px solid gray;
+  border-radius: 5px;
+  background-color: #808080;/* #8d9aa5; */
+  background: linear-gradient(#000, #545d66);
+  background: linear-gradient(linear, left top, left bottom, from(#EDEDED), to(#808080));
+  /* background: -webkit-gradient (linear, left top, left bottom, from(#EDEDED), to(#DCDCDC));
+  background: -moz-linear-gradient(top, #EDEDED, #DCDCDC); */
+}
+.link:hover {
+  background: linear-gradient(#545d66, #000);
+  text-decoration: none;
+  color:#61dafb;
+  /* background: -webkit-gradient (linear, left top, left bottom, from(#EDEDED), to(#808080)); */
+  /* background: -moz-linear-gradient(top, #EDEDED, #808080,); */
+  /* filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#808080', endColorstr='#EDEDED');*/
+}
+
 /* .jumbotron {
   background-image: url('../img/jumbo-bg.jpg');
   background-size: cover;

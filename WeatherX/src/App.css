@@ -1,0 +1,94 @@
+.App {
+  min-width: 100vw;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 5vmin;
+}
+
+.App-header {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(2vmin);
+  color: white;
+}
+
+  .map-controls{
+    text-decoration: none;
+    background-color: #282c34;
+    border: none;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 8px;
+    cursor: pointer;
+  }
+
+    input {
+      outline: none
+    }
+
+    .buttonLeft {
+       border: none;
+       text-decoration: none;
+       margin: 1px 0 1px 1px;
+       border-radius: 12px 0 0 12px;
+       color:#000;
+       background-color: #808080;/* #8d9aa5; */
+       background: linear-gradient(#EDEDED, #4a525a);
+       background: linear-gradient(linear, left top, left bottom, from(#EDEDED), to(#808080));
+    }
+
+    .buttonRight {
+       border: none;
+       text-decoration: none;
+       margin: 1px 1px 0 1px;
+       border-radius: 0 12px 12px 0;
+       color:#000;
+       background-color: #808080;/* #8d9aa5; */
+       background: linear-gradient(#EDEDED, #4a525a);
+       background: linear-gradient(linear, left top, left bottom, from(#EDEDED), to(#808080));
+    }
+
+      .buttonLeft:focus, .buttonRight:focus{
+        background: linear-gradient(#808080, #000);
+        text-decoration: none;
+        color:#61dafb;
+        }
+
+      .buttonLeft:hover, .buttonRight:hover{
+        background: linear-gradient(#808080, #000);
+        text-decoration: none;
+        color:#61dafb;
+        }
+
+      .buttonLeft:active, .buttonRight:active{
+        background: linear-gradient(#808080, #000);
+        text-decoration: none;
+        color:#61dafb;
+      }
+
+.App-link {
+  color: #61dafb;
+  margin: 5px 1px;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#mapbox-container {
+
+}
