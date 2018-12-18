@@ -17,9 +17,10 @@ B: MapBox api
 
 A: Geocoding and Geolocation
   - 1: Form present choice
-     - a: 'use my location': uses geolocation
-        * so will not be auto-geolocating
-     - b: text input of zip-code, city, state uses geocoding
+     - a: 'use my location' button: uses geolocation
+        * so not enabled unless user clicks this button
+     - b: other wise text input of zip-code, city, state uses geocoding
+     - c: initial view will be of a random major city in the U.S.
 
 B: Attribution
   - 1: for all of these..
