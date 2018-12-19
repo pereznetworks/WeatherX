@@ -2,7 +2,12 @@
 
 ## STATUS:
 
- - Currently building backend service and front-end app
+ - Currently building backend service
+
+ - After UI testing, silly to try to fit everything in one view
+    - will build multiple views and adapt app flow
+    - will leave working map-view as is for now
+    - will build more views when I have more data to work with
 
 ## Now Working:  
 
