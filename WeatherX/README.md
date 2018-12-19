@@ -69,7 +69,7 @@ B: MapBox api
 
 # React Readme
 
-[React Readme](TD-Project12/WeatherX/reactReadme.md)
+[React Readme](https://github.com/pereznetworks/TD-Project12/blob/master/WeatherX/reactReadme.md)
 
 # License:
 
