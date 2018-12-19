@@ -7,6 +7,9 @@
 A: UI
   - 1: basic header and map-controls form
   - 2: mapview container and map ReactMap core
+  - 3: scroll-bars hidden
+    - a: applied to body in index.css
+    - b: 2% bottom-margin for footer
 
 B: MapBox api
   - 1: Access and rendering using basic template  
@@ -15,19 +18,14 @@ B: MapBox api
 
 ## To Do:
 
-A: Scrolling map view container
-  - 1: can scroll map:
-     - a. past top, bottom, left and right of map view container
-  - 2: header and footer remain fixed position
-
-B: Geocoding and Geolocation
+A: Geocoding and Geolocation
   - 1: Form present choice
      - a: 'use my location' button: uses geolocation
         * so not enabled unless user clicks this button
      - b: other wise text input of zip-code, city, state uses geocoding
      - c: initial view will be of a random major city in the U.S.
 
-C: Attribution
+B: Attribution
   - 1: for all of these..
     need to place a logo somewhere on the screen...
       or a 'powered by ... ' menu that then shows...
@@ -37,7 +35,7 @@ C: Attribution
     - c: TimeZoneDb
     - d: Google Earth, if I use them
 
-D: Integrate other API
+C: Integrate other API
   - 1: Mapbox
         implement more features
   - 2: Forecast.io, now called Darksky
