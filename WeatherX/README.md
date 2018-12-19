@@ -72,8 +72,6 @@
   - 5: ArcGIS
         find out if I can get satellite radar imagery via an api
 
-# ..
-
 ## React Readme
 
 [React Readme](https://github.com/pereznetworks/TD-Project12/blob/master/WeatherX/reactReadme.md)
