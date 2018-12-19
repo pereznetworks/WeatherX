@@ -1,6 +1,6 @@
-## A Weather visualization, forecasting and mapping service
+# A Weather visualization, forecasting and mapping service
 
-## STATUS:
+# STATUS:
 
  - Currently building backend service
 
@@ -9,9 +9,9 @@
     - will leave working map-view as is for now
     - will build more views when I have more data to work with
 
-## Now Working:  
+# Now Working:  
 
-A: UI
+## A: UI
   - 1: basic header and map-controls form
   - 2: map-view container and map ReactMap core
   - 3: scroll-bars hidden
@@ -19,14 +19,14 @@ A: UI
     - b: applied to body in index.css
     - c: 2% bottom-margin for footer
 
-B: MapBox api
+## B: MapBox api
   - 1: Access and rendering using basic template  
   - 2: Street and Satellite view
   - 3: switching from Street to Satellite map view
 
-## To Do:
+# To Do:
 
-# A: UI
+## A: UI
   - 1: build initial view and app flow
     - a: initial view will be a radar-layered map-view of random city
       - preferably somewhere that has rain, snow or cloud-cover
@@ -39,7 +39,7 @@ B: MapBox api
       - map controls across top header
       - menu, in left corner, drops down icons to return to other views
 
-# B: Geocoding and Geolocation
+## B: Geocoding and Geolocation
   - 1: Form present choice
      - a: 'use my location' button: uses geolocation
         - so not enabled unless user clicks this button
@@ -47,7 +47,7 @@ B: MapBox api
      - c: initial view will be of a random major city
         - search icon pulls up search form for geolocation, geocoding
 
-# C: Attribution
+## C: Attribution
   - 1: for all of these..
     need to place a logo somewhere on the screen...
       or a 'powered by ... ' menu that then shows...
@@ -60,7 +60,7 @@ B: MapBox api
     - c: TimeZoneDb,
     - d: Google Earth, ArcGIS, if I use them
 
-# D: Integrate other API
+## D: Integrate other API
   - 1: for MapBox
         implement more features
   - 2: Forecast.io, now called DarkSky
@@ -72,10 +72,12 @@ B: MapBox api
   - 5: ArcGIS
         find out if I can get satellite radar imagery via an api
 
-# React Readme
+# ..
+
+## React Readme
 
 [React Readme](https://github.com/pereznetworks/TD-Project12/blob/master/WeatherX/reactReadme.md)
 
-# License:
+## License:
 
 [MIT](https://github.com/pereznetworks/TD-Project12/blob/master/LICENSE)
