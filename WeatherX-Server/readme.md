@@ -29,3 +29,7 @@ built custom methods for forcast.io api call using axios to make api call to a d
 added my mongoose client and my mongoose document methods to dataSource folder from project 11
 
 added full module pattern folder structure to dataSource folder
+
+## License:
+
+[MIT](https://github.com/pereznetworks/TD-Project12/blob/master/LICENSE)
