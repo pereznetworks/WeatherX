@@ -2,9 +2,9 @@
 src/config.js
 
 # ignore config folder and everything in it
-/config
-/config/*
-/config/forecast.js
+/dataSource/config
+/dataSource/config/*
+/dataSource/config/index.js
 
 # Logs
 logs
