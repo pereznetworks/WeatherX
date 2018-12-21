@@ -1,5 +1,10 @@
 # WeatherX Server
 
+backend server to provide front-end WeatherX app with data from several external sources
+
+[for detail on external source data and development roadmap see WeatherX app readme ](https://github.com/pereznetworks/TD-Project12/blob/master/WeatherX/README.md)
+
+
 ## TODO
 
 build mongoose data models based on forecast.io current and time-machine json data samples

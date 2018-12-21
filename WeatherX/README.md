@@ -1,4 +1,4 @@
-# A Weather visualization, forecasting and mapping service
+# A Weather visualization, forecasting and mapping app
 
 # STATUS:
 
