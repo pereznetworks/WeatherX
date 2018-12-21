@@ -1,6 +1,6 @@
-// template for simple express backend-server with routing
+// WeatherX server
 
-'use strict'; // makes sure, among other things,that no unneeded errors creep into my code
+'use strict'; // makes sure, among other things, that no unneeded errors creep into my code
 
 // importing Express, and set the port it will accept connections on
 const express = require('express');
