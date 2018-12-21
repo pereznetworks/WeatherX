@@ -1,0 +1,25 @@
+{
+  "name": "weatherx-server",
+  "version": "0.0.1",
+  "description": "weatherx-server, using mapbox, forecast.io and timezonedb api",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "helmet": "^3.15.0",
+    "mongoose": "^5.0.14",
+    "morgan": "^1.9.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --inspect index.js"
+  },
+  "keywords": [
+    "testing",
+    "forecast.io",
+    "api"
+  ],
+  "author": "Daniel Perez. Capstone Project. WeatherX Server",
+  "license": "MIT"
+}
