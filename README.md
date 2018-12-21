@@ -13,7 +13,13 @@ The weather data is displayed visually on a street or satellite map.
 
 Additional weather stats, warning and alerts will be displayed on side-bar-like area.
 
-[Details and Status of WeatherX Service and App](https://github.com/pereznetworks/TD-Project12/blob/master/WeatherX/README.md)
+# WeatherX app
+
+[Details and Status of WeatherX App](https://github.com/pereznetworks/TD-Project12/blob/master/WeatherX/README.md)
+
+# WeatherX server
+
+[Details and Status of WeatherX Server](https://github.com/pereznetworks/TD-Project12/blob/master/WeatherX-Server/readme.md)
 
 # Technologies Used:
 
