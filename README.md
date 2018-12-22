@@ -41,7 +41,7 @@ React.Js, https://reactjs.org/ and Babel.js, https://babeljs.io/, for front-end 
 
 # Standards:
 
-And it's all javascript es2015, web-app best-practices, TSL2 security and html5 web-standards compliant!
+And it's all javascript es6, web-apps best-practices, TLS2 security and html5 web-standards compliant!
 
 # License:
 
