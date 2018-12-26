@@ -50,7 +50,7 @@ const db = mongoConnect();
     	mongoOnceConnected();
     });
 
-// make mongoose connection
+// make mongoose connection available to all routes
 server.use(db);
 
 // make mongoose document methods available to all routes
