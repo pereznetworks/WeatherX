@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ReactMap from "react-mapbox-gl";
 // import logo from './logo.svg';
 import '../imgs/App.css';
-import '../imgs/custom-grid.css';
+import '../imgs/forecast-grid.css';
 
 class ForecastViewHeader extends Component {
   render() {

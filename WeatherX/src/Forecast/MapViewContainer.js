@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactMap from "react-mapbox-gl";
 // import logo from './logo.svg';
 import '../css/App.css';
-import '../css/custom-grid.css';
+import '../css/forecast-grid.css';
 import accessToken from '../config.js';
 
 const Map = ReactMap({

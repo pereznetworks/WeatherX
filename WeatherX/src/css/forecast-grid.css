@@ -16,7 +16,7 @@
 
 /* Style the header */
 .header {
-
+  grid-area: header;
   background-color: #282c34;
   text-align:center;
   align-items: justify;

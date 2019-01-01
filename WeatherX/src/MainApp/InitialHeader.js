@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 // import logo from './logo.svg';
 import '../css/App.css';
-import '../css/custom-grid.css';
+import '../css/forecast-grid.css';
 
 class InitalHeader extends Component {
 
@@ -26,7 +26,7 @@ class InitalHeader extends Component {
         <header className="header" style={{flex:1}}>
         <a href="/" className="App-link" >Welcome to WeatherX</a>
         <form className="map-controls">
-          <input type='text' value='' placeholder=' Please type in a City, State or Zip Code, then press' className="typeInALocationInputLeft"
+          <input type='text' defaultValue='' placeholder=' Please type in a City, State or Zip Code, then press' className="typeInALocationInputLeft"
           ref={(input) => { this.firstInput = input; }} />
           <input type='submit' value='Get Forecast' className="submitLocationButtonMiddle"/>
           <input type='button' value='or Use My Location' className="useMyLocationButtonRight" />

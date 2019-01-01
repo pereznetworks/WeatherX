@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactMap from "react-mapbox-gl";
 // import logo from '../imgs/logo.svg';
 import '../css/App.css';
-import '../css/custom-grid.css';
+import '../css/forecast-grid.css';
 
 // importing custom components
 import ForecastViewHeader from './ForecastViewHeader.js'
