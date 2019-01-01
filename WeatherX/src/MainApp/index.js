@@ -22,9 +22,9 @@ class MainApp extends Component {
 
   render() {
     return (
-      <div className="grid-main">
+      <div id="Main" className="grid-main">
           <div className="left-margin">
-            <img id="LgreyBox" />
+            {/* <img id="LgreyBox" alt=""/> */}
           </div>
           <div className="middle">
             <div id="titleBar">
@@ -33,13 +33,13 @@ class MainApp extends Component {
             </div>
             <div id="navBar">
               <ul>
-                <li id="liHome"><a id="Home">Home</a></li>
-                <li id="liAbout"><a id="About">About</a></li>
+                <li id="liHome"><a href="#Main" id="Home">Home</a></li>
+                <li id="liAbout"><a href="#Main" id="About">About</a></li>
                 <li className="dropdown" id="dropDownNav">
-                  <a className="dropbtn">Get Weather Forecast</a>
+                  <a href="#Main" className="dropbtn">Get Weather Forecast</a>
                   <div className="dropdown-content">
-                    <a id="useMyLocation">Use My Location</a>
-                    <a id="typeALocation">Type In A Location</a>
+                    <a href="#Main" id="useMyLocation">Use My Location</a>
+                    <a href="#Main" id="typeALocation">Type In A Location</a>
                   </div>
                 </li>
                 <form id="geoLocationCoding-Form">
@@ -65,7 +65,7 @@ class MainApp extends Component {
             </div>
           </div>
           <div className="right-margin">
-              <img id="RgreyBox" />
+              {/*<img id="RgreyBox" alt=""/>*/}
           </div>
         </div>
     );
