@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 // import ReactMap from "react-mapbox-gl";
-// import logo from './logo.svg';
-import './App.css';
-import './custom-grid.css';
+// import logo from '../imgs/logo.svg';
+import '../css/App.css';
+import '../css/custom-grid.css';
 
 // importing custom components
 import InitalHeader from './InitialHeader.js'
@@ -18,7 +18,7 @@ class MainApp extends Component {
     super(props);
     this.state = {
       date: new Date()
-      // not using at this level yet
+      // not state using at this level yet
     };
   } // end constructor()
 

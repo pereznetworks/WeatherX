@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import ReactMap from "react-mapbox-gl";
-// import logo from './logo.svg';
-import './App.css';
-import './custom-grid.css';
+// import logo from '../imgs/logo.svg';
+import '../css/App.css';
+import '../css/custom-grid.css';
 
 // importing custom components
 import ForecastViewHeader from './ForecastViewHeader.js'
 import ForecastViewContainer from './ForcastViewContainer.js'
 import MapViewContainer from './MapViewContainer.js'
-import Footer from './Footer.js'
+import Footer from '../MainApp/Footer.js'
 
-class ForecastView extends Component {
+class Forecast extends Component {
 
   constructor(props) {
     super(props);
@@ -97,4 +97,4 @@ class ForecastView extends Component {
 
 } // end App component
 
-export default ForecastView;
+export default Forecast;

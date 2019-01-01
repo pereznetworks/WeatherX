@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 // import logo from './logo.svg';
-import './App.css';
-import './custom-grid.css';
+import '../css/App.css';
+import '../css/custom-grid.css';
 
 class InitalHeader extends Component {
 
