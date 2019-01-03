@@ -312,6 +312,7 @@ li.dropdown {
   align-content: center;
   text-align: center;
   justify-content: center;
+  height: fit-content;
 }
 
 #main-content h2 {
