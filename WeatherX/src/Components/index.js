@@ -1,5 +1,24 @@
-import * as TitleBar from './titleBar.js';
-import * as NavBar from './navBar.js';
+import React, { Component } from 'react';
 
-// would like to export from one main section
-// may need to build an class component that renders these and then export that
+// importing sub-components
+import TitleBar from './titleBar.js';
+import NavBar from './navBar.js';
+import MainContent from './mainContents.js';
+
+// import css styling
+import '../css/grid-main.css';
+
+// creates one component for all sub-components
+class Middle extends Component {
+  render(){
+    return(
+      <div className="middle">
+        <TitleBar />
+        <NavBar />
+        <MainContent />
+      </div>
+    );
+  }
+}
+
+export default Middle;
