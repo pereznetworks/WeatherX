@@ -23,9 +23,10 @@ class MainContents extends Component {
           to demo a the drop-menu, home/back and form navigation <br />
           A lot of tweeking has been done... <br />
           to get layout, element positioning, etc. to be just right.<br />
-          <br /><strong>This is just a layout demo.<br />
-           Now the tough job; to port and implement in ReactJS</strong><br />
-        </p>
+          <br /></p>
+          <h2>This is just a layout demo. Now the tough job; to port and implement in ReactJS</h2>
+          <h3>Eventually, rendered components will replace all this text </h3>
+
       </div>
     );
   }
