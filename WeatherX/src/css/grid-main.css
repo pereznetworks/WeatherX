@@ -318,14 +318,35 @@ li.dropdown {
   padding: 0;
 }
 
+@media only screen and (min-width: 320px){
+  #title {
+      font-size: 1.3em;
+      background: #fff;
+      color: #5a5a5a;
+      width: 77%;
+      height: 60%;
+      display: inline;
+      float: left;
+      margin: 0 0 0 65px;
+      border: 0;
+      padding: 5px 0px;
+  }
+}
+
 @media only screen and (min-width: 720px){
 
-  #main-content h2, #main-content h3, #main-content p {
-    font-size: 26px;
+  * {
+    font-size: 16px;
   }
+
+  #main-content h2, #main-content h3, #main-content p {
+    font-size: 1em;
+  }
+
   #title {
     width:88%;
   }
+
   #navBar{
     height: 80%;
   }
@@ -333,12 +354,19 @@ li.dropdown {
 
 @media only screen and (min-width: 1000px){
 
-  #main-content h2, #main-content h3, #main-content p {
-    font-size: 28px;
+  * {
+    font-size: 16px;
   }
+
+  #main-content h2, #main-content h3, #main-content p {
+    font-size: 1em;
+  }
+
+
   #title {
     width:88%;
   }
+
   #navBar{
     height: 80%;
   }

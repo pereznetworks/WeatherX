@@ -17,6 +17,8 @@ export default class NavBar extends Component {
       super(props);
       this.state = {
         homeAboutDropDownNav: true,
+        useMyLocation: true,
+        typeALocation: true,
         geoLocationCodingForm: false,
         geoCoding: false,
         geoLocation: false
@@ -29,6 +31,8 @@ export default class NavBar extends Component {
     componentDidMount(){
       this.setState({
         homeAboutDropDownNav: true,
+        useMyLocation: true,
+        typeALocation: true,
         geoLocationCodingForm: false,
         geoCoding: false,
         geoLocation: false
@@ -39,6 +43,8 @@ export default class NavBar extends Component {
       if (event.target.textContent === 'Back'){
         this.setState({
           homeAboutDropDownNav: true,
+          useMyLocation: true,
+          typeALocation: true,
           geoLocationCodingForm: false,
           geoCoding: false,
           geoLocation: false
@@ -46,6 +52,8 @@ export default class NavBar extends Component {
       } else if (event.target.textContent === 'Use My Location'){
         this.setState({
           homeAboutDropDownNav: false,
+          useMyLocation: false,
+          typeALocation: false,
           geoLocationCodingForm: true,
           geoCoding: false,
           geoLocation: true
@@ -53,6 +61,8 @@ export default class NavBar extends Component {
       } else if (event.target.textContent === 'Type In A Location'){
         this.setState({
           homeAboutDropDownNav: false,
+          useMyLocation: false,
+          typeALocation: false,
           geoLocationCodingForm: true,
           geoCoding: true,
           geoLocation: false

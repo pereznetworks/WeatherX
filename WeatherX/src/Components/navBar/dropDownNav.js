@@ -33,18 +33,7 @@ export default class DropDownNav extends Component {
             </li>
           );
      } else {
-       return(
-             <li className="dropdown" id="dropDownNav" style={{display:"inline"}}>
-               <div className="dropdown-content">
-                 <a href="#Main"
-                    id="useMyLocation"
-                    onClick={this.handleNavClick}>Use My Location</a>
-                 <a href="#Main"
-                    id="typeALocation"
-                    onClick={this.handleNavClick}>Type In A Location</a>
-               </div>
-             </li>
-           );
+       return null;
      }
   }
 } // this component will be passed this.props.navState, .handleNavClick
