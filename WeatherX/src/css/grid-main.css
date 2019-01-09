@@ -410,6 +410,26 @@ li.dropdown {
     vertical-align: middle;
   }
 
+  #geoLocation-Label{
+    border: 1px solid #000;
+    border-radius: 12px;
+    text-align: center;
+    align-content: center;
+    text-decoration: none;
+    display: none;  /* inline; */
+    font-size: .8em;
+    line-height: 2.5em;
+    vertical-align: middle;
+    width: 150px;
+    height: 25px;
+    color: #fff;
+    /* background: url(./...pmg) 0 0; */
+    background-color: #000;
+    padding: 3px;
+    margin: 3px 0;
+    cursor:pointer;
+  }
+
   #geoCoding-input {
     border: 1px solid #000;
     text-align: center;
@@ -459,6 +479,26 @@ li.dropdown {
     padding: 8px 4px;
     text-decoration: none;
     vertical-align: middle;
+  }
+
+  #geoLocation-Label{
+    border: 1px solid #000;
+    border-radius: 12px;
+    text-align: center;
+    align-content: center;
+    text-decoration: none;
+    display: none;  /* inline; */
+    font-size: .8em;
+    line-height: 2.5em;
+    vertical-align: middle;
+    width: 150px;
+    height: 25px;
+    color: #fff;
+    /* background: url(./...pmg) 0 0; */
+    background-color: #000;
+    padding: 3px;
+    margin: 3px 0;
+    cursor:pointer;
   }
 
   #geoCoding-input {
