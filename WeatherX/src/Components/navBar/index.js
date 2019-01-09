@@ -79,7 +79,4 @@ export default class NavBar extends Component {
       </div>
     );
   }
-} // this component will be passed this.props.navState, .handleNavClick, .handleNavSubmit
-
-
-// navState={this.state} displayStyle={this.displayStyle} handleNavClick={this.handleNavClick} handleNavSubmit={this.handleNavSubmit}
+} // this component controls the state of the navBar menu
