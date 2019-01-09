@@ -6,12 +6,39 @@ import React, { Component } from 'react';
 import '../../css/App.css';
 import '../../css/grid-main.css';
 
-class Home extends Component {
-  render() {
-    return(
-          <li id="liHome" ><a href="#Main" id="Home">{this.props.homeBackDisplayAttr}</a></li>
-        );
-  }
-} // this component will be passe props.textContent
+export default class Home extends Component {
 
-export default Home;
+  constructor(props) {
+    super(props);
+    this.handleNavClick = this.handleNavClick.bind(this);
+  }
+
+  handleNavClick(e){
+    this.props.handleNavClick(e);
+  }
+
+
+  render() {
+    if (this.props.homeAboutDropDownNav === true){
+      return(
+            <li id="liHome" >
+              <a
+                 href="#Main"
+                 id="Home"
+                 onClick={this.handleNavClick}
+              >Home</a>
+            </li>
+          );
+    } else {
+      return(
+            <li id="liHome" >
+              <a
+                href="#Main"
+                id="Home"
+                onClick={this.handleNavClick}
+              >Back</a>
+            </li>
+          );
+    }
+  }
+} // this component will be passed this.props.homeAboutDropDownNav, .handleClick

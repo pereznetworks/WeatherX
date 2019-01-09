@@ -6,12 +6,32 @@ import React, { Component } from 'react';
 import '../../css/App.css';
 import '../../css/grid-main.css';
 
-class About extends Component {
-  render() {
-    return(
-          <li id="liAbout" style={this.props.aboutDisplayAttr} ><a href="#Main" id="About">About</a></li>
-        );
-  }
-} // this component will be passed props.displayAttr
+export default class About extends Component {
 
-export default About;
+  constructor(props) {
+    super(props);
+    this.handleNavClick = this.handleNavClick.bind(this);
+  }
+
+  handleNavClick(e){
+    this.props.handleNavClick(e);
+  }
+
+
+  render() {
+    if (this.props.homeAboutDropDownNav === true){
+      return(
+            <li id="liAbout" style={{display:'inline'}}>
+              <a
+                href="#Main"
+                id="About"
+                onClick={this.handleNavClick}>About</a>
+            </li>
+          );
+    } else {
+      return(
+            <li id="liAbout" style={{display:'none'}}><a href="#Main" id="About">About</a></li>
+          );
+    }
+  }
+} // this component will be passed props.homeAboutDropDownNav, .handleNavClick
