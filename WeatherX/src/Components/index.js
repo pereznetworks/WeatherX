@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 // importing sub-components
-// import TitleBar from './titleBar.js';
+import TitleBar from './titleBar.js';
 import NavBar2 from './navBar2';
-import MainContent from './mainContents.js';
+import MainContent from './mainContents';
 
 // import css styling
 import '../css/grid-main2.css';
@@ -15,6 +15,7 @@ class Middle extends Component {
   render(){
     return(
       <div className="middle">
+        <TitleBar />
         <NavBar2 />
         <MainContent />
       </div>

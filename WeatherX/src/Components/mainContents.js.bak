@@ -9,24 +9,24 @@ class MainContents extends Component {
             <div id="main-content">
 
               <form id="geoLocation" action="">
-                <div className="geo-div">
+                <div className="geo-button-div">
+                  <input
+                    type="button"
+                    className="geo-button"
+                    id="geoLocation-submit"
+                    onClick={this.props.handleNavSubmit}/>
                   <label id="geoLocation-Label">
-                    <input
-                      type="button"
-                      className="geo-button"
-                      id="geoLocation-submit"
-                      onClick={this.props.handleNavSubmit}/>
-                   Find Me<
-                  /label>
+                   Find Me
+                  </label>
                 </div>
-                <div className="geo-div">
-                  <label id="geoCoding-Label">
-                    <input
-                      type="button"
-                      className="geo-button"
-                      id="geoCoding-submit"
-                      onClick={this.props.handleNavSubmit}/>
-                   Enter location
+                <div className="geo-button-div">
+                  <input
+                    type="button"
+                    className="geo-button"
+                    id="geoCoding-submit"
+                    onClick={this.props.handleNavSubmit}/>
+                  <label className="geo-button-Label" id="geoCoding-Label">
+                   Type location
                   </label>
                 </div>
               </form>
