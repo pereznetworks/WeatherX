@@ -6,10 +6,10 @@ import '../../css/App.css';
 import '../../css/mainContents.css';
 
 // custom components
-// import Home from './home.js';
+import Home from './home.js';
 // import About from './about.js';
 // import DropDownNav from './dropDownNav.js';
-// import GeoLocationCodingForm from './geoLocationCodingForm.js'
+import GeoLocationCodingForm from './geoLocationCodingForm.js'
 
 export default class NavBar2 extends Component {
 
@@ -80,14 +80,15 @@ export default class NavBar2 extends Component {
   render() {
     return(
       <div id="mainNav">
-        {/*<img id="mainNavIcon" alt="" />
+        <img id="mainNavIcon" alt="" />
             <ul id="mainNav-content">
                   <Home homeAboutDropDownNav={this.state.homeAboutDropDownNav} handleNavClick={this.handleNavClick}/>
-                  <About homeAboutDropDownNav={this.state.homeAboutDropDownNav} handleNavClick={this.handleNavClick}/>
-                  <DropDownNav navState={this.state} handleNavClick={this.handleNavClick}/>
                   <GeoLocationCodingForm navState={this.state} handleNavClick={this.handleNavClick} handleNavSubmit={this.handleNavSubmit}/>
-            </ul>*/}
+            </ul>
       </div>
     );
   }
 } // this component controls the state of the app's UI components
+
+ // <About homeAboutDropDownNav={this.state.homeAboutDropDownNav} handleNavClick={this.handleNavClick}/>
+ // <DropDownNav navState={this.state} handleNavClick={this.handleNavClick}/>

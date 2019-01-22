@@ -9,7 +9,7 @@ class TitleBar extends Component {
     return (
       <div id="titleBar">
         <p id="title">WeatherX</p>
-        <p id="titletext">A Weather Forecast Service</p>
+        <p id="titleText">A Weather Forecast Service</p>
       </div>
     )
   }

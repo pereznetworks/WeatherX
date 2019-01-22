@@ -5,16 +5,21 @@ import React, { Component } from 'react';
 export default class GeoLocation extends Component {
   render() {
     return(
-            <div className="geo-button-div">
+            <div className="geolocation-div">
               <input
                 type="button"
                 className="geo-button"
-                id="geoLocation-submit"
-                onClick={this.props.handleNavSubmit}/>
-              <label className="geo-button-Label" id="geoLocation-Label">
+                id="geoLocation-Submit"
+                title="Find Me"
+                onClick={this.props.handleNavSubmit}></input>
+
+              <label className="geo-button-label" id="geoLocation-Label" title="Find Me">
                Find Me
               </label>
+
             </div>
+
+
     );
   }
 }

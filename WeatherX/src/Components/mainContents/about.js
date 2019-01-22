@@ -9,9 +9,10 @@ export default class About extends Component {
               <input
                 type="button"
                 className="about-button"
-                id="about-submit"
+                id="about-Submit"
+                title="About WeatherX"
                 onClick={this.props.handleNavSubmit}/>
-              <label className="about-button-Label" id="about-button-Label">
+              <label className="about-button-label" id="about-Button-Label">
                About WeatherX
               </label>
             </div>

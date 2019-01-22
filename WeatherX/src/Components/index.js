@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 // importing sub-components
 import TitleBar from './titleBar.js';
-import NavBar2 from './navBar2';
 import MainContent from './mainContents';
 
 // import css styling
@@ -16,7 +15,6 @@ class Middle extends Component {
     return(
       <div className="middle">
         <TitleBar />
-        <NavBar2 />
         <MainContent />
       </div>
     );

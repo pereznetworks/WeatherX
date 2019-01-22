@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 // css styling
 import '../../css/App.css';
 import '../../css/grid-main.css';
+import '../../css/geoLocationCoding.css'
 
 export default class GeoLocationCodingForm extends Component {
 
