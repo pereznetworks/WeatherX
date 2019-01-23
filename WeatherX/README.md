@@ -10,9 +10,9 @@
     - will build more views when I have more data to work with
 
  - will have to leave live streaming over-lay of weather-radar over map for future version
-   the main technical issue is....
-    requires a paid-for api tier of service to grab continuous stream of data 
-     the src code that I have built will be archived for now
+   - the main technical issue is....
+     - requires a paid-for api tier of service to grab continuous stream of data
+     - the src code that I have built will be archived for now
 
 # Now Working:  
 
