@@ -93,9 +93,10 @@ class Middle extends Component {
           navState={this.state}
           handleNavClick={this.handleNavClick}
           handleNavSubmit={this.handleNavSubmit}
-        />
+          />
         <MainView
-          navState={this.state}/>
+          navState={this.state}
+          />
       </div>
     );
   }
