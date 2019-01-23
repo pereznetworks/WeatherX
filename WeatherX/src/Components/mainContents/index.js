@@ -8,17 +8,18 @@ import About from "./about.js"
 
 export default class MainContents extends Component {
 
-// each item in state object refers to html element by that id
+// each item in state object refers to a html element by that id and/or a corresponding form action
+// passing bound handler methods
+// hanldeNavSubmit makes api call to back-end server
+// hanldeNavClick used to load component; Home, GeoLocaton form, or About
 
   constructor(props) {
     super(props);
     this.state = {
       home: true,
-      geoLocationSubmit: true,
-      typeALocation: true,
-      geoLocationCodingForm: false,
+      geoLocation: false,
       geoCoding: false,
-      geoLocation: false
+      about: false,
     };
 
     this.handleNavClick = this.handleNavClick.bind(this);
@@ -27,42 +28,41 @@ export default class MainContents extends Component {
 
   componentDidMount(){
     this.setState({
-      homeAboutDropDownNav: true,
-      useMyLocation: true,
-      typeALocation: true,
-      geoLocationCodingForm: false,
+      home: true,
+      geoLocation: false,
       geoCoding: false,
-      geoLocation: false
+      about: false,
     });
   }
 
   handleNavClick(event) {
-    if (event.target.textContent === 'Back'){
+    if (event.target.textContent === 'Home'){
       this.setState({
-        homeAboutDropDownNav: true,
-        useMyLocation: true,
-        typeALocation: true,
-        geoLocationCodingForm: false,
+        home: true,
+        geoLocation: false,
         geoCoding: false,
-        geoLocation: false
+        about: false,
       })
-    } else if (event.target.textContent === 'Use My Location'){
+    } else if (event.target.title === 'Find Me'){
       this.setState({
-        homeAboutDropDownNav: false,
-        useMyLocation: false,
-        typeALocation: false,
-        geoLocationCodingForm: true,
+        home: false,
+        geoLocation: true,
         geoCoding: false,
-        geoLocation: true
+        about: false,
       })
-    } else if (event.target.textContent === 'Type In A Location'){
+    } else if (event.target.title === 'Submit Search'){
       this.setState({
-        homeAboutDropDownNav: false,
-        useMyLocation: false,
-        typeALocation: false,
-        geoLocationCodingForm: true,
+        home: false,
+        geoLocation: false,
         geoCoding: true,
-        geoLocation: false
+        about: false,
+      })
+    } else if (event.target.title === 'About'){
+      this.setState({
+        home: false,
+        geoLocation: false,
+        geoCoding: false,
+        about: true,
       })
     }
 
@@ -80,9 +80,16 @@ export default class MainContents extends Component {
             <div id="main-Content">
 
               <form id="geoLocation" action="">
-                <GeoLocation />
-                <GeoCoding />
-                <About />
+                <GeoLocation
+                  navState={this.state}
+                  handleNavSubmit={this.handleNavSubmit}/>
+                <GeoCoding
+                  navState={this.state}
+                  handleNavClick={this.handleNavClick}
+                  handleNavSubmit={this.handleNavSubmit}/>
+                <About
+                  navState={this.state}
+                  handleNavSubmit={this.handleNavSubmit}/>
               </form>
 
 

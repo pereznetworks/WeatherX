@@ -3,6 +3,16 @@ import React, { Component } from 'react';
 // import logo from '../imgs/logo.svg';
 
 export default class GeoLocation extends Component {
+
+  constructor(props) {
+    super(props);
+    this.handleNavSubmit = this.handleNavSubmit.bind(this);
+  }
+
+  handleNavSubmit(e){
+    this.props.handleNavSubmit(e);
+  }
+
   render() {
     return(
             <div className="geolocation-div">
@@ -12,11 +22,13 @@ export default class GeoLocation extends Component {
                 id="geoLocation-Submit"
                 title="Find Me"
                 onClick={this.props.handleNavSubmit}></input>
-
-              <label className="geo-button-label" id="geoLocation-Label" title="Find Me">
+              <label
+                className="geo-button-label"
+                id="geoLocation-Label"
+                title="Find Me"
+                onClick={this.props.handleNavSubmit}>
                Find Me
               </label>
-
             </div>
 
 

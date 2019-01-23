@@ -3,6 +3,21 @@ import React, { Component } from 'react';
 // import logo from '../imgs/logo.svg';
 
 export default class GeoCoding extends Component {
+
+  constructor(props) {
+    super(props);
+    this.handleNavClick = this.handleNavClick.bind(this);
+    this.handleNavSubmit = this.handleNavSubmit.bind(this);
+  }
+
+  handleNavClick(e){
+    this.props.handleNavClick(e);
+  }
+
+  handleNavSubmit(e){
+    this.props.handleNavSubmit(e);
+  }
+
   render() {
     return(
             <div className="geocoding-div">
@@ -11,7 +26,7 @@ export default class GeoCoding extends Component {
                 className="geo-button"
                 id="geoCoding-Submit"
                 title="Click me to enter a location"
-                onClick={this.props.handleNavSubmit}/>
+                onClick={this.props.handleNavClick}/>
               <label className="geo-button-label" id="geoCoding-Label">
                Type location
               </label>
@@ -23,7 +38,8 @@ export default class GeoCoding extends Component {
               <input
                 type="button"
                 id="geoCoding-TextSubmit"
-                title="Search"/>
+                title="Submit Search"
+                onClick={this.props.handleNavSubmit}/>
             </div>
     );
   }
