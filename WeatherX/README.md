@@ -4,27 +4,28 @@
 
  - Currently building backend service
 
- - After UI testing, silly to try to fit everything in one view
+ - UI components and testing being completed as backend service starts to deliver data
+    - silly to try to fit everything in one view
     - will build multiple views and adapt app flow
-    - will leave working map-view as is for now
     - will build more views when I have more data to work with
+
+ - will have to leave live streaming over-lay of weather-radar over map for future version
+   the main technical issue is....
+    requires a paid-for api tier of service to grab continuous stream of data 
+     the src code that I have built will be archived for now
 
 # Now Working:  
 
 ## A: UI
-  - 1: basic header and map-controls form
-  - 2: map-view container and map ReactMap core
-  - 3: scroll-bars hidden
-    - a: MapBox map has built-in features; zoom, scroll, pan, etc
-    - b: applied to body in index.css
-    - c: 2% bottom-margin for footer
-
-## B: MapBox api
-  - 1: Access and rendering using basic template  
-  - 2: Street and Satellite view
-  - 3: switching from Street to Satellite map view
+  - 1: basic titleBar, navBar3 and mainView components
+        once 'Find Me' (geo-location)
+         or 'Enter A location' (geo-coding) is submitted...
+  - 2: a background z-index -1 is rendered
+        while current or forecast weather stats displayed
+         will have appropriate cloud/rain/stormy affect animating in background
 
 # To Do:
+
 
 ## A: UI
   - 1: build initial view and app flow
