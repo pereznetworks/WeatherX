@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import GeoLocation from "./geoLocation.js";
 import GeoCoding from "./geoCoding.js";
 import About from "./about.js";
-import MainView from "./mainView.js";
 
 export default class MainContents extends Component {
 
@@ -16,70 +15,17 @@ export default class MainContents extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      home: true,
-      geoLocation: false,
-      geoCoding: false,
-      about: false,
-    };
-
     this.handleNavClick = this.handleNavClick.bind(this);
     this.handleNavSubmit = this.handleNavSubmit.bind(this);
   }
 
-  componentDidMount(){
-    this.setState({
-      home: true,
-      geoLocation: false,
-      geoCoding: false,
-      about: false,
-      mainView: false
-    });
-  }
-
   handleNavClick(event) {
-    if (event.target.textContent === 'Home'){
-      this.setState({
-        home: true,
-        geoLocation: false,
-        geoCoding: false,
-        about: false,
-        mainView: false
-      })
-    } else if (event.target.title === 'Find Me'){
-      this.setState({
-        home: false,
-        geoLocation: true,
-        geoCoding: false,
-        about: false,
-        mainView: true
-      })
-    } else if (event.target.title === 'Submit Search'){
-      this.setState({
-        home: false,
-        geoLocation: false,
-        geoCoding: true,
-        about: false,
-        mainView: true
-      })
-    } else if (event.target.title === 'About'){
-      this.setState({
-        home: false,
-        geoLocation: false,
-        geoCoding: false,
-        about: true,
-        mainView: false
-      })
-    }
-
+    this.props.handleNavClick(event);
   }
+
 
   handleNavSubmit(event) {
-    this.handleNavClick(event);
-    // insert function to actually perform geoCoding or geoLocation
-    console.log(`handleNavSubmit: Please implement me!`)
-    console.log(event.target.title);
-    event.preventDefault();
+    this.props.handleNavSubmit(event);
   }
 
   render() {
@@ -89,18 +35,16 @@ export default class MainContents extends Component {
 
               <form id="geoLocation" action="">
                 <GeoLocation
-                  navState={this.state}
+                  navState={this.props.navState}
                   handleNavClick={this.handleNavClick}
                   handleNavSubmit={this.handleNavSubmit}/>
                 <GeoCoding
-                  navState={this.state}
+                  navState={this.props.navState}
                   handleNavClick={this.handleNavClick}
                   handleNavSubmit={this.handleNavSubmit}/>
                 <About
-                  navState={this.state}
-                  handleNavSubmit={this.handleNavSubmit}/>  
-                <MainView
-                  navState={this.state}/>
+                  navState={this.props.navState}
+                  handleNavSubmit={this.handleNavSubmit}/>
               </form>
 
             </div>
@@ -108,5 +52,3 @@ export default class MainContents extends Component {
     );
   }
 }
-
-// <p id="imgPlacholder" alt=""></p>
