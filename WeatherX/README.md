@@ -14,31 +14,33 @@
      - requires a paid-for api tier of service to grab continuous stream of data
      - the src code that I have built will be archived for now
 
+     map-radar UI view to be archived
+     - 1: build initial view and app flow
+       - a: initial view will be a radar-layered map-view of random city
+         - preferably somewhere that has rain, snow or cloud-cover
+       - b: search-icon to launch search form
+         - prompt 'use my location' or 'type zip, city or state'
+       - c: display current weather stats and forecast for input location
+         - map icon to launch radar-layered map-view
+       - d: radar-layered map-view
+         - icons, not buttons
+         - map controls across top header
+         - menu, in left corner, drops down icons to return to other views
+
 # Now Working:  
 
 ## A: UI
   - 1: basic titleBar, navBar3 and mainView components
         - once 'Find Me' (geo-location) is submitted
         - or 'Enter A location' (geo-coding) is submitted...
-  - 2: a background z-index -1 is rendered
-        - while current or forecast weather stats displayed
-        - appropriate cloud/rain/stormy affect animating in background
 
-# To Do:
-
+# TO DO:
 
 ## A: UI
-  - 1: build initial view and app flow
-    - a: initial view will be a radar-layered map-view of random city
-      - preferably somewhere that has rain, snow or cloud-cover
-    - b: search-icon to launch search form
-      - prompt 'use my location' or 'type zip, city or state'
-    - c: display current weather stats and forecast for input location
-      - map icon to launch radar-layered map-view
-    - d: radar-layered map-view
-      - icons, not buttons
-      - map controls across top header
-      - menu, in left corner, drops down icons to return to other views
+  - 2: a background z-index -1 is rendered
+      - while current or forecast weather stats displayed
+      - appropriate cloud/rain/stormy affect animating in background
+
 
 ## B: Geocoding and Geolocation
   - 1: Form present choice
