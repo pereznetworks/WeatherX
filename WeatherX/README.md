@@ -31,15 +31,15 @@
 
 ## A: UI
   - 1: basic titleBar, navBar3 and mainView components
-        - once 'Find Me' (geo-location) is submitted
-        - or 'Enter A location' (geo-coding) is submitted...
+      - a: once 'Find Me' (geo-location) is submitted
+      - b: or 'Enter A location' (geo-coding) is submitted...
 
 # TO DO:
 
 ## A: UI
   - 2: a background z-index -1 is rendered
-      - while current or forecast weather stats displayed
-      - appropriate cloud/rain/stormy affect animating in background
+      - a: while current or forecast weather stats displayed
+      - b: appropriate cloud/rain/stormy affect animating in background
 
 
 ## B: Geocoding and Geolocation
