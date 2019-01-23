@@ -23,7 +23,7 @@ Additional weather stats, warning and alerts will be displayed on side-bar-like 
 
 # Technologies Used:
 
-Thanks to Team TreeHouse, https://teamtreehouse.com, a great place for anyone to get started in Software Development.
+Thanks to Team TreeHouse, https://teamtreehouse.com, a great place for makers, breakers, real engineers, really anyone to brush-up on, gain new, or even get started in Software Development.
 
 This project uses Node.js, https://nodejs.org/ and Express.Js,"https://expressjs.com/" for https server and routing.
 
