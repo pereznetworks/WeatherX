@@ -6,7 +6,7 @@ import GeoLocation from "./geoLocation.js";
 import GeoCoding from "./geoCoding.js";
 import About from "./about.js";
 
-export default class MainContents extends Component {
+export default class NavBar3 extends Component {
 
 // each item in state object refers to a html element by that id and/or a corresponding form action
 // passing bound handler methods
@@ -31,7 +31,7 @@ export default class MainContents extends Component {
   render() {
     return(
 
-            <div id="main-Content">
+            <div id="navBar3">
 
               <form id="geoLocation" action="">
                 <GeoLocation

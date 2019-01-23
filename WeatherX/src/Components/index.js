@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 // importing sub-components
 import TitleBar from './titleBar.js';
-import MainContent from './mainContents';
+import NavBar3 from './navBar3';
 import MainView from "./mainView";
 
 // import css styling
@@ -89,7 +89,7 @@ class Middle extends Component {
     return(
       <div className="middle">
         <TitleBar />
-        <MainContent
+        <NavBar3
           navState={this.state}
           handleNavClick={this.handleNavClick}
           handleNavSubmit={this.handleNavSubmit}

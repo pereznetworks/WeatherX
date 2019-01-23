@@ -23,7 +23,7 @@
   align-content: center;
 }
 
-#main-Content{
+#navBar3{
   align-content: center;
   text-align: center;
   justify-content: center;
@@ -302,7 +302,7 @@
 }
 
 @media only screen and (min-width: 720px) and (min-height:300px){
-  #main-Content{
+  #navBar3{
     margin-top: 2%;
   }
 
@@ -362,7 +362,7 @@
 }
 
 @media only screen and (min-width: 800px) and (min-height:375px){
-  #main-Content{
+  #navBar3{
     margin-top: 2%;
   }
 
@@ -423,7 +423,7 @@
 
 @media only screen and (min-width: 720px) and (min-height:1024px){
 
-  #main-Content{
+  #navBar3{
     margin-top: 2%;
   }
 
@@ -483,7 +483,7 @@
 
 @media only screen and (min-width: 900px){
 
-  #main-Content{
+  #navBar3{
     margin-top: 2%;
   }
 
@@ -545,7 +545,7 @@
 
 @media only screen and (min-width: 1100px){
 
-  #main-Content{
+  #navBar3{
     margin-top: 2%;
   }
 
@@ -607,7 +607,7 @@
 
 @media only screen and (min-width: 1300px){
 
-  #main-Content{
+  #navBar3{
     margin-top: 2%;
   }
 
