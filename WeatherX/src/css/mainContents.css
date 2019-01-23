@@ -1,6 +1,6 @@
 /* Default styling rules are...
-   portrait-mode mobile-first oriented
-   media queries adapt for larger screens and landscape-mode
+   designed for smallest portrait-mode mobile devices first
+   media queries adapt for larger screens and then landscape-mode
 */
 
 #logoBox{
@@ -219,10 +219,17 @@
     display:none;
   }
 
-#imgPlacholder {
-  width: 375px;
-  height: 600px;
-}
+  #mainView {
+    display:block;
+    width: 80%;
+    height: 80%;
+  }
+
+  #mainView p {
+    width: 300px;
+    height: 600px;
+    color:#000;
+  }
 
 
 .tooltip {
@@ -412,36 +419,17 @@
   }
 
   #geoCoding-TextInput {
-    border: 0 solid #000;
-    text-align: center;
-    text-decoration: none;
     border-radius: 6px;
-    color: #000;
-    /* background: url(./...pmg) 0 0; */
-    background-color: #bbb;
     width: 390px;
     height: 30px;
-    display: inline;
     font-size: .8em;
-    vertical-align: middle;
     padding: 0 10px;
     margin: 0px 0;
   }
 
   #geoCoding-TextSubmit {
-    background-image:url('../imgs/Search-48-4B4AA7-B.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 75%;
-    text-decoration: none;
-    color: #000;
-    /* background: url(./...png) 0 0; */
-    background-color: #000;
     width: 30px;
     height: 30px;
-    display: inline;
-    border: none;
-    vertical-align: middle;
     padding: 0;
     margin: 0 0 0 2%;
     border-radius: 6px;
@@ -491,36 +479,17 @@
   }
 
   #geoCoding-TextInput {
-    border: 0 solid #000;
-    text-align: center;
-    text-decoration: none;
     border-radius: 12px;
-    color: #000;
-    /* background: url(./...pmg) 0 0; */
-    background-color: #bbb;
     width: 390px;
     height: 49px;
-    display: inline;
     font-size: .8em;
-    vertical-align: middle;
     padding: 0 10px;
     margin: 0px 0;
   }
 
   #geoCoding-TextSubmit {
-    background-image:url('../imgs/Search-48-4B4AA7-B.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 75%;
-    text-decoration: none;
-    color: #000;
-    /* background: url(./...png) 0 0; */
-    background-color: #000;
     width: 50px;
     height: 50px;
-    display: inline;
-    border: none;
-    vertical-align: middle;
     padding: 0;
     margin: 0 0 0 2%;
     border-radius: 12px;
@@ -539,9 +508,9 @@
 
   .about-button-div{
     display:inline;
-    width:100px;
+    width:30px;
     float:left;
-    margin: 0 0 0 1%;
+    margin: 0;
     text-align: left;
   }
 
@@ -554,16 +523,16 @@
 
 
   .geo-button, .about-button{
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
     margin: 0 0 2% 0;
   }
 
   .geolocation-div {
     display: inline;
-    width: 75px;
+    width: 30px;
     float: left;
-    margin: 0 0 0 22%;
+    margin: 0 0 0 25%;
   }
 
   #geoCoding-Input, #geoCoding-Submit, #geoCoding-Label, #geoLocation-Label, #about-Button-Label{
@@ -571,20 +540,20 @@
   }
 
   #geoCoding-TextInput {
-    border-radius: 12px;
+    border-radius: 6px;
     width: 390px;
-    height: 49px;
+    height: 30px;
     font-size: .8em;
     padding: 0 10px;
     margin: 0px 0;
   }
 
   #geoCoding-TextSubmit {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     padding: 0;
     margin: 0 0 0 2%;
-    border-radius: 12px;
+    border-radius: 6px;
   }
 
   #geoCoding-TextSubmit:hover {
@@ -601,9 +570,9 @@
 
   .about-button-div{
     display:inline;
-    width:100px;
+    width:30px;
     float:left;
-    margin: 0 0 0 1%;
+    margin: 0;
     text-align: left;
   }
 
@@ -616,16 +585,16 @@
 
 
   .geo-button, .about-button{
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
     margin: 0 0 2% 0;
   }
 
   .geolocation-div {
     display: inline;
-    width: 75px;
+    width: 30px;
     float: left;
-    margin: 0 0 0 27%;
+    margin: 0 0 0 30%;
   }
 
   #geoCoding-Input, #geoCoding-Submit, #geoCoding-Label, #geoLocation-Label, #about-Button-Label{
@@ -633,20 +602,20 @@
   }
 
   #geoCoding-TextInput {
-    border-radius: 12px;
+    border-radius: 6px;
     width: 390px;
-    height: 49px;
+    height: 30px;
     font-size: .8em;
     padding: 0 10px;
     margin: 0px 0;
   }
 
   #geoCoding-TextSubmit {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     padding: 0;
     margin: 0 0 0 2%;
-    border-radius: 12px;
+    border-radius: 6px;
   }
 
   #geoCoding-TextSubmit:hover {
@@ -663,9 +632,9 @@
 
   .about-button-div{
     display:inline;
-    width:100px;
+    width:30px;
     float:left;
-    margin: 0 0 0 1%;
+    margin: 0;
     text-align: left;
   }
 
@@ -678,14 +647,14 @@
 
 
   .geo-button, .about-button{
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
     margin: 0 0 2% 0;
   }
 
   .geolocation-div {
     display: inline;
-    width: 75px;
+    width: 30px;
     float: left;
     margin: 0 0 0 30%;
   }
@@ -695,20 +664,20 @@
   }
 
   #geoCoding-TextInput {
-    border-radius: 12px;
+    border-radius: 6px;
     width: 390px;
-    height: 49px;
+    height: 30px;
     font-size: .8em;
     padding: 0 10px;
     margin: 0px 0;
   }
 
   #geoCoding-TextSubmit {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     padding: 0;
     margin: 0 0 0 2%;
-    border-radius: 12px;
+    border-radius: 6px;
   }
 
   #geoCoding-TextSubmit:hover {

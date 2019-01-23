@@ -6,11 +6,17 @@ export default class GeoLocation extends Component {
 
   constructor(props) {
     super(props);
+    this.handleNavClick = this.handleNavClick.bind(this);
     this.handleNavSubmit = this.handleNavSubmit.bind(this);
+  }
+
+  handleNavClick(e){
+    this.props.handleNavClick(e);
   }
 
   handleNavSubmit(e){
     this.props.handleNavSubmit(e);
+    this.props.handleNavClick(e);
   }
 
   render() {

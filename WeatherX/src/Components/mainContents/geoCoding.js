@@ -16,6 +16,7 @@ export default class GeoCoding extends Component {
 
   handleNavSubmit(e){
     this.props.handleNavSubmit(e);
+    this.props.handleNavClick(e);
   }
 
   render() {
