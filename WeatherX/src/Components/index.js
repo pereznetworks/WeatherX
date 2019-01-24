@@ -7,7 +7,7 @@ import MainView from "./mainView";
 
 // import css styling
 import '../css/grid-main2.css';
-import '../css/mainContents.css';
+import '../css/navBar3.css';
 
 // creates one component for all sub-components
 class Middle extends Component {
@@ -41,7 +41,7 @@ class Middle extends Component {
     }
 
     handleNavClick(event) {
-      if (event.target.textContent === 'Home'){
+      if (event.target.title === 'backHome'){
         this.setState({
           home: true,
           geoLocation: false,

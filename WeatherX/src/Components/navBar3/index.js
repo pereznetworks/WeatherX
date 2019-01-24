@@ -29,26 +29,40 @@ export default class NavBar3 extends Component {
   }
 
   render() {
-    return(
 
-            <div id="navBar3">
-
-              <form id="geoLocation" action="">
-                <GeoLocation
-                  navState={this.props.navState}
-                  handleNavClick={this.handleNavClick}
-                  handleNavSubmit={this.handleNavSubmit}/>
-                <GeoCoding
-                  navState={this.props.navState}
-                  handleNavClick={this.handleNavClick}
-                  handleNavSubmit={this.handleNavSubmit}/>
-                <About
-                  navState={this.props.navState}
-                  handleNavSubmit={this.handleNavSubmit}/>
-              </form>
-
-            </div>
-
-    );
-  }
+            if (this.props.navState.home){
+              return(
+                <div id="navBar3">
+                  <form id="geoLocation" action="">
+                    <GeoLocation
+                      navState={this.props.navState}
+                      handleNavClick={this.handleNavClick}
+                      handleNavSubmit={this.handleNavSubmit}/>
+                    <GeoCoding
+                      navState={this.props.navState}
+                      handleNavClick={this.handleNavClick}
+                      handleNavSubmit={this.handleNavSubmit}/>
+                    <About
+                      navState={this.props.navState}
+                      handleNavSubmit={this.handleNavSubmit}/>
+                  </form>
+                </div>
+             );
+            } else {
+              return (
+                <div id="navBar3">
+                  <form id="geoLocation" action="">
+                    <div className="backHome-div">
+                      <input
+                        type="button"
+                        className="geo-button"
+                        id="backHome-button"
+                        title="backHome"
+                        onClick={this.props.handleNavClick}></input>
+                    </div>
+                  </form>
+                </div>
+              );
+            }
+    }
 }

@@ -32,6 +32,7 @@
   color:#fff;
   width:auto;
   margin-top: 2%;
+  z-index: +1;
 }
 
 #titleBar{
@@ -62,13 +63,11 @@
   text-align: center;
   margin: 0 0;
   border: 0;
-
 }
 
 #geoLocation{
   display:inline;
   margin: 10% 0 0 0;
-  background-color: #000;
 }
 
 .geo-button-div, {
@@ -89,9 +88,10 @@
   width: 240px;
 }
 
-.geolocation-div {
+.geolocation-div, .backhome-div {
   display: inline;
   width: 30px;
+  height: 30px;
   float: left;
   margin: 0;
 }
@@ -121,6 +121,34 @@
   width:auto;
   height: 20px;
   font-size: .8em;
+}
+.backHome-div{
+  width:30px;
+  position: absolute;
+  top:5%;
+  left:5%;
+  background-color: transparent;
+}
+#backHome-button{
+    background-image:url('../imgs/Menu-48.png');
+    float:left;
+    text-align: left;
+    align-content: left;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 120%;
+    text-decoration: none;
+    font-size: .8em;
+    color: #fff;
+    border: none;
+    vertical-align:middle;
+    padding: 0;
+    text-align: center;
+    align-content: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 6px;
 }
 
 #geoCoding-TextInput {
@@ -194,18 +222,6 @@
 
 #geoCoding-Input, #geoCoding-Submit, #geoCoding-Label, #geoLocation-Label, #about-Button-Label{
   display:none;
-}
-
-#mainView {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #282c34;
-  display: inline;
-  float: left;
-  width: 100%;
-  height: -webkit-fill-available;
-  z-index: -1;
 }
 
 /* #mainView div {
@@ -541,6 +557,13 @@
     background-image:url('../imgs/Search-48-B-4B4AA7.png');
   }
 
+  .backHome-div{
+    width:30px;
+    position: absolute;
+    top:5%;
+    left:25%;
+    background-color: transparent;
+  }
 }
 
 @media only screen and (min-width: 1100px){
@@ -601,6 +624,14 @@
 
   #geoCoding-TextSubmit:hover {
     background-image:url('../imgs/Search-48-B-4B4AA7.png');
+  }
+
+  .backHome-div{
+    width:30px;
+    position: absolute;
+    top:5%;
+    left:25%;
+    background-color: transparent;
   }
 
 }
@@ -665,10 +696,25 @@
     background-image:url('../imgs/Search-48-B-4B4AA7.png');
   }
 
+  .backHome-div{
+    width:30px;
+    position: absolute;
+    top:5%;
+    left:25%;
+    background-color: transparent;
+  }
 }
 
 @media only screen and (min-width: 1600px){
   .geolocation-div {
     margin: 0 0 0 35%;
+  }
+
+  .backHome-div{
+    width:30px;
+    position: absolute;
+    top:5%;
+    left:25%;
+    background-color: transparent;
   }
 }
