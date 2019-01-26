@@ -15,13 +15,12 @@ body {
   width:100%;
   height:100%;
   display: grid;
-  grid-template-areas:
-    'left middle middle middle middle right'
+  grid-template-areas:'middle middle middle middle middle middle';
   /* grid-column-gap: 10px; - if you want gap between the columns */
 }
 
 .left-margin {
-  display:inline;
+  display:none;
   grid-area: left;
   width:0;
   height: 100%;
@@ -40,21 +39,50 @@ body {
 }
 
 .right-margin {
-  display:inline;
+  display:none;
   grid-area: right;
   width:0;
-  height: 100%;
+  height: 0%;
   background-color: #282c34;
 }
 
 .fillin{
   background-color: #282c34;
-  width:100%;
+  width:0%;
   height:100%;
 
 }
-@media only screen and (min-width: 420px){
+@media only screen and (min-width: 432px){
+  .grid-main{
+    width:100%;
+    height:100%;
+    display: grid;
+    grid-template-areas:'left middle middle middle middle right';
+    /* grid-column-gap: 10px; - if you want gap between the columns */
+  }
+
   .left-margin, .right-margin{
+   display:inline;
+   width:100%;
+   z-index: +1;
+  }
+  .middle{
+    width:100%;
+  }
+}
+
+@media only screen and (min-width: 720px){
+
+  .grid-main{
+    width:100%;
+    height:100%;
+    display: grid;
+    grid-template-areas:'left middle middle middle middle right';
+    /* grid-column-gap: 10px; - if you want gap between the columns */
+  }
+
+  .left-margin, .right-margin{
+   display:inline;
    width:100%;
    z-index: +1;
   }
