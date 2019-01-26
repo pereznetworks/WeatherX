@@ -30,8 +30,8 @@
   height: fit-content;
   background-color: #282c34;
   color:#fff;
-  width:auto;
-  margin-top: 2%;
+  width:100%;
+  margin: 0;
   z-index: +1;
 }
 
@@ -85,7 +85,7 @@
   float:left;
   display:inline;
   margin: 0 0 0 0%;
-  width: 240px;
+  width: 80%;
 }
 
 .geolocation-div, .backhome-div {
@@ -159,7 +159,7 @@
   color: #000;
   /* background: url(./...pmg) 0 0; */
   background-color: #bbb;
-  width: 80%;
+  width: 84%;
   height: 29px;
   display: inline;
   font-size: .8em;
@@ -188,7 +188,7 @@
   border: none;
   vertical-align: middle;
   padding: 0;
-  margin: 0 0 0 2%;
+  margin: 0 0 0 1%;
   border-radius: 6px;
 }
 
@@ -258,8 +258,56 @@
    and a few actual Apple Android devices, Macs and Windows 10 PC's
 */
 
+@media only screen and (min-width: 432px){
+  #navBar3{
+    width:100%;
+    margin: 2% 2% 0 0%;
+  }
 
-@media only screen and (min-width: 360px) {
+  .geocoding-div {
+    width:83%;
+  }
+
+  #geoCoding-TextInput{
+    width:87%;
+  }
+
+  #locationBar-div{
+    width:93%;
+    margin:0 0 0 1%;
+  }
+}
+
+@media only screen and (min-width: 720px){
+
+  #navBar3{
+    width:95%;
+    margin: 2% 2% 0 6%;
+  }
+
+
+  .geocoding-div {
+    width:85%;
+  }
+
+  #geoCoding-TextInput{
+    width:90%;
+  }
+
+  #locationBar-div{
+    width:88%;
+    margin:0 0 0 6%;
+  }
+  #temp-div{
+    padding: 0 2% 0 2%;
+  }
+
+  #currentTemp{
+    line-height: 20px;
+  }
+}
+
+/* @media only screen and (min-width: 360px) {
 
   .geolocation-div{
     margin: 0 1% 0 2%;
@@ -356,7 +404,7 @@
 
   #geoCoding-TextInput {
     border-radius: 6px;
-    width: 390px;
+    width: 95%;
     height: 30px;
     display: inline;
     font-size: .8em;
@@ -417,7 +465,7 @@
 
   #geoCoding-TextInput {
     border-radius: 6px;
-    width: 390px;
+    width: 95%;
     height: 30px;
     font-size: .8em;
     padding: 0 10px;
@@ -477,7 +525,7 @@
 
   #geoCoding-TextInput {
     border-radius: 12px;
-    width: 390px;
+    width: 95%;
     height: 49px;
     font-size: .8em;
     padding: 0 10px;
@@ -538,7 +586,7 @@
 
   #geoCoding-TextInput {
     border-radius: 6px;
-    width: 390px;
+    width: 95%;
     height: 30px;
     font-size: .8em;
     padding: 0 10px;
@@ -717,4 +765,4 @@
     left:25%;
     background-color: transparent;
   }
-}
+} */

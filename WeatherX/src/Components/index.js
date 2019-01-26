@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import TitleBar from './titleBar.js';
 import NavBar3 from './navBar3';
 import MainView from "./mainView";
+import LocationBar from "./locationBar";
 
 // import css styling
 import '../css/grid-main2.css';
@@ -24,6 +25,8 @@ class Middle extends Component {
         geoLocation: false,
         geoCoding: false,
         about: false,
+        mainView: false,
+        locationBar:false
       };
 
       this.handleNavClick = this.handleNavClick.bind(this);
@@ -36,7 +39,8 @@ class Middle extends Component {
         geoLocation: false,
         geoCoding: false,
         about: false,
-        mainView: false
+        mainView: false,
+        locationBar:false
       });
     }
 
@@ -47,23 +51,26 @@ class Middle extends Component {
           geoLocation: false,
           geoCoding: false,
           about: false,
-          mainView: false
+          mainView: false,
+          locationBar:false
         })
       } else if (event.target.title === 'Find Me'){
         this.setState({
-          home: false,
+          home: true,
           geoLocation: true,
           geoCoding: false,
           about: false,
-          mainView: true
+          mainView: false,
+          locationBar:true
         })
       } else if (event.target.title === 'Submit Search'){
         this.setState({
-          home: false,
+          home: true,
           geoLocation: false,
           geoCoding: true,
           about: false,
-          mainView: true
+          mainView: false,
+          locationBar:true
         })
       } else if (event.target.title === 'About'){
         this.setState({
@@ -71,7 +78,17 @@ class Middle extends Component {
           geoLocation: false,
           geoCoding: false,
           about: true,
-          mainView: false
+          mainView: false,
+          locationBar:false
+        })
+      } else if (event.target.title === 'LocationBar'){
+        this.setState({
+          home: false,
+          geoLocation: false,
+          geoCoding: false,
+          about: false,
+          mainView: true,
+          locationBar: false
         })
       }
 
@@ -87,12 +104,17 @@ class Middle extends Component {
 
   render(){
     return(
+
       <div className="middle">
         <TitleBar />
         <NavBar3
           navState={this.state}
           handleNavClick={this.handleNavClick}
           handleNavSubmit={this.handleNavSubmit}
+          />
+        <LocationBar
+          navState={this.state}
+          handleNavClick={this.handleNavClick}
           />
         <MainView
           navState={this.state}

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 // import '../css/grid-main2.css';
 
-class TitleBar extends Component {
+export default class TitleBar extends Component {
   render() {
     return (
       <div id="titleBar">
@@ -14,7 +14,3 @@ class TitleBar extends Component {
     )
   }
 }
-
-export default TitleBar
-
-/**/

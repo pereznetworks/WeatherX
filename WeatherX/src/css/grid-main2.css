@@ -16,13 +16,11 @@ body {
   height:100%;
   display: grid;
   grid-template-areas:
-    'middle middle middle middle middle middle'
+    'left middle middle middle middle right'
   /* grid-column-gap: 10px; - if you want gap between the columns */
 }
 
 .left-margin {
-  top:0;
-  left:0;
   display:inline;
   grid-area: left;
   width:0;
@@ -31,7 +29,6 @@ body {
 }
 
 .middle {
-  top:0;
   display:inline;
   grid-area: middle;
   width:100%;
@@ -43,11 +40,25 @@ body {
 }
 
 .right-margin {
-  top:0;
-  right:0;
   display:inline;
   grid-area: right;
   width:0;
   height: 100%;
   background-color: #282c34;
+}
+
+.fillin{
+  background-color: #282c34;
+  width:100%;
+  height:100%;
+
+}
+@media only screen and (min-width: 420px){
+  .left-margin, .right-margin{
+   width:100%;
+   z-index: +1;
+  }
+  .middle{
+    width:100%;
+  }
 }
