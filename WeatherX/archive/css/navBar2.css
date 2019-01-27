@@ -1,4 +1,23 @@
 /* Nav bar components - not used for now*/
+#logoBox{
+  background-image:url('../imgs/Compass-128-4B4AA7.png');
+  position: 0;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #000;
+  background-size: 100%;
+  text-decoration: none;
+  font-size: .8em;
+  color: #000;
+  width: 80px;
+  height: 80px;
+  border: none;
+  vertical-align:middle;
+  text-align: center;
+  align-content: center;
+}
 
 #navBar2 {
   background: #000;

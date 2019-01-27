@@ -3,9 +3,7 @@
 #mainView{
   scroll-behavior: auto;
   width: 100%;
-  height: -webkit-fit-available;
-  height: -moz-fit-available;
-  height: fill-available;
+  height: stretch;
   margin: 0 0 0 0;
   padding: 8% 0 0 0;
   background-color: skyblue;
@@ -106,42 +104,42 @@
 
 @media only screen and (min-width: 720px) and (min-height:1024px){
   #mainView{
-    width:50%;
-    left:25%;
+    width: 70%;
+    left: 14%;
   }
 }
 
 @media only screen and (min-width: 720px){
   #mainView{
-    width:50%;
-    left:25%;
+    width: 70%;
+    left: 14%;
   }
 }
 
 @media only screen and (min-width: 900px){
   #mainView{
-    width:50%;
-    left:25%;
+    width: 70%;
+    left: 14%;
   }
 }
 
 @media only screen and (min-width: 1100px){
   #mainView{
-    width:50%;
-    left:25%;
+    width: 70%;
+    left: 14%;
   }
 }
 
 @media only screen and (min-width: 1300px){
   #mainView{
-    width:50%;
-    left:25%;
+    width: 70%;
+    left: 14%;
   }
 }
 
 @media only screen and (min-width: 1600px){
   #mainView{
-    width:50%;
-    left:25%;
+    width: 70%;
+    left: 14%;
   }
 }

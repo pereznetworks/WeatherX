@@ -3,26 +3,6 @@
    media queries adapt for larger screens and then landscape-mode
 */
 
-#logoBox{
-  background-image:url('../imgs/Compass-128-4B4AA7.png');
-  position: 0;
-  top: 0;
-  left: 0;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #000;
-  background-size: 100%;
-  text-decoration: none;
-  font-size: .8em;
-  color: #000;
-  width: 80px;
-  height: 80px;
-  border: none;
-  vertical-align:middle;
-  text-align: center;
-  align-content: center;
-}
-
 #navBar3{
   align-content: center;
   text-align: center;
@@ -31,7 +11,7 @@
   background-color: #282c34;
   color:#fff;
   width:100%;
-  margin: 0 0 0 2%;
+  margin: 0 0 2% 2%;
   z-index: +1;
 }
 
@@ -160,7 +140,7 @@
   /* background: url(./...pmg) 0 0; */
   background-color: #bbb;
   width: 84%;
-  height: 29px;
+  height: 26px;
   display: inline;
   font-size: .8em;
   vertical-align: middle;
@@ -261,7 +241,7 @@
 @media only screen and (min-width: 432px){
   #navBar3{
     width:100%;
-    margin: 2% 2% 0 0%;
+    margin: 2% 2% 2% 0%;
   }
 
   .geocoding-div {
@@ -272,17 +252,17 @@
     width:87%;
   }
 
-  #locationBar-div{
-    width:93%;
-    margin:0 0 0 1%;
-  }
 }
 
 @media only screen and (min-width: 720px){
 
   #navBar3{
     width:95%;
-    margin: 2% 2% 0 6%;
+    margin: 0% 2% 2% 6%;
+  }
+
+  #locationBar-div {
+    margin: 6% 0 0 0;
   }
 
 
@@ -294,10 +274,6 @@
     width:90%;
   }
 
-  #locationBar-div{
-    width:88%;
-    margin:0 0 0 6%;
-  }
   #temp-div{
     padding: 0 2% 0 2%;
   }
@@ -307,462 +283,46 @@
   }
 }
 
-/* @media only screen and (min-width: 360px) {
 
-  .geolocation-div{
-    margin: 0 1% 0 2%;
-  }
-
-  .geocoding-div {
-    width: 270px;
-  }
-
-  #geoCoding-TextInput {
-    width: 85%;
-    margin: 0 1.2% 0 0;
-  }
-
-  .about-button-div{
-    margin: 0 0 0 1%;
-  }
-
-}
-
-@media only screen and (min-width: 560px) and (min-height: 320px) {
-
-  .geolocation-div{
-    margin: 0 1% 0 22%;
-  }
-
-  .geocoding-div {
-    width: 270px;
-  }
-
-  #geoCoding-TextInput {
-    width: 85%;
-    margin: 0 1.2% 0 0;
-  }
-
-  .about-button-div{
-    margin: 0 0 0 1%;
-  }
-
-}
-
-@media only screen and (min-width: 410px) and (min-height:660px){
-
-  .geolocation-div{
-    margin: 0 1% 0 6%;
-  }
-
-  .geocoding-div{
-    width: 260px;
-  }
-
-  #geoCoding-TextInput {
-    width: 85%;
-    margin: 0 1% 0 0;
-  }
-}
-
-@media only screen and (min-width: 720px) and (min-height:300px){
-  #navBar3{
-    margin-top: 2%;
-  }
-
-  .about-button-div{
-    display:inline;
-    width:100px;
-    float:left;
-    margin: 0;
-    text-align: left;
-  }
-
-  .geocoding-div{
-    float:left;
-    display:inline;
-    margin: 0 0 0 0%;
-    width: 450px;
-  }
-
-  .geolocation-div {
-    display: inline;
-    width: 30px;
-    float: left;
-    margin: 0 0 0 16%;
-  }
-
-  .geo-button, .about-button{
-    height: 30px;
-    width: 30px;
-    margin: 0 0 2% 0;
-  }
-
-  #geoCoding-Input, #geoCoding-Submit, #geoCoding-Label, #geoLocation-Label, #about-Button-Label{
-    display:none;
-  }
-
-  #geoCoding-TextInput {
-    border-radius: 6px;
-    width: 95%;
-    height: 30px;
-    display: inline;
-    font-size: .8em;
-    padding: 0 10px;
-    margin: 0px 0;
-  }
-
-  #geoCoding-TextSubmit {
-    width: 30px;
-    height: 30px;
-    padding: 0;
-    margin: 0 0 0 2%;
-    border-radius: 6px;
-  }
-
-  #geoCoding-TextSubmit:hover {
-    background-image:url('../imgs/Search-48-B-4B4AA7.png');
-  }
-}
-
-@media only screen and (min-width: 800px) and (min-height:375px){
-  #navBar3{
-    margin-top: 2%;
-  }
-
-  .about-button-div{
-    display:inline;
-    width:30px;
-    float:left;
-    margin: 0;
-    text-align: left;
-  }
-
-  .geocoding-div{
-    float:left;
-    display:inline;
-    margin: 0 0 0 0%;
-    width: 450px;
-  }
-
-  .geolocation-div {
-    display: inline;
-    width: 30px;
-    float: left;
-    margin: 0 0 0 18%;
-  }
-
-  .geo-button, .about-button{
-    height: 30px;
-    width: 30px;
-    margin: 0 0 2% 0;
-  }
-
-
-  #geoCoding-Input, #geoCoding-Submit, #geoCoding-Label, #geoLocation-Label, #about-Button-Label{
-    display:none;
-  }
-
-  #geoCoding-TextInput {
-    border-radius: 6px;
-    width: 95%;
-    height: 30px;
-    font-size: .8em;
-    padding: 0 10px;
-    margin: 0px 0;
-  }
-
-  #geoCoding-TextSubmit {
-    width: 30px;
-    height: 30px;
-    padding: 0;
-    margin: 0 0 0 2%;
-    border-radius: 6px;
-  }
-
-  #geoCoding-TextSubmit:hover {
-    background-image:url('../imgs/Search-48-B-4B4AA7.png');
-  }
-}
-
-@media only screen and (min-width: 720px) and (min-height:1024px){
-
-  #navBar3{
-    margin-top: 2%;
-  }
-
-  .about-button-div{
-    display:inline;
-    width:100px;
-    float:left;
-    margin: 0 0 0 1%;
-    text-align: left;
-  }
-
-  .geocoding-div{
-    float:left;
-    display:inline;
-    margin: 0 0 0 0%;
-    width: 450px;
-  }
-
-  .geo-button, .about-button{
-    height: 50px;
-    width: 50px;
-    margin: 0 0 2% 0;
-  }
-
-  .geolocation-div {
-    display: inline;
-    width: 75px;
-    float: left;
-    margin: 0 0 0 12%;
-  }
-
-  #geoCoding-Input, #geoCoding-Submit, #geoCoding-Label, #geoLocation-Label, #about-Button-Label{
-    display:none;
-  }
-
-  #geoCoding-TextInput {
-    border-radius: 12px;
-    width: 95%;
-    height: 49px;
-    font-size: .8em;
-    padding: 0 10px;
-    margin: 0px 0;
-  }
-
-  #geoCoding-TextSubmit {
-    width: 50px;
-    height: 50px;
-    padding: 0;
-    margin: 0 0 0 2%;
-    border-radius: 12px;
-  }
-
-  #geoCoding-TextSubmit:hover {
-    background-image:url('../imgs/Search-48-B-4B4AA7.png');
-  }
-}
-
-@media only screen and (min-width: 900px){
-
-  #navBar3{
-    margin-top: 2%;
-  }
-
-  .about-button-div{
-    display:inline;
-    width:30px;
-    float:left;
-    margin: 0;
-    text-align: left;
-  }
-
-  .geocoding-div{
-    float:left;
-    display:inline;
-    margin: 0 0 0 0%;
-    width: 450px;
-  }
-
-
-  .geo-button, .about-button{
-    height: 30px;
-    width: 30px;
-    margin: 0 0 2% 0;
-  }
+/*
 
-  .geolocation-div {
-    display: inline;
-    width: 30px;
-    float: left;
-    margin: 0 0 0 25%;
-  }
-
-  #geoCoding-Input, #geoCoding-Submit, #geoCoding-Label, #geoLocation-Label, #about-Button-Label{
-    display:none;
-  }
-
-  #geoCoding-TextInput {
-    border-radius: 6px;
-    width: 95%;
-    height: 30px;
-    font-size: .8em;
-    padding: 0 10px;
-    margin: 0px 0;
-  }
-
-  #geoCoding-TextSubmit {
-    width: 30px;
-    height: 30px;
-    padding: 0;
-    margin: 0 0 0 2%;
-    border-radius: 6px;
-  }
-
-  #geoCoding-TextSubmit:hover {
-    background-image:url('../imgs/Search-48-B-4B4AA7.png');
-  }
-
-  .backHome-div{
-    width:30px;
-    position: absolute;
-    top:5%;
-    left:25%;
-    background-color: transparent;
-  }
-}
-
-@media only screen and (min-width: 1100px){
-
-  #navBar3{
-    margin-top: 2%;
-  }
-
-  .about-button-div{
-    display:inline;
-    width:30px;
-    float:left;
-    margin: 0;
-    text-align: left;
-  }
-
-  .geocoding-div{
-    float:left;
-    display:inline;
-    margin: 0 0 0 0%;
-    width: 450px;
-  }
+  @media only screen and (min-width: 360px) {
 
-
-  .geo-button, .about-button{
-    height: 30px;
-    width: 30px;
-    margin: 0 0 2% 0;
   }
 
-  .geolocation-div {
-    display: inline;
-    width: 30px;
-    float: left;
-    margin: 0 0 0 30%;
-  }
+  @media only screen and (min-width: 560px) and (min-height: 320px) {
 
-  #geoCoding-Input, #geoCoding-Submit, #geoCoding-Label, #geoLocation-Label, #about-Button-Label{
-    display:none;
   }
 
-  #geoCoding-TextInput {
-    border-radius: 6px;
-    width: 390px;
-    height: 30px;
-    font-size: .8em;
-    padding: 0 10px;
-    margin: 0px 0;
-  }
+  @media only screen and (min-width: 410px) and (min-height:660px){
 
-  #geoCoding-TextSubmit {
-    width: 30px;
-    height: 30px;
-    padding: 0;
-    margin: 0 0 0 2%;
-    border-radius: 6px;
   }
 
-  #geoCoding-TextSubmit:hover {
-    background-image:url('../imgs/Search-48-B-4B4AA7.png');
-  }
+  @media only screen and (min-width: 720px) and (min-height:300px){
 
-  .backHome-div{
-    width:30px;
-    position: absolute;
-    top:5%;
-    left:25%;
-    background-color: transparent;
   }
 
-}
+  @media only screen and (min-width: 800px) and (min-height:375px){
 
-@media only screen and (min-width: 1300px){
-
-  #navBar3{
-    margin-top: 2%;
   }
 
-  .about-button-div{
-    display:inline;
-    width:30px;
-    float:left;
-    margin: 0;
-    text-align: left;
-  }
+  @media only screen and (min-width: 720px) and (min-height:1024px){
 
-  .geocoding-div{
-    float:left;
-    display:inline;
-    margin: 0 0 0 0%;
-    width: 450px;
   }
 
-
-  .geo-button, .about-button{
-    height: 30px;
-    width: 30px;
-    margin: 0 0 2% 0;
-  }
+  @media only screen and (min-width: 900px){
 
-  .geolocation-div {
-    display: inline;
-    width: 30px;
-    float: left;
-    margin: 0 0 0 30%;
   }
 
-  #geoCoding-Input, #geoCoding-Submit, #geoCoding-Label, #geoLocation-Label, #about-Button-Label{
-    display:none;
-  }
+  @media only screen and (min-width: 1100px){
 
-  #geoCoding-TextInput {
-    border-radius: 6px;
-    width: 390px;
-    height: 30px;
-    font-size: .8em;
-    padding: 0 10px;
-    margin: 0px 0;
   }
 
-  #geoCoding-TextSubmit {
-    width: 30px;
-    height: 30px;
-    padding: 0;
-    margin: 0 0 0 2%;
-    border-radius: 6px;
-  }
+  @media only screen and (min-width: 1300px){
 
-  #geoCoding-TextSubmit:hover {
-    background-image:url('../imgs/Search-48-B-4B4AA7.png');
   }
 
-  .backHome-div{
-    width:30px;
-    position: absolute;
-    top:5%;
-    left:25%;
-    background-color: transparent;
-  }
-}
-
-@media only screen and (min-width: 1600px){
-  .geolocation-div {
-    margin: 0 0 0 35%;
-  }
+  @media only screen and (min-width: 1600px){
 
-  .backHome-div{
-    width:30px;
-    position: absolute;
-    top:5%;
-    left:25%;
-    background-color: transparent;
   }
-} */
+*/
