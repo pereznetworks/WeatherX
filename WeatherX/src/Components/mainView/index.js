@@ -7,6 +7,27 @@ import './template.css';
 
 export default class MainView extends Component {
 
+  // passing props, navState object,
+  // each element in object refers to a html element by true/false, render/dont render
+  // passing bound handler methods
+  // hanldeNavSubmit makes api call to back-end server
+  // hanldeNavClick used to render/not render: Home, GeoLocaton form, or About
+
+    constructor(props) {
+      super(props);
+      this.handleNavClick = this.handleNavClick.bind(this);
+      this.handleNavSubmit = this.handleNavSubmit.bind(this);
+    }
+
+    handleNavClick(event) {
+      this.props.handleNavClick(event);
+    }
+
+
+    handleNavSubmit(event) {
+      this.props.handleNavSubmit(event);
+    }
+
   render() {
 
     if (this.props.navState.mainView){
@@ -14,7 +35,7 @@ export default class MainView extends Component {
         <div id="mainView" title='mainView'>
           <h3 id="cityName">Santa Cruz</h3>
           <p id="currentConditions">Sunny</p>
-          <h1 id="currentTemp">61°</h1>
+          <h1 id="todayTemp">61°</h1>
           <table id="tableHdr">
             <tr>
               <th id="dayOfWeek">Wednesday</th>
@@ -34,12 +55,12 @@ export default class MainView extends Component {
               <th>7 PM</th>
             </tr>
             <tr>
-              <td class="Sunny">☀️</td>
-              <td class="Sunny">☀️</td>
-              <td class="Sunny">☀️</td>
-              <td class="Sunny">☀️</td>
-              <td class="Sunset">🌅</td>
-              <td class="ClearNightSky">🌌</td>
+              <td class="Sunny">Clear Skies, Sunny</td>
+              <td class="Sunny">Clear Skies, Sunny</td>
+              <td class="Sunny">Clear Skies, Sunny</td>
+              <td class="Sunny">Clear Skies, Sunny</td>
+              <td class="Sunset">Clear Skies, Sunset</td>
+              <td class="ClearNightSky">Clear Night</td>
             </tr>
             <tr>
               <td>61°</td>
@@ -59,43 +80,43 @@ export default class MainView extends Component {
             </tr>
             <tr>
               <td id="dayOfWeek">Thursday</td>
-              <td id="forecastCondition">☀️</td>
+              <td id="forecastCondition">Clear Skies, Sunny</td>
               <td id="tempHigh">61°</td>
               <td id="tempLow">44°</td>
             </tr>
             <tr>
               <td id="dayOfWeek">Friday</td>
-              <td id="forecastCondition">☀️</td>
+              <td id="forecastCondition">Clear Skies, Sunny</td>
               <td id="tempHigh">61°</td>
               <td id="tempLow">44°</td>
             </tr>
             <tr>
               <td id="dayOfWeek">Saturday</td>
-              <td id="forecastCondition">☁️</td>
+              <td id="forecastCondition">Cloudy</td>
               <td id="tempHigh">61°</td>
               <td id="tempLow">44°</td>
             </tr>
             <tr>
               <td id="dayOfWeek">Sunday</td>
-              <td id="forecastCondition">☁️</td>
+              <td id="forecastCondition">Cloudy</td>
               <td id="tempHigh">61°</td>
               <td id="tempLow">44°</td>
             </tr>
             <tr>
               <td id="dayOfWeek">Monday</td>
-              <td id="forecastCondition">☁️</td>
+              <td id="forecastCondition">Cloudy</td>
               <td id="tempHigh">61°</td>
               <td id="tempLow">44°</td>
             </tr>
             <tr>
               <td id="dayOfWeek">Tuesday</td>
-              <td id="forecastCondition">⛅️</td>
+              <td id="forecastCondition">Partly Cloudy</td>
               <td id="tempHigh">61°</td>
               <td id="tempLow">44°</td>
             </tr>
             <tr>
               <td id="dayOfWeek">Wednesday</td>
-              <td id="forecastCondition">☀️</td>
+              <td id="forecastCondition">Clear Skies, Sunny</td>
               <td id="tempHigh">61°</td>
               <td id="tempLow">44°</td>
             </tr>

@@ -8,10 +8,11 @@ import About from "./about.js";
 
 export default class NavBar3 extends Component {
 
-// each item in state object refers to a html element by that id and/or a corresponding form action
+// passing props, navState object,
+// each element in object refers to a html element by true/false, render/dont render
 // passing bound handler methods
 // hanldeNavSubmit makes api call to back-end server
-// hanldeNavClick used to load component; Home, GeoLocaton form, or About
+// hanldeNavClick used to render/not render: Home, GeoLocaton form, or About
 
   constructor(props) {
     super(props);

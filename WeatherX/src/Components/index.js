@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // importing sub-components
-import TitleBar from './titleBar.js';
+import TitleBar from './titleBar';
 import NavBar3 from './navBar3';
 import MainView from "./mainView";
 import LocationBar from "./locationBar";
@@ -52,7 +52,7 @@ class Middle extends Component {
           geoCoding: false,
           about: false,
           mainView: false,
-          locationBar:false
+          locationBar:true
         })
       } else if (event.target.title === 'Find Me'){
         this.setState({
@@ -81,7 +81,7 @@ class Middle extends Component {
           mainView: false,
           locationBar:false
         })
-      } else if (event.target.title === 'LocationBar'){
+      } else if (event.target.title === 'locationBar'){
         this.setState({
           home: false,
           geoLocation: false,
