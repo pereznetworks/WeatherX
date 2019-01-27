@@ -72,7 +72,7 @@ class Middle extends Component {
           mainView: false,
           locationBar:true
         })
-      } else if (event.target.title === 'About'){
+      } else if (event.target.title === 'About WeatherX'){
         this.setState({
           home: false,
           geoLocation: false,

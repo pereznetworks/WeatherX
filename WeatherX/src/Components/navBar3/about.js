@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import ReactMap from "react-mapbox-gl";
 // import logo from '../imgs/logo.svg';
 
-export default class About extends Component {
+export default class AboutButton extends Component {
 
   constructor(props) {
     super(props);

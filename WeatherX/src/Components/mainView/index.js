@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 // import logo from '../imgs/logo.svg';
 
 
-import './template.css';
+import About from "./about.js";
+
+
+import '../../css/mainView.css';
 
 export default class MainView extends Component {
 
@@ -122,6 +125,10 @@ export default class MainView extends Component {
             </tr>
           </table>
         </div>
+      );
+    } if (this.props.navState.about){
+      return (
+        <About />
       );
     } else {
       return null;

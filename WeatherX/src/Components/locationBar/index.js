@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './locationBar.css';
+import '../../css/locationBar.css';
 
 export default class LocationBar extends Component {
 

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 import GeoLocation from "./geoLocation.js";
 import GeoCoding from "./geoCoding.js";
-import About from "./about.js";
+import AboutButton from "./about.js";
 
 export default class NavBar3 extends Component {
 
@@ -43,8 +43,9 @@ export default class NavBar3 extends Component {
                       navState={this.props.navState}
                       handleNavClick={this.handleNavClick}
                       handleNavSubmit={this.handleNavSubmit}/>
-                    <About
+                    <AboutButton
                       navState={this.props.navState}
+                      handleNavClick={this.handleNavClick}
                       handleNavSubmit={this.handleNavSubmit}/>
                   </form>
                 </div>
