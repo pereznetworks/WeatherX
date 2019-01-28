@@ -2,42 +2,17 @@
 
 # STATUS:
 
- - Currently building backend service
-
- - UI components and testing being completed as backend service starts to deliver data
-    - silly to try to fit everything in one view
-    - will build multiple views and adapt app flow
-    - will build more views when I have more data to work with
-
- - will have to leave live streaming over-lay of weather-radar over map for future version
-   - the main technical issue is....
-     - requires a paid-for api tier of service to grab continuous stream of data
-     - the src code that I have built will be archived for now
-
-     map-radar UI view to be archived
-     - 1: build initial view and app flow
-       - a: initial view will be a radar-layered map-view of random city
-         - preferably somewhere that has rain, snow or cloud-cover
-       - b: search-icon to launch search form
-         - prompt 'use my location' or 'type zip, city or state'
-       - c: display current weather stats and forecast for input location
-         - map icon to launch radar-layered map-view
-       - d: radar-layered map-view
-         - icons, not buttons
-         - map controls across top header
-         - menu, in left corner, drops down icons to return to other views
-
 # Now Working:  
 
 ## A: UI
   - 1: basic titleBar, locationBar, navBar3 and mainView components
       - a: once 'Find Me' (geo-location) is submitted
-      - b: or 'Enter A location' (geo-coding) is submitted...
-  - 2: when geoLocation/geoCoding returns data...
+      - b: or 'Enter A location' (geo-coding) is submitted...can use [enter], GO on mobile devies
+key  - 2: when geoLocation/geoCoding returns data...
       - a: locationBar shows simple current weather, with city name
       - b: clicking anywhere on location bar, loads complete forecast (mainView)
       - c: multiple locationBars tracked in state, using locationName
-  - 3: a mainView, has background z-index -1 
+  - 3: a mainView, has background z-index -1
       - a: while current or forecast weather stats displayed
       - b: backHome 'menu' style button loads home view
       - c: going back to home view, multiple locations and current weather still present
@@ -49,9 +24,10 @@
     - 1: locationBar
       - a: appropriate cloud/rain/stormy affect animating in background of each locationBar
     - 2: mainView
-      - a: appropriate cloud/rain/stormy affect animating in background
-    - 3:
-      - a: Form submission to backend-server
+      - a: convert html template into react components
+      - b: appropriate cloud/rain/stormy affect animating in background
+    - 3: navBar3 geoCodingLocation form
+      - a: add/create function to handleNavSubmit, requestDataFromServer()
 
 ## B: Geocoding and Geolocation
   - 1: Form present choice
@@ -85,6 +61,31 @@
         find out if I can get satellite radar imagery via an api
   - 5: ArcGIS
         find out if I can get satellite radar imagery via an api
+
+## E: Almost ready to integrate data from backend service
+
+- UI components and testing being completed as backend service starts to deliver data
+ - silly to try to fit everything in one view
+ - will build multiple views and adapt app flow
+ - will build more views when I have more data to work with
+
+- will have to leave live streaming over-lay of weather-radar over map for future version
+- the main technical issue is....
+  - requires a paid-for api tier of service to grab continuous stream of data
+  - the src code that I have built will be archived for now
+
+  map-radar UI view to be archived
+  - 1: build initial view and app flow
+    - a: initial view will be a radar-layered map-view of random city
+      - preferably somewhere that has rain, snow or cloud-cover
+    - b: search-icon to launch search form
+      - prompt 'use my location' or 'type zip, city or state'
+    - c: display current weather stats and forecast for input location
+      - map icon to launch radar-layered map-view
+    - d: radar-layered map-view
+      - icons, not buttons
+      - map controls across top header
+      - menu, in left corner, drops down icons to return to other views
 
 ## React Readme
 
