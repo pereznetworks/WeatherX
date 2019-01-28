@@ -28,21 +28,13 @@ export default class GeoCoding extends Component {
     return(
             <div className="geocoding-div">
               <input
-                type="button"
-                className="geo-button"
-                id="geoCoding-Submit"
-                title="Click me to enter a location"
-                onClick={this.props.handleNavClick}/>
-              <label className="geo-button-label" id="geoCoding-Label">
-               Type location
-              </label>
-              <input
                 type="text"
                 id="geoCoding-TextInput"
                 placeholder="Enter a location"
                 onChange={this.handleInputChange}/>
               <input
-                type="button"
+                type="submit"
+                value=""
                 id="geoCoding-TextSubmit"
                 title="Submit Search"
                 onClick={this.props.handleNavSubmit}/>
@@ -50,3 +42,14 @@ export default class GeoCoding extends Component {
     );
   }
 }
+
+
+/* <input
+  type="button"
+  className="geo-button"
+  id="geoCoding-Submit"
+  title="Click me to enter a location"
+  onClick={this.props.handleNavClick}/>
+<label className="geo-button-label" id="geoCoding-Label">
+ Type location
+</label> */

@@ -124,9 +124,6 @@ class Middle extends Component {
     }
 
     handleNavSubmit(event) {
-      // dont wnat app reset on form button submittions
-      event.preventDefault();
-
       if (this.state.currentLocation !== this.state.geoCodeThis){
         // dont accept duplicate locations entered
         // only setState if new location,
@@ -142,9 +139,11 @@ class Middle extends Component {
       // now can display appropriate component
       this.handleNavClick(event);
 
-      // insert function to actually perform geoCoding or geoLocation
-      console.log(`handleNavSubmit: Please implement me!`)
+      // insert function to submit request to backend server
+      console.log(`requestDataFromServer: Please implement me!`)
 
+      // dont wnat app reset on form button submittions
+      event.preventDefault();
 
     }
 

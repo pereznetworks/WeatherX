@@ -38,7 +38,7 @@ export default class NavBar3 extends Component {
             if (this.props.navState.home){
               return(
                 <div id="navBar3">
-                  <form id="geoLocation" action="">
+                  <form id="geoLocation" action="" >
                     <GeoLocation
                       navState={this.props.navState}
                       handleNavClick={this.handleNavClick}

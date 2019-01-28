@@ -23,7 +23,8 @@ export default class GeoLocation extends Component {
     return(
             <div className="geolocation-div">
               <input
-                type="button"
+                type="submit"
+                value=""
                 className="geo-button"
                 id="geoLocation-Submit"
                 title="Find Me"
