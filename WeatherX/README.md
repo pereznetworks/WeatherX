@@ -30,17 +30,28 @@
 # Now Working:  
 
 ## A: UI
-  - 1: basic titleBar, navBar3 and mainView components
+  - 1: basic titleBar, locationBar, navBar3 and mainView components
       - a: once 'Find Me' (geo-location) is submitted
       - b: or 'Enter A location' (geo-coding) is submitted...
+  - 2: when geoLocation/geoCoding returns data...
+      - a: locationBar shows simple current weather, with city name
+      - b: clicking anywhere on location bar, loads complete forecast (mainView)
+      - c: multiple locationBars tracked in state, using locationName
+  - 3: a mainView, has background z-index -1 is rendered
+      - a: while current or forecast weather stats displayed
+      - b: backHome 'menu' style button loads home view
+      - c: going back to home view, multiple locations and current weather still present
+      - d: as long as app not rest, can go back and forth and loads up to 10 locations
 
 # TO DO:
 
 ## A: UI
-  - 2: a background z-index -1 is rendered
-      - a: while current or forecast weather stats displayed
-      - b: appropriate cloud/rain/stormy affect animating in background
-
+    - 1: locationBar
+      - a: appropriate cloud/rain/stormy affect animating in background of each locationBar
+    - 2: mainView
+      - a: appropriate cloud/rain/stormy affect animating in background
+    - 3:
+      - a: Form submission to backend-server
 
 ## B: Geocoding and Geolocation
   - 1: Form present choice
