@@ -127,13 +127,17 @@ class Middle extends Component {
       // for now, will need to actually submit this form when server ready
       event.preventDefault();
 
-      this.setState( // set state of nav, keep array of locations entered
-          {
-           locationName: [...this.state.locationName, this.state.geoCodeThis],
-           currentLocation: this.state.geoCodeThis,
-           locationCount: this.state.locationCount + 1
-           }
-         )
+      if (this.state.currentLocation !== this.state.geoCodeThis){
+        // dont accept duplicate locations entered
+        this.setState( // set state of nav, keep array of locations entered
+            {
+             locationName: [...this.state.locationName, this.state.geoCodeThis],
+             currentLocation: this.state.geoCodeThis,
+             locationCount: this.state.locationCount + 1
+             }
+           )
+      }
+
 
       // first need to display appropriate component
       this.handleNavClick(event);
