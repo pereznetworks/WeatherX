@@ -124,18 +124,24 @@ class Middle extends Component {
     }
 
     handleNavSubmit(event) {
-      this.handleNavClick(event);
-      // insert function to actually perform geoCoding or geoLocation
-      console.log(`handleNavSubmit: Please implement me!`)
-      console.log(event.target.title);
+      // for now, will need to actually submit this form when server ready
       event.preventDefault();
-      this.setState(
+
+      this.setState( // set state of nav, keep array of locations entered
           {
            locationName: [...this.state.locationName, this.state.geoCodeThis],
            currentLocation: this.state.geoCodeThis,
            locationCount: this.state.locationCount + 1
            }
          )
+
+      // first need to display appropriate component
+      this.handleNavClick(event);
+
+      // insert function to actually perform geoCoding or geoLocation
+      console.log(`handleNavSubmit: Please implement me!`)
+
+
     }
 
   render(){
