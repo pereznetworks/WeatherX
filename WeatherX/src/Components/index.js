@@ -15,10 +15,8 @@ import '../css/grid-main2.css';
 // creates one component for all sub-components
 class Middle extends Component {
 
-  // each item in state object refers to a html element by that id and/or a corresponding form action
-  // passing bound handler methods
-  // hanldeNavSubmit makes api call to back-end server
-  // hanldeNavClick used to load component; Home, GeoLocaton form, or About
+  // hanldeNavSubmit takes input and makes api call to back-end server
+  // hanldeNavClick used to load components based on navState
 
     constructor(props) {
       super(props);
