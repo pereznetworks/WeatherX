@@ -37,7 +37,7 @@
       - a: locationBar shows simple current weather, with city name
       - b: clicking anywhere on location bar, loads complete forecast (mainView)
       - c: multiple locationBars tracked in state, using locationName
-  - 3: a mainView, has background z-index -1 is rendered
+  - 3: a mainView, has background z-index -1 
       - a: while current or forecast weather stats displayed
       - b: backHome 'menu' style button loads home view
       - c: going back to home view, multiple locations and current weather still present
