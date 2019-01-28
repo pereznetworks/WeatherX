@@ -7,11 +7,16 @@ export default class GeoCoding extends Component {
   constructor(props) {
     super(props);
     this.handleNavClick = this.handleNavClick.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleNavSubmit = this.handleNavSubmit.bind(this);
   }
 
   handleNavClick(e){
     this.props.handleNavClick(e);
+  }
+
+  handleInputChange(e){
+    this.props.handleInputChange(e);
   }
 
   handleNavSubmit(e){
@@ -34,8 +39,8 @@ export default class GeoCoding extends Component {
               <input
                 type="text"
                 id="geoCoding-TextInput"
-                title="type a location and click me"
-                placeholder="Enter a location"/>
+                placeholder="Enter a location"
+                onChange={this.handleInputChange}/>
               <input
                 type="button"
                 id="geoCoding-TextSubmit"

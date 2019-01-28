@@ -26,10 +26,13 @@ class Middle extends Component {
         geoCoding: false,
         about: false,
         mainView: false,
-        locationBar:false
+        locationBar:false,
+        locationName: [],
+        locationCount: 0
       };
 
       this.handleNavClick = this.handleNavClick.bind(this);
+      this.handleInputChange = this.handleInputChange.bind(this)
       this.handleNavSubmit = this.handleNavSubmit.bind(this);
     }
 
@@ -94,12 +97,22 @@ class Middle extends Component {
 
     }
 
+    handleInputChange(event) {
+      this.setState({geoCodeThis: event.target.value});
+    }
+
     handleNavSubmit(event) {
       this.handleNavClick(event);
       // insert function to actually perform geoCoding or geoLocation
       console.log(`handleNavSubmit: Please implement me!`)
       console.log(event.target.title);
       event.preventDefault();
+      this.setState(
+          {
+           locationName: [...this.state.locationName, this.state.geoCodeThis],
+           locationCount: this.state.locationCount + 1
+           }
+         )
     }
 
   render(){
@@ -110,6 +123,7 @@ class Middle extends Component {
         <NavBar3
           navState={this.state}
           handleNavClick={this.handleNavClick}
+          handleInputChange={this.handleInputChange}
           handleNavSubmit={this.handleNavSubmit}
           />
         <LocationBar

@@ -17,6 +17,7 @@ export default class NavBar3 extends Component {
   constructor(props) {
     super(props);
     this.handleNavClick = this.handleNavClick.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleNavSubmit = this.handleNavSubmit.bind(this);
   }
 
@@ -24,6 +25,9 @@ export default class NavBar3 extends Component {
     this.props.handleNavClick(event);
   }
 
+  handleInputChange(e){
+    this.props.handleInputChange(e);
+  }
 
   handleNavSubmit(event) {
     this.props.handleNavSubmit(event);
@@ -42,6 +46,7 @@ export default class NavBar3 extends Component {
                     <GeoCoding
                       navState={this.props.navState}
                       handleNavClick={this.handleNavClick}
+                      handleInputChange={this.handleInputChange}
                       handleNavSubmit={this.handleNavSubmit}/>
                     <AboutButton
                       navState={this.props.navState}
