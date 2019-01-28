@@ -28,16 +28,15 @@ export default class GeoLocation extends Component {
                 id="geoLocation-Submit"
                 title="Find Me"
                 onClick={this.props.handleNavSubmit}></input>
-              <label
-                className="geo-button-label"
-                id="geoLocation-Label"
-                title="Find Me"
-                onClick={this.props.handleNavSubmit}>
-               Find Me
-              </label>
             </div>
-
-
     );
   }
 }
+
+// <label
+//   className="geo-button-label"
+//   id="geoLocation-Label"
+//   title="Find Me"
+//   onClick={this.props.handleNavSubmit}>
+//  Find Me
+// </label>

@@ -7,8 +7,10 @@ import MainView from "./mainView";
 import LocationBar from "./locationBar";
 
 // import css styling
-import '../css/grid-main2.css';
 import '../css/navBar3.css';
+import '../css/mainView.css';
+import '../css/locationBar.css';
+import '../css/grid-main2.css';
 
 // creates one component for all sub-components
 class Middle extends Component {
@@ -28,12 +30,15 @@ class Middle extends Component {
         mainView: false,
         locationBar:false,
         locationName: [],
-        locationCount: 0
+        locationCount: 0,
+        currentLocation:'',
+        showMeThisOne:''
       };
 
       this.handleNavClick = this.handleNavClick.bind(this);
       this.handleInputChange = this.handleInputChange.bind(this)
       this.handleNavSubmit = this.handleNavSubmit.bind(this);
+      this.showMeThisOne = this.showMeThisOne.bind(this);
     }
 
     componentDidMount(){
@@ -43,7 +48,9 @@ class Middle extends Component {
         geoCoding: false,
         about: false,
         mainView: false,
-        locationBar:false
+        locationBar:false,
+        currentLocation:'',
+        showMeThisOne:''
       });
     }
 
@@ -94,11 +101,26 @@ class Middle extends Component {
           locationBar: false
         })
       }
+    }
+
+    showMeThisOne(locationName){
+      console.log(locationName);
+      this.setState({
+        currentLocation: locationName,
+        home: false,
+        geoLocation: false,
+        geoCoding: false,
+        about: false,
+        mainView: true,
+        locationBar: false
+      })
 
     }
 
     handleInputChange(event) {
-      this.setState({geoCodeThis: event.target.value});
+      this.setState(
+          {geoCodeThis: event.target.value}
+        );
     }
 
     handleNavSubmit(event) {
@@ -110,6 +132,7 @@ class Middle extends Component {
       this.setState(
           {
            locationName: [...this.state.locationName, this.state.geoCodeThis],
+           currentLocation: this.state.geoCodeThis,
            locationCount: this.state.locationCount + 1
            }
          )
@@ -125,10 +148,12 @@ class Middle extends Component {
           handleNavClick={this.handleNavClick}
           handleInputChange={this.handleInputChange}
           handleNavSubmit={this.handleNavSubmit}
+          getCurrentLocation={this.getCurrentLocation}
           />
         <LocationBar
           navState={this.state}
           handleNavClick={this.handleNavClick}
+          showMeThisOne={this.showMeThisOne}
           />
         <MainView
           navState={this.state}

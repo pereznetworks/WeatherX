@@ -6,8 +6,6 @@ import React, { Component } from 'react';
 import About from "./about.js";
 
 
-import '../../css/mainView.css';
-
 export default class MainView extends Component {
 
   // passing props, navState object,
@@ -31,15 +29,20 @@ export default class MainView extends Component {
       this.props.handleNavSubmit(event);
     }
 
+    showMeThisOne(){
+      this.props.showMeThisOne();
+    }
+
   render() {
 
     if (this.props.navState.mainView){
       return(
         <div id="mainView" title='mainView'>
-          <h3 id="cityName">Santa Cruz</h3>
+          <h3 id="cityName">{this.props.navState.currentLocation}</h3>
           <p id="currentConditions">Sunny</p>
           <h1 id="todayTemp">61°</h1>
           <table id="tableHdr">
+           <tbody>
             <tr>
               <th id="dayOfWeek">Wednesday</th>
               <th id="today">TODAY</th>
@@ -47,34 +50,38 @@ export default class MainView extends Component {
               <th id="tempHigh">61°</th>
               <th id="tempLow">44°</th>
             </tr>
+            </tbody>
           </table>
           <table id="tableDays">
-            <tr>
-              <th>Now</th>
-              <th>3 PM</th>
-              <th>4 PM</th>
-              <th>5 PM</th>
-              <th>6 PM</th>
-              <th>7 PM</th>
-            </tr>
-            <tr>
-              <td class="Sunny">Clear Skies, Sunny</td>
-              <td class="Sunny">Clear Skies, Sunny</td>
-              <td class="Sunny">Clear Skies, Sunny</td>
-              <td class="Sunny">Clear Skies, Sunny</td>
-              <td class="Sunset">Clear Skies, Sunset</td>
-              <td class="ClearNightSky">Clear Night</td>
-            </tr>
-            <tr>
-              <td>61°</td>
-              <td>62°</td>
-              <td>62°</td>
-              <td>62°</td>
-              <td>62°</td>
-              <td>62°</td>
-            </tr>
+           <tbody>
+              <tr>
+                <th>Now</th>
+                <th>3 PM</th>
+                <th>4 PM</th>
+                <th>5 PM</th>
+                <th>6 PM</th>
+                <th>7 PM</th>
+              </tr>
+              <tr>
+                <td className="Sunny">Clear Skies, Sunny</td>
+                <td className="Sunny">Clear Skies, Sunny</td>
+                <td className="Sunny">Clear Skies, Sunny</td>
+                <td className="Sunny">Clear Skies, Sunny</td>
+                <td className="Sunset">Clear Skies, Sunset</td>
+                <td className="ClearNightSky">Clear Night</td>
+              </tr>
+              <tr>
+                <td>61°</td>
+                <td>62°</td>
+                <td>62°</td>
+                <td>62°</td>
+                <td>62°</td>
+                <td>62°</td>
+              </tr>
+            </tbody>
           </table>
           <table id="tableWeek">
+           <tbody>
             <tr>
               <th id="dayOfWeek"></th>
               <th id="forecastCondition"></th>
@@ -123,6 +130,7 @@ export default class MainView extends Component {
               <td id="tempHigh">61°</td>
               <td id="tempLow">44°</td>
             </tr>
+            </tbody>
           </table>
         </div>
       );
