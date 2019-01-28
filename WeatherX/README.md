@@ -7,7 +7,8 @@
 ## A: UI
   - 1: basic titleBar, locationBar, navBar3 and mainView components
       - a: once 'Find Me' (geo-location) is submitted
-      - b: or 'Enter A location' (geo-coding) is submitted...can use [enter], GO on mobile devies
+      - b: or 'Enter A location' (geo-coding) is submitted
+      - c: ...can use [enter], GO on mobile devices
 key  - 2: when geoLocation/geoCoding returns data...
       - a: locationBar shows simple current weather, with city name
       - b: clicking anywhere on location bar, loads complete forecast (mainView)
