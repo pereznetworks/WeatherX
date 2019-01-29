@@ -13,6 +13,14 @@
   left: 0;
 }
 
+#mainViewHeader{
+  width:100%;
+  height:fit-content;
+  display:block;
+  margin:0;
+  padding:0;
+}
+
 #mainView h1 {
   line-height:25%;
   font-size:4em;

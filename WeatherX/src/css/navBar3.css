@@ -241,11 +241,11 @@
 @media only screen and (min-width: 432px){
   #navBar3{
     width:100%;
-    margin: 2% 2% 2% 0%;
+    margin: 2% 0 2% 0%;
   }
 
   .geocoding-div {
-    width:83%;
+    width:88%;
   }
 
   #geoCoding-TextInput{
