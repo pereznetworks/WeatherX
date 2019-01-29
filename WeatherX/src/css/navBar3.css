@@ -155,7 +155,7 @@
 }
 
 #geoCoding-TextSubmit {
-  background-image:url('../imgs/Search-48-4B4AA7-B.png');
+  background-image:url('../imgs/Search-48-B-4B4AA7.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 120%;
@@ -173,32 +173,32 @@
 }
 
 #geoCoding-TextSubmit:hover {
-  background-image:url('../imgs/Search-48-B-4B4AA7.png');
+  background-image:url('../imgs/Search-48-4B4AA7-B.png');
 }
 
 #geoLocation-Submit {
-    background-image:url('../imgs/FindMe-48-4B4AA7-B.png');
+    background-image:url('../imgs/FindMe-48-B-4B4AA7.png');
     margin: 0 1% 0 0;
 }
 
 #about-Submit {
-    background-image:url('../imgs/About-48-4B4AA7-B.png');
-}
-
-#geoCoding-Submit {
-    background-image:url('../imgs/Search-48-4B4AA7-B.png');
-}
-
-#about-Submit:hover {
     background-image:url('../imgs/About-48-B-4B4AA7.png');
 }
 
-#geoCoding-Submit:hover {
+#geoCoding-Submit {
     background-image:url('../imgs/Search-48-B-4B4AA7.png');
 }
 
+#about-Submit:hover {
+    background-image:url('../imgs/About-48-4B4AA7-B.png');
+}
+
+#geoCoding-Submit:hover {
+    background-image:url('../imgs/Search-48-4B4AA7-B.png');
+}
+
 #geoLocation-Submit:hover{
-    background-image:url('../imgs/FindMe-48-B-4B4AA7.png');
+    background-image:url('../imgs/FindMe-48-4B4AA7-B.png');
 }
 
 #geoCoding-Input, #geoCoding-Submit, #geoCoding-Label, #geoLocation-Label, #about-Button-Label{
@@ -266,6 +266,10 @@
   #navBar3{
     width:95%;
     margin: auto;
+  }
+
+  #backHome-button{
+      background-image:url('../imgs/Menu-48-B-4B4AA7.png');
   }
 
   #locationBar-div {
