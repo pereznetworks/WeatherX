@@ -1,10 +1,4 @@
 import React, { Component } from 'react';
-// import ReactMap from "react-mapbox-gl";
-// import logo from '../imgs/logo.svg';
-
-import GeoLocation from "./geoLocation.js";
-import GeoCoding from "./geoCoding.js";
-import AboutButton from "./about.js";
 
 export default class NavBar3 extends Component {
 
@@ -78,28 +72,3 @@ export default class NavBar3 extends Component {
             }
     }
 }
-
-
-/*
-
-<input
-  type="button"
-  className="about-button"
-  id="about-Submit"
-  title="About WeatherX"
-  onClick={this.handleNavClick}/>
-
-<GeoLocation
-  navState={this.props.navState}
-  handleNavClick={this.handleNavClick}
-  handleNavSubmit={this.handleNavSubmit}/>
-<GeoCoding
-  navState={this.props.navState}
-  handleNavClick={this.handleNavClick}
-  handleInputChange={this.handleInputChange}
-  handleNavSubmit={this.handleNavSubmit}/>
-<AboutButton
-  navState={this.props.navState}
-  handleNavClick={this.handleNavClick}
-  handleNavSubmit={this.handleNavSubmit}/>
-*/
