@@ -9,7 +9,7 @@ const server = express();
 
 // for use when deploying into production, otherwise use env='development' and port='3000'
 const env = process.env.NODE_ENV || 'development';
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 9999;
 
 // setting up a routes module
 const routes = require('./routes/index.js');
@@ -33,22 +33,22 @@ const mongoOnceConnected = require('./dataSource').onceConnected;
 
 // wrapped mongoose methods in my own promise-based modular methods
 // not used in user routes but might in the future
-const runFindQuery = require('../dataSource').runFindQuery;
-const createNew = require('../dataSource').createNew;
-const updateDoc = require('../dataSource').updateDoc;
+const runFindQuery = require('./dataSource').runFindQuery;
+const createNew = require('./dataSource').createNew;
+const updateDoc = require('./dataSource').updateDoc;
 
 // connecting to mongodb...
 const db = mongoConnect();
 
-    // if error in connection...
-    db.on("error", function(err){
-    	mongoOnErr(err);
-    });
+// if error in connection...
+db.on("error", function(err){
+	mongoOnErr(err);
+});
 
-    // if connected and all is good...
-    db.once("open", function(){
-    	mongoOnceConnected();
-    });
+// if connected and all is good...
+db.once("open", function(){
+	mongoOnceConnected();
+});
 
 // make mongoose connection available to all routes
 server.use(db);

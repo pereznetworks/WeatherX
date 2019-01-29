@@ -39,16 +39,18 @@ const getLocationCoordinates = searchTerm => {
   let notice;
 
   // due to cost may want to not use up apicalls to sources for every invalid respsonse
+  // need to parse req.body.location for valid city, state, and or zip-codes
+  
   if (!searchTerm){
     // will need a way to send approproiate msg when used internationally
     coordinates.notice = `Opps, it seems we did not receive a valid location: place type a city, state or zipcode`;
   }
 
-  // insert in place of return statement below ...
-  // code to parse text into city, state or zipcode
-  // code for mapbox gl sdk to access mapbox geocoding api
+  // need code to get coordinates for a city, state or zipcode
+  // from mapbox gl sdk to access mapbox geocoding api
+  // for forcing default location of San Francisco and setting coordinates ...
 
-  if(searchTerm.location === 'San Francisco, CA'){
+  if(searchTerm.location !== 'San Francisco, CA'){
     coordinates.longitude = -122.420679;
     coordinates.latitude = 37.772537;
   }

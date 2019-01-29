@@ -1,5 +1,5 @@
-//following module pattern ...
-// do this ends up being a 'package' of dataSource modules =)
+// following module pattern ...
+// so this ends up being a 'package' of dataSource modules =)
 
 // importing methods that access forecast.io and mapbox geocoding api
 const getForecast = require('./forecast').getForecast;
@@ -12,9 +12,9 @@ const onErr = require('./mongoClient').onErr;
 const onceConnected = require('./mongoClient').onceConnected;
 
 // importing my own modular mongoose connection methods
-const runFindQuery = require('./mongoDocumentMethods').runFindQuery;
-const createNew = require('./mongoDocumentMethods').createNew;
-const updateDoc = require('./mongoDocumentMethods').updateDoc;
+const runFindQuery = require('./mongooseDocumentMethods').runFindQuery;
+const createNew = require('./mongooseDocumentMethods').createNew;
+const updateDoc = require('./mongooseDocumentMethods').updateDoc;
 
 // exporting methods that access forecast.io and mapbox geocoding api
 module.exports.getForecast= getForecast;

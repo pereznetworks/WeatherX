@@ -1,17 +1,15 @@
 # TD-Project12
 Daniel Perez, Captsone - Team TreeHouse FSJS Project
 
-Status: service and web app in development
+Status: Basic Front-end UI Model almost complete, working on back-end services
 
 # My Captsone Project:  Weather forecast service  
 
-For a given State, City, ZipCode display the current and forecast weather.
+GeoCoding (Search) and Geo-Location Services
 
-Weather filtering and map controls allow user full-control of data presented.
+Get Time and Weather of a given location,
 
-The weather data is displayed visually on a street or satellite map.
-
-Additional weather stats, warning and alerts will be displayed on side-bar-like area.
+Display current and forecast weather stats, warning and alerts will be displayed on side-bar-like area.
 
 # WeatherX app
 
@@ -23,7 +21,7 @@ Additional weather stats, warning and alerts will be displayed on side-bar-like 
 
 # Technologies Used:
 
-Thanks to Team TreeHouse, https://teamtreehouse.com, a great place for makers, breakers, real engineers, really anyone to brush-up on, gain new, or even get started in Software Development.
+Thanks to Team TreeHouse, https://teamtreehouse.com, a great place for makers, breakers, engineers... really anyone to brush-up on, gain new, or even get started in Software Development.
 
 This project uses Node.js, https://nodejs.org/ and Express.Js,"https://expressjs.com/" for https server and routing.
 
@@ -41,7 +39,7 @@ React.Js, https://reactjs.org/ and Babel.js, https://babeljs.io/, for front-end 
 
 # Standards:
 
-And it's all javascript es6, web-apps best-practices, TLS2 security and html5 web-standards compliant!
+Will be using javascript es6, web-apps best-practices, TLS2 security and web-standards!
 
 # License:
 
