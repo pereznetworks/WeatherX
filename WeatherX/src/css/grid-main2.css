@@ -65,10 +65,8 @@ body {
 .middle-grid-item-0, .middle-grid-item-1, .middle-grid-item-2, .middle-grid-item-3, .middle-grid-item-4,
 .middle-grid-item-5, .middle-grid-item-6, .middle-grid-item-7, .middle-grid-item-8, .middle-grid-item-9 {
   /* background-color: #000; */
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
   height:80px;
-  padding:1%;
+  padding:2%;
 }
 
 /* @media only screen and (min-width: 432px){

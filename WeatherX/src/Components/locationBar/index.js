@@ -25,7 +25,7 @@ export default class LocationBar extends Component {
   render() {
     if (this.props.navState.locationBar){
         return (
-          <div className='.middle-grid-item-2'>{this.props.navState.locationName.map(this.createGridItem)}</div>
+          <div className='middle-grid-item-2'>{this.props.navState.locationName.map(this.createGridItem)}</div>
         );
       } else {
         return null;

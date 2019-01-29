@@ -3,7 +3,7 @@
 #mainView{
   scroll-behavior: auto;
   width: 100%;
-  height: stretch;
+  height: fit-content;
   margin: 0 0 0 0;
   padding: 8% 0 0 0;
   background-color: skyblue;
