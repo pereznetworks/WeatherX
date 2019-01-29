@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 export default class TitleBar extends Component {
   render() {
     return (
-      <div id="titleBar">
+      <div id="titleBar" className='middle-grid-item-0'>
         <p id="title">WeatherX</p>
         <p id="titleText">A Weather Forecast Service</p>
       </div>

@@ -10,7 +10,6 @@ export default class LocationBarDiv extends Component {
     };
     this.showMeThisOne = this.showMeThisOne.bind(this);
     this.reduceGridItemClassNames = this.reduceGridItemClassNames.bind(this);
-
   }
 
   showMeThisOne(){
@@ -19,7 +18,7 @@ export default class LocationBarDiv extends Component {
   }
 
   reduceGridItemClassNames(value, index){
-      if (index === this.props.indexno){
+      if ((index + 2 )=== this.props.indexno){
         return value;
       }
     }

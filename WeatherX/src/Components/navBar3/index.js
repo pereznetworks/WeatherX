@@ -31,27 +31,32 @@ export default class NavBar3 extends Component {
 
   handleNavSubmit(event) {
     this.props.handleNavSubmit(event);
+    this.props.handleNavClick(event);
   }
 
   render() {
-
             if (this.props.navState.home){
               return(
-                <div id="navBar3">
+                <div id="navBar3" className=".middle-grid-item-1">
                   <form id="geoLocation" action="" >
-                    <GeoLocation
-                      navState={this.props.navState}
-                      handleNavClick={this.handleNavClick}
-                      handleNavSubmit={this.handleNavSubmit}/>
-                    <GeoCoding
-                      navState={this.props.navState}
-                      handleNavClick={this.handleNavClick}
-                      handleInputChange={this.handleInputChange}
-                      handleNavSubmit={this.handleNavSubmit}/>
-                    <AboutButton
-                      navState={this.props.navState}
-                      handleNavClick={this.handleNavClick}
-                      handleNavSubmit={this.handleNavSubmit}/>
+                    <input
+                      type="submit"
+                      value=""
+                      className="geo-button"
+                      id="geoLocation-Submit"
+                      title="Find Me"
+                      onClick={this.handleNavSubmit}/>
+                    <input
+                      type="text"
+                      id="geoCoding-TextInput"
+                      placeholder="Enter a location"
+                      onChange={this.handleInputChange}/>
+                    <input
+                      type="submit"
+                      value=""
+                      id="geoCoding-TextSubmit"
+                      title="Submit Search"
+                      onClick={this.handleNavSubmit}/>
                   </form>
                 </div>
              );
@@ -73,3 +78,28 @@ export default class NavBar3 extends Component {
             }
     }
 }
+
+
+/*
+
+<input
+  type="button"
+  className="about-button"
+  id="about-Submit"
+  title="About WeatherX"
+  onClick={this.handleNavClick}/>
+
+<GeoLocation
+  navState={this.props.navState}
+  handleNavClick={this.handleNavClick}
+  handleNavSubmit={this.handleNavSubmit}/>
+<GeoCoding
+  navState={this.props.navState}
+  handleNavClick={this.handleNavClick}
+  handleInputChange={this.handleInputChange}
+  handleNavSubmit={this.handleNavSubmit}/>
+<AboutButton
+  navState={this.props.navState}
+  handleNavClick={this.handleNavClick}
+  handleNavSubmit={this.handleNavSubmit}/>
+*/

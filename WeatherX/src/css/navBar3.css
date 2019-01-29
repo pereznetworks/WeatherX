@@ -11,7 +11,7 @@
   background-color: #282c34;
   color:#fff;
   width:100%;
-  margin: 0 0 2% 2%;
+  margin: auto;
   z-index: +1;
 }
 
@@ -47,7 +47,7 @@
 
 #geoLocation{
   display:inline;
-  margin: 10% 0 0 0;
+  margin: auto;
 }
 
 .geo-button-div, {
@@ -139,7 +139,7 @@
   color: #000;
   /* background: url(./...pmg) 0 0; */
   background-color: #bbb;
-  width: 84%;
+  width: 215px;
   height: 26px;
   display: inline;
   font-size: .8em;
@@ -178,6 +178,7 @@
 
 #geoLocation-Submit {
     background-image:url('../imgs/FindMe-48-4B4AA7-B.png');
+    margin: 0 1% 0 0;
 }
 
 #about-Submit {
@@ -238,18 +239,24 @@
    and a few actual Apple Android devices, Macs and Windows 10 PC's
 */
 
-@media only screen and (min-width: 432px){
+@media only screen and (min-width: 360px){
+  #geoCoding-TextInput{
+    width:250px;
+  }
+}
+
+@media only screen and (min-width: 420px){
   #navBar3{
     width:100%;
-    margin: 2% 0 2% 0%;
+    margin: auto;
   }
 
-  .geocoding-div {
+  /* .geocoding-div {
     width:88%;
-  }
+  } */
 
   #geoCoding-TextInput{
-    width:87%;
+    width:300px;
   }
 
 }
@@ -258,7 +265,7 @@
 
   #navBar3{
     width:95%;
-    margin: 0% 2% 2% 6%;
+    margin: auto;
   }
 
   #locationBar-div {
@@ -266,12 +273,12 @@
   }
 
 
-  .geocoding-div {
+  /* .geocoding-div {
     width:85%;
-  }
+  } */
 
   #geoCoding-TextInput{
-    width:90%;
+    width:320px;
   }
 
   #temp-div{

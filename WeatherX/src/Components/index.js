@@ -148,7 +148,7 @@ class Middle extends Component {
   render(){
     return(
 
-      <div className="middle">
+      <div className="middle middle-grid-container">
         <TitleBar />
         <NavBar3
           navState={this.state}
