@@ -1,3 +1,6 @@
+# on macOS filesystems ignore .DS_Store
+**/.DS_Store
+
 # ignore mapbox config file
 src/config.js
 
