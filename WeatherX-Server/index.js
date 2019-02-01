@@ -24,12 +24,7 @@ server.use(logger('dev')); // Concise output colored by response status for deve
 
 // one secruity measure of many more unneeded
 const helmet = require('helmet')
-server.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'"],
-    styleSrc: ["'self'"]
-  }
-}))
+server.use(helmet());
 
 // my own modular mongoose connection method and callbacks
 const mongoConnect = require('./dataSource').connect;
