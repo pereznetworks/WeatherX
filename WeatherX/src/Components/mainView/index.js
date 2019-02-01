@@ -40,9 +40,9 @@ export default class MainView extends Component {
       return(
         <div id="mainView" title='mainView'>
           <MainViewHdr navState={this.props.navState} />
-          <TableHdr />
-          <TableDays />
-          <TableWeek />
+          <TableHdr navState={this.props.navState} />
+          <TableDays navState={this.props.navState} />
+          <TableWeek navState={this.props.navState} />
         </div>
       );
     } if (this.props.navState.about){
