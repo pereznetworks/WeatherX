@@ -144,7 +144,11 @@ class Middle extends Component {
 
       // have forecastData ready ... now set mainView to true
       this.setState({
-        currentLocation: locationName,
+        currentLocation: {
+          name: this.state.locationName[index],
+          time: this.getCurrentTimeAtLocation(this.state.forecastData[index].data.currently.time),
+          temp: Math.floor(this.state.forecastData[index].data.currently.temperature)
+        },
         currentForecast: this.state.forecastData[index],
         home: false,
         about: false,

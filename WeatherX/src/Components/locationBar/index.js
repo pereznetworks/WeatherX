@@ -11,8 +11,8 @@ export default class LocationBar extends Component {
     this.showMeThisOne = this.showMeThisOne.bind(this);
   }
 
-  showMeThisOne(locationName){
-    this.props.showMeThisOne(locationName);
+  showMeThisOne(locationName, index){
+    this.props.showMeThisOne(locationName, index);
   }
 
   createGridItem(value, index){
