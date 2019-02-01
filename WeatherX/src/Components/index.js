@@ -196,7 +196,7 @@ class Middle extends Component {
 
               this.setState(
                 {
-                  forecastData: [this.state.forecastData, newForecast], // will end up with an array of forecast objects
+                  forecastData: [...this.state.forecastData, newForecast], // will end up with an array of forecast objects
                   locationName: [...this.state.locationName, this.state.geoCodeThis],
                   currentLocation: {
                     name: this.state.geoCodeThis,
