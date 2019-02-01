@@ -9,20 +9,20 @@ export default class LocationBarDiv extends Component {
     this.showMeThisOne = this.showMeThisOne.bind(this);
   }
 
-  showMeThisOne(){
+  showMeThisOne(indexno){
     let locationName = this.props.value;
-    this.props.showMeThisOne(locationName);
+    this.props.showMeThisOne(locationName, indexno);
   }
 
   render(){
     return (
       <div title="locationBar" id="locationBar-div" onClick={this.showMeThisOne}>
         <div  id="cityTime-div">
-          <p  id="locationTime">9:00 PM</p>
+          <p  id="locationTime">{this.props.navState.currentLocation.time}</p>
           <p  indexno={this.props.indexno} id="locationName">{this.props.value}</p>
         </div>
         <div  id="temp-div" >
-          <p  id="currentTemp">61°</p>
+          <p  id="currentTemp">{this.props.navState.currentLocation.temp}°</p>
         </div>
       </div>
     );

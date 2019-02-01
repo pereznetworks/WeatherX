@@ -24,7 +24,12 @@ server.use(logger('dev')); // Concise output colored by response status for deve
 
 // one secruity measure of many more unneeded
 const helmet = require('helmet')
-server.use(helmet())
+server.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    styleSrc: ["'self'"]
+  }
+}))
 
 // my own modular mongoose connection method and callbacks
 const mongoConnect = require('./dataSource').connect;
@@ -50,13 +55,13 @@ db.once("open", function(){
 	mongoOnceConnected();
 });
 
-// make mongoose connection available to all routes
-server.use(db);
+// // make mongoose connection available to all routes
+// server.use(db);
 
 // make mongoose document methods available to all routes
-server.use(runFindQuery);
-server.use(createNew);
-server.use(updateDoc);
+// server.use(runFindQuery);
+// server.use(createNew);
+// server.use(updateDoc);
 
 // insert custom routes router here
 server.use(routes);

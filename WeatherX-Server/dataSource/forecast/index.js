@@ -20,7 +20,8 @@ const manageDb = forecast => {
 // function to make a forcast.io api call for forecaast data
 const getForecast = coordinates => {
 
-  const forecast = require('../config');
+  const key = require('../config').key;
+  console.log(key)
   // will need to import mapbox module and key also
 
   // fail-safe in-case no valid coordinates are passed
@@ -28,7 +29,7 @@ const getForecast = coordinates => {
     return coordinates.notice;
   }
 
-  let apicall = `https://api.darksky.net/forecast/${forecast.key}/${coordinates.latitude},${coordinates.longitude}`;
+  let apicall = `https://api.darksky.net/forecast/${key}/${coordinates.latitude},${coordinates.longitude}`;
   return apicall;
 
 };
@@ -40,7 +41,7 @@ const getLocationCoordinates = searchTerm => {
 
   // due to cost may want to not use up apicalls to sources for every invalid respsonse
   // need to parse req.body.location for valid city, state, and or zip-codes
-  
+
   if (!searchTerm){
     // will need a way to send approproiate msg when used internationally
     coordinates.notice = `Opps, it seems we did not receive a valid location: place type a city, state or zipcode`;

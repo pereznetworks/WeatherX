@@ -28,6 +28,10 @@ export default class NavBar3 extends Component {
     this.props.handleNavClick(event);
   }
 
+  // so were using a form element here, but not actually using any form actions ot methods
+  // dont want to implement a router on this front end ...
+  // so instead just using axios to make apicall to backendServer and recv data then setState variables with data
+
   render() {
             if (this.props.navState.home){
               return(
