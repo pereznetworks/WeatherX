@@ -5,8 +5,8 @@ export default class MainViewHdr extends Component {
     return(
       <div id="mainViewHeader">
         <h3 id="cityName">{this.props.navState.currentLocation.name}</h3>
-        <p id="currentConditions">Sunny</p>
-        <h1 id="todayTemp">61°</h1>
+        <p id="currentConditions">{this.props.navState.currentForecast.data.currently.summary}</p>
+        <h1 id="todayTemp">{this.props.navState.currentLocation.temp}</h1>
       </div>
     );
   }
