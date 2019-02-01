@@ -17,7 +17,13 @@ export default class LocationBar extends Component {
 
   createGridItem(value, index){
     return (
-      <LocationBarDiv navState={this.props.navState} key={index} indexno={index} value={this.props.navState.locationName[index]} showMeThisOne={this.showMeThisOne}/>
+      <LocationBarDiv
+        navState={this.props.navState}
+        key={index}
+        indexno={index} value={this.props.navState.locationName[index]}
+        showMeThisOne={this.showMeThisOne}
+        getCurrentTimeAtLocation={this.props.getCurrentTimeAtLocation}
+        />
     );
   }
 

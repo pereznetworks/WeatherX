@@ -239,6 +239,7 @@ class Middle extends Component {
           navState={this.state}
           handleNavClick={this.handleNavClick}
           showMeThisOne={this.showMeThisOne}
+          getCurrentTimeAtLocation={this.getCurrentTimeAtLocation}
           />
         <MainView
           navState={this.state}

@@ -6,23 +6,28 @@ export default class LocationBarDiv extends Component {
   constructor(props) {
     super(props);
 
+    this.locationCurrentTemp = Math.floor(this.props.navState.forecastData[this.props.indexno].data.currently.temperature);
+    this.locationCurrentTime = this.props.getCurrentTimeAtLocation(this.props.navState.forecastData[this.props.indexno].data.currently.time);
+    this.locationCurrentName = this.props.navState.locationName[this.props.indexno];
+
     this.showMeThisOne = this.showMeThisOne.bind(this);
   }
-
   showMeThisOne(indexno){
-    let locationName = this.props.value;
-    this.props.showMeThisOne(locationName, indexno);
+    this.props.showMeThisOne(this.locatonCurrentName, indexno);
   }
 
+  getCurrentTimeAtLocation(timeStamp){
+    return this.props.getCurrentTimeAtLocation(timeStamp)
+  }
   render(){
     return (
       <div title="locationBar" id="locationBar-div" onClick={this.showMeThisOne}>
         <div  id="cityTime-div">
-          <p  id="locationTime">{this.props.navState.currentLocation.time}</p>
-          <p  indexno={this.props.indexno} id="locationName">{this.props.value}</p>
+          <p  id="locationTime">{this.locationCurrentTime}</p>
+          <p  indexno={this.props.indexno} id="locationName">{this.locationCurrentName}</p>
         </div>
         <div  id="temp-div" >
-          <p  id="currentTemp">{this.props.navState.currentLocation.temp}°</p>
+          <p  id="currentTemp">{this.locationCurrentTemp}°</p>
         </div>
       </div>
     );
