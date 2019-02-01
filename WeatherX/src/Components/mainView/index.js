@@ -19,6 +19,7 @@ export default class MainView extends Component {
       super(props);
       this.handleNavClick = this.handleNavClick.bind(this);
       this.handleNavSubmit = this.handleNavSubmit.bind(this);
+      this.whatDayIsIt = this.whatDayIsIt.bind(this);
     }
 
     handleNavClick(event) {
@@ -34,13 +35,17 @@ export default class MainView extends Component {
       this.props.showMeThisOne();
     }
 
+    whatDayIsIt(dateInt){
+      return this.props.whatDayIsIt(dateInt);
+    }
+
   render() {
 
     if (this.props.navState.mainView){
       return(
         <div id="mainView" title='mainView'>
           <MainViewHdr navState={this.props.navState} />
-          <TableHdr navState={this.props.navState} />
+          <TableHdr navState={this.props.navState} whatDayIsIt={this.whatDayIsIt} />
           <TableDays navState={this.props.navState} />
           <TableWeek navState={this.props.navState} />
         </div>

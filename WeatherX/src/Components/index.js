@@ -68,6 +68,7 @@ class Middle extends Component {
       this.handleNavSubmit = this.handleNavSubmit.bind(this);
       this.showMeThisOne = this.showMeThisOne.bind(this);
       this.getCurrentTimeAtLocation = this.getCurrentTimeAtLocation.bind(this);
+      this.whatDayIsIt = this.whatDayIsIt.bind(this);
     }
 
     componentDidMount(){
@@ -97,6 +98,12 @@ class Middle extends Component {
         }
 
       }
+    }
+
+    whatDayIsIt(dateInt){
+      const dateOflocation = new Date(dateInt);
+      var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      return days[dateOflocation.getDay()]
     }
 
     handleNavClick(event) {
@@ -247,6 +254,7 @@ class Middle extends Component {
           />
         <MainView
           navState={this.state}
+          whatDayIsIt={this.whatDayIsIt}
           />
       </div>
     );
