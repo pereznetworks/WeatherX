@@ -6,6 +6,7 @@ const axios = require('axios');
 const getForecast = require('../dataSource').getForecast;
 const getLocationCoordinates = require('../dataSource').getLocationCoordinates;
 const manageDb = require('../dataSource').manageDb;
+const sampleJson = require('../dataSource/models/sample.json');
 
     // the home or root route
     main.get('/', (req, res, next) => {
@@ -14,10 +15,10 @@ const manageDb = require('../dataSource').manageDb;
     });
 
     // the weather route, returns current forecast
-    main.get('/weather', (req, res, next) => {
+    main.get('/weather:location', (req, res, next) => {
 
         // console.log(req.body)
-        let loc = getLocationCoordinates(req.body)
+        let loc = getLocationCoordinates(req.params.location)
         // console.log(loc);
         let apicall = getForecast(loc);
         // console.log(apicall);
@@ -26,17 +27,19 @@ const manageDb = require('../dataSource').manageDb;
               return new Error(`${apicall}`);
             }
 
-        axios.get(apicall)
-              .then(response => {
-                let forecast = response.data;
-                return forecast;
-              }).then(forecast => {
-                const db = manageDb(forecast);  // will nedd to replace this with mongoose code
-                res.json(db.current);
-              }).catch(err => {
-                console.log('Error fetching or parsing data', err);
-                next(err);
-              });
+        res.json(sampleJson);
+
+        // axios.get(apicall)
+        //       .then(response => {
+        //         let forecast = response.data;
+        //         return forecast;
+        //       }).then(forecast => {
+        //         const db = manageDb(forecast);  // will nedd to replace this with mongoose code
+        //         res.json(db.current);
+        //       }).catch(err => {
+        //         console.log('Error fetching or parsing data', err);
+        //         next(err);
+        //       });
         // })
         // .catch(err => {
         //   console.log('Error getting location', error);

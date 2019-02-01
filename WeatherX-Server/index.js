@@ -10,7 +10,7 @@ const server = express();
 // for use when deploying into production, otherwise use env='development' and port='3000'
 const env = process.env.NODE_ENV || 'development';
 const port = process.env.PORT || 9999;
-
+// const host = process.env.HOST || 10.100.10.132
 // setting up a routes module
 const routes = require('./routes/index.js');
 
@@ -25,6 +25,14 @@ server.use(logger('dev')); // Concise output colored by response status for deve
 // one secruity measure of many more unneeded
 const helmet = require('helmet')
 server.use(helmet())
+
+server.use((req, res, next) => {
+    res.append('Access-Control-Allow-Origin', ['http://10.100.10.103:3000']);
+		res.append('Very', 'Origin');
+    res.append('Access-Control-Allow-Methods', 'GET');
+    res.append('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 
 // my own modular mongoose connection method and callbacks
 const mongoConnect = require('./dataSource').connect;
@@ -50,13 +58,13 @@ db.once("open", function(){
 	mongoOnceConnected();
 });
 
-// make mongoose connection available to all routes
-server.use(db);
-
-// make mongoose document methods available to all routes
-server.use(runFindQuery);
-server.use(createNew);
-server.use(updateDoc);
+// // make mongoose connection available to all routes
+// server.use(db);
+//
+// // make mongoose document methods available to all routes
+// server.use(runFindQuery);
+// server.use(createNew);
+// server.use(updateDoc);
 
 // insert custom routes router here
 server.use(routes);
