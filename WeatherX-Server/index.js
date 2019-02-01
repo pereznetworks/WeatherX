@@ -26,6 +26,13 @@ server.use(logger('dev')); // Concise output colored by response status for deve
 const helmet = require('helmet')
 server.use(helmet());
 
+server.use((req, res, next) => {
+	res.append('Access-Control-Allow-Origin', ['http://10.100.10.103:3000']);
+	res.append('Access-Control-Allow-Methods', ['GET']);
+	res.append('Access-Control-Allow-Headers', ['Content-Type']);
+	next();
+})
+
 // my own modular mongoose connection method and callbacks
 const mongoConnect = require('./dataSource').connect;
 const mongoOnErr = require('./dataSource').onErr;

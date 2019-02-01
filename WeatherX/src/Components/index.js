@@ -58,7 +58,7 @@ class Middle extends Component {
       };
 
       this.backendServer = {
-        url: `http://10.100.10.132`,
+        url: `http://10.100.10.103`,
         port: `:9999`,
         path: '/weather:'
       };
