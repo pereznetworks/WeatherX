@@ -79,7 +79,7 @@
 .geo-button, .about-button{
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #000;
+  background-color: transparent;
   background-size: 120%;
   text-decoration: none;
   font-size: .8em;
@@ -130,7 +130,9 @@
     width: 30px;
     border-radius: 6px;
 }
-
+#backHome-button:hover{
+  background-image:url('../imgs/Menu-48-4B4AA7-B.png');  
+}
 #geoCoding-TextInput {
   border: 0 solid #000;
   text-align: center;
@@ -155,13 +157,12 @@
 }
 
 #geoCoding-TextSubmit {
-  background-image:url('../imgs/Search-48-B-4B4AA7.png');
+  background-image:url('../imgs/Search-48.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 120%;
   text-decoration: none;
-  color: #000;
-  background-color: #000;
+  background-color: transparent;
   width: 30px;
   height: 30px;
   display: inline;
@@ -177,16 +178,16 @@
 }
 
 #geoLocation-Submit {
-    background-image:url('../imgs/FindMe-48-B-4B4AA7.png');
+    background-image:url('../imgs/FindMe-48.png');
     margin: 0 1% 0 0;
 }
 
 #about-Submit {
-    background-image:url('../imgs/About-48-B-4B4AA7.png');
+    background-image:url('../imgs/About-48.png');
 }
 
 #geoCoding-Submit {
-    background-image:url('../imgs/Search-48-B-4B4AA7.png');
+    background-image:url('../imgs/Search-48.png');
 }
 
 #about-Submit:hover {
@@ -269,7 +270,7 @@
   }
 
   #backHome-button{
-      background-image:url('../imgs/Menu-48-B-4B4AA7.png');
+      background-image:url('../imgs/Menu-48.png');
   }
 
   #locationBar-div {

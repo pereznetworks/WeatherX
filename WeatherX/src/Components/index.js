@@ -85,18 +85,17 @@ class Middle extends Component {
 
     getCurrentTimeAtLocation(dateInt){
       const dateOflocation = new Date(dateInt);
-      if (this.state.geoCodeThis){
-        let hrs = dateOflocation.getHours()
-        let mins = dateOflocation.getMinutes()
-        if (hrs >= 12){
+
+      let hrs = dateOflocation.getHours();
+      let mins = dateOflocation.getMinutes();
+
+      if (hrs >= 12){
           hrs = hrs - 12;
           const time = `${hrs}:${mins} PM`;
           return time;
-        } else if (hrs <= 11){
+      } else if (hrs <= 11){
           const time = `${hrs}:${mins} AM`;
           return time;
-        }
-
       }
     }
 
