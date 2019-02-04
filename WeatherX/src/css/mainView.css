@@ -80,6 +80,9 @@
   font-weight: lighter;
 }
 
+.weatherSummary, .hourOfDay, .hourlyTemp{
+
+}
 #tableWeek tbody{
   margin-top: 20px 0;
 }

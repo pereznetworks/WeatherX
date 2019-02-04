@@ -1,0 +1,57 @@
+
+
+.weatherSummary{
+    text-align: left;
+    align-content: left;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+    text-decoration: none;
+    font-size: .8em;
+    color: #fff;
+    border: none;
+    vertical-align:middle;
+    padding: 0;
+    text-align: center;
+    align-content: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 6px;
+}
+
+#cloud{
+  background-image:url('../imgs/weather/Cloud-48.png');
+}
+
+#fog{
+  background-image:url('../imgs/weather/Cloud-48.png');
+}
+
+#rain{
+  background-image:url('../imgs/weather/Rain-48.png');
+}
+
+#snow{
+  background-image:url('../imgs/weather/Snow-48.png');
+}
+
+#thunder{
+  background-image:url('../imgs/weather/Thunder-48.png');
+}
+
+#snow{
+  background-image:url('../imgs/weather/Sun-48.png');
+}
+
+#scatteredShowers{
+  background-image:url('../imgs/weather/ScatteredShowers-48.png');
+}
+
+#partly-cloudy{
+  background-image:url('../imgs/weather/PartlyCloudy-48.png');
+}
+
+#wind{
+  background-image:url('../imgs/weather/Wind-48.png');
+}

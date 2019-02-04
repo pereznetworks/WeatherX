@@ -12,6 +12,9 @@ import '../css/navBar3.css';
 import '../css/mainView.css';
 import '../css/locationBar.css';
 import '../css/grid-main2.css';
+import '../css/weather.css';
+import '../css/weather-icons.css';
+import '../css/weather-icons-wind.css';
 
 // creates one component for all sub-components
 class Middle extends Component {
@@ -54,7 +57,21 @@ class Middle extends Component {
         currentLocation:'',
         currentForecast: {},
         showMeThisOne:'',
-        forecastData: []
+        forecastData: [],
+        weatherConditions: {
+          cloud:false,
+          fog:false,
+          hurrican:false,
+          partlyCloudy:false,
+          rain:false,
+          sun:false,
+          snow:false,
+          scatteredShowers:false,
+          thunder:false,
+          wind:false,
+        },
+        hourlyConditions: [],
+        weatherIcon:{}
       };
 
       this.backendServer = {
@@ -68,7 +85,10 @@ class Middle extends Component {
       this.handleNavSubmit = this.handleNavSubmit.bind(this);
       this.showMeThisOne = this.showMeThisOne.bind(this);
       this.getCurrentTimeAtLocation = this.getCurrentTimeAtLocation.bind(this);
+      this.getHourfOfDay = this.getHourfOfDay.bind(this);
       this.whatDayIsIt = this.whatDayIsIt.bind(this);
+      this.getHourlyConditions = this.getHourlyConditions.bind(this);
+      this.pickOutDataPoints = this.pickOutDataPoints.bind(this);
     }
 
     componentDidMount(){
@@ -82,6 +102,22 @@ class Middle extends Component {
       });
     }
 
+// methods for integrating forecastData points into components
+
+    pickOutDataPoints(dataObject, index){
+      console.log(dataObject);
+      return {
+        hour: this.getHourfOfDay(dataObject.time),  // datatype string
+        icon: dataObject.icon,                // datatype string
+        temp: Math.floor(dataObject.temperatureHigh),            // datatype int
+        tempLow: Math.floor(dataObject.temperatureMin),         // datatype int
+        tempHigh: Math.floor(dataObject.temperatureMax),        // datatype int
+      };
+    }
+
+    getHourlyConditions(dataArray){  // dataArray will be forecastData.data.daily.data
+      return dataArray.map(this.pickOutDataPoints);
+    }
 
     getCurrentTimeAtLocation(dateInt){
       const dateOflocation = new Date(dateInt);
@@ -99,11 +135,28 @@ class Middle extends Component {
       }
     }
 
+    getHourfOfDay(dayInt){
+      const today = new Date(dayInt);
+
+      let hrs = today.getHours();
+
+      if (hrs >= 12){
+          hrs = hrs - 12;
+          const time = `${hrs} PM`;
+          return time;
+      } else if (hrs <= 11){
+          const time = `${hrs} AM`;
+          return time;
+      }
+    }
+
     whatDayIsIt(dateInt){
       const dateOflocation = new Date(dateInt);
       var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       return days[dateOflocation.getDay()]
     }
+
+// methods for UI actions and NavBar Form submission
 
     handleNavClick(event) {
       if (event.target.title === 'backHome'){
@@ -145,17 +198,22 @@ class Middle extends Component {
     }
 
     showMeThisOne(locationName, index){
-      console.log(locationName);
+
+      console.log(locationName, index);
+
+      console.log(this.state.forecastData[index].data.daily.data);
 
 
       // have forecastData ready ... now set mainView to true
       this.setState({
         currentLocation: {
+          index: index,
           name: this.state.locationName[index],
           time: this.getCurrentTimeAtLocation(this.state.forecastData[index].data.currently.time),
           temp: Math.floor(this.state.forecastData[index].data.currently.temperature)
         },
         currentForecast: this.state.forecastData[index],
+        hourlyConditions: this.getHourlyConditions(this.state.forecastData[index].data.daily.data),
         home: false,
         about: false,
         mainView: true,
@@ -209,6 +267,7 @@ class Middle extends Component {
                   forecastData: [...this.state.forecastData, newForecast], // will end up with an array of forecast objects
                   locationName: [...this.state.locationName, this.state.geoCodeThis],
                   currentLocation: {
+                    index: this.state.forecastData.length,
                     name: this.state.geoCodeThis,
                     time: this.getCurrentTimeAtLocation(newForecast.data.currently.time),
                     temp: Math.floor(newForecast.data.currently.apparentTemperature)
@@ -219,8 +278,8 @@ class Middle extends Component {
                   mainView: false,
                   locationBar:true
                 }
-
               )
+              console.log(this.state);
             }).catch(err => {
 
               // No Chewy, THAT one goes there, THIS one goes here.... AAGH AANGH!

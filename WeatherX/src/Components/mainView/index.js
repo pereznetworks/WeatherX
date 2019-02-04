@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import MainViewHdr from './mainViewHeader.js';
 import TableHdr from './tableHeader.js';
-import TableDays from './tableDays.js';
+import TableDay from './tableDay';
 import TableWeek from './tableWeek.js';
 import About from "./about.js";
 
@@ -44,10 +44,19 @@ export default class MainView extends Component {
     if (this.props.navState.mainView){
       return(
         <div id="mainView" title='mainView'>
-          <MainViewHdr navState={this.props.navState} />
-          <TableHdr navState={this.props.navState} whatDayIsIt={this.whatDayIsIt} />
-          <TableDays navState={this.props.navState} />
-          <TableWeek navState={this.props.navState} />
+          <MainViewHdr
+            navState={this.props.navState}
+           />
+          <TableHdr
+            navState={this.props.navState}
+            whatDayIsIt={this.whatDayIsIt}
+           />
+          <TableDay
+            navState={this.props.navState}
+           />
+          <TableWeek
+            navState={this.props.navState}
+           />
         </div>
       );
     } if (this.props.navState.about){

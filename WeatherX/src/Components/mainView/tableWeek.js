@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class TableDays extends Component {
+export default class TableWeek extends Component {
   render(){
     return(
       <table id="tableWeek">

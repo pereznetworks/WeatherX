@@ -13,7 +13,7 @@ export default class LocationBarDiv extends Component {
     this.showMeThisOne = this.showMeThisOne.bind(this);
   }
   showMeThisOne(){
-    this.props.showMeThisOne(this.locatonCurrentName,this.props.indexno);
+    this.props.showMeThisOne(this.locationCurrentName,this.props.indexno);
   }
 
   getCurrentTimeAtLocation(timeStamp){
