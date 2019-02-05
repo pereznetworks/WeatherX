@@ -20,7 +20,7 @@ const manageDb = forecast => {
 // function to make a forcast.io api call for forecaast data
 const getForecast = coordinates => {
 
-  const key = require('../config');
+  const key = require('../config').key;
   // will need to import mapbox module and key also
 
   // fail-safe in-case no valid coordinates are passed

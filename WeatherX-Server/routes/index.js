@@ -26,20 +26,20 @@ const sampleJson = require('../dataSource/models/sample.json');
               return new Error(`${apicall}`);
             }
 
-        res.json(sampleJson);
+        // res.json(sampleJson);
 
-        // axios.get(apicall)
-        //       .then(response => {
-        //         let forecast = response.data;
-        //         return forecast;
-        //       }).then(forecast => {
-        //         const db = manageDb(forecast);  // will nedd to replace this with mongoose code
-        //         res.json(db.current);
-        //       }).catch(err => {
-        //         console.log('Error fetching or parsing data', err);
-        //         next(err);
-        //       });
-        // })
+        axios.get(apicall)
+              .then(response => {
+                let forecast = response.data;
+                return forecast;
+              }).then(forecast => {
+                const db = manageDb(forecast);  // will nedd to replace this with mongoose code
+                res.json(db.current);
+              }).catch(err => {
+                console.log('Error fetching or parsing data', err);
+                next(err);
+              });
+        // dont need this
         // .catch(err => {
         //   console.log('Error getting location', error);
         //   next(err);
