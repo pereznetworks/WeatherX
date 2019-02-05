@@ -171,19 +171,23 @@ class Middle extends Component {
       const today = new Date(dayInt * 1000);
 
       let hrs = today.getHours();
+      let day = today.getDay()
+      let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
       if (hrs > 12){
           hrs = hrs - 12;
           return `${hrs} PM`;
-      } else if (hrs > 0 && hrs <= 12){
+      } else if (hrs > 1 && hrs <= 12){
           return `${hrs} AM`;
       } else if (hrs === 0){
           return '12 AM';
+      } else if (hrs === 1){
+          return daysOfWeek[day]
       }
     }
 
     whatDayIsIt(dateInt){
-      const dateOflocation = new Date(dateInt);
+      const dateOflocation = new Date(dateInt * 1000);
       var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       return days[dateOflocation.getDay()]
     }
