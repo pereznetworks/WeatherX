@@ -80,7 +80,7 @@
 #tableDays th, #tableDays td{
   text-align: center;
   margin: 0 0 0 10%;
-  padding: 0 18px;
+  padding: 0 18px 18px 18px;
   background-color: skyblue;
   font-weight: lighter;
 }
@@ -102,10 +102,7 @@
 #tableWeek #dayOfWeek{
   text-align: left;
   padding: 0 0 0 5%;
-}
-#forecastCondition{
-  width:35%;
-}
+}  
 
 @media only screen and (min-width: 720px) and (min-height:300px){
 

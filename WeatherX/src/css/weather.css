@@ -20,6 +20,12 @@
     border-radius: 6px;
 }
 
+#forecastCondition{
+  width:35%;
+  font-size: 1.6em;
+  line-height: 1em;
+}
+
 #cloud{
   background-image:url('../imgs/weather/Cloud-48.png');
 }

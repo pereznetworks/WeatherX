@@ -95,9 +95,9 @@ class Middle extends Component {
       this.getHourOfDay = this.getHourOfDay.bind(this);
       this.whatDayIsIt = this.whatDayIsIt.bind(this);
       this.getHourlyConditions = this.getHourlyConditions.bind(this);
+      this.getDailyConditions = this.getDailyConditions.bind(this);
       this.pickOutDataPoints = this.pickOutDataPoints.bind(this);
-      // this.setHourlyConditions = this.setHourlyConditions.bind(this);
-      // this.filterHourlyCondition = this.filterHourlyCondition.bind(this);
+      this.pickOutDailyDataPoints = this.pickOutDailyDataPoints.bind(this);
     }
 
     componentDidMount(){
@@ -127,29 +127,27 @@ class Middle extends Component {
           temp: Math.floor(dataObject.temperature),   // datatype int
         };
       }
-
-
     }
+
+    pickOutDailyDataPoints(dataObject, index){
+        let today = new Date(dataObject.time * 1000);
+        let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+        return {
+          day: daysOfWeek[today.getDay()],  // datatype string
+          icon: dataObject.icon,                      // datatype string
+          tempLow: Math.floor(dataObject.temperatureLow),   // datatype int
+          tempHigh: Math.floor(dataObject.temperatureHigh),   // datatype int
+        };
+      }
 
     getHourlyConditions(dataArray){  // dataArray will be forecastData.data.daily.data
       return dataArray.map(this.pickOutDataPoints);
     }
 
-    // setHourlyConditions(dataObject, index){
-    //   if (this.prevHourTimeStamp !== this.getHourOfDay(dataObject.time)){
-    //     this.setState({
-    //       prevHourTimeStamp: this.getHourOfDay(dataObject.time)
-    //     })
-    //     return dataObject;
-    //   }
-    // }
-    //
-    // filterHourlyCondition(){
-    //   this.setState({
-    //     useHourlyConditions: [...this.useHourlyConditions, this.hourlyConditions.map(this.setHourlyConditions)]
-    //   });
-    //
-    // }
+    getDailyConditions(dataArray){
+      return dataArray.map(this.pickOutDailyDataPoints);
+    }
 
     getCurrentTimeAtLocation(dateInt){
       const dateOflocation = new Date(dateInt * 1000);
@@ -250,6 +248,7 @@ class Middle extends Component {
         },
         currentForecast: this.state.forecastData[index],
         hourlyConditions: this.getHourlyConditions(this.state.forecastData[index].data.hourly.data),
+        dailyConditions: this.getDailyConditions(this.state.forecastData[index].data.daily.data),
         home: false,
         about: false,
         mainView: true,

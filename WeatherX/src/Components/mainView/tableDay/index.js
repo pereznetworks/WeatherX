@@ -5,15 +5,6 @@ import HourlyTemps from './hourlyTemps.js';
 
 export default class TableDay extends Component {
 
-  constructor(props){
-    super(props)
-    // this.filterHourlyCondition=this.filterHourlyCondition.bind(this);
-  }
-
-  // filterHourlyCondition(){
-  //   this.props.filterHourlyCondition()
-  // }
-
   render(){
     return(
       <table id="tableDays">

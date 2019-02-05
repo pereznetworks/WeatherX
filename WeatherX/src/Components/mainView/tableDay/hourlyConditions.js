@@ -8,13 +8,11 @@ export default class HourlyConditions extends Component {
   }
 
   selectHourlyConditions(){
-    return this.props.navState.hourlyConditions.map((object, index) => {
+    return this.props.navState.hourlyConditions.map(function(object, index){
               if (object.icon === 'cloudy'){
                 return <td key={index} className="weatherSummary" ><i className="wi wi-day-cloudy"></i></td>
               } else if (object.icon === 'fog'){
                 return <td key={index} className="weatherSummary" ><i className="wi wi-day-fog"></i></td>
-              } else if (object.icon === 'hurricane'){
-                return <td key={index} className="weatherSummary"  id='hurricane'></td>
               } else if (object.icon === 'partly-cloudy-day' || object.icon === 'partly-cloudy-night'  ){
                 return <td key={index} className="weatherSummary" ><i className="wi wi-day-sunny-overcast"></i></td>
               } else if (object.icon === 'rain'){
@@ -30,10 +28,10 @@ export default class HourlyConditions extends Component {
               } else if (object.icon === 'wind'){
                 return <td key={index} className="weatherSummary" ><i className="wi wi-day-windy"></i></td>
               }
-          })
-}
+          });
+    }
 
   render(){
-      return this.selectHourlyConditions()
+      return this.selectHourlyConditions();
   }
 }

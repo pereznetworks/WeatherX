@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import MainViewHdr from './mainViewHeader.js';
 import TableHdr from './tableHeader.js';
 import TableDay from './tableDay';
-import TableWeek from './tableWeek.js';
+import TableWeek from './tableWeek';
 import About from "./about.js";
 
 
