@@ -168,6 +168,7 @@ class Middle extends Component {
     }
 
     getHourOfDay(dayInt){
+      // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
       const today = new Date(dayInt * 1000);
 
       let hrs = today.getHours();
@@ -187,6 +188,7 @@ class Middle extends Component {
     }
 
     whatDayIsIt(dateInt){
+      // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
       const dateOflocation = new Date(dateInt * 1000);
       var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       return days[dateOflocation.getDay()]
