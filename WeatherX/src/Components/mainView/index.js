@@ -40,7 +40,7 @@ export default class MainView extends Component {
     }
 
   render() {
-
+    console.log(this.props.navState)
     if (this.props.navState.mainView){
       return(
         <div id="mainView" title='mainView'>
@@ -51,9 +51,11 @@ export default class MainView extends Component {
             navState={this.props.navState}
             whatDayIsIt={this.whatDayIsIt}
            />
-          <TableDay
-            navState={this.props.navState}
-           />
+          <div className="scrollingEnabled">
+            <TableDay
+              navState={this.props.navState}
+             />
+          </div>
           <TableWeek
             navState={this.props.navState}
            />
@@ -69,3 +71,7 @@ export default class MainView extends Component {
 
   }
 }
+
+
+// this.filterHourlyCondition=this.props.filterHourlyCondition.bind(this);
+// filterHourlyCondition={this.props.filterHourlyCondition}

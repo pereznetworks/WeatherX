@@ -19,16 +19,20 @@ import '../css/weather-icons-wind.css';
 // creates one component for all sub-components
 class Middle extends Component {
 
-  // hanldeNavSubmit takes input and makes api call to back-end server
-  // hanldeNavClick used to load components based on navState
+  // hanldeNavSubmit takes input submitted (form) and makes api call to back-end server
+  // hanldeNavClick takes event, based on selection and sets and loads components based on navState
 
     constructor(props) {
       super(props);
-      /* note to the wise:
-          ALWAYS set the first 3 boolean state values, since this controls which components are rendered and displayed
+      /* note to self:
+          ALWAYS set the first 4 boolean state values, since this controls which components are rendered and displayed
+          home, about, mainView and locationBar
 
-          home (includes navBar3) and locationBar can be true at the same time
-          home and locatonBar must be false when mainView is true
+          home: initial view of app
+                includes titleBar, navbar3
+                home and locationBar can be true at the same time, but about and mainView are false
+                about is true, but home, mainView and locationBar are false
+                mainView is true, but home, about and locationBar are false
 
           about: the about WeatherX app page
 
@@ -70,7 +74,10 @@ class Middle extends Component {
           thunder:false,
           wind:false,
         },
+        prevHourTimeStamp: [],
+        useHourlyConditions: [],
         hourlyConditions: [],
+        dailyConditions: [],
         weatherIcon:{}
       };
 
@@ -85,10 +92,12 @@ class Middle extends Component {
       this.handleNavSubmit = this.handleNavSubmit.bind(this);
       this.showMeThisOne = this.showMeThisOne.bind(this);
       this.getCurrentTimeAtLocation = this.getCurrentTimeAtLocation.bind(this);
-      this.getHourfOfDay = this.getHourfOfDay.bind(this);
+      this.getHourOfDay = this.getHourOfDay.bind(this);
       this.whatDayIsIt = this.whatDayIsIt.bind(this);
       this.getHourlyConditions = this.getHourlyConditions.bind(this);
       this.pickOutDataPoints = this.pickOutDataPoints.bind(this);
+      // this.setHourlyConditions = this.setHourlyConditions.bind(this);
+      // this.filterHourlyCondition = this.filterHourlyCondition.bind(this);
     }
 
     componentDidMount(){
@@ -105,22 +114,45 @@ class Middle extends Component {
 // methods for integrating forecastData points into components
 
     pickOutDataPoints(dataObject, index){
-      console.log(dataObject);
-      return {
-        hour: this.getHourfOfDay(dataObject.time),  // datatype string
-        icon: dataObject.icon,                // datatype string
-        temp: Math.floor(dataObject.temperatureHigh),            // datatype int
-        tempLow: Math.floor(dataObject.temperatureMin),         // datatype int
-        tempHigh: Math.floor(dataObject.temperatureMax),        // datatype int
-      };
+      if (index === 0 ){
+        return {
+          hour: 'Now',  // datatype string
+          icon: dataObject.icon,                      // datatype string
+          temp: Math.floor(dataObject.temperature),   // datatype int
+        };
+      } else {
+        return {
+          hour: this.getHourOfDay(dataObject.time),  // datatype string
+          icon: dataObject.icon,                      // datatype string
+          temp: Math.floor(dataObject.temperature),   // datatype int
+        };
+      }
+
+
     }
 
     getHourlyConditions(dataArray){  // dataArray will be forecastData.data.daily.data
       return dataArray.map(this.pickOutDataPoints);
     }
 
+    // setHourlyConditions(dataObject, index){
+    //   if (this.prevHourTimeStamp !== this.getHourOfDay(dataObject.time)){
+    //     this.setState({
+    //       prevHourTimeStamp: this.getHourOfDay(dataObject.time)
+    //     })
+    //     return dataObject;
+    //   }
+    // }
+    //
+    // filterHourlyCondition(){
+    //   this.setState({
+    //     useHourlyConditions: [...this.useHourlyConditions, this.hourlyConditions.map(this.setHourlyConditions)]
+    //   });
+    //
+    // }
+
     getCurrentTimeAtLocation(dateInt){
-      const dateOflocation = new Date(dateInt);
+      const dateOflocation = new Date(dateInt * 1000);
 
       let hrs = dateOflocation.getHours();
       let mins = dateOflocation.getMinutes();
@@ -135,18 +167,18 @@ class Middle extends Component {
       }
     }
 
-    getHourfOfDay(dayInt){
-      const today = new Date(dayInt);
+    getHourOfDay(dayInt){
+      const today = new Date(dayInt * 1000);
 
       let hrs = today.getHours();
 
-      if (hrs >= 12){
+      if (hrs > 12){
           hrs = hrs - 12;
-          const time = `${hrs} PM`;
-          return time;
-      } else if (hrs <= 11){
-          const time = `${hrs} AM`;
-          return time;
+          return `${hrs} PM`;
+      } else if (hrs > 0 && hrs <= 12){
+          return `${hrs} AM`;
+      } else if (hrs === 0){
+          return '12 AM';
       }
     }
 
@@ -155,8 +187,6 @@ class Middle extends Component {
       var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       return days[dateOflocation.getDay()]
     }
-
-// methods for UI actions and NavBar Form submission
 
     handleNavClick(event) {
       if (event.target.title === 'backHome'){
@@ -201,7 +231,7 @@ class Middle extends Component {
 
       console.log(locationName, index);
 
-      console.log(this.state.forecastData[index].data.daily.data);
+      console.log(this.state.forecastData[index].data);
 
 
       // have forecastData ready ... now set mainView to true
@@ -213,7 +243,7 @@ class Middle extends Component {
           temp: Math.floor(this.state.forecastData[index].data.currently.temperature)
         },
         currentForecast: this.state.forecastData[index],
-        hourlyConditions: this.getHourlyConditions(this.state.forecastData[index].data.daily.data),
+        hourlyConditions: this.getHourlyConditions(this.state.forecastData[index].data.hourly.data),
         home: false,
         about: false,
         mainView: true,
@@ -320,3 +350,10 @@ class Middle extends Component {
 }
 
 export default Middle;
+
+
+/*
+temp: Math.floor(dataObject.temperatureHigh),            // datatype int
+tempLow: Math.floor(dataObject.temperatureMin),         // datatype int
+tempHigh: Math.floor(dataObject.temperatureMax),        // datatype int
+*/

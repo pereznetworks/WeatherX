@@ -66,6 +66,10 @@
   width:14%
 }
 
+.scrollingEnabled{
+  overflow: scroll;
+}
+
 #tableDays {
   font-size: .8em;
   width: 100%;
@@ -76,13 +80,11 @@
 #tableDays th, #tableDays td{
   text-align: center;
   margin: 0 0 0 10%;
+  padding: 0 18px;
   background-color: skyblue;
   font-weight: lighter;
 }
 
-.weatherSummary, .hourOfDay, .hourlyTemp{
-
-}
 #tableWeek tbody{
   margin-top: 20px 0;
 }

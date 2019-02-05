@@ -1,6 +1,6 @@
 
 
-.weatherSummary{
+.weatherSummary, .hourOfDay, .hourlyTemp{
     text-align: left;
     align-content: left;
     background-color: transparent;
