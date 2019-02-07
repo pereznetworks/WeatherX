@@ -47,7 +47,7 @@ export default class NavBar3 extends Component {
                     <input
                       type="text"
                       id="geoCoding-TextInput"
-                      placeholder="Enter a location"
+                      placeholder="enter a City, State or postal code"
                       onChange={this.handleInputChange}/>
                     <input
                       type="submit"
