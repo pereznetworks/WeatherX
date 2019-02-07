@@ -9,6 +9,7 @@ export default class LocationBar extends Component {
     super(props);
     this.createGridItem = this.createGridItem.bind(this);
     this.showMeThisOne = this.showMeThisOne.bind(this);
+    this.displayNewLocFirst = this.displayNewLocFirst.bind(this);
   }
 
   showMeThisOne(locationName, index){
@@ -27,11 +28,16 @@ export default class LocationBar extends Component {
     );
   }
 
+  displayNewLocFirst(){
+    let arrayOfElements = this.props.navState.locationName.map(this.createGridItem);
+    arrayOfElements.reverse();
+    return arrayOfElements;
+  }
 
   render() {
     if (this.props.navState.locationBar){
         return (
-          <div className='middle-grid-item-2'>{this.props.navState.locationName.map(this.createGridItem)}</div>
+          <div className='middle-grid-item-2'>{this.displayNewLocFirst()}</div>
         );
       } else {
         return null;
