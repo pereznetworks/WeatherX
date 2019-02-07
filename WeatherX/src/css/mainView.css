@@ -3,7 +3,7 @@
 #mainView{
   scroll-behavior: auto;
   width: 100%;
-  height: stretch;
+  height: 150%;
   margin: 0 0 0 0;
   padding: 8% 0 0 0;
   background-color: skyblue;
@@ -102,7 +102,7 @@
 #tableWeek #dayOfWeek{
   text-align: left;
   padding: 0 0 0 5%;
-}  
+}
 
 @media only screen and (min-width: 720px) and (min-height:300px){
 
