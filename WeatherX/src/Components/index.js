@@ -268,10 +268,8 @@ class Middle extends Component {
       // dont accept duplicate locations entered
       // only get and store forecast data for a new location
       if (this.state.currentLocation !== this.state.geoCodeThis){
-
-        this.requestDataFromServer(this.geoCodeThis, event)
-
-      }
+          this.requestDataFromServer(this.state.geoCodeThis, event)
+        }
 
       // dont wnat app reset on form button submittions
       event.preventDefault();
@@ -281,6 +279,11 @@ class Middle extends Component {
     requestDataFromServer(location, event){
 
       // really should have another 'middle' function to validate input...
+      // if no province, state then default to CA
+      // let lookForCommaBetween = /,(?=[\sA-Za-z])/g;
+      // if (!location.match(lookForCommaBetween)){
+      //    location = `${this.state.geoCodeThis}, CA`;
+      // }
 
       // once we have a valid location... get forecast data from backendServer
       console.log(`${this.backendServer.url}${this.backendServer.port}${this.backendServer.path}${this.state.geoCodeThis}`)
@@ -300,10 +303,10 @@ class Middle extends Component {
               this.setState(
                 {
                   forecastData: [...this.state.forecastData, newForecast], // will end up with an array of forecast objects
-                  locationName: [...this.state.locationName, this.state.geoCodeThis],
+                  locationName: [...this.state.locationName, location],
                   currentLocation: {
                     index: this.state.forecastData.length,
-                    name: this.state.geoCodeThis,
+                    name: location,
                     time: this.getCurrentTimeAtLocation(newForecast.data.currently.time),
                     temp: Math.floor(newForecast.data.currently.apparentTemperature)
                   },

@@ -16,26 +16,28 @@ const sampleJson = require('../dataSource/models/sample.json');
 
     // the weather route, returns current forecast
     main.get('/weather:location', (req, res, next) => {
+        let removeLeading = /([^:])\w+/g;
+        let locationArray = req.params.location.match(removeLeading);
+        let locationString = locationArray.toString();
+        let geoCodeApiCallUrl = getGeoCodeApiCall(locationString)
 
-        let geoCodeApiCallUrl = getGeoCodeApiCall(req.params.location)
-
-        if (forecastApiCallUrl === `Opps`){
+        if (!req.params.location || geoCodeApiCallUrl === 'Oops' ){
               let errorMsg = `Opps, it seems we did not receive a valid location: place type a city, state or zipcode, then a ',' followed by a country abbreviation`;
               next(new Error(`${errorMsg}`));
             }
 
         axios.get(geoCodeApiCallUrl)
               .then(response => {
-                loc = {latitude:response.result.position.lat,longitude:response.result.position.lat };
+                let longLat = response.data.results[0].position;
+                let cityName = response.data.results[0].municipality;
+                let province = response.data.results[0].countrySubdivision;
+                let loc = {latitude:longLat.lat,longitude:longLat.lon, city: cityName, province: province };
                 let forecastApiCallUrl = getForecastApiCall(loc);
                 axios.get(forecastApiCallUrl)
                   .then(response => {
-                  let forecast = response.data;
-                  return forecast;
-                }).then(forecast => {
-                  const db = manageDb(forecast);  // will nedd to replace this with mongoose code
+                  const db = manageDb(response.data);  // will nedd to replace this with mongoose code
                   res.json(db.current);
-                }).catch(err => {
+               }).catch(err => {
                   console.log('Error getting forecast data... ', err);
                     next(err);
                 });

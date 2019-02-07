@@ -2,7 +2,8 @@
 // so this ends up being a 'package' of dataSource modules =)
 
 // importing methods that access forecast.io and mapbox geocoding api
-const getForecast = require('./forecast').getForecast;
+const getForecastApiCall = require('./forecast').getForecastApiCall;
+const getGeoCodeApiCall = require('./forecast').getGeoCodeApiCall;
 const getLocationCoordinates = require('./forecast').getLocationCoordinates;
 const manageDb = require('./forecast').manageDb;
 
@@ -17,8 +18,8 @@ const createNew = require('./mongooseDocumentMethods').createNew;
 const updateDoc = require('./mongooseDocumentMethods').updateDoc;
 
 // exporting methods that access forecast.io and mapbox geocoding api
-module.exports.getForecast= getForecast;
-module.exports.getLocationCoordinates = getLocationCoordinates;
+module.exports.getForecastApiCall= getForecastApiCall;
+module.exports.getGeoCodeApiCall = getGeoCodeApiCall;
 module.exports.manageDb = manageDb;
 
 // exporting my custom mongoose client connection methods

@@ -35,7 +35,7 @@ const getForecastApiCall = coordinates => {
 
 const getGeoCodeApiCall = searchTerm => {
 
-  const key = require('../config').geoCodeKey;
+  const geoCodeKey = require('../config').geoCodeKey;
   let searchTermArray;
   let coordinates = {};
 
@@ -55,7 +55,7 @@ const getGeoCodeApiCall = searchTerm => {
   if (!searchTerm){
     coordinates.notice = `Opps`;
   } else {
-    return `https://api.tomtom.com/search/2/geocode/${searchTerm}.json?storedResult=false&key=${geoCodeKey}`
+    return `https://api.tomtom.com/search/2/geocode/${searchTerm}.json?limit=1&countrySet=${countryCode}&key=${geoCodeKey}`
   }
 
   // uncomment below for testing only
@@ -64,11 +64,8 @@ const getGeoCodeApiCall = searchTerm => {
   //   coordinates.latitude = 37.772537;
   // }
   // return coordinates;
-
-
-
 };
 
-module.exports.getForecast= getForecastApiCall;
-module.exports.getLocationCoordinates = getGeoCodeApiCall;
+module.exports.getForecastApiCall= getForecastApiCall;
+module.exports.getGeoCodeApiCall = getGeoCodeApiCall;
 module.exports.manageDb = manageDb;
