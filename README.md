@@ -31,7 +31,9 @@ React.Js, https://reactjs.org/ and Babel.js, https://babeljs.io/, for front-end 
 
 # This project integrates data from several API sources:  
 
-[MapBox](https://www.mapbox.com/) - for geocoding and mapping services
+[TomTom](https://developer.tomtom.com/maps-sdk-web) - for geocoding services
+
+[MapBox](https://www.mapbox.com/) - for mapping services
 
 [Forcast.io](https://darksky.net/dev/docs) - for weather forecast data
 
