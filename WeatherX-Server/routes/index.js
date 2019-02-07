@@ -3,8 +3,8 @@ const main = express.Router();
 const axios = require('axios');
 
 // importing methods that access forecast.io and mapbox geocoding api
-const getForecast = require('../dataSource').getForecast;
-const getLocationCoordinates = require('../dataSource').getLocationCoordinates;
+const getForecastApiCall = require('../dataSource').getForecastApiCall;
+const getGeoCodeApiCall = require('../dataSource').getGeoCodeApiCall;
 const manageDb = require('../dataSource').manageDb;
 const sampleJson = require('../dataSource/models/sample.json');
 
@@ -17,34 +17,32 @@ const sampleJson = require('../dataSource/models/sample.json');
     // the weather route, returns current forecast
     main.get('/weather:location', (req, res, next) => {
 
-        // console.log(req.body)
-        let loc = getLocationCoordinates(req.params.location)
+        let geoCodeApiCallUrl = getGeoCodeApiCall(req.params.location)
 
-        let apicall = getForecast(loc);
-
-        if (apicall === `Opps, it seems we did not receive a valid location: place type a city, state or zipcode`){
-              return new Error(`${apicall}`);
+        if (forecastApiCallUrl === `Opps`){
+              let errorMsg = `Opps, it seems we did not receive a valid location: place type a city, state or zipcode, then a ',' followed by a country abbreviation`;
+              next(new Error(`${errorMsg}`));
             }
 
-        // res.json(sampleJson);
-
-        axios.get(apicall)
+        axios.get(geoCodeApiCallUrl)
               .then(response => {
-                let forecast = response.data;
-                return forecast;
-              }).then(forecast => {
-                const db = manageDb(forecast);  // will nedd to replace this with mongoose code
-                res.json(db.current);
+                loc = {latitude:response.result.position.lat,longitude:response.result.position.lat };
+                let forecastApiCallUrl = getForecastApiCall(loc);
+                axios.get(forecastApiCallUrl)
+                  .then(response => {
+                  let forecast = response.data;
+                  return forecast;
+                }).then(forecast => {
+                  const db = manageDb(forecast);  // will nedd to replace this with mongoose code
+                  res.json(db.current);
+                }).catch(err => {
+                  console.log('Error getting forecast data... ', err);
+                    next(err);
+                });
               }).catch(err => {
-                console.log('Error fetching or parsing data', err);
+                console.log('Error geocding that location ... ', err);
                 next(err);
               });
-        // dont need this
-        // .catch(err => {
-        //   console.log('Error getting location', error);
-        //   next(err);
-        // });
-
     });
 
 
