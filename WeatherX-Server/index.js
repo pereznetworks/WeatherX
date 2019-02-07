@@ -69,6 +69,8 @@ db.once("open", function(){
 server.use(routes);
 server.use('/', routes);
 server.use('/weather', routes);
+server.use('/geocode', routes);
+
 
 // prevent favicon errors, may include a real favicon eventually
 server.get('/favicon.ico', (req, res, next) => res.status(204));

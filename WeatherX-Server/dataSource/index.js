@@ -5,7 +5,8 @@
 const getForecastApiCall = require('./forecast').getForecastApiCall;
 const getGeoCodeApiCall = require('./forecast').getGeoCodeApiCall;
 const getLocationCoordinates = require('./forecast').getLocationCoordinates;
-const manageDb = require('./forecast').manageDb;
+const manageForecastData = require('./forecast').manageForecastData;
+const manageLocData = require('./forecast').manageLocData;
 
 // my own modular mongoose connection method and callbacks
 const connect = require('./mongoClient').connect;
@@ -20,7 +21,8 @@ const updateDoc = require('./mongooseDocumentMethods').updateDoc;
 // exporting methods that access forecast.io and mapbox geocoding api
 module.exports.getForecastApiCall= getForecastApiCall;
 module.exports.getGeoCodeApiCall = getGeoCodeApiCall;
-module.exports.manageDb = manageDb;
+module.exports.manageLocData = manageLocData;
+module.exports.manageForecastData = manageForecastData;
 
 // exporting my custom mongoose client connection methods
 module.exports.connect = connect;

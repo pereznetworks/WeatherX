@@ -1,19 +1,38 @@
 // methods for access api
 
+const current = {
+  mostRecentForecast: {},
+  mostRecentLocation: {}
+}
 const db = {
+  locationArray: [],
   forecastArray: []
 }; // will need to replace this with mongoose code
 
-const manageDb = forecast => {
-  if (forecast){
-    if (db.current){ // push current forecast onto array
-      db.forecastArray.push(db.current);
+const manageLocData = loc => {
+  if (loc){
+    if (current.mostRecentLocation){ // push current forecast onto array
+      db.locationArray.push(current.mostRecentLocation);
     }
-    db.current = {  // save new current foreeast
+    current.mostRecentLocation = {  // save new current foreeast
+      timeStamp: Date.now(),
+      data: loc
+    } // will end up with an array of objects: [{timeStamp:<dateInt>, data:forecast.json}]
+    return current;
+  }
+}; // will need to replace this with mongoose code also
+
+
+const manageForecastData = forecast => {
+  if (forecast){
+    if (current.mostRecentForecast){ // push current forecast onto array
+      db.forecastArray.push(current.mostRecentForecast);
+    }
+    current.mostRecentForecast = {  // save new current foreeast
       timeStamp: Date.now(),
       data: forecast
     } // will end up with an array of objects: [{timeStamp:<dateInt>, data:forecast.json}]
-    return db;
+    return current;
   }
 }; // will need to replace this with mongoose code also
 
@@ -68,4 +87,5 @@ const getGeoCodeApiCall = searchTerm => {
 
 module.exports.getForecastApiCall= getForecastApiCall;
 module.exports.getGeoCodeApiCall = getGeoCodeApiCall;
-module.exports.manageDb = manageDb;
+module.exports.manageForecastData = manageForecastData;
+module.exports.manageLocData = manageLocData;
