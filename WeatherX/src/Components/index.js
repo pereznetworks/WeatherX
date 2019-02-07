@@ -155,8 +155,11 @@ class Middle extends Component {
       let hrs = dateOflocation.getHours();
       let mins = dateOflocation.getMinutes();
 
-      if (hrs >= 12){
+      if (hrs > 12){
           hrs = hrs - 12;
+          const time = `${hrs}:${mins} PM`;
+          return time;
+      } else if (hrs === 12){
           const time = `${hrs}:${mins} PM`;
           return time;
       } else if (hrs <= 11){
