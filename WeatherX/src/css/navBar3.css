@@ -130,9 +130,9 @@
     width: 30px;
     border-radius: 6px;
 }
-#backHome-button:hover{
-  background-image:url('../imgs/Menu-48-4B4AA7-B.png');  
-}
+/* #backHome-button:hover{
+  background-image:url('../imgs/Menu-48-4B4AA7-B.png');
+} */
 #geoCoding-TextInput {
   border: 0 solid #000;
   text-align: center;
