@@ -74,7 +74,7 @@ const getGeoCodeApiCall = searchTerm => {
   if (!searchTerm){
     coordinates.notice = `Opps`;
   } else {
-    return `https://api.tomtom.com/search/2/geocode/${searchTerm}.json?limit=1&countrySet=${countryCode}&key=${geoCodeKey}`
+    return `https://api.tomtom.com/search/2/geocode/${searchTerm}.json?limit=1&key=${geoCodeKey}`
   }
 
   // uncomment below for testing only

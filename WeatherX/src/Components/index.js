@@ -78,7 +78,8 @@ class Middle extends Component {
         useHourlyConditions: [],
         hourlyConditions: [],
         dailyConditions: [],
-        weatherIcon:{}
+        weatherIcon:{},
+        notADuplicateLocation:true
       };
 
       this.backendServer = {
@@ -111,7 +112,7 @@ class Middle extends Component {
       });
     }
 
-// methods for integrating forecastData points into components
+// methods for integrating geoCode results and forecastData points into components
 
     pickOutDataPoints(dataObject, index){
       if (index === 0 ){
@@ -246,12 +247,12 @@ class Middle extends Component {
         currentLocation: {
           index: index,
           name: this.state.locationName[index],
-          time: this.getCurrentTimeAtLocation(this.state.forecastData[index].data.currently.time),
-          temp: Math.floor(this.state.forecastData[index].data.currently.temperature)
+          time: this.getCurrentTimeAtLocation(this.state.forecastData[index].data.mostRecentForecast.data.currently.time),
+          temp: Math.floor(this.state.forecastData[index].data.mostRecentForecast.data.currently.temperature)
         },
         currentForecast: this.state.forecastData[index],
-        hourlyConditions: this.getHourlyConditions(this.state.forecastData[index].data.hourly.data),
-        dailyConditions: this.getDailyConditions(this.state.forecastData[index].data.daily.data),
+        hourlyConditions: this.getHourlyConditions(this.state.forecastData[index].data.mostRecentForecast.data.hourly.data),
+        dailyConditions: this.getDailyConditions(this.state.forecastData[index].data.mostRecentForecast.data.daily.data),
         home: false,
         about: false,
         mainView: true,
@@ -268,16 +269,28 @@ class Middle extends Component {
 
     handleNavSubmit(event) {
 
-      // dont accept duplicate locations entered
+      // dont accept duplicate locations
       // only get and store forecast data for a new location
-      if (this.state.currentLocation !== this.state.geoCodeThis){
-          this.requestDataFromServer(this.state.geoCodeThis, event)
+      const compareLocationName = (item, index) => {
+        if (item === this.state.geoCodeThis){
+          this.setState({
+            notADuplicateLocation: false
+          });
+        }
+      };
+
+      this.state.locationName.forEach(compareLocationName);
+
+      if (this.state.notADuplicateLocation){
+          this.requestDataFromServer(this.state.geoCodeThis, event);
         }
 
       // dont wnat app reset on form button submittions
       event.preventDefault();
 
     }
+
+// this method makes the apicall get req to backendServer
 
     requestDataFromServer(location, event){
 
@@ -292,12 +305,28 @@ class Middle extends Component {
       console.log(`${this.backendServer.url}${this.backendServer.port}${this.backendServer.path}${this.state.geoCodeThis}`)
       axios.get(`${this.backendServer.url}${this.backendServer.port}${this.backendServer.path}${location}`)
             .then(response => {
-              let forecast = response.data;
               let newForecast = {  // save new current foreeast
                 timeStamp: Date.now(),
-                data: forecast.data
-              } // will end up with objects: [{timeStamp:<dateInt>, data:forecast.json}]
+                data: response.data
+              }
               console.log(newForecast);
+              /* will end up with array of objects:
+                [
+                  {
+                    timeStamp:<dateInt>,
+                    data:{ mostRecentLocation {},
+                           mostRecentForecast:{}
+                         }
+                   },
+                   {
+                     timeStamp:<dateInt>,
+                     data:{ mostRecentLocation {},
+                            mostRecentForecast:{}
+                          }
+                    },
+                    ...
+                ]
+              */
 
               // set state of nav, keep array of locations and respective forecasts
               // currentLocation wil always be the latest one entered, so new locationBar will be rendered for it
@@ -306,12 +335,12 @@ class Middle extends Component {
               this.setState(
                 {
                   forecastData: [...this.state.forecastData, newForecast], // will end up with an array of forecast objects
-                  locationName: [...this.state.locationName, location],
+                  locationName: [...this.state.locationName, `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`],
                   currentLocation: {
                     index: this.state.forecastData.length,
-                    name: location,
-                    time: this.getCurrentTimeAtLocation(newForecast.data.currently.time),
-                    temp: Math.floor(newForecast.data.currently.apparentTemperature)
+                    name: `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`,
+                    time: this.getCurrentTimeAtLocation(newForecast.data.mostRecentForecast.data.currently.time),
+                    temp: Math.floor(newForecast.data.mostRecentForecast.data.currently.apparentTemperature)
                   },
                   locationCount: this.state.locationCount + 1,
                   home: true,

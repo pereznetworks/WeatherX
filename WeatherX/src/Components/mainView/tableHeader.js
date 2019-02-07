@@ -5,9 +5,9 @@ export default class TableHdr extends Component {
 
   constructor(props) {
     super(props);
-    this.dateInt = this.props.navState.currentForecast.data.currently.time;
-    this.tempHigh = Math.floor(this.props.navState.currentForecast.data.daily.data[0].temperatureMax);
-    this.tempLow = Math.floor(this.props.navState.currentForecast.data.daily.data[0].temperatureMin);
+    this.dateInt = this.props.navState.currentForecast.data.mostRecentForecast.data.currently.time;
+    this.tempHigh = Math.floor(this.props.navState.currentForecast.data.mostRecentForecast.data.daily.data[0].temperatureMax);
+    this.tempLow = Math.floor(this.props.navState.currentForecast.data.mostRecentForecast.data.daily.data[0].temperatureMin);
     this.whatDayIsIt = this.whatDayIsIt.bind(this);
   }
 
