@@ -16,8 +16,8 @@ import '../css/weather.css';
 import '../css/weather-icons.css';
 import '../css/weather-icons-wind.css';
 
-// importing dayjsExt module with extenstions and config, for use with Date() 
-import dayjs from '../Utils';
+// use dayJs-ext or moment0-timezone for timezone time adjustment
+// For now, using my own custom code to adjust from UTC to timezone offset of location
 
 // creates one component for all sub-components
 class Middle extends Component {
@@ -28,16 +28,17 @@ class Middle extends Component {
     constructor(props) {
       super(props);
       /* note to self:
-          ALWAYS set the first 4 boolean state values, since this controls which components are rendered and displayed
+          Critical are the first 4 boolean state values,
+          since these control which components are rendered and displayed
           home, about, mainView and locationBar
 
           home: initial view of app
                 includes titleBar, navbar3
                 home and locationBar can be true at the same time, but about and mainView are false
-                about is true, but home, mainView and locationBar are false
-                mainView is true, but home, about and locationBar are false
+                when about is true; home, mainView and locationBar are false
+                when mainView is tru;  home, about and locationBar are false
 
-          about: the about WeatherX app page
+          about: blog and about WeatherX app page
 
           geoCoding and geoLocation : indicate which method used to pinpoint which location to get forecastData for
 
@@ -49,7 +50,9 @@ class Middle extends Component {
 
           showMeThisOne: deprecated by currentLocation, will remove
 
-          forecastData: array of forecastData objects { timeStamp:dateInt, data:{jsonobject} }
+          forecastData: array of forecastData objects { timeStamp:dateInt, mostRecentLocation:{data:{jsonobject}, mostRecentForecast:{data:{jsonobject} }
+
+          need to update this with the rest ....
       */
 
       this.state = {
@@ -126,7 +129,7 @@ class Middle extends Component {
         };
       } else {
         return {
-          hour: this.getHourOfDay(dataObject.time),  // datatype string
+          hour: this.getHourOfDay(dataObject.time, dataObject.utcOffSet),  // datatype string
           icon: dataObject.icon,                      // datatype string
           temp: Math.floor(dataObject.temperature),   // datatype int
         };
@@ -153,11 +156,11 @@ class Middle extends Component {
       return dataArray.map(this.pickOutDailyDataPoints);
     }
 
-    getCurrentTimeAtLocation(dateInt){
+    getCurrentTimeAtLocation(dateInt, utcOffSet){
       const dateOflocation = new Date(dateInt * 1000);
 
-      let hrs = dateOflocation.getHours();
-      let mins = dateOflocation.getMinutes();
+      let hrs = (dateOflocation.getUTCHours() + utcOffSet);
+      let mins = dateOflocation.getUTCMinutes();
 
       if (hrs > 12){
           hrs = hrs - 12;
@@ -172,12 +175,12 @@ class Middle extends Component {
       }
     }
 
-    getHourOfDay(dayInt){
+    getHourOfDay(dayInt, utcOffSet){
       // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
       const today = new Date(dayInt * 1000);
 
-      let hrs = today.getHours();
-      let day = today.getDay()
+      let hrs = (today.getUTCHours() + utcOffSet);
+      let day = today.getUTCDay()
       let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
       if (hrs > 12){
@@ -192,11 +195,11 @@ class Middle extends Component {
       }
     }
 
-    whatDayIsIt(dateInt){
+    whatDayIsIt(dateInt, utcOffSet){
       // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
       const dateOflocation = new Date(dateInt * 1000);
       var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      return days[dateOflocation.getDay()]
+      return days[(dateOflocation.getUTCDay() + utcOffSet)]
     }
 
     handleNavClick(event) {
@@ -250,7 +253,8 @@ class Middle extends Component {
         currentLocation: {
           index: index,
           name: this.state.locationName[index],
-          time: this.getCurrentTimeAtLocation(this.state.forecastData[index].data.mostRecentForecast.data.currently.time),
+          utcOffSet: this.state.forecastData[index].data.mostRecentForecast.data.offset,
+          time: this.getCurrentTimeAtLocation(this.state.forecastData[index].data.mostRecentForecast.data.currently.time, this.state.forecastData[index].data.mostRecentForecast.data.offset),
           temp: Math.floor(this.state.forecastData[index].data.mostRecentForecast.data.currently.temperature)
         },
         currentForecast: this.state.forecastData[index],
@@ -342,7 +346,8 @@ class Middle extends Component {
                   currentLocation: {
                     index: this.state.forecastData.length,
                     name: `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`,
-                    time: this.getCurrentTimeAtLocation(newForecast.data.mostRecentForecast.data.currently.time),
+                    utcOffSet: newForecast.data.mostRecentForecast.data.offset,
+                    time: this.getCurrentTimeAtLocation(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
                     temp: Math.floor(newForecast.data.mostRecentForecast.data.currently.apparentTemperature)
                   },
                   locationCount: this.state.locationCount + 1,

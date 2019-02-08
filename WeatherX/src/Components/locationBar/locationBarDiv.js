@@ -7,7 +7,7 @@ export default class LocationBarDiv extends Component {
     super(props);
 
     this.locationCurrentTemp = Math.floor(this.props.navState.forecastData[this.props.indexno].data.mostRecentForecast.data.currently.temperature);
-    this.locationCurrentTime = this.props.getCurrentTimeAtLocation(this.props.navState.forecastData[this.props.indexno].data.mostRecentForecast.data.currently.time);
+    this.locationCurrentTime = this.props.getCurrentTimeAtLocation(this.props.navState.forecastData[this.props.indexno].data.mostRecentForecast.data.currently.time, this.props.navState.forecastData[this.props.indexno].data.mostRecentForecast.data.offset);
     this.locationCurrentName = `${this.props.navState.forecastData[this.props.indexno].data.mostRecentLocation.data.city}, ${this.props.navState.forecastData[this.props.indexno].data.mostRecentLocation.data.province}`;
 
     this.showMeThisOne = this.showMeThisOne.bind(this);
