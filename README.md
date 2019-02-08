@@ -4,7 +4,7 @@ Daniel Perez, Captsone - Team TreeHouse FSJS Project
 Status:
 
   - 1: Front-end App and Back-end Server now working
-      - a: security note: only the app site
+      - a: security note: only the front-end server will be able to make requests from back-end server 
   - 2: backend issue: now able to return both geocoded and forecast results to front-end app
       - a: both are from different api's,
       - b: using custom manageDb and manageLoc,
