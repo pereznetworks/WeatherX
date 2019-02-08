@@ -16,6 +16,8 @@ import '../css/weather.css';
 import '../css/weather-icons.css';
 import '../css/weather-icons-wind.css';
 
+import dayjs from '../Utils';
+
 // creates one component for all sub-components
 class Middle extends Component {
 

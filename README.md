@@ -1,7 +1,11 @@
 # TD-Project12
 Daniel Perez, Captsone - Team TreeHouse FSJS Project
 
-Status: Basic Front-end UI Model almost complete, working on back-end services
+Status:
+
+  - 1: Front-end UI Model and Back-end services almost complete
+  - 2: working on Date(), moment.js, timezone conversion
+
 
 # My Captsone Project:  Weather forecast service  
 
