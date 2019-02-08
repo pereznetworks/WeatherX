@@ -16,6 +16,7 @@ import '../css/weather.css';
 import '../css/weather-icons.css';
 import '../css/weather-icons-wind.css';
 
+// importing dayjsExt module with extenstions and config, for use with Date() 
 import dayjs from '../Utils';
 
 // creates one component for all sub-components
