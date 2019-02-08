@@ -3,11 +3,20 @@ Daniel Perez, Captsone - Team TreeHouse FSJS Project
 
 Status:
 
-  - 1: Front-end UI Model and Back-end services almost complete
-  - 2: CORE IMPLMENTATION: working getting a long-term solution for converting date timestamps to correct timezone
+  - 1: Front-end App and Back-end Server now working
+      - a: security note: only the app site
+  - 2: backend issue: now able to return both geocoded and forecast results to front-end app
+      - a: both are from different api's,
+      - b: using custom manageDb and manageLoc,
+           - i: builds a, array of objects for each get /weather request
+           - ii: returns forecast and location data
+      - c: will need to switch to Mongod
+      - d: want to be completely done with any changes to data models before switching to Mongod
+  - 3: front-end issue: converting date timestamps to correct timezone will be done by front-end
       - a: had to switch away from using mapbox for geocode/geolocaiton only requests
-           - i: due to thier usage-policy
+           - i: due to their usage-policy
            - ii: and mapbox does not provide timezone help anyways
+           - iii: may still use when building a radar-like animated layer over map of location
       - b: tomtom's service provides geocode/geelocation, high-enough request rate to get started, 2500/day
            - i: but no timezone/date help
       - c: using an api, timezonedb, means placing limits on requests, 1/sec, or incurring immediate cost
@@ -15,7 +24,8 @@ Status:
       - e: wanted to use dayjs and dayjs-ext but not as well maintained as would prefer
       - f: the moment.js and moment-timezone modules are better supported and established
       - g: will monitor and may switch depending on the progress either these modules
-  - 3: will need to switch away from [Weather-icons](https://www.npmjs.com/package/weather-icons)  since last publish was 4 years ago!
+  - 4: will need to switch away from [Weather-icons](https://www.npmjs.com/package/weather-icons)
+      - a: since last publish was 4 years ago!
 
 To Do:
 
@@ -28,7 +38,7 @@ To Do:
     - 1: secure Mongod using mongoose.js
       - a: want to continue not using cookies if possible
 
-  - production build and deployment to heroku
+  - production build and deployment to hosting
 
 
 # My Captsone Project:  Weather forecast service  
