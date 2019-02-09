@@ -98,6 +98,8 @@ class Middle extends Component {
       this.handleInputChange = this.handleInputChange.bind(this)
       this.handleNavSubmit = this.handleNavSubmit.bind(this);
       this.showMeThisOne = this.showMeThisOne.bind(this);
+      this.getTZhours = this.getTZhours.bind(this);
+      this.formatTime = this.formatTime.bind(this);
       this.getCurrentTimeAtLocation = this.getCurrentTimeAtLocation.bind(this);
       this.getHourOfDay = this.getHourOfDay.bind(this);
       this.whatDayIsIt = this.whatDayIsIt.bind(this);
@@ -129,7 +131,7 @@ class Middle extends Component {
         };
       } else {
         return {
-          hour: this.getHourOfDay(dataObject.time, dataObject.utcOffSet),  // datatype string
+          hour: this.getHourOfDay(dataObject.time, this.state.currentLocation.utcOffSet),  // datatype string
           icon: dataObject.icon,                      // datatype string
           temp: Math.floor(dataObject.temperature),   // datatype int
         };
@@ -156,50 +158,102 @@ class Middle extends Component {
       return dataArray.map(this.pickOutDailyDataPoints);
     }
 
-    getCurrentTimeAtLocation(dateInt, utcOffSet){
-      const dateOflocation = new Date(dateInt * 1000);
+    getTZhours(dateOflocation, tz){
+      let utc = dateOflocation.getUTCHours();
+      let hrs;
 
-      let hrs = (dateOflocation.getUTCHours() + utcOffSet);
-      let mins = dateOflocation.getUTCMinutes();
+      if (tz < 0){
+        tz = Math.abs(tz);
+        if (utc < 12 ){
+          utc = utc + 24
+          hrs = utc - tz;
+        } else if (utc === 0){
+          hrs = utc - tz;
+          hrs = 24 - tz
+        } else {
+          hrs = utc - tz;
+        }
 
-      if (hrs > 12){
-          hrs = hrs - 12;
-          const time = `${hrs}:${mins} PM`;
-          return time;
-      } else if (hrs === 12){
-          const time = `${hrs}:${mins} PM`;
-          return time;
-      } else if (hrs <= 11){
-          const time = `${hrs}:${mins} AM`;
-          return time;
+      } else {
+          hrs = utc + tz;
       }
+
+      return hrs; // still a 24 hours hour
+
     }
 
-    getHourOfDay(dayInt, utcOffSet){
+    formatTime(hrs, mins){
+
+      if (mins){
+        if (hrs > 12){
+           hrs = hrs - 12;
+           return `${hrs}:${mins} PM`;
+        } else if (hrs > 24){
+           hrs = hrs - 24;
+           return `${hrs}:${mins} PM`;
+        } else if(hrs === 24){
+           hrs = 12;
+           return `${hrs}:${mins} AM`;
+        } else if (hrs === 12){
+           return `${hrs}:${mins} PM`;
+        } else if (hrs <= 11){
+           return `${hrs}:${mins} AM`;
+        }
+      } else {
+        if (hrs > 24){
+           hrs = hrs - 24;
+           return `${hrs} AM`;
+        } else if (hrs > 12 && hrs < 24){
+           hrs = hrs - 12;
+           return `${hrs} PM`;
+        }  else if(hrs === 24){
+           hrs = 12;
+           return `${hrs} AM`;
+        } else if (hrs === 12){
+           return `${hrs} PM`;
+        } else if (hrs <= 11){
+           return `${hrs} AM`;
+        }
+      }
+    }
+    getCurrentTimeAtLocation(dateInt, tz){
+      const dateOflocation = new Date(dateInt * 1000);
+
+      // let hrs = dateOflocation.getHours();
+      // let mins = dateOflocation.getMinutes();
+
+      let hrs = this.getTZhours(dateOflocation, tz);
+
+      let mins = dateOflocation.getUTCMinutes();
+      if (mins < 10) {
+        mins = "0" + mins;
+      }
+
+      return this.formatTime(hrs, mins);
+
+    }
+
+    getHourOfDay(dayInt, tz){
       // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
       const today = new Date(dayInt * 1000);
 
-      let hrs = (today.getUTCHours() + utcOffSet);
-      let day = today.getUTCDay()
+      let hrs = this.getTZhours(today, tz);
+      let hourOfDay = this.formatTime(hrs);
+      let day = today.getDay()
       let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-      if (hrs > 12){
-          hrs = hrs - 12;
-          return `${hrs} PM`;
-      } else if (hrs > 1 && hrs <= 12){
-          return `${hrs} AM`;
-      } else if (hrs === 0){
-          return '12 AM';
-      } else if (hrs === 1){
-          return daysOfWeek[day]
+      if (hourOfDay === '12 AM'){
+          return daysOfWeek[day];
+      } else {
+        return hourOfDay;
       }
     }
 
-    whatDayIsIt(dateInt, utcOffSet){
+    whatDayIsIt(dateInt){
       // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
       const dateOflocation = new Date(dateInt * 1000);
-      var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      return days[(dateOflocation.getUTCDay() + utcOffSet)]
+      var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      return daysOfWeek[dateOflocation.getDay()];
     }
 
     handleNavClick(event) {

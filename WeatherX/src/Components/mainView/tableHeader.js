@@ -20,7 +20,7 @@ export default class TableHdr extends Component {
       <table id="tableHdr">
        <tbody>
           <tr>
-            <th id="dayOfWeek">{this.whatDayIsIt(this.dateInt, this.utcOffSet)}</th>
+            <th id="dayOfWeek">{this.whatDayIsIt(this.dateInt)}</th>
             <th id="today">TODAY</th>
             <th id="blank"></th>
             <th id="tempHigh">{this.tempHigh}°</th>
