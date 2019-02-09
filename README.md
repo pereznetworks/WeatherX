@@ -6,7 +6,7 @@ Status:
   - 1: Front-end App and Back-end Server now working
       - a: security note: only the front-end server will be able to make requests from back-end server
         - i: allowing requests only from 1 specific ip address
-        - ii: will have to keep this for production build 
+        - ii: will have to keep this for production build
   - 2: Front-end issue: fixed timezone issue
         - a: using my own custom code to adjust for timezone offset and format time displayed
         - b: may switch to dayjs-ext/momment-timezone depending on the progress either these modules
@@ -19,7 +19,7 @@ Status:
 To Do:
 
   - front-end features:
-    - 2: weather icons
+    - 2: newer weather icon module
     - 3: background animation of current weather at given location: raining, snowing, sunny, etc.
 
   - backend core:
