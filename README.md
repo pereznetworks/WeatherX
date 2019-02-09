@@ -4,33 +4,19 @@ Daniel Perez, Captsone - Team TreeHouse FSJS Project
 Status:
 
   - 1: Front-end App and Back-end Server now working
-      - a: security note: only the front-end server will be able to make requests from back-end server 
-  - 2: backend issue: now able to return both geocoded and forecast results to front-end app
-      - a: both are from different api's,
-      - b: using custom manageDb and manageLoc,
-           - i: builds a, array of objects for each get /weather request
-           - ii: returns forecast and location data
-      - c: will need to switch to Mongod
-      - d: want to be completely done with any changes to data models before switching to Mongod
-  - 3: front-end issue: converting date timestamps to correct timezone will be done by front-end
-      - a: had to switch away from using mapbox for geocode/geolocaiton only requests
-           - i: due to their usage-policy
-           - ii: and mapbox does not provide timezone help anyways
-           - iii: may still use when building a radar-like animated layer over map of location
-      - b: tomtom's service provides geocode/geelocation, high-enough request rate to get started, 2500/day
-           - i: but no timezone/date help
-      - c: using an api, timezonedb, means placing limits on requests, 1/sec, or incurring immediate cost
-      - d: foreast.io api already returns the timestamp and cannonical(iana) timezone name
-      - e: wanted to use dayjs and dayjs-ext but not as well maintained as would prefer
-      - f: the moment.js and moment-timezone modules are better supported and established
-      - g: will monitor and may switch depending on the progress either these modules
+      - a: security note: only the front-end server will be able to make requests from back-end server
+  - 2: Front-end issue: fixed timezone issue
+        - a: using my own custom code to adjust for timezone offset
+        - b: may switch to dayjs-ext/momment-timezone depending on the progress either these modules
+  - 3: backend issue: now able to return both geocoded and forecast results to front-end app
+      - a: will need to switch to Mongod
+      - b: want to be completely done with any changes to data models before switching to Mongod
   - 4: will need to switch away from [Weather-icons](https://www.npmjs.com/package/weather-icons)
       - a: since last publish was 4 years ago!
 
 To Do:
 
   - front-end features:
-    - 1: timezone
     - 2: weather icons
     - 3: background animation of current weather at given location: raining, snowing, sunny, etc.
 
