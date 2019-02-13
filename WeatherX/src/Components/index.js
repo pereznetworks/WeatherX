@@ -198,14 +198,12 @@ class Middle extends Component {
   }
 
   getCurrentTimeAtLocation(dateInt, tz){
-    const dateOflocation = new Date(dateInt * 1000);
+    let date = new Date();
+    let hrs, mins;
 
-    // let hrs = dateOflocation.getHours();
-    // let mins = dateOflocation.getMinutes();
+    hrs = this.getTZhours(date, tz);
 
-    let hrs = this.getTZhours(dateOflocation, tz);
-
-    let mins = dateOflocation.getUTCMinutes();
+    mins = date.getUTCMinutes();
     if (mins < 10) {
       mins = "0" + mins;
     }
