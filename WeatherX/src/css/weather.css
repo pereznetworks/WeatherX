@@ -56,7 +56,12 @@
 
 @media only screen and (min-width: 620px){
 #clearDay, clearNight, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
-    height:-webkit-fill-available;
+    height:fit-content;
+  }
+}
+@media only screen and (min-width: 1020px){
+#clearDay, clearNight, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
+    height:stretch;
   }
 }
 /* #cloud{
