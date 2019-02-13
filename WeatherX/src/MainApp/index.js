@@ -24,9 +24,9 @@ class MainApp extends Component {
   render() {
     return (
       <div id="Main" className="grid-main">
-        <div className="left-margin"><p className="fillin"></p></div>
+        <div className="left-margin"></div>
         <Middle />
-        <div className="right-margin"><p className="fillin"></p></div>
+        <div className="right-margin"></div>
       </div>
     );
   } // end render()

@@ -67,6 +67,53 @@ body {
   padding:2%;
 }
 
+@media only screen and (min-width: 720px){
+
+  .grid-main{
+    width:100%;
+    height:100%;
+    display: grid;
+    grid-template-areas:'left middle middle right';
+    /* grid-column-gap: 10px; - if you want gap between the columns */
+  }
+
+  .left-margin, .right-margin{
+    display:inline;
+    width:100%;
+    height:100%;
+  }
+
+  .middle{
+    width:100%;
+  }
+
+
+}
+
+@media only screen and (min-width: 1020px){
+  *{
+    font-size: 16px;
+  }
+  .grid-main{
+    width:100%;
+    height:100%;
+    display: grid;
+    grid-template-areas:'left middle middle right';
+    /* grid-column-gap: 10px; - if you want gap between the columns */
+  }
+
+  .left-margin, .right-margin{
+   display:inline;
+   width:100%;
+   height:100%;
+  }
+
+  .middle{
+    width:100%;
+  }
+
+}
+
 /* @media only screen and (min-width: 432px){
   .grid-main{
     width:100%;
@@ -104,67 +151,3 @@ body {
     width:100%;
   }
 } */
-
-@media only screen and (min-width: 720px){
-
-  .grid-main{
-    width:100%;
-    height:100%;
-    display: grid;
-    grid-template-areas:'left midle middle right';
-    /* grid-column-gap: 10px; - if you want gap between the columns */
-  }
-
-  .left-margin, .right-margin{
-    display:inline;
-    width:100%;
-    height:100%;
-  }
-
-  .left-margin{
-    grid-area:left;
-   }
-
-   .right-margin{
-    grid-area:right;
-   }
-
-  .middle{
-    width:100%;
-    grid-area:middle;
-  }
-
-
-}
-
-@media only screen and (min-width: 1020px){
-  *{
-    font-size: 16px;
-  }
-  .grid-main{
-    width:100%;
-    height:100%;
-    display: grid;
-    grid-template-areas:'left middle middle right';
-    /* grid-column-gap: 10px; - if you want gap between the columns */
-  }
-
-  .left-margin, .right-margin{
-   display:inline;
-   width:100%;
-   height:100%;
-  }
-
-  .middle{
-    grid-area:middle;
-    width:100%;
-  }
-
-  .left-margin{
-    grid-area:left;
-   }
-
-   .right-margin{
-    grid-area:right;
-   }
-}
