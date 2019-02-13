@@ -20,9 +20,6 @@ export default class LocationBarDiv extends Component {
     return this.props.getCurrentTimeAtLocation(timeStamp)
   }
 
-  randomColor(){
-  }
-
   render(){
     return (
       <div title="locationBar" className="locationBar-div" onClick={this.showMeThisOne} id={this.props.navState.mainViewBackGround[this.props.indexno]} style={{"hieght":"120%"}}>

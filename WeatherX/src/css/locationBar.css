@@ -58,3 +58,9 @@
     margin: 7% 15% 3% 0;
     padding: 0% 0 2% 0;
   }
+
+  @media only screen and (min-width: 1020px){
+    #cityTime-div, #temp-div{
+      padding: 1% 0 2% 0;
+    }
+  }

@@ -17,7 +17,7 @@ export default class LocationBar extends Component {
   }
 
   createGridItem(value, index){
-    let currentConditions = this.props.navState.forecastData[index].data.mostRecentForecast.data.currently;
+    let currentConditions = this.props.navState.locationsArray[index];
     let weatherIcon;
       if ( currentConditions.icon === 'cloudy'  && this.props.navState.currentLocation.day){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-cloudy"></i>
@@ -43,11 +43,14 @@ export default class LocationBar extends Component {
       } else if ( currentConditions.icon === 'rain' && !this.props.navState.currentLocation.day){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-rain"></i>
 
-      } else if ( currentConditions.icon === 'clear-day'&& this.props.navState.currentLocation.day ){
+      } else if ( currentConditions.icon === 'clear-day' && this.props.navState.currentLocation.day ){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-sunny"></i>
 
       } else if ( currentConditions.icon === 'clear' && this.props.navState.currentLocation.day ){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-sunny"></i>
+
+      } else if ( currentConditions.icon === 'clear-day' && !this.props.navState.currentLocation.day ){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-clear"></i>
 
       } else if ( currentConditions.icon === 'clear' && !this.props.navState.currentLocation.day ){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-clear"></i>

@@ -64,6 +64,7 @@ class Middle extends Component {
         geoCoding: false,
         locationName: [],
         locationCount: 0,
+        locationsArray: [],
         currentLocation:'',
         currentForecast: {},
         showMeThisOne:'',
@@ -162,7 +163,7 @@ class Middle extends Component {
   }
 
   formatTime(hrs, mins){
-
+    hrs = Math.floor(hrs);
     if (mins){
       if (hrs > 12){
          hrs = hrs - 12;
@@ -274,43 +275,47 @@ class Middle extends Component {
       return dataArray.map(this.pickOutDailyDataPoints);
     }
 
-    setMainViewBackGround(currentLocation){
+    setMainViewBackGround(data){
 
-         if ( currentLocation.icon === 'cloudy' && currentLocation.day){
+
+      let day = this.checkDay(data.currently.time, data.offset);
+      let icon = data.currently.icon;
+
+         if ( icon === 'cloudy' && day){
             return "cloudyDay"
-          } else if ( currentLocation.icon === 'cloudy' && !currentLocation.day){
+          } else if ( icon === 'cloudy' && !day){
              return "cloudyNight"
-          } else if ( currentLocation.icon === 'fog' && currentLocation.day){
+          } else if ( icon === 'fog' && day){
             return "foggyDay";
-          } else if ( currentLocation.icon === 'fog' && !currentLocation.day){
+          } else if ( icon === 'fog' && !day){
             return "foggyNight";
-          } else if ( currentLocation.icon === 'partly-cloudy-day' && currentLocation.day){
+          } else if ( icon === 'partly-cloudy-day' && day){
             return "partlyCloudyDay";
-          } else if ( currentLocation.icon === 'partly-cloudy-night' && !currentLocation.day){
+          } else if ( icon === 'partly-cloudy-night' && !day){
             return "partlyCloudyNight";
-          } else if ( currentLocation.icon === 'rain' && currentLocation.day){
+          } else if ( icon === 'rain' && day){
             return "rainyDay";
-          } else if ( currentLocation.icon === 'rain' && !currentLocation.day){
+          } else if ( icon === 'rain' && !day){
             return "rainyNight";
-          } else if ( currentLocation.icon === 'clear-day' && currentLocation.day){
+          } else if ( icon === 'clear-day' && day){
             return "clearDay";
-          } else if ( currentLocation.icon === 'clear-night' && !currentLocation.day){
+          } else if ( icon === 'clear-night' && !day){
             return "clearNight";
-          } else if ( currentLocation.icon === 'snow' && currentLocation.day){
+          } else if ( icon === 'snow' && day){
             return "snowyDay";
-          } else if ( currentLocation.icon === 'snow' && currentLocation.day){
+          } else if ( icon === 'snow' && !day){
             return "snowyNight";
-          } else if ( currentLocation.icon === 'scattered-showers' && currentLocation.day ){
+          } else if ( icon === 'scattered-showers' && day ){
             return "rainyDay";
-          } else if ( currentLocation.icon === 'scattered-showers' && !currentLocation.day ){
+          } else if ( icon === 'scattered-showers' && !day ){
             return "rainyNight";
-          } else if ( currentLocation.icon === 'thunder' && currentLocation.day ){
+          } else if ( icon === 'thunder' && day ){
             return "thunderDay";
-          } else if ( currentLocation.icon === 'thunder' && !currentLocation.day ){
+          } else if ( icon === 'thunder' && !day ){
             return "thunderNight";
-          } else if ( currentLocation.icon === 'wind' && currentLocation.day ){
+          } else if ( icon === 'wind' && day ){
             return "windyDay";
-          } else if ( currentLocation.icon === 'wind' && !currentLocation.day ){
+          } else if ( icon === 'wind' && !day ){
             return "windyNight";
           }
     }
@@ -469,8 +474,17 @@ class Middle extends Component {
                     temp: Math.floor(newForecast.data.mostRecentForecast.data.currently.apparentTemperature),
                     icon:`${newForecast.data.mostRecentForecast.data.currently.icon}`
                   },
+                  locationsArray: [...this.state.locationsArray, {
+                    index: this.state.forecastData.length,
+                    name: `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`,
+                    utcOffSet: newForecast.data.mostRecentForecast.data.offset,
+                    time: this.getCurrentTimeAtLocation(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
+                    day: this.checkDay(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
+                    temp: Math.floor(newForecast.data.mostRecentForecast.data.currently.apparentTemperature),
+                    icon:`${newForecast.data.mostRecentForecast.data.currently.icon}`
+                  }],
                   locationCount: this.state.locationCount + 1,
-                  mainViewBackGround: [...this.state.mainViewBackGround, this.setMainViewBackGround(newForecast.data.mostRecentForecast.data.currently)],
+                  mainViewBackGround: [...this.state.mainViewBackGround, this.setMainViewBackGround(newForecast.data.mostRecentForecast.data)],
                   home: true,
                   about: false,
                   mainView: false,

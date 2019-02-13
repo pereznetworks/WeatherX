@@ -46,10 +46,12 @@
 
 #clearDay {
   background-color: #484848;
+  background-image: linear-gradient(to bottom left, #484848,#48c4e0); /* Standard syntax (must be last) */
 }
 
 #clearNight {
   background-color: #757575;
+  background-image: linear-gradient(to bottom left, #757575,#040429); /* Standard syntax (must be last) */
 }
 
 @media only screen and (min-width: 720px){
