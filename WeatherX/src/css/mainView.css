@@ -12,13 +12,14 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: -1;
 }
 
 #mainViewHeader{
   width:100%;
   height:fit-content;
   display:block;
-  margin:20% 0 0 0;
+  margin:8% 0 0 0;
   padding:0;
 }
 

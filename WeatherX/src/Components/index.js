@@ -110,6 +110,7 @@ class Middle extends Component {
       this.pickOutDataPoints = this.pickOutDataPoints.bind(this);
       this.pickOutDailyDataPoints = this.pickOutDailyDataPoints.bind(this);
       this.setMainViewBackGround = this.setMainViewBackGround.bind(this);
+      this.checkDay = this.checkDay.bind(this);
     }
 
     componentDidMount(){
@@ -125,6 +126,16 @@ class Middle extends Component {
 
 
 // date format and timezone conversion methods
+
+  checkDay(dateInt, tz){
+    const dateOflocation = new Date(dateInt * 1000);
+    let hrs = this.getTZhours(dateOflocation, tz);
+    if(hrs > 7 && hrs < 17){
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   getTZhours(dateInt, tz){
     let utc = dateInt.getUTCHours();
@@ -264,28 +275,43 @@ class Middle extends Component {
     }
 
     setMainViewBackGround(currentLocation){
-        if ( currentLocation.icon === 'cloudy'){
+
+         if ( currentLocation.icon === 'cloudy' && currentLocation.day){
             return "cloudyDay"
-          } else if ( currentLocation.icon === 'fog'){
-            return "fog";
-          } else if ( currentLocation.icon === 'partly-cloudy-day' || currentLocation.icon === 'partly-cloudy'){
+          } else if ( currentLocation.icon === 'cloudy' && !currentLocation.day){
+             return "cloudyNight"
+          } else if ( currentLocation.icon === 'fog' && currentLocation.day){
+            return "foggyDay";
+          } else if ( currentLocation.icon === 'fog' && !currentLocation.day){
+            return "foggyNight";
+          } else if ( currentLocation.icon === 'partly-cloudy-day' && currentLocation.day){
             return "partlyCloudyDay";
-          } else if ( currentLocation.icon === 'partly-cloudy-night'){
+          } else if ( currentLocation.icon === 'partly-cloudy-night' && !currentLocation.day){
             return "partlyCloudyNight";
-          } else if ( currentLocation.icon === 'rain'){
-            return "rain";
-          } else if ( currentLocation.icon === 'clear' ||  currentLocation.icon === 'clear-day'){
+          } else if ( currentLocation.icon === 'rain' && currentLocation.day){
+            return "rainyDay";
+          } else if ( currentLocation.icon === 'rain' && !currentLocation.day){
+            return "rainyNight";
+          } else if ( currentLocation.icon === 'clear-day' && currentLocation.day){
             return "clearDay";
-          } else if ( currentLocation.icon === 'clear-night'){
+          } else if ( currentLocation.icon === 'clear-night' && !currentLocation.day){
             return "clearNight";
-          } else if ( currentLocation.icon === 'snow'){
-            return "snow";
-          } else if ( currentLocation.icon === 'scattered-showers'){
-            return "scatteredShowers";
-          } else if ( currentLocation.icon === 'thunder'){
-            return "thunder";
-          } else if ( currentLocation.icon === 'wind'){
-            return "windy";
+          } else if ( currentLocation.icon === 'snow' && currentLocation.day){
+            return "snowyDay";
+          } else if ( currentLocation.icon === 'snow' && currentLocation.day){
+            return "snowyNight";
+          } else if ( currentLocation.icon === 'scattered-showers' && currentLocation.day ){
+            return "rainyDay";
+          } else if ( currentLocation.icon === 'scattered-showers' && !currentLocation.day ){
+            return "rainyNight";
+          } else if ( currentLocation.icon === 'thunder' && currentLocation.day ){
+            return "thunderDay";
+          } else if ( currentLocation.icon === 'thunder' && !currentLocation.day ){
+            return "thunderNight";
+          } else if ( currentLocation.icon === 'wind' && currentLocation.day ){
+            return "windyDay";
+          } else if ( currentLocation.icon === 'wind' && !currentLocation.day ){
+            return "windyNight";
           }
     }
 
@@ -343,12 +369,12 @@ class Middle extends Component {
           utcOffSet: this.state.forecastData[index].data.mostRecentForecast.data.offset,
           time: this.getCurrentTimeAtLocation(this.state.forecastData[index].data.mostRecentForecast.data.currently.time, this.state.forecastData[index].data.mostRecentForecast.data.offset),
           temp: Math.floor(this.state.forecastData[index].data.mostRecentForecast.data.currently.temperature),
+          day: this.checkDay(this.state.forecastData[index].data.mostRecentForecast.data.currently.time, this.state.forecastData[index].data.mostRecentForecast.data.offset),
           icon: this.state.forecastData[index].data.mostRecentForecast.data.currently.icon
         },
         currentForecast: this.state.forecastData[index],
         hourlyConditions: this.getHourlyConditions(this.state.forecastData[index].data.mostRecentForecast.data.hourly.data),
         dailyConditions: this.getDailyConditions(this.state.forecastData[index].data.mostRecentForecast.data.daily.data),
-        mainViewBackGround: [...this.state.mainViewBackGround, this.setMainViewBackGround(this.state.forecastData[index].data.mostRecentForecast.data.currently)],
         home: false,
         about: false,
         mainView: true,
@@ -439,6 +465,7 @@ class Middle extends Component {
                     name: `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`,
                     utcOffSet: newForecast.data.mostRecentForecast.data.offset,
                     time: this.getCurrentTimeAtLocation(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
+                    day: this.checkDay(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
                     temp: Math.floor(newForecast.data.mostRecentForecast.data.currently.apparentTemperature),
                     icon:`${newForecast.data.mostRecentForecast.data.currently.icon}`
                   },
@@ -463,8 +490,8 @@ class Middle extends Component {
             });
     }
 
-  render(){
-    return(
+    render(){
+     return(
 
       <div className="middle middle-grid-container">
         <TitleBar />
@@ -486,8 +513,8 @@ class Middle extends Component {
           whatDayIsIt={this.whatDayIsIt}
           />
       </div>
-    );
-  }
+     );
+    }
 }
 
 export default Middle;

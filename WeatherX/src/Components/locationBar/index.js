@@ -19,28 +19,66 @@ export default class LocationBar extends Component {
   createGridItem(value, index){
     let currentConditions = this.props.navState.forecastData[index].data.mostRecentForecast.data.currently;
     let weatherIcon;
-      if ( currentConditions.icon === 'cloudy'){
+      if ( currentConditions.icon === 'cloudy'  && this.props.navState.currentLocation.day){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-cloudy"></i>
-      } else if ( currentConditions.icon === 'fog'){
+
+      } else if ( currentConditions.icon === 'cloudy'  && !this.props.navState.currentLocation.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-cloudy"></i>
+
+      } else if ( currentConditions.icon === 'fog' && this.props.navState.currentLocation.day){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-fog"></i>
+
+      } else if ( currentConditions.icon === 'fog' && !this.props.navState.currentLocation.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-fog"></i>
+
       } else if ( currentConditions.icon === 'partly-cloudy-day'){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index}  className="wi wi-day-sunny-overcast"></i>
+
       } else if (currentConditions.icon === 'partly-cloudy-night'  ){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index}  className="wi wi-night-alt-cloudy"></i>
-      } else if ( currentConditions.icon === 'rain'){
+
+      } else if ( currentConditions.icon === 'rain' && this.props.navState.currentLocation.day){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-rain"></i>
-      } else if ( currentConditions.icon === 'clear' ||  currentConditions.icon === 'clear-day'){
+
+      } else if ( currentConditions.icon === 'rain' && !this.props.navState.currentLocation.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-rain"></i>
+
+      } else if ( currentConditions.icon === 'clear-day'&& this.props.navState.currentLocation.day ){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-sunny"></i>
+
+      } else if ( currentConditions.icon === 'clear' && this.props.navState.currentLocation.day ){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-sunny"></i>
+
+      } else if ( currentConditions.icon === 'clear' && !this.props.navState.currentLocation.day ){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-clear"></i>
+
       } else if (currentConditions.icon === 'clear-night'){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-clear"></i>
-      } else if ( currentConditions.icon === 'snow'){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-clear"></i>
+
+      } else if ( currentConditions.icon === 'snow' && this.props.navState.currentLocation.day ){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-snow"></i>
-      } else if ( currentConditions.icon === 'scattered-showers'){
+
+      }  else if ( currentConditions.icon === 'snow' && !this.props.navState.currentLocation.day ){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-snow"></i>
+
+      } else if ( currentConditions.icon === 'scattered-showers' && this.props.navState.currentLocation.day){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-showers"></i>
-      } else if ( currentConditions.icon === 'thunder'){
+
+      }else if ( currentConditions.icon === 'scattered-showers' && !this.props.navState.currentLocation.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-showers"></i>
+
+      } else if ( currentConditions.icon === 'thunder' && this.props.navState.currentLocation.day){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-thunderstorm"></i>
-      } else if ( currentConditions.icon === 'wind'){
+
+      }  else if ( currentConditions.icon === 'thunder' && !this.props.navState.currentLocation.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-thunderstorm"></i>
+
+      } else if ( currentConditions.icon === 'wind' && this.props.navState.currentLocation.day){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-windy"></i>
+
+      } else if ( currentConditions.icon === 'wind' && !this.props.navState.currentLocation.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-cloudy-gusts"></i>
+
       }
 
     return (
