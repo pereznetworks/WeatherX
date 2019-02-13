@@ -165,13 +165,13 @@ class Middle extends Component {
   formatTime(hrs, mins){
     hrs = Math.floor(hrs);
     if (mins){
-      if (hrs > 12){
-         hrs = hrs - 12;
-         return `${hrs}:${mins} PM`;
-      } else if (hrs > 24){
+      if (hrs > 24){
          hrs = hrs - 24;
          return `${hrs}:${mins} PM`;
-      } else if(hrs === 24){
+      } else if (hrs > 12){
+         hrs = hrs - 12;
+         return `${hrs}:${mins} PM`;
+      } else if (hrs === 24){
          hrs = 12;
          return `${hrs}:${mins} AM`;
       } else if (hrs === 12){
