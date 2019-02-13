@@ -22,7 +22,7 @@ export default class LocationBarDiv extends Component {
 
   render(){
     return (
-      <div title="locationBar" className="locationBar-div" onClick={this.showMeThisOne} id={this.props.navState.mainViewBackGround[this.props.indexno]} style={{"hieght":"120%"}}>
+      <div title="locationBar" className="locationBar-div" onClick={this.showMeThisOne} id={this.props.navState.locationBarBackGround[this.props.indexno]}>
         <div  id="cityTime-div">
           <p  id="locationTime">{this.locationCurrentTime}</p>
           <p  indexno={this.props.indexno} id="locationName">{this.locationCurrentName}</p>

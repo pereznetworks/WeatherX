@@ -87,7 +87,8 @@ class Middle extends Component {
         dailyConditions: [],
         weatherIcon:{},
         notADuplicateLocation:true,
-        mainViewBackGround: []
+        mainViewBackGround: [],
+        locationBarBackGround: []
       };
 
       this.backendServer = {
@@ -111,6 +112,7 @@ class Middle extends Component {
       this.pickOutDataPoints = this.pickOutDataPoints.bind(this);
       this.pickOutDailyDataPoints = this.pickOutDailyDataPoints.bind(this);
       this.setMainViewBackGround = this.setMainViewBackGround.bind(this);
+      this.setLocationBarBackGround = this.setLocationBarBackGround.bind(this);
       this.checkDay = this.checkDay.bind(this);
     }
 
@@ -318,6 +320,51 @@ class Middle extends Component {
           }
     }
 
+    setLocationBarBackGround(data){
+
+
+      let day = this.checkDay(data.currently.time, data.offset);
+      let icon = data.currently.icon;
+
+         if ( icon === 'cloudy' && day){
+            return "locationBar-cloudyDay";
+          } else if ( icon === 'cloudy' && !day){
+             return "locationBar-cloudyNight";
+          } else if ( icon === 'fog' && day){
+            return "locationBar-foggyDay";
+          } else if ( icon === 'fog' && !day){
+            return "locationBar-foggyNight";
+          } else if ( icon === 'partly-cloudy-day' && day){
+            return "locationBar-partlyCloudyDay";
+          } else if ( icon === 'partly-cloudy-night' && !day){
+            return "locationBar-partlyCloudyNight";
+          } else if ( icon === 'rain' && day){
+            return "locationBar-rainyDay";
+          } else if ( icon === 'rain' && !day){
+            return "locationBar-rainyNight";
+          } else if ( icon === 'clear-day' && day){
+            return "locationBar-clearDay";
+          } else if ( icon === 'clear-night' && !day){
+            return "locationBar-clearNight";
+          } else if ( icon === 'snow' && day){
+            return "locationBar-snowyDay";
+          } else if ( icon === 'snow' && !day){
+            return "locationBar-snowyNight";
+          } else if ( icon === 'scattered-showers' && day ){
+            return "locationBar-rainyDay";
+          } else if ( icon === 'scattered-showers' && !day ){
+            return "locationBar-rainyNight";
+          } else if ( icon === 'thunder' && day ){
+            return "locationBar-thunderDay";
+          } else if ( icon === 'thunder' && !day ){
+            return "locationBar-thunderNight";
+          } else if ( icon === 'wind' && day ){
+            return "locationBar-windyDay";
+          } else if ( icon === 'wind' && !day ){
+            return "locationBar-windyNight";
+          }
+    }
+
     handleNavClick(event) {
       if (event.target.title === 'backHome'){
         this.setState({
@@ -483,6 +530,7 @@ class Middle extends Component {
                   }],
                   locationCount: this.state.locationCount + 1,
                   mainViewBackGround: [...this.state.mainViewBackGround, this.setMainViewBackGround(newForecast.data.mostRecentForecast.data)],
+                  locationBarBackGround: [...this.state.locationBarBackGround, this.setLocationBarBackGround(newForecast.data.mostRecentForecast.data)],
                   home: true,
                   about: false,
                   mainView: false,

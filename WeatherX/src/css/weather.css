@@ -34,34 +34,48 @@
   z-index: -1;
 }
 
-#cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay  {
+#locationBar-clearDay, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay  {
+  height:80px;
+  padding-top:12px;
   background-color: #484848;
   background-image: linear-gradient(to bottom left, #484848,#48c4e0); /* Standard syntax (must be last) */
 }
 
-#cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
+#locationBar-clearNight, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #flocationBar-oggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
+  height:80px;
+  padding-top:12px;
   background-color: #757575;
   background-image: linear-gradient(to bottom left, #757575,#040429); /* Standard syntax (must be last) */
 }
 
-#clearDay {
+#clearDay, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay  {
   background-color: #484848;
   background-image: linear-gradient(to bottom left, #484848,#48c4e0); /* Standard syntax (must be last) */
 }
 
-#clearNight {
+#clearNight, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
   background-color: #757575;
   background-image: linear-gradient(to bottom left, #757575,#040429); /* Standard syntax (must be last) */
 }
 
 @media only screen and (min-width: 620px){
-#clearDay, clearNight, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
-    height:fit-content;
+
+  #clearDay, clearNight, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
+      height:-webkit-fill-available;
+  }
+
+  #locationBar-#clearDay, #locationBar-clearNight, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #locationBar-foggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
+
   }
 }
+
 @media only screen and (min-width: 1020px){
-#clearDay, clearNight, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
-    height:stretch;
+  #clearDay, clearNight, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
+      height:-webkit-fill-available;
+  }
+
+  #locationBar-#clearDay, #locationBar-clearNight, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #locationBar-foggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
+
   }
 }
 /* #cloud{
