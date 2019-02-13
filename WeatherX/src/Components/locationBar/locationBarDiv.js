@@ -19,13 +19,18 @@ export default class LocationBarDiv extends Component {
   getCurrentTimeAtLocation(timeStamp){
     return this.props.getCurrentTimeAtLocation(timeStamp)
   }
+
+  randomColor(){
+  }
+
   render(){
     return (
-      <div title="locationBar" id="locationBar-div" onClick={this.showMeThisOne}>
+      <div title="locationBar" className="locationBar-div" onClick={this.showMeThisOne} id={this.props.navState.mainViewBackGround[this.props.indexno]} style={{"hieght":"120%"}}>
         <div  id="cityTime-div">
           <p  id="locationTime">{this.locationCurrentTime}</p>
           <p  indexno={this.props.indexno} id="locationName">{this.locationCurrentName}</p>
         </div>
+        <div title="currentConditions" id="locationCondition">{this.props.wi}</div>
         <div  id="temp-div" >
           <p  id="currentTemp">{this.locationCurrentTemp}°</p>
         </div>
@@ -35,14 +40,7 @@ export default class LocationBarDiv extends Component {
 
 }
 
-// this.state = {
-//   gridItemClassNameArray: ['.middle-grid-item-0', '.middle-grid-item-1', '.middle-grid-item-2', '.middle-grid-item-3', '.middle-grid-item-4','.middle-grid-item-5', '.middle-grid-item-6', '.middle-grid-item-7', '.middle-grid-item-8', '.middle-grid-item-9' ],
-// };
-//
-// this.reduceGridItemClassNames = this.reduceGridItemClassNames.bind(this);
-//
-// reduceGridItemClassNames(value, index){
-//     if ((index + 2 )=== this.props.indexno){
-//       return value;
-//     }
-//   }
+/*
+
+colors = clear night sky = #040429
+*/

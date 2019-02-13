@@ -6,7 +6,6 @@ import TableDay from './tableDay';
 import TableWeek from './tableWeek';
 import About from "./about.js";
 
-
 export default class MainView extends Component {
 
   // passing props, navState object,
@@ -43,23 +42,23 @@ export default class MainView extends Component {
     console.log(this.props.navState)
     if (this.props.navState.mainView){
       return(
-        <div id="mainView" title='mainView'>
-          <MainViewHdr
-            navState={this.props.navState}
-           />
-          <TableHdr
-            navState={this.props.navState}
-            whatDayIsIt={this.whatDayIsIt}
-           />
-          <div className="scrollingEnabled">
-            <TableDay
-              navState={this.props.navState}
-             />
-          </div>
-          <TableWeek
-            navState={this.props.navState}
-           />
-        </div>
+            <div className="mainView" title='mainView' id={this.props.navState.mainViewBackGround[this.props.navState.currentLocation.index]}>
+                  <MainViewHdr
+                    navState={this.props.navState}
+                   />
+                  <TableHdr
+                    navState={this.props.navState}
+                    whatDayIsIt={this.whatDayIsIt}
+                   />
+                  <div className="scrollingEnabled">
+                    <TableDay
+                      navState={this.props.navState}
+                     />
+                  </div>
+                  <TableWeek
+                    navState={this.props.navState}
+                   />
+            </div>
       );
     } if (this.props.navState.about){
       return (

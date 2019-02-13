@@ -1,6 +1,6 @@
-## Born from the react bootstrapped environment
+## Born from the react create-react-app environment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

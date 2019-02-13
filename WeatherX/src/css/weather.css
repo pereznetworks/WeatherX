@@ -9,7 +9,6 @@
     background-size: 60%;
     text-decoration: none;
     font-size: 1em;
-    color: #fff;
     border: none;
     vertical-align:middle;
     padding: 0;
@@ -26,7 +25,48 @@
   line-height: 1em;
 }
 
-#cloud{
+#cloudyDay, #cloudy, #foggyDay, #partlyCloudyDay,#cloudyNight, #partlyCloudyNight, #foggyNight,#rainDay, #rainyNight, #clearDay, #clearNight {
+  float:left;
+  width: 100%;
+  height: stretch;
+  margin: 0 0 0 0;
+  padding: 0;
+  z-index: -1;
+}
+
+#cloudyDay, #cloudy, #foggyDay, #partlyCloudyDay {
+  background-color: #484848;
+  background-image: linear-gradient(to bottom left, #484848,#48c4e0); /* Standard syntax (must be last) */
+}
+
+#cloudyNight, #partlyCloudyNight, #foggyNight {
+  background-color: #757575;
+  background-image: linear-gradient(to bottom left, #757575,#040429); /* Standard syntax (must be last) */
+}
+
+#rainDay {
+
+}
+
+#rainyNight {
+
+}
+#clearDay {
+
+}
+
+#clearNight {
+
+}
+
+@media only screen and (min-width: 720px){
+  #cloudyDay, #cloudy, #foggyDay, #partlyCloudyDay, #cloudyNight,
+  #partlyCloudyDay, #foggyNight, #rainDay, #rainyNight, #clearDay, #clearNight {
+    margin: 6% 0 6% 0;
+    height:110%;
+  }
+}
+/* #cloud{
   background-image:url('../imgs/weather/Cloud-48.png');
 }
 
@@ -60,4 +100,4 @@
 
 #wind{
   background-image:url('../imgs/weather/Wind-48.png');
-}
+} */

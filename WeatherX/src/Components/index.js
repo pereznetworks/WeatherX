@@ -8,13 +8,13 @@ import MainView from "./mainView";
 import LocationBar from "./locationBar";
 
 // import css styling
+import '../css/weather-icons.css';
+import '../css/weather-icons-wind.css';
 import '../css/navBar3.css';
 import '../css/mainView.css';
 import '../css/locationBar.css';
 import '../css/grid-main2.css';
 import '../css/weather.css';
-import '../css/weather-icons.css';
-import '../css/weather-icons-wind.css';
 
 // use dayJs-ext or moment0-timezone for timezone time adjustment
 // For now, using my own custom code to adjust from UTC to timezone offset of location
@@ -85,7 +85,8 @@ class Middle extends Component {
         hourlyConditions: [],
         dailyConditions: [],
         weatherIcon:{},
-        notADuplicateLocation:true
+        notADuplicateLocation:true,
+        mainViewBackGround: []
       };
 
       this.backendServer = {
@@ -108,6 +109,7 @@ class Middle extends Component {
       this.getDailyConditions = this.getDailyConditions.bind(this);
       this.pickOutDataPoints = this.pickOutDataPoints.bind(this);
       this.pickOutDailyDataPoints = this.pickOutDailyDataPoints.bind(this);
+      this.setMainViewBackGround = this.setMainViewBackGround.bind(this);
     }
 
     componentDidMount(){
@@ -120,6 +122,7 @@ class Middle extends Component {
         showMeThisOne:''
       });
     }
+
 
 // date format and timezone conversion methods
 
@@ -260,6 +263,32 @@ class Middle extends Component {
       return dataArray.map(this.pickOutDailyDataPoints);
     }
 
+    setMainViewBackGround(currentLocation){
+        if ( currentLocation.icon === 'cloudy'){
+            return "cloudyDay"
+          } else if ( currentLocation.icon === 'fog'){
+            return "fog";
+          } else if ( currentLocation.icon === 'partly-cloudy-day' || currentLocation.icon === 'partly-cloudy'){
+            return "partlyCloudyDay";
+          } else if ( currentLocation.icon === 'partly-cloudy-night'){
+            return "partlyCloudyNight";
+          } else if ( currentLocation.icon === 'rain'){
+            return "rain";
+          } else if ( currentLocation.icon === 'clear' ||  currentLocation.icon === 'clear-day'){
+            return "clearDay";
+          } else if ( currentLocation.icon === 'clear-night'){
+            return "clearNight";
+          } else if ( currentLocation.icon === 'snow'){
+            return "snow";
+          } else if ( currentLocation.icon === 'scattered-showers'){
+            return "scatteredShowers";
+          } else if ( currentLocation.icon === 'thunder'){
+            return "thunder";
+          } else if ( currentLocation.icon === 'wind'){
+            return "windy";
+          }
+    }
+
     handleNavClick(event) {
       if (event.target.title === 'backHome'){
         this.setState({
@@ -313,16 +342,20 @@ class Middle extends Component {
           name: this.state.locationName[index],
           utcOffSet: this.state.forecastData[index].data.mostRecentForecast.data.offset,
           time: this.getCurrentTimeAtLocation(this.state.forecastData[index].data.mostRecentForecast.data.currently.time, this.state.forecastData[index].data.mostRecentForecast.data.offset),
-          temp: Math.floor(this.state.forecastData[index].data.mostRecentForecast.data.currently.temperature)
+          temp: Math.floor(this.state.forecastData[index].data.mostRecentForecast.data.currently.temperature),
+          icon: this.state.forecastData[index].data.mostRecentForecast.data.currently.icon
         },
         currentForecast: this.state.forecastData[index],
         hourlyConditions: this.getHourlyConditions(this.state.forecastData[index].data.mostRecentForecast.data.hourly.data),
         dailyConditions: this.getDailyConditions(this.state.forecastData[index].data.mostRecentForecast.data.daily.data),
+        mainViewBackGround: [...this.state.mainViewBackGround, this.setMainViewBackGround(this.state.forecastData[index].data.mostRecentForecast.data.currently)],
         home: false,
         about: false,
         mainView: true,
         locationBar: false
       })
+
+
 
     }
 
@@ -406,9 +439,11 @@ class Middle extends Component {
                     name: `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`,
                     utcOffSet: newForecast.data.mostRecentForecast.data.offset,
                     time: this.getCurrentTimeAtLocation(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
-                    temp: Math.floor(newForecast.data.mostRecentForecast.data.currently.apparentTemperature)
+                    temp: Math.floor(newForecast.data.mostRecentForecast.data.currently.apparentTemperature),
+                    icon:`${newForecast.data.mostRecentForecast.data.currently.icon}`
                   },
                   locationCount: this.state.locationCount + 1,
+                  mainViewBackGround: [...this.state.mainViewBackGround, this.setMainViewBackGround(newForecast.data.mostRecentForecast.data.currently)],
                   home: true,
                   about: false,
                   mainView: false,

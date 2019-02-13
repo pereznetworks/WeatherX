@@ -3,6 +3,9 @@
    media queries adapt for larger screens and then landscape-mode
 */
 
+*{
+  color:#e0e0e0
+}
 #navBar3{
   align-content: center;
   text-align: center;
@@ -12,7 +15,6 @@
   color:#fff;
   width:100%;
   margin: auto;
-  z-index: +1;
 }
 
 #titleBar{
@@ -26,7 +28,6 @@
 
 #title {
   font-size: 1.5em;
-  color: #fff;
   width: auto;
   height: 60%;
   margin: 0 0;
@@ -36,7 +37,6 @@
 
 #titleText {
   font-size: .8em;
-  color: #fff;
   width: 100%;
   height: 60%;
   display: block;
@@ -110,7 +110,7 @@
   background-color: transparent;
 }
 #backHome-button{
-    background-image:url('../imgs/Menu-48.png');
+    background-image:url('../imgs/Menu-offW-48.png');
     float:left;
     text-align: left;
     align-content: left;
@@ -270,11 +270,7 @@
   }
 
   #backHome-button{
-      background-image:url('../imgs/Menu-48.png');
-  }
-
-  #locationBar-div {
-    margin: 6% 0 6% 0;
+      background-image:url('../imgs/Menu-offW-48.png');
   }
 
 
