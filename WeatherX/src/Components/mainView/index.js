@@ -42,7 +42,7 @@ export default class MainView extends Component {
     console.log(this.props.navState)
     if (this.props.navState.mainView){
       return(
-            <div className="mainView" title='mainView' id={this.props.navState.mainViewBackGround[this.props.navState.currentLocation.index]}>
+            <div style={{"paddingTop": "28px "}}className="mainView" title='mainView' id={this.props.navState.mainViewBackGround[this.props.navState.currentLocation.index]}>
                   <MainViewHdr
                     navState={this.props.navState}
                    />

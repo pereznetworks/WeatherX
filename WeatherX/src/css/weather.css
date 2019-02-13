@@ -25,12 +25,12 @@
   line-height: 1em;
 }
 
-#cloudyDay, #cloudy, #foggyDay, #partlyCloudyDay,#cloudyNight, #partlyCloudyNight, #foggyNight,#rain, #rainyNight, #clearDay, #clearNight {
+#clearDay, clearNight, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
   float:left;
   width: 100%;
-  height: stretch;
+  height: 100%;
+  padding: 0 0 0 0;
   margin: 0 0 0 0;
-  padding: 0;
   z-index: -1;
 }
 
@@ -54,11 +54,9 @@
   background-image: linear-gradient(to bottom left, #757575,#040429); /* Standard syntax (must be last) */
 }
 
-@media only screen and (min-width: 720px){
-  #cloudyDay, #cloudy, #foggyDay, #partlyCloudyDay, #cloudyNight,
-  #partlyCloudyDay, #foggyNight, #rain, #rainyNight, #clearDay, #clearNight {
-    margin: 6% 0 6% 0;
-    height:110%;
+@media only screen and (min-width: 620px){
+#clearDay, clearNight, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
+    height:-webkit-fill-available;
   }
 }
 /* #cloud{
