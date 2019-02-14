@@ -167,6 +167,9 @@ export default class Middle extends Component {
   }
 
   checkDay(dateInt, tz){
+    // dont need actual current timeout
+    // need to calc whether for a given hour of the day...
+    // for specific location ..is it nighttime or daytime
     let hrs = this.getTZhours(this.getUpToSecDateOfLocation(dateInt), tz);
     if(hrs > 7 && hrs < 17){
       return true;
@@ -235,7 +238,7 @@ export default class Middle extends Component {
   }
 
   getCurrentTimeAtLocation(dateInt, tz){
-    let date = this.getUpToSecDateOfLocation(dateInt);
+    let date = this.appData.date;
     let hrs, mins;
 
     hrs = this.getTZhours(date, tz);

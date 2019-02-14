@@ -13,12 +13,18 @@ export default class HourlyConditions extends Component {
         return <td key={index} className="weatherSummary" ><i className="wi wi-day-cloudy"></i></td>
       } else if (object.icon === 'fog'){
         return <td key={index} className="weatherSummary" ><i className="wi wi-day-fog"></i></td>
-      } else if (object.icon === 'partly-cloudy-day' || object.icon === 'partly-cloudy-night'  ){
+      } else if (object.icon === 'partly-cloudy-day'){
         return <td key={index} className="weatherSummary" ><i className="wi wi-day-sunny-overcast"></i></td>
+      } else if ( object.icon === 'partly-cloudy-night'  ){
+        return <td key={index} className="weatherSummary" ><i className="wi wi-night-alt-cloudy"></i></td>
       } else if (object.icon === 'rain'){
         return <td key={index} className="weatherSummary"><i className="wi wi-day-rain"></i></td>
-      } else if (object.icon === 'clear' || object.icon === 'clear-night' || object.icon === 'clear-day'){
+      } else if (object.icon === 'clear'){
         return <td key={index} className="weatherSummary"><i className="wi wi-day-sunny"></i></td>
+      } else if ( object.icon === 'clear-day'){
+        return <td key={index} className="weatherSummary"><i className="wi wi-day-sunny"></i></td>
+      } else if ( object.icon === 'clear-night'){
+        return <td key={index} className="weatherSummary"><i className="wi wi-night-clear"></i></td>
       } else if (object.icon === 'snow'){
         return <td key={index} className="weatherSummary"><i className="wi wi-day-snow"></i></td>
       } else if (object.icon === 'scattered-showers'){
