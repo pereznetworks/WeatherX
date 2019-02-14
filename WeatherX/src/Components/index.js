@@ -16,44 +16,29 @@ import '../css/locationBar.css';
 import '../css/grid-main2.css';
 import '../css/weather.css';
 
-// use dayJs-ext or moment0-timezone for timezone time adjustment
+// may use dayJs-ext or moment0-timezone for timezone time adjustment
 // For now, using my own custom code to adjust from UTC to timezone offset of location
 
 // creates one component for all sub-components
-class Middle extends Component {
 
-  // hanldeNavSubmit takes input submitted (form) and makes api call to back-end server
-  // hanldeNavClick takes event, based on selection and sets and loads components based on navState
+/*   state boolean values control  which components are rendered and displayed
+      home, about, mainView and locationBar
+
+      home: initial view of app
+            includes titleBar, navbar3
+            home and locationBar can be true at the same time, but about and mainView are false
+            when about is true; home, mainView and locationBar are false
+            when mainView is tru;  home, about and locationBar are false
+
+      about: blog and about WeatherX app page
+
+      geoCoding and geoLocation : indicate which method used to pinpoint which location to get forecastData for
+ */
+
+export default class Middle extends Component {
 
     constructor(props) {
       super(props);
-      /* note to self:
-          Critical are the first 4 boolean state values,
-          since these control which components are rendered and displayed
-          home, about, mainView and locationBar
-
-          home: initial view of app
-                includes titleBar, navbar3
-                home and locationBar can be true at the same time, but about and mainView are false
-                when about is true; home, mainView and locationBar are false
-                when mainView is tru;  home, about and locationBar are false
-
-          about: blog and about WeatherX app page
-
-          geoCoding and geoLocation : indicate which method used to pinpoint which location to get forecastData for
-
-          locatonName: array of typed locations
-          locationCount: how many locations typed
-
-          currentLocation: location to be displayed in mainView
-          currentForecast: latest forecast recevied from backendServer
-
-          showMeThisOne: deprecated by currentLocation, will remove
-
-          forecastData: array of forecastData objects { timeStamp:dateInt, mostRecentLocation:{data:{jsonobject}, mostRecentForecast:{data:{jsonobject} }
-
-          need to update this with the rest ....
-      */
 
       this.state = {
         home: true,
@@ -535,7 +520,7 @@ class Middle extends Component {
               // currentLocation will always be the latest one entered, so new locationBar will be rendered for it
               // index of locationName array should always match index of forecastData array
 
-                  this.appData.forecastData = [...this.appData.forecastData, newForecast.data.mostRecentForecast]; 
+                  this.appData.forecastData = [...this.appData.forecastData, newForecast.data.mostRecentForecast];
                   this.appData.locationData =  [...this.appData.locationData, newForecast.data.mostRecentLocation];
                   this.appDatacurrentLocationData = {
                     index: this.appData.forecastData.length,
@@ -611,12 +596,3 @@ class Middle extends Component {
      );
     }
 }
-
-export default Middle;
-
-
-/*
-temp: Math.floor(dataObject.temperatureHigh),            // datatype int
-tempLow: Math.floor(dataObject.temperatureMin),         // datatype int
-tempHigh: Math.floor(dataObject.temperatureMax),        // datatype int
-*/
