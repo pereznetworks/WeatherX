@@ -203,9 +203,24 @@ export default class Middle extends Component {
 
   }
 
-  formatTime(hrs, mins){
+  formatTime(hrs, mins, secs){
     hrs = Math.floor(hrs);
-    if (mins){
+    if (secs){
+      if (hrs > 24){
+         hrs = hrs - 24;
+         return `${hrs}:${mins}:${secs} PM`;
+      } else if (hrs > 12){
+         hrs = hrs - 12;
+         return `${hrs}:${mins}:${secs} PM`;
+      } else if (hrs === 24){
+         hrs = 12;
+         return `${hrs}:${mins}:${secs} AM`;
+      } else if (hrs === 12){
+         return `${hrs}:${mins}:${secs} PM`;
+      } else if (hrs <= 11){
+         return `${hrs}:${mins}:${secs} AM`;
+      }
+    } else if (mins){
       if (hrs > 24){
          hrs = hrs - 24;
          return `${hrs}:${mins} PM`;
@@ -240,7 +255,7 @@ export default class Middle extends Component {
 
   getLiveFormatedTime(dateInt, tz){
     let date = dateInt;
-    let hrs, mins;
+    let hrs, mins, secs;
 
     hrs = this.getTZhours(date, tz);
 
@@ -249,7 +264,12 @@ export default class Middle extends Component {
       mins = "0" + mins;
     }
 
-    return this.formatTime(hrs, mins);
+    secs = date.getUTCSeconds();
+    if (secs < 10) {
+      secs = "0" + secs;
+    }
+
+    return this.formatTime(hrs, mins, secs);
 
   }
 
