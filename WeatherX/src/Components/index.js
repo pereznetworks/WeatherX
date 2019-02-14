@@ -86,7 +86,9 @@ export default class Middle extends Component {
         mainViewBackGround: [],
         locationBarBackGround: [],
         tickTock: 1000,
-        date: 0
+        date: 0,
+        currentDay: [],
+        currentDayIndex: 0
       }; // all other appData
 
       // time, date conversion, date formatting methods
@@ -147,7 +149,9 @@ export default class Middle extends Component {
         mainViewBackGround: [],
         locationBarBackGround: [],
         tickTock: 0,
-        date: new Date()
+        date: new Date(),
+        currentDay:[],
+        currentDayIndex: 0
       };
     };  // contructing appData
 
@@ -294,11 +298,15 @@ export default class Middle extends Component {
 
     let hrs = this.getTZhours(today, tz);
     let hourOfDay = this.formatTime(hrs);
-    let day = today.getDay()
+    let nextDay;
+
+    this.appData.currentDay = [...this.appData.currentDay, today.getDay()];
+    this.appData.currentDayIndex = this.appData.currentDay.length - 1;
     let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
     if (hourOfDay === '0 AM' || hourOfDay === '12 AM'){
-        return daysOfWeek[day + 1];
+        nextDay = this.appData.currentDay[this.appData.currentDayIndex];
+        return daysOfWeek[nextDay];
     } else {
       return hourOfDay;
     }
