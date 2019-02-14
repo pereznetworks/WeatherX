@@ -171,7 +171,7 @@ export default class Middle extends Component {
     // need to calc whether for a given hour of the day...
     // for specific location ..is it nighttime or daytime
     let hrs = this.getTZhours(this.getUpToSecDateOfLocation(dateInt), tz);
-    if(hrs > 7 && hrs < 17){
+    if(hrs > 6 && hrs < 19){
       return true;
     } else {
       return false;
@@ -281,12 +281,14 @@ export default class Middle extends Component {
     pickOutDataPoints(dataObject, index){
       if (index === 0 ){
         return {
+          day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet),
           hour: 'Now',  // datatype string
           icon: dataObject.icon,                      // datatype string
           temp: Math.floor(dataObject.temperature),   // datatype int
         };
       } else {
         return {
+          day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet),
           hour: this.getHourOfDay(dataObject.time, this.appData.currentLocationData.utcOffSet),  // datatype string
           icon: dataObject.icon,                      // datatype string
           temp: Math.floor(dataObject.temperature),   // datatype int
