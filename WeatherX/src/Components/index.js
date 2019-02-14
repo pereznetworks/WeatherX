@@ -180,7 +180,7 @@ export default class Middle extends Component {
   }
 
   getTZhours(dateInt, tz){
-    let utc = dateInt.getUTCHours(dateInt);
+    let utc = dateInt.getUTCHours();
     let hrs;
 
     if (tz < 0){
@@ -295,14 +295,22 @@ export default class Middle extends Component {
 // methods for integrating geoCode results and forecastData points into components
 
     pickOutDataPoints(dataObject, index){
-      if (index === 0 ){
+      let dateX = this.getUpToSecDateOfLocation(dataObject.time);
+      console.log(dateX);
+      let hourX = this.getTZhours(dateX, this.appData.currentLocationData.utcOffSet);
+      console.log(hourX);
+      let currentHour =  this.getTZhours(new Date(), this.appData.currentLocationData.utcOffSet);
+      console.log(currentHour);
+      console.log(`testing hourX === currentHour:`, (hourX === currentHour))
+
+      if (index === 0 && hourX === currentHour){
         return {
           day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet),
           hour: 'Now',  // datatype string
           icon: dataObject.icon,                      // datatype string
           temp: Math.floor(dataObject.temperature),   // datatype int
         };
-      } else {
+      } else if (index > 0 ) {
         return {
           day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet),
           hour: this.getHourOfDay(dataObject.time, this.appData.currentLocationData.utcOffSet),  // datatype string
