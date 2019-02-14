@@ -92,6 +92,8 @@ export default class LocationBar extends Component {
         indexno={index} value={this.props.appData.locationData[index]}
         showMeThisOne={this.showMeThisOne}
         getCurrentTimeAtLocation={this.props.getCurrentTimeAtLocation}
+        getUpToSecDateOfLocation={this.props.getUpToSecDateOfLocation}
+        getLiveFormatedTime={this.props.getLiveFormatedTime}
         wi = {weatherIcon}
         />
     );

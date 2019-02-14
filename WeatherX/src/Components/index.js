@@ -85,7 +85,8 @@ export default class Middle extends Component {
         weatherIcon:{},
         mainViewBackGround: [],
         locationBarBackGround: [],
-        tickTock: 1000
+        tickTock: 1000,
+        date: 0
       }; // all other appData
 
       // time, date conversion, date formatting methods
@@ -105,6 +106,7 @@ export default class Middle extends Component {
       this.setLocationBarBackGround = this.setLocationBarBackGround.bind(this);
       this.checkDay = this.checkDay.bind(this);
       this.clock = this.clock.bind(this);
+      this.getLiveFormatedTime = this.getLiveFormatedTime.bind(this);
 
       // main app methods
       this.handleNavClick = this.handleNavClick.bind(this);
@@ -144,7 +146,7 @@ export default class Middle extends Component {
         weatherIcon:{},
         mainViewBackGround: [],
         locationBarBackGround: [],
-        tickTock: setInterval(this.clock, 1000),
+        tickTock: 0,
         date: new Date()
       };
     };  // contructing appData
@@ -161,9 +163,8 @@ export default class Middle extends Component {
   }
 
   getUpToSecDateOfLocation(dateInt){
-      // doing this in one place, to make code DRY, maintainable and modular
-      // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
-    return new Date(dateInt * 1000);
+    // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
+  return new Date(dateInt * 1000);
   }
 
   checkDay(dateInt, tz){
@@ -235,6 +236,21 @@ export default class Middle extends Component {
          return `${hrs} AM`;
       }
     }
+  }
+
+  getLiveFormatedTime(dateInt, tz){
+    let date = dateInt;
+    let hrs, mins;
+
+    hrs = this.getTZhours(date, tz);
+
+    mins = date.getUTCMinutes();
+    if (mins < 10) {
+      mins = "0" + mins;
+    }
+
+    return this.formatTime(hrs, mins);
+
   }
 
   getCurrentTimeAtLocation(dateInt, tz){
@@ -602,6 +618,8 @@ export default class Middle extends Component {
           handleNavClick={this.handleNavClick}
           showMeThisOne={this.showMeThisOne}
           getCurrentTimeAtLocation={this.getCurrentTimeAtLocation}
+          getUpToSecDateOfLocation={this.getUpToSecDateOfLocation}
+          getLiveFormatedTime={this.getLiveFormatedTime}
           />
         <MainView
           navState={this.state}
