@@ -47,13 +47,13 @@ export default class Middle extends Component {
         locationBar:false,
         geoLocation: false,
         geoCoding: false,
-      };
+      }; // using state to control component rendering
 
       this.backendServer = {
         url: `http://10.100.10.103`,
         port: `:9999`,
         path: '/weather:'
-      };
+      }; // object to use when making calls to backendServer
 
       this.appData = {
         errMsg: '',
@@ -84,9 +84,11 @@ export default class Middle extends Component {
         dailyConditions: [],
         weatherIcon:{},
         mainViewBackGround: [],
-        locationBarBackGround: []
-      };
+        locationBarBackGround: [],
+        tickTock: 1000
+      }; // all other appData
 
+      // time, date conversion, date formatting methods
       this.getUpToSecDateOfLocation = this.getUpToSecDateOfLocation.bind(this);
       this.getTZhours = this.getTZhours.bind(this);
       this.formatTime = this.formatTime.bind(this);
@@ -94,10 +96,7 @@ export default class Middle extends Component {
       this.getHourOfDay = this.getHourOfDay.bind(this);
       this.whatDayIsIt = this.whatDayIsIt.bind(this);
 
-      this.handleNavClick = this.handleNavClick.bind(this);
-      this.handleInputChange = this.handleInputChange.bind(this)
-      this.handleNavSubmit = this.handleNavSubmit.bind(this);
-      this.showMeThisOne = this.showMeThisOne.bind(this);
+      // data integration and processing methods
       this.getHourlyConditions = this.getHourlyConditions.bind(this);
       this.getDailyConditions = this.getDailyConditions.bind(this);
       this.pickOutDataPoints = this.pickOutDataPoints.bind(this);
@@ -105,6 +104,13 @@ export default class Middle extends Component {
       this.setMainViewBackGround = this.setMainViewBackGround.bind(this);
       this.setLocationBarBackGround = this.setLocationBarBackGround.bind(this);
       this.checkDay = this.checkDay.bind(this);
+      this.clock = this.clock.bind(this);
+
+      // main app methods
+      this.handleNavClick = this.handleNavClick.bind(this);
+      this.handleInputChange = this.handleInputChange.bind(this)
+      this.handleNavSubmit = this.handleNavSubmit.bind(this);
+      this.showMeThisOne = this.showMeThisOne.bind(this);
     }
 
     componentDidMount(){
@@ -137,18 +143,21 @@ export default class Middle extends Component {
         dailyConditions: [],
         weatherIcon:{},
         mainViewBackGround: [],
-        locationBarBackGround: []
+        locationBarBackGround: [],
+        tickTock: setInterval(this.clock, 1000),
+        date: new Date()
       };
-    }
+    };  // contructing appData
 
     componentWillUnmount(){
+      clearInterval(this.appData.tickTock);
       this.appData = null;
-    }
+    }; // destroy app and it's data
 
 // date format and timezone conversion methods
 
-  timeClock(){
-
+  clock(){
+    this.appData.date = new Date();
   }
 
   getUpToSecDateOfLocation(dateInt){
@@ -294,7 +303,7 @@ export default class Middle extends Component {
         };
       }
 
-    getHourlyConditions(dataArray){  // dataArray will be forecastData.data.daily.data
+    getHourlyConditions(dataArray){
       return dataArray.map(this.pickOutDataPoints);
     }
 
@@ -491,6 +500,8 @@ export default class Middle extends Component {
     }
 
 // this method makes the apicall get req to backendServer
+// only handleNavSubmit calls this method
+// never called by other methods or components
 
     requestDataFromServer(location){
 

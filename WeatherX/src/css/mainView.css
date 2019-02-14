@@ -133,12 +133,19 @@
     width: 70%;
     left: 14%;
   }
+
+  #mainViewHeader{
+    margin: 5% 0 0 0;
+  }
 }
 
 @media only screen and (min-width: 1100px){
   #mainView{
     width: 70%;
     left: 14%;
+  }
+  #mainViewHeader{
+    margin: 5% 0 0 0;
   }
 }
 
@@ -147,11 +154,17 @@
     width: 70%;
     left: 14%;
   }
+  #mainViewHeader{
+    margin: 5% 0 0 0;
+  }
 }
 
 @media only screen and (min-width: 1600px){
   #mainView{
     width: 70%;
     left: 14%;
+  }
+  #mainViewHeader{
+    margin: 5% 0 0 0;
   }
 }
