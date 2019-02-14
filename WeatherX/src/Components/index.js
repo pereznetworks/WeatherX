@@ -314,9 +314,20 @@ export default class Middle extends Component {
 
   whatDayIsIt(dateInt){
     // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
-    // using location based dateInt here to simply the code
+
+    let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    // let today = new Date();
+    // this.appData.currentDay = [...this.appData.currentDay, today.getDay()];
+    // this.appData.currentDayIndex = this.appData.currentDay.length - 1;
+
     const dateOflocation = this.getUpToSecDateOfLocation(dateInt);
-    var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    // if (dateOflocation.getDay() !== currentDay[0] ){
+    //   this.appData.refreshData = true;
+    // } else {
+    //   return daysOfWeek[dateOflocation.getDay()];
+    // }
+
     return daysOfWeek[dateOflocation.getDay()];
   }
 
@@ -324,12 +335,8 @@ export default class Middle extends Component {
 
     pickOutDataPoints(dataObject, index){
       let dateX = this.getUpToSecDateOfLocation(dataObject.time);
-      console.log(dateX);
       let hourX = this.getTZhours(dateX, this.appData.currentLocationData.utcOffSet);
-      console.log(hourX);
       let currentHour =  this.getTZhours(new Date(), this.appData.currentLocationData.utcOffSet);
-      console.log(currentHour);
-      console.log(`testing hourX === currentHour:`, (hourX === currentHour))
 
       if (index === 0 && hourX === currentHour){
         return {
@@ -338,13 +345,22 @@ export default class Middle extends Component {
           icon: dataObject.icon,                      // datatype string
           temp: Math.floor(dataObject.temperature),   // datatype int
         };
-      } else if (index > 0 ) {
+      } else if (index > 0 && hourX === currentHour) {
+        return {
+          day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet),
+          hour: 'Now',  // datatype string
+          icon: dataObject.icon,                      // datatype string
+          temp: Math.floor(dataObject.temperature),   // datatype int
+        };
+      } else if (index > 0){
         return {
           day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet),
           hour: this.getHourOfDay(dataObject.time, this.appData.currentLocationData.utcOffSet),  // datatype string
           icon: dataObject.icon,                      // datatype string
           temp: Math.floor(dataObject.temperature),   // datatype int
         };
+      } else {
+        return null
       }
     }
 

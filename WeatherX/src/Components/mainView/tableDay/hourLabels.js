@@ -8,7 +8,9 @@ export default class HourLabels extends Component {
   }
 
   buildTableHdrs = (object, index) =>{
-    return <th key={index} className="hourOfDay">{object.hour}</th>;
+    if (object !== null){
+     return <th key={index} className="hourOfDay">{object.hour}</th>;
+    }
   }
 
   render(){
