@@ -58,7 +58,18 @@
   background-image: linear-gradient(to bottom left, #757575,#040429); /* Standard syntax (must be last) */
 }
 
-@media only screen and (min-width: 620px){
+@media only screen and (min-width: 568px) and (max-height: 420px){
+
+  #clearDay, clearNight, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
+      height:fit-content;
+  }
+
+  #locationBar-#clearDay, #locationBar-clearNight, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #locationBar-foggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
+
+  }
+}
+
+@media only screen and (min-width: 720px){
 
   #clearDay, clearNight, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
       height:-webkit-fill-available;
