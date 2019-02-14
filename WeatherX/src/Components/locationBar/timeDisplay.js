@@ -26,7 +26,6 @@ export default class TimeDisplay extends Component {
   }
 
   render(){
-    console.log(this.state.newTime)
     return (<p id="locationTime">{this.state.newTime}</p>);
 
   }
