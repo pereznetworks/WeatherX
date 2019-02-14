@@ -345,13 +345,6 @@ export default class Middle extends Component {
           icon: dataObject.icon,                      // datatype string
           temp: Math.floor(dataObject.temperature),   // datatype int
         };
-      } else if (index > 0 && hourX === currentHour) {
-        return {
-          day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet),
-          hour: 'Now',  // datatype string
-          icon: dataObject.icon,                      // datatype string
-          temp: Math.floor(dataObject.temperature),   // datatype int
-        };
       } else if (index > 0){
         return {
           day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet),
