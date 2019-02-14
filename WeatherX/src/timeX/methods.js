@@ -1,11 +1,31 @@
 /* timeX - written for use with WeatherX
     methods for formatting time and getting time of any location
-      tz = timezone of location : int : offset -12 to 12
-      dateInt = dateInt from new Date()
+      tz = timezone of location = type int = offset from UTC, -12 to 12
+      dateInt =  standard int in milliseconds from running new Date()
 */
 
-function getTZhours(dateInt, tz){
-  let utc = dateInt.getUTCHours();
+
+timeClock(){
+
+}
+
+getUpToSecDateOfLocation(dateInt){
+    // doing this in one place, to make code DRY, maintainable and modular
+    // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
+  return this.getUpToSecDateOfLocation(dateInt * 1000)
+}
+
+checkDay(dateInt, tz){
+  let hrs = this.getTZhours(this.getUpToSecDateOfLocation(dateInt), tz);
+  if(hrs > 7 && hrs < 17){
+    return true;
+  } else {
+    return false;
+  }
+}
+
+getTZhours(dateInt, tz){
+  let utc = dateInt.getUTCHours(dateInt);
   let hrs;
 
   if (tz < 0){
@@ -28,16 +48,16 @@ function getTZhours(dateInt, tz){
 
 }
 
-function formatTime(hrs, mins){
-
+formatTime(hrs, mins){
+  hrs = Math.floor(hrs);
   if (mins){
-    if (hrs > 12){
-       hrs = hrs - 12;
-       return `${hrs}:${mins} PM`;
-    } else if (hrs > 24){
+    if (hrs > 24){
        hrs = hrs - 24;
        return `${hrs}:${mins} PM`;
-    } else if(hrs === 24){
+    } else if (hrs > 12){
+       hrs = hrs - 12;
+       return `${hrs}:${mins} PM`;
+    } else if (hrs === 24){
        hrs = 12;
        return `${hrs}:${mins} AM`;
     } else if (hrs === 12){
@@ -63,50 +83,40 @@ function formatTime(hrs, mins){
   }
 }
 
-function getCurrentTimeAtLocation(dateInt, tz){
-  const dateOflocation = new Date(dateInt * 1000);
+getCurrentTimeAtLocation(dateInt, tz){
+  let date = this.getUpToSecDateOfLocation(dateInt);
+  let hrs, mins;
 
-  // let hrs = dateOflocation.getHours();
-  // let mins = dateOflocation.getMinutes();
+  hrs = this.getTZhours(date, tz);
 
-  let hrs = getTZhours(dateOflocation, tz);
-
-  let mins = dateOflocation.getUTCMinutes();
+  mins = date.getUTCMinutes();
   if (mins < 10) {
     mins = "0" + mins;
   }
 
-  return formatTime(hrs, mins);
+  return this.formatTime(hrs, mins);
 
 }
 
-function getHourOfDay(dayInt, tz){
-  // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
-  const today = new Date(dayInt * 1000);
+getHourOfDay(dateInt, tz){
+  const today = this.getUpToSecDateOfLocation(dateInt);
 
-  let hrs = getTZhours(today, tz);
-  let hourOfDay = formatTime(hrs);
+  let hrs = this.getTZhours(today, tz);
+  let hourOfDay = this.formatTime(hrs);
   let day = today.getDay()
   let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-  if (hourOfDay === '12 AM'){
-      return daysOfWeek[day];
+  if (hourOfDay === '0 AM' || hourOfDay === '12 AM'){
+      return daysOfWeek[day + 1];
   } else {
     return hourOfDay;
   }
 }
 
-function whatDayIsIt(dateInt){
+whatDayIsIt(dateInt){
   // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
-  const dateOflocation = new Date(dateInt * 1000);
+  // using location based dateInt here to simply the code
+  const dateOflocation = this.getUpToSecDateOfLocation(dateInt);
   var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   return daysOfWeek[dateOflocation.getDay()];
-}
-
-export {
-  getTZhours,
-  formatTime,
-  getCurrentTimeAtLocation,
-  getHourOfDay,
-  whatDayIsIt,
 }

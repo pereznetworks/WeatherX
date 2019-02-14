@@ -10,13 +10,13 @@ export default class TableDay extends Component {
       <table id="tableDays">
          <tbody>
               <tr>
-                <HourLabels navState={this.props.navState} />
+                <HourLabels appData={this.props.appData} />
               </tr>
               <tr>
-                <HourlyConditions navState={this.props.navState}/>
+                <HourlyConditions appData={this.props.appData}/>
               </tr>
               <tr>
-                <HourlyTemps navState={this.props.navState}/>
+                <HourlyTemps appData={this.props.appData}/>
               </tr>
           </tbody>
         </table>

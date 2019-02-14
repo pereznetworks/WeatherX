@@ -31,7 +31,7 @@ export default class HourlyConditions extends Component {
   }
 
   selectHourlyConditions(){
-    return this.props.navState.hourlyConditions.map(this.setHourlyConditionElements);
+    return this.props.appData.hourlyConditions.map(this.setHourlyConditionElements);
   }
 
   render(){

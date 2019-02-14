@@ -62,9 +62,21 @@ class Middle extends Component {
         locationBar:false,
         geoLocation: false,
         geoCoding: false,
-        locationName: [],
+      };
+
+      this.backendServer = {
+        url: `http://10.100.10.103`,
+        port: `:9999`,
+        path: '/weather:'
+      };
+
+      this.appData = {
+        errMsg: '',
+        err: false,
+        notADuplicateLocation:true,
+        locationData: [],
         locationCount: 0,
-        locationsArray: [],
+        availLocationsArray: [],
         currentLocation:'',
         currentForecast: {},
         showMeThisOne:'',
@@ -86,17 +98,11 @@ class Middle extends Component {
         hourlyConditions: [],
         dailyConditions: [],
         weatherIcon:{},
-        notADuplicateLocation:true,
         mainViewBackGround: [],
         locationBarBackGround: []
       };
 
-      this.backendServer = {
-        url: `http://10.100.10.103`,
-        port: `:9999`,
-        path: '/weather:'
-      };
-
+      this.getUpToSecDateOfLocation = this.getUpToSecDateOfLocation.bind(this);
       this.getTZhours = this.getTZhours.bind(this);
       this.formatTime = this.formatTime.bind(this);
       this.getCurrentTimeAtLocation = this.getCurrentTimeAtLocation.bind(this);
@@ -117,22 +123,57 @@ class Middle extends Component {
     }
 
     componentDidMount(){
-      this.setState({
-        home: true,
-        about: false,
-        mainView: false,
-        locationBar:false,
+      this.appData = {
+        errMsg: '',
+        err: false,
+        notADuplicateLocation:true,
+        locationData: [],
+        locationCount: 0,
+        availLocationsArray: [],
         currentLocation:'',
-        showMeThisOne:''
-      });
+        currentForecast: {},
+        showMeThisOne:'',
+        forecastData: [],
+        weatherConditions: {
+          cloud:false,
+          fog:false,
+          hurrican:false,
+          partlyCloudy:false,
+          rain:false,
+          sun:false,
+          snow:false,
+          scatteredShowers:false,
+          thunder:false,
+          wind:false,
+        },
+        prevHourTimeStamp: [],
+        useHourlyConditions: [],
+        hourlyConditions: [],
+        dailyConditions: [],
+        weatherIcon:{},
+        mainViewBackGround: [],
+        locationBarBackGround: []
+      };
     }
 
+    componentWillUnmount(){
+      this.appData = null;
+    }
 
 // date format and timezone conversion methods
 
+  timeClock(){
+
+  }
+
+  getUpToSecDateOfLocation(dateInt){
+      // doing this in one place, to make code DRY, maintainable and modular
+      // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
+    return new Date(dateInt * 1000);
+  }
+
   checkDay(dateInt, tz){
-    const dateOflocation = new Date(dateInt * 1000);
-    let hrs = this.getTZhours(dateOflocation, tz);
+    let hrs = this.getTZhours(this.getUpToSecDateOfLocation(dateInt), tz);
     if(hrs > 7 && hrs < 17){
       return true;
     } else {
@@ -141,7 +182,7 @@ class Middle extends Component {
   }
 
   getTZhours(dateInt, tz){
-    let utc = dateInt.getUTCHours();
+    let utc = dateInt.getUTCHours(dateInt);
     let hrs;
 
     if (tz < 0){
@@ -200,7 +241,7 @@ class Middle extends Component {
   }
 
   getCurrentTimeAtLocation(dateInt, tz){
-    let date = new Date();
+    let date = this.getUpToSecDateOfLocation(dateInt);
     let hrs, mins;
 
     hrs = this.getTZhours(date, tz);
@@ -214,17 +255,17 @@ class Middle extends Component {
 
   }
 
-  getHourOfDay(dayInt, tz){
-    // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
-    const today = new Date(dayInt * 1000);
+  getHourOfDay(dateInt, tz){
+
+    const today = this.getUpToSecDateOfLocation(dateInt);
 
     let hrs = this.getTZhours(today, tz);
     let hourOfDay = this.formatTime(hrs);
     let day = today.getDay()
     let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-    if (hourOfDay === '12 AM'){
-        return daysOfWeek[day];
+    if (hourOfDay === '0 AM' || hourOfDay === '12 AM'){
+        return daysOfWeek[day + 1];
     } else {
       return hourOfDay;
     }
@@ -232,7 +273,8 @@ class Middle extends Component {
 
   whatDayIsIt(dateInt){
     // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
-    const dateOflocation = new Date(dateInt * 1000);
+    // using location based dateInt here to simply the code
+    const dateOflocation = this.getUpToSecDateOfLocation(dateInt);
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     return daysOfWeek[dateOflocation.getDay()];
   }
@@ -248,7 +290,7 @@ class Middle extends Component {
         };
       } else {
         return {
-          hour: this.getHourOfDay(dataObject.time, this.state.currentLocation.utcOffSet),  // datatype string
+          hour: this.getHourOfDay(dataObject.time, this.appData.currentLocationData.utcOffSet),  // datatype string
           icon: dataObject.icon,                      // datatype string
           temp: Math.floor(dataObject.temperature),   // datatype int
         };
@@ -406,39 +448,37 @@ class Middle extends Component {
 
     showMeThisOne(locationName, index){
 
-      console.log(locationName, index);
-
-      console.log(this.state.forecastData[index].data);
-
-
       // have forecastData ready ... now set mainView to true
-      this.setState({
-        currentLocation: {
+      this.appData.currentLocationData = {
           index: index,
-          name: this.state.locationName[index],
-          utcOffSet: this.state.forecastData[index].data.mostRecentForecast.data.offset,
-          time: this.getCurrentTimeAtLocation(this.state.forecastData[index].data.mostRecentForecast.data.currently.time, this.state.forecastData[index].data.mostRecentForecast.data.offset),
-          temp: Math.floor(this.state.forecastData[index].data.mostRecentForecast.data.currently.temperature),
-          day: this.checkDay(this.state.forecastData[index].data.mostRecentForecast.data.currently.time, this.state.forecastData[index].data.mostRecentForecast.data.offset),
-          icon: this.state.forecastData[index].data.mostRecentForecast.data.currently.icon
-        },
-        currentForecast: this.state.forecastData[index],
-        hourlyConditions: this.getHourlyConditions(this.state.forecastData[index].data.mostRecentForecast.data.hourly.data),
-        dailyConditions: this.getDailyConditions(this.state.forecastData[index].data.mostRecentForecast.data.daily.data),
+          name: `${this.appData.locationData[index].data.city}, ${this.appData.locationData[index].data.province}`,
+          utcOffSet: this.appData.forecastData[index].data.offset,
+          time: this.getCurrentTimeAtLocation(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset),
+          temp: Math.floor(this.appData.forecastData[index].data.currently.temperature),
+          day: this.checkDay(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset),
+          icon: this.appData.forecastData[index].data.currently.icon
+        };
+
+       this.appData.currentForecast = this.appData.forecastData[index].data;
+       this.appData.hourlyConditions = this.getHourlyConditions(this.appData.forecastData[index].data.hourly.data);
+       this.appData.dailyConditions = this.getDailyConditions(this.appData.forecastData[index].data.daily.data);
+
+      this.setState({
         home: false,
         about: false,
         mainView: true,
         locationBar: false
       })
 
+      console.log(locationName, index);
+
+      console.log(this.appData, this.state);
 
 
     }
 
     handleInputChange(event) {
-      this.setState(
-          {geoCodeThis: event.target.value}
-        );
+      this.appData.geoCodeThis = event.target.value;
     }
 
     handleNavSubmit(event) {
@@ -446,18 +486,19 @@ class Middle extends Component {
       // dont accept duplicate locations
       // only get and store forecast data for a new location
       const compareLocationName = (item, index) => {
-        if (item === this.state.geoCodeThis){
-          this.setState({
-            notADuplicateLocation: false
-          });
-        }
+        let locationName = `${item.cityName}, ${item.province}`;
+        if (locationName === this.appData.geoCodeThis){
+          this.appData.notADuplicateLocation = false;
+         }
       };
 
-      this.state.locationName.forEach(compareLocationName);
+      if (this.appData.locationData.length > 0){
+        this.appData.locationData.forEach(compareLocationName);
+      }
 
-      if (this.state.notADuplicateLocation){
-          this.requestDataFromServer(this.state.geoCodeThis, event);
-        }
+      if (this.appData.notADuplicateLocation){
+          this.requestDataFromServer(this.appData.geoCodeThis);
+      }
 
       // dont wnat app reset on form button submittions
       event.preventDefault();
@@ -466,85 +507,76 @@ class Middle extends Component {
 
 // this method makes the apicall get req to backendServer
 
-    requestDataFromServer(location, event){
+    requestDataFromServer(location){
 
       // really should have another 'middle' function to validate input...
-      // if no province, state then default to CA
+      // to keep invalid requests to server from using up api call bandwitdh and limits
+
+      // if no province, state then default to CA, or US
+      // otherwise will need to get a db of all citynames from everywhere !!
+      // like...
       // let lookForCommaBetween = /,(?=[\sA-Za-z])/g;
       // if (!location.match(lookForCommaBetween)){
       //    location = `${this.state.geoCodeThis}, CA`;
+      //    or
+      //    location = `${this.state.geoCodeThis}, US`;
       // }
 
       // once we have a valid location... get forecast data from backendServer
-      console.log(`${this.backendServer.url}${this.backendServer.port}${this.backendServer.path}${this.state.geoCodeThis}`)
+      console.log(`${this.backendServer.url}${this.backendServer.port}${this.backendServer.path}${location}`)
       axios.get(`${this.backendServer.url}${this.backendServer.port}${this.backendServer.path}${location}`)
             .then(response => {
               let newForecast = {  // save new current foreeast
                 timeStamp: Date.now(),
                 data: response.data
               }
-              console.log(newForecast);
-              /* will end up with array of objects:
-                [
-                  {
-                    timeStamp:<dateInt>,
-                    data:{ mostRecentLocation {},
-                           mostRecentForecast:{}
-                         }
-                   },
-                   {
-                     timeStamp:<dateInt>,
-                     data:{ mostRecentLocation {},
-                            mostRecentForecast:{}
-                          }
-                    },
-                    ...
-                ]
-              */
+              console.log(newForecast); // will end up with array of objects
 
-              // set state of nav, keep array of locations and respective forecasts
-              // currentLocation wil always be the latest one entered, so new locationBar will be rendered for it
+              // currentLocation will always be the latest one entered, so new locationBar will be rendered for it
               // index of locationName array should always match index of forecastData array
 
-              this.setState(
-                {
-                  forecastData: [...this.state.forecastData, newForecast], // will end up with an array of forecast objects
-                  locationName: [...this.state.locationName, `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`],
-                  currentLocation: {
-                    index: this.state.forecastData.length,
+                  this.appData.forecastData = [...this.appData.forecastData, newForecast.data.mostRecentForecast]; 
+                  this.appData.locationData =  [...this.appData.locationData, newForecast.data.mostRecentLocation];
+                  this.appDatacurrentLocationData = {
+                    index: this.appData.forecastData.length,
                     name: `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`,
                     utcOffSet: newForecast.data.mostRecentForecast.data.offset,
                     time: this.getCurrentTimeAtLocation(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
                     day: this.checkDay(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
                     temp: Math.floor(newForecast.data.mostRecentForecast.data.currently.apparentTemperature),
                     icon:`${newForecast.data.mostRecentForecast.data.currently.icon}`
-                  },
-                  locationsArray: [...this.state.locationsArray, {
-                    index: this.state.forecastData.length,
+                  };
+                  this.appData.availLocationsArray = [...this.appData.availLocationsArray, {
+                    index: this.appData.forecastData.length,
                     name: `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`,
                     utcOffSet: newForecast.data.mostRecentForecast.data.offset,
                     time: this.getCurrentTimeAtLocation(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
                     day: this.checkDay(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
                     temp: Math.floor(newForecast.data.mostRecentForecast.data.currently.apparentTemperature),
                     icon:`${newForecast.data.mostRecentForecast.data.currently.icon}`
-                  }],
-                  locationCount: this.state.locationCount + 1,
-                  mainViewBackGround: [...this.state.mainViewBackGround, this.setMainViewBackGround(newForecast.data.mostRecentForecast.data)],
-                  locationBarBackGround: [...this.state.locationBarBackGround, this.setLocationBarBackGround(newForecast.data.mostRecentForecast.data)],
+                  }];
+                  this.appData.locationCount = this.appData.locationCount + 1;
+                  this.appData.mainViewBackGround = [...this.appData.mainViewBackGround, this.setMainViewBackGround(newForecast.data.mostRecentForecast.data)];
+                  this.appData.locationBarBackGround =  [...this.appData.locationBarBackGround, this.setLocationBarBackGround(newForecast.data.mostRecentForecast.data)];
+
+                // refreshing state of main components
+                // requestDataFromServer is only called by NavBar3's submit form
+                this.setState({
                   home: true,
                   about: false,
                   mainView: false,
                   locationBar:true
-                }
-              )
-              console.log(this.state);
+                })
+
+              console.log(this.state, this.appData);
+
             }).catch(err => {
 
               // No Chewy, THAT one goes there, THIS one goes here.... AAGH AANGH!
               console.log('Error fetching or parsing data', err);
               this.setState(
                 {
-                  err: err
+                  errMsg: err
                 }
               )
             });
@@ -557,6 +589,7 @@ class Middle extends Component {
         <TitleBar />
         <NavBar3
           navState={this.state}
+          appData={this.appData}
           handleNavClick={this.handleNavClick}
           handleInputChange={this.handleInputChange}
           handleNavSubmit={this.handleNavSubmit}
@@ -564,12 +597,14 @@ class Middle extends Component {
           />
         <LocationBar
           navState={this.state}
+          appData={this.appData}
           handleNavClick={this.handleNavClick}
           showMeThisOne={this.showMeThisOne}
           getCurrentTimeAtLocation={this.getCurrentTimeAtLocation}
           />
         <MainView
           navState={this.state}
+          appData={this.appData}
           whatDayIsIt={this.whatDayIsIt}
           />
       </div>

@@ -12,7 +12,7 @@ export default class HourLabels extends Component {
   }
 
   render(){
-    return this.props.navState.hourlyConditions.map(this.buildTableHdrs)
+    return this.props.appData.hourlyConditions.map(this.buildTableHdrs)
   }
 
 }

@@ -33,16 +33,16 @@ export default class DailyConditions extends Component {
         }
 
   selectDailyConditions(){
-    return this.props.navState.dailyConditions.map(this.setDailyConditionElement)
+    return this.props.appData.dailyConditions.map(this.setDailyConditionElement)
     }
 
   render(){
     return(
       <tr>
-        <td id="dayOfWeek">{this.props.navState.dailyConditions[this.props.dayIndex].day}</td>
+        <td id="dayOfWeek">{this.props.appData.dailyConditions[this.props.dayIndex].day}</td>
         <td id="forecastCondition">{this.selectDailyConditions(this.props.dayIndex)}</td>
-        <td id="tempHigh">{this.props.navState.dailyConditions[this.props.dayIndex].tempHigh}°</td>
-        <td id="tempLow">{this.props.navState.dailyConditions[this.props.dayIndex].tempLow}°</td>
+        <td id="tempHigh">{this.props.appData.dailyConditions[this.props.dayIndex].tempHigh}°</td>
+        <td id="tempLow">{this.props.appData.dailyConditions[this.props.dayIndex].tempLow}°</td>
       </tr>
     );
   }

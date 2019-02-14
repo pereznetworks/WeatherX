@@ -12,14 +12,14 @@ export default class TableWeek extends Component {
               <th id="tempHigh"></th>
               <th id="tempLow"></th>
             </tr>
-            <DailyConditions key={0} navState={this.props.navState} dayIndex={0}/>
-            <DailyConditions key={1} navState={this.props.navState} dayIndex={1}/>
-            <DailyConditions key={2} navState={this.props.navState} dayIndex={2}/>
-            <DailyConditions key={3} navState={this.props.navState} dayIndex={3}/>
-            <DailyConditions key={4} navState={this.props.navState} dayIndex={4}/>
-            <DailyConditions key={5} navState={this.props.navState} dayIndex={5}/>
-            <DailyConditions key={6} navState={this.props.navState} dayIndex={6}/>
-            <DailyConditions key={7} navState={this.props.navState} dayIndex={7}/>
+            <DailyConditions key={0} appData={this.props.appData} dayIndex={0}/>
+            <DailyConditions key={1} appData={this.props.appData} dayIndex={1}/>
+            <DailyConditions key={2} appData={this.props.appData} dayIndex={2}/>
+            <DailyConditions key={3} appData={this.props.appData} dayIndex={3}/>
+            <DailyConditions key={4} appData={this.props.appData} dayIndex={4}/>
+            <DailyConditions key={5} appData={this.props.appData} dayIndex={5}/>
+            <DailyConditions key={6} appData={this.props.appData} dayIndex={6}/>
+            <DailyConditions key={7} appData={this.props.appData} dayIndex={7}/>
         </tbody>
       </table>
     );

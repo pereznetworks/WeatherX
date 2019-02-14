@@ -42,21 +42,25 @@ export default class MainView extends Component {
     console.log(this.props.navState)
     if (this.props.navState.mainView){
       return(
-            <div style={{"paddingTop": "28px "}}className="mainView" title='mainView' id={this.props.navState.mainViewBackGround[this.props.navState.currentLocation.index]}>
+            <div style={{"paddingTop": "28px "}}className="mainView" title='mainView' id={this.props.appData.mainViewBackGround[this.props.appData.currentLocationData.index]}>
                   <MainViewHdr
                     navState={this.props.navState}
+                    appData={this.props.appData}
                    />
                   <TableHdr
                     navState={this.props.navState}
+                    appData={this.props.appData}
                     whatDayIsIt={this.whatDayIsIt}
                    />
                   <div className="scrollingEnabled">
                     <TableDay
                       navState={this.props.navState}
+                      appData={this.props.appData}
                      />
                   </div>
                   <TableWeek
                     navState={this.props.navState}
+                    appData={this.props.appData}
                    />
             </div>
       );
