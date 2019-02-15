@@ -27,9 +27,11 @@ imported my own basic express server template
 
 added basic routing
 
-added get /weather route
+added get /weather:location route
 
 built custom methods for forcast.io api call using axios to make api call to a dataSource folder
+
+using custom methods to manage data as requested, which just copies all data to an array of objects
 
 added my mongoose client and my mongoose document methods to dataSource folder from project 11
 

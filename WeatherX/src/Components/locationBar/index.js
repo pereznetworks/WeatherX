@@ -4,7 +4,6 @@ import LocationBarDiv from "./locationBarDiv.js";
 
 export default class LocationBar extends Component {
 
-
   constructor(props) {
     super(props);
     this.createGridItem = this.createGridItem.bind(this);
