@@ -334,26 +334,26 @@ export default class Middle extends Component {
 // methods for integrating geoCode results and forecastData points into components
 
     pickOutDataPoints(dataObject, index){
-      let dateX = this.getUpToSecDateOfLocation(dataObject.time);
-      let hourX = this.getTZhours(dateX, this.appData.currentLocationData.utcOffSet);
-      let currentHour =  this.getTZhours(new Date(), this.appData.currentLocationData.utcOffSet);
 
-      if (index === 0 && hourX === currentHour){
+      // may implement an 'update' to hourly conditions later
+      // let dateX = this.getUpToSecDateOfLocation(dataObject.time);
+      // let hourX = this.getTZhours(dateX, this.appData.currentLocationData.utcOffSet);
+      // let currentHour =  this.getTZhours(new Date(), this.appData.currentLocationData.utcOffSet);
+
+      if (index === 0 ){
         return {
           day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet),
           hour: 'Now',  // datatype string
           icon: dataObject.icon,                      // datatype string
           temp: Math.floor(dataObject.temperature),   // datatype int
         };
-      } else if (index > 0){
+      } else {
         return {
           day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet),
           hour: this.getHourOfDay(dataObject.time, this.appData.currentLocationData.utcOffSet),  // datatype string
           icon: dataObject.icon,                      // datatype string
           temp: Math.floor(dataObject.temperature),   // datatype int
         };
-      } else {
-        return null
       }
     }
 

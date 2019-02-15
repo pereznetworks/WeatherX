@@ -9,7 +9,7 @@ export default class HourlyConditions extends Component {
   }
 
   setHourlyConditionElements(object, index){
-      if (object !== null){
+
         if (object.icon === 'cloudy' && object.day){
           return <td key={index} className="weatherSummary" ><i className="wi wi-day-cloudy"></i></td>
         } else if (object.icon === 'cloudy' && !object.day){
@@ -49,7 +49,7 @@ export default class HourlyConditions extends Component {
         } else if (object.icon === 'wind' && !object.day){
           return <td key={index} className="weatherSummary" ><i className="wi wi-night-alt-cloudy-gusts"></i></td>
         }
-     }
+
   }
 
   selectHourlyConditions(){
