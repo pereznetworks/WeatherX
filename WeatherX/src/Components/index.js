@@ -88,7 +88,8 @@ export default class Middle extends Component {
         tickTock: 1000,
         date: 0,
         currentDay: [],
-        currentDayIndex: 0
+        currentDayIndex: 0,
+        refreshArray: []
       }; // all other appData
 
       // time, date conversion, date formatting methods
@@ -115,6 +116,7 @@ export default class Middle extends Component {
       this.handleInputChange = this.handleInputChange.bind(this)
       this.handleNavSubmit = this.handleNavSubmit.bind(this);
       this.showMeThisOne = this.showMeThisOne.bind(this);
+      this.checkRefresh = this.checkRefresh.bind(this);
     }
 
     componentDidMount(){
@@ -151,7 +153,8 @@ export default class Middle extends Component {
         tickTock: 0,
         date: new Date(),
         currentDay:[],
-        currentDayIndex: 0
+        currentDayIndex: 0,
+        refreshArray: []
       };
     };  // contructing appData
 
@@ -332,6 +335,10 @@ export default class Middle extends Component {
   }
 
 // methods for integrating geoCode results and forecastData points into components
+
+    checkRefresh(indexno){
+      this.appData.refreshArray =  [...this.appData.refreshArray, indexno];
+    }
 
     pickOutDataPoints(dataObject, index){
 
@@ -665,6 +672,8 @@ export default class Middle extends Component {
           getCurrentTimeAtLocation={this.getCurrentTimeAtLocation}
           getUpToSecDateOfLocation={this.getUpToSecDateOfLocation}
           getLiveFormatedTime={this.getLiveFormatedTime}
+          checkRefresh={this.checkRefresh}
+          refreshArray={this.appData.refreshArray}
           />
         <MainView
           navState={this.state}

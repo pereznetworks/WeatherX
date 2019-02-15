@@ -47,7 +47,7 @@
   display: inline;
   float: left;
   height: 100%;
-  width: 25%;
+  width: 30%;
   margin: 0;
   padding: 2% 1% 0 2%;
 }
@@ -57,8 +57,18 @@
     font-size: 2.8em;
     display: block;
     line-height: 22px;
-    margin: 7% 15% 3% 0;
+    margin: 7% 0% 3% 0;
     padding: 0% 0 2% 0;
+  }
+
+  #refresh-div{
+    float: right;
+    display: inline;
+    float: right;
+    height: 100%;
+    width: 5%;
+    margin: 0;
+    padding: 0;
   }
 
 @media only screen and (min-width: 1020px){
@@ -74,3 +84,26 @@
   }
 
 }
+
+/*  not needed for now
+#refreshButton{
+  background-image:url('../imgs/Refresh-48.png');
+  float:left;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 120%;
+  text-decoration: none;
+  vertical-align:middle;
+  height: 20px;
+  width: 20px;
+  border-radius: 6px;
+  margin: 0;
+  padding: 0;
+  display:none;
+}
+
+#refreshButton:hover{
+  background-image:url('../imgs/Refresh-48-4B4AA7-B.png');
+}
+*/

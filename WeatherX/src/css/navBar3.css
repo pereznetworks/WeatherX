@@ -32,7 +32,11 @@
   height: 60%;
   margin: 0 0;
   border: 0;
+  text-decoration: none;
+}
 
+#title:hover{
+  color:#17a2b8;
 }
 
 #titleText {
@@ -43,6 +47,11 @@
   text-align: center;
   margin: 0 0;
   border: 0;
+  text-decoration: none;
+}
+
+#titleText:hover{
+  color:#17a2b8;
 }
 
 #geoLocation{

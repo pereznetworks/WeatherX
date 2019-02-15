@@ -7,11 +7,10 @@ export default class LocationBarDiv extends Component {
 
   constructor(props) {
     super(props);
-
+    this.refreshButton = false;
     this.locationCurrentTemp = Math.floor(this.props.appData.forecastData[this.props.indexno].data.currently.temperature);
     this.locationCurrentTime = this.props.getCurrentTimeAtLocation(this.props.appData.forecastData[this.props.indexno].data.currently.time, this.props.appData.forecastData[this.props.indexno].data.offset);
     this.locationCurrentName = `${this.props.appData.locationData[this.props.indexno].data.city}, ${this.props.appData.locationData[this.props.indexno].data.province}`;
-
     this.showMeThisOne = this.showMeThisOne.bind(this);
   }
   showMeThisOne(){
@@ -26,7 +25,7 @@ export default class LocationBarDiv extends Component {
     return (
       <div title="locationBar" className="locationBar-div" onClick={this.showMeThisOne} id={this.props.appData.locationBarBackGround[this.props.indexno]}>
         <div  id="cityTime-div">
-          <TimeDisplay        
+          <TimeDisplay
             getLiveFormatedTime={this.props.getLiveFormatedTime}
             appData={this.props.appData}
             indexno={this.props.indexno}

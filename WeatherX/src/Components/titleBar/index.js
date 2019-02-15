@@ -8,8 +8,8 @@ export default class TitleBar extends Component {
   render() {
     return (
       <div id="titleBar" className='middle-grid-item-0'>
-        <p id="title">WeatherX</p>
-        <p id="titleText">A Weather Forecast Service</p>
+        <a id="title" href="file:///Users/danielperez/Dropbox/TechDegree/TD-Project12/capstone/index.html">WeatherX</a>
+        <a id="titleText" href="file:///Users/danielperez/Dropbox/TechDegree/TD-Project12/capstone/index.html">A Weather Forecast Service</a>
       </div>
     )
   }
