@@ -8,13 +8,14 @@ import MainView from "./mainView";
 import LocationBar from "./locationBar";
 
 // import css styling
-import '../css/weather-icons.css';
-import '../css/weather-icons-wind.css';
 import '../css/navBar3.css';
 import '../css/mainView.css';
 import '../css/locationBar.css';
 import '../css/grid-main2.css';
 import '../css/weather.css';
+
+import '../css/weather-icons.css';
+import '../css/weather-icons-wind.css';
 
 // may use dayJs-ext or moment0-timezone for timezone time adjustment
 // For now, using my own custom code to adjust from UTC to timezone offset of location
@@ -43,10 +44,13 @@ export default class Middle extends Component {
       this.state = {
         home: true,
         about: false,
+        inputForm: false,
+        controlsForm: true,
         mainView: false,
         locationBar:false,
         geoLocation: false,
         geoCoding: false,
+        noBlankInputMsg: false
       }; // using state to control component rendering
 
       this.backendServer = {
@@ -58,6 +62,7 @@ export default class Middle extends Component {
       this.appData = {
         errMsg: '',
         err: false,
+        geoCodeThis:'',
         notADuplicateLocation:true,
         locationData: [],
         locationCount: 0,
@@ -123,6 +128,7 @@ export default class Middle extends Component {
       this.appData = {
         errMsg: '',
         err: false,
+        geoCodeThis:'',
         notADuplicateLocation:true,
         locationData: [],
         locationCount: 0,
@@ -174,15 +180,18 @@ export default class Middle extends Component {
   return new Date(dateInt * 1000);
   }
 
-  checkDay(dateInt, tz){
+  checkDay(dateInt, tz, sunset){
     // dont need actual current timeout
     // need to calc whether for a given hour of the day...
     // for specific location ..is it nighttime or daytime
-    let hrs = this.getTZhours(this.getUpToSecDateOfLocation(dateInt), tz);
-    if(hrs > 6 && hrs < 19){
-      return true;
+    let tzHrs = this.getTZhours(this.getUpToSecDateOfLocation(dateInt), tz);
+    let tzSunset = this.getTZhours(this.getUpToSecDateOfLocation(sunset), tz);
+    console.log(tzHrs, tzSunset);
+
+    if(tzHrs > tzSunset){
+      return false;  // so it's night time in this timezone
     } else {
-      return false;
+      return true; // so it's still daytime in this timezone
     }
   }
 
@@ -387,7 +396,7 @@ export default class Middle extends Component {
     setMainViewBackGround(data){
 
 
-      let day = this.checkDay(data.currently.time, data.offset);
+      let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime, );
       let icon = data.currently.icon;
 
          if ( icon === 'cloudy' && day){
@@ -432,7 +441,7 @@ export default class Middle extends Component {
     setLocationBarBackGround(data){
 
 
-      let day = this.checkDay(data.currently.time, data.offset);
+      let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime);
       let icon = data.currently.icon;
 
          if ( icon === 'cloudy' && day){
@@ -475,43 +484,131 @@ export default class Middle extends Component {
     }
 
     handleNavClick(event) {
-      if (event.target.title === 'backHome'){
-        this.setState({
-          home: true,
-          about: false,
-          mainView: false,
-          locationBar:true
-        })
-      } else if (event.target.title === 'Find Me'){
-        this.setState({
-          home: true,
-          about: false,
-          mainView: false,
-          locationBar:true
-        })
-      } else if (event.target.title === 'Submit Search'){
-        this.setState({
-          home: true,
-          about: false,
-          mainView: false,
-          locationBar:true
-        })
-      } else if (event.target.title === 'About WeatherX'){
-        this.setState({
-          home: false,
-          about: true,
-          mainView: false,
-          locationBar:false
-        })
-      } else if (event.target.title === 'locationBar'){
-        this.setState({
-          home: false,
-          about: false,
-          mainView: true,
-          locationBar: false
-        })
+
+        // dont wnat app reset on form button submittions
+        event.preventDefault();
+        console.log(this.appData.geoCodeThis)
+        if (this.appData.geoCodeThis === ''){
+          this.setState({
+            home: true,
+            about: false,
+            mainView: false,
+            locationBar: true,
+            inputForm: true,
+            controlsForm: false
+          })
+        } else {
+          if (event.target.title === 'backHome'){
+            this.setState({
+              home: true,
+              about: false,
+              mainView: false,
+              locationBar:true,
+              inputForm: false,
+              controlsForm: true
+            })
+          } else if (event.target.title === 'Find Me'){
+            this.setState({
+              home: true,
+              about: false,
+              mainView: false,
+              locationBar:true,
+              inputForm: false,
+              controlsForm: true
+            })
+          } else if (event.target.title === 'Submit Search'){
+            this.setState({
+              home: true,
+              about: false,
+              mainView: false,
+              locationBar:true,
+              inputForm: false,
+              controlsForm: true
+            })
+          } else if (event.target.title === 'About WeatherX'){
+            this.setState({
+              home: false,
+              about: true,
+              mainView: false,
+              locationBar:false,
+              inputForm: false,
+              controlsForm: true
+            })
+          } else if (event.target.title === 'locationBar'){
+            this.setState({
+              home: false,
+              about: false,
+              mainView: true,
+              locationBar: false,
+              inputForm: false,
+              controlsForm: true
+            })
+          } else if (event.target.title === "Add Location"){
+            this.setState({
+              home: true,
+              about: false,
+              mainView: false,
+              locationBar: true,
+              inputForm: true,
+              controlsForm: false
+            })
+          }
+        }
+    }
+
+    handleInputChange(event) {
+      if (!event){
+        this.appData.geoCodeThis = '';
+      } else {
+        event.preventDefault();
+        this.appData.geoCodeThis = event.target.value;
       }
     }
+
+
+    handleNavSubmit(event) {
+
+      // dont wnat app reset on form button submittions
+      event.preventDefault();
+
+      if (!this.appData.geoCodeThis){
+
+        // dont accept blank input
+        this.setState({
+          home: true,
+          about: false,
+          mainView: false,
+          locationBar:true,
+          inputForm: true,
+          controlsForm: false,
+          noBlankInputMsg:true
+        })
+
+      } else {
+        // dont accept duplicate locations
+        // only get and store forecast data for a new location
+        const compareLocationName = (item, index) => {
+          let locationName = `${item.cityName}, ${item.province}`;
+          if (locationName === this.appData.geoCodeThis){
+            this.appData.notADuplicateLocation = false;
+           }
+        };
+
+        if (this.appData.locationData.length > 0){
+          this.appData.locationData.forEach(compareLocationName);
+        }
+
+        if (this.appData.notADuplicateLocation){
+            this.requestDataFromServer(this.appData.geoCodeThis);
+        }
+
+      }
+
+    }
+
+// this method simply takes the locationName and preps the data needed to display it
+// it moves the corresponding forecastData and locationData into the currentLocationData object
+// and preps hourlyConditions and dailyConditions array
 
     showMeThisOne(locationName, index){
 
@@ -534,41 +631,15 @@ export default class Middle extends Component {
         home: false,
         about: false,
         mainView: true,
-        locationBar: false
+        locationBar: true,
+        inputForm: false,
+        controlsForm: true
       })
 
       console.log(locationName, index);
 
       console.log(this.appData, this.state);
 
-
-    }
-
-    handleInputChange(event) {
-      this.appData.geoCodeThis = event.target.value;
-    }
-
-    handleNavSubmit(event) {
-
-      // dont accept duplicate locations
-      // only get and store forecast data for a new location
-      const compareLocationName = (item, index) => {
-        let locationName = `${item.cityName}, ${item.province}`;
-        if (locationName === this.appData.geoCodeThis){
-          this.appData.notADuplicateLocation = false;
-         }
-      };
-
-      if (this.appData.locationData.length > 0){
-        this.appData.locationData.forEach(compareLocationName);
-      }
-
-      if (this.appData.notADuplicateLocation){
-          this.requestDataFromServer(this.appData.geoCodeThis);
-      }
-
-      // dont wnat app reset on form button submittions
-      event.preventDefault();
 
     }
 
@@ -619,6 +690,8 @@ export default class Middle extends Component {
                     index: this.appData.forecastData.length,
                     name: `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`,
                     utcOffSet: newForecast.data.mostRecentForecast.data.offset,
+                    timeStamp: newForecast.data.mostRecentForecast.data.currently.time,
+                    sunsetTime: newForecast.data.mostRecentForecast.data.daily.data[0].sunsetTime,
                     time: this.getCurrentTimeAtLocation(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
                     day: this.checkDay(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
                     temp: Math.floor(newForecast.data.mostRecentForecast.data.currently.apparentTemperature),
@@ -669,6 +742,7 @@ export default class Middle extends Component {
           appData={this.appData}
           handleNavClick={this.handleNavClick}
           showMeThisOne={this.showMeThisOne}
+          checkDay={this.checkDay}
           getCurrentTimeAtLocation={this.getCurrentTimeAtLocation}
           getUpToSecDateOfLocation={this.getUpToSecDateOfLocation}
           getLiveFormatedTime={this.getLiveFormatedTime}

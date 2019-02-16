@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import InputControls from './inputControls.js';
+
 export default class NavBar3 extends Component {
 
 // passing props, navState object,
@@ -16,14 +18,16 @@ export default class NavBar3 extends Component {
   }
 
   handleNavClick(event) {
+    event.preventDefault();
     this.props.handleNavClick(event);
   }
 
-  handleInputChange(e){
-    this.props.handleInputChange(e);
+  handleInputChange(event){
+      this.props.handleInputChange(event);
   }
 
   handleNavSubmit(event) {
+    event.preventDefault();
     this.props.handleNavSubmit(event);
     this.props.handleNavClick(event);
   }
@@ -36,26 +40,13 @@ export default class NavBar3 extends Component {
             if (this.props.navState.home){
               return(
                 <div id="navBar3" className=".middle-grid-item-1">
-                  <form id="geoLocation" action="" >
-                    <input
-                      type="submit"
-                      value=""
-                      className="geo-button"
-                      id="geoLocation-Submit"
-                      title="Find Me"
-                      onClick={this.handleNavSubmit}/>
-                    <input
-                      type="text"
-                      id="geoCoding-TextInput"
-                      placeholder="enter a City, State or postal code"
-                      onChange={this.handleInputChange}/>
-                    <input
-                      type="submit"
-                      value=""
-                      id="geoCoding-TextSubmit"
-                      title="Submit Search"
-                      onClick={this.handleNavSubmit}/>
-                  </form>
+                  <InputControls
+                    navState={this.props.navState}
+                    appData={this.appData}
+                    handleNavClick={this.handleNavClick}
+                    handleInputChange={this.handleInputChange}
+                    handleNavSubmit={this.handleNavSubmit}
+                  />
                 </div>
              );
             } else {

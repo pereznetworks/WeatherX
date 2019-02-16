@@ -3,9 +3,12 @@
    media queries adapt for larger screens and then landscape-mode
 */
 
+/* navBar3  and navBar3 parent div styles */
+
 *{
   color:#e0e0e0
 }
+
 #navBar3{
   align-content: center;
   text-align: center;
@@ -16,6 +19,8 @@
   width:100%;
   margin: auto;
 }
+
+/* titleBar styles */
 
 #titleBar{
   padding:0;
@@ -54,10 +59,14 @@
   color:#17a2b8;
 }
 
-#geoLocation{
+/* input controls form div*/
+
+#inputControls{
   display:inline;
   margin: auto;
 }
+
+/* input Form styles */
 
 .geo-button-div, {
   width:auto;
@@ -85,7 +94,7 @@
   margin: 0;
 }
 
-.geo-button, .about-button{
+.geo-button, .about-button, .tempType{
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
@@ -111,6 +120,7 @@
   height: 20px;
   font-size: .8em;
 }
+
 .backHome-div{
   width:30px;
   position: absolute;
@@ -118,6 +128,7 @@
   left:5%;
   background-color: transparent;
 }
+
 #backHome-button{
     background-image:url('../imgs/Menu-W-48.png');
     float:left;
@@ -139,9 +150,7 @@
     width: 30px;
     border-radius: 6px;
 }
-/* #backHome-button:hover{
-  background-image:url('../imgs/Menu-48-4B4AA7-B.png');
-} */
+
 #geoCoding-TextInput {
   border: 0 solid #000;
   text-align: center;
@@ -180,6 +189,7 @@
   padding: 0;
   margin: 0 0 0 1%;
   border-radius: 6px;
+  color:transparent
 }
 
 #geoCoding-TextSubmit:hover {
@@ -215,12 +225,57 @@
   display:none;
 }
 
-/* #mainView div {
-  width:300px;
-  height:600px;
-  text-align: center;
-  background-color:#000;
-} */
+/* input Control styles */
+
+
+ #tempC{
+
+  font-size: 1.6em;
+  height: 24px;
+  width: 30px;
+  margin: 0 4px 0 0;
+  vertical-align: bottom;
+}
+
+ #tempC:hover, #tempC:active{
+   color:#4B4AA7;
+   background-color: #000;
+   border-radius: 50%;
+ }
+ #tempSpacer{
+ }
+ #tempF{
+  visibility: top;
+  font-size: 1.6em;
+  height: 24px;
+  width: 30px;
+  margin:0 0 0 4px;
+  vertical-align: bottom;
+}
+
+#tempF:hover, #tempF:active{
+  color:#4B4AA7;
+  background-color: #000;
+  border-radius: 50%;
+}
+
+ #addLocation{
+  background-repeat: no-repeat;
+  background-position: top;
+  background-color: transparent;
+  background-image:url('../imgs/Add-New-48-offW.png');
+  background-size: 80%;
+  border-radius: 50%;
+  vertical-align: top;
+  height: 30px;
+  width: 30px;
+  margin: 0 4px 0 80px;
+}
+
+#addLocation:hover {
+    background-image:url('../imgs/Add-New-48-4B4AA7-B.png');
+}
+/* tooltip styles */
 
 .tooltip {
   position: relative;
@@ -300,8 +355,24 @@
   }
 }
 
+@media only screen and (min-width: 1020px){
+  #tempC{
+      font-size: 1.4em;
+  }
+  #tempF{
+     font-size: 1.4em;
+  }
 
-/*
+  #addLocation{
+    height: 30px;
+    width: 30px;
+    margin: 0 4px 8px 110px;
+    padding-bottom: 0px;
+    vertical-align: top;
+  }
+}
+
+/* media query templates
 
   @media only screen and (min-width: 360px) {
 
@@ -342,4 +413,19 @@
   @media only screen and (min-width: 1600px){
 
   }
+*/
+
+/* uneeded styles
+
+  #mainView div {
+   width:300px;
+   height:600px;
+   text-align: center;
+   background-color:#000;
+  }
+
+  #backHome-button:hover{
+    background-image:url('../imgs/Menu-48-4B4AA7-B.png');
+  }
+
 */

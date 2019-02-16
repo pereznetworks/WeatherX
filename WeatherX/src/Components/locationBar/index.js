@@ -9,6 +9,11 @@ export default class LocationBar extends Component {
     this.createGridItem = this.createGridItem.bind(this);
     this.showMeThisOne = this.showMeThisOne.bind(this);
     this.displayNewLocFirst = this.displayNewLocFirst.bind(this);
+    this.checkDay=this.checkDay.bind(this);
+  }
+
+  checkDay(dateInt, tz, sunset){
+    return this.props.checkDay(dateInt, tz, sunset);
   }
 
   showMeThisOne(locationName, index){
@@ -17,6 +22,7 @@ export default class LocationBar extends Component {
 
   createGridItem(object, index){
     let currentConditions = this.props.appData.availLocationsArray[index];
+    currentConditions.day = this.checkDay(currentConditions.timeStamp, currentConditions.utcOffSet, currentConditions.sunsetTime);
     let weatherIcon;
       if ( currentConditions.icon === 'cloudy'  && currentConditions.day){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-cloudy"></i>
@@ -105,7 +111,7 @@ export default class LocationBar extends Component {
   }
 
   render() {
-    if (this.props.navState.locationBar){
+    if (this.props.navState.locationBar && this.props.appData.locationData.length > 0){
         return (
           <div className='middle-grid-item-2'>{this.displayNewLocFirst()}</div>
         );
