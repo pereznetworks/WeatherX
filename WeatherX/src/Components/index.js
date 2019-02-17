@@ -186,7 +186,7 @@ export default class Middle extends Component {
     // for specific location ..is it nighttime or daytime
     let tzHrs = this.getTZhours(this.getUpToSecDateOfLocation(dateInt), tz);
     let tzSunset = this.getTZhours(this.getUpToSecDateOfLocation(sunset), tz);
-    console.log(tzHrs, tzSunset);
+    console.log(dateInt, tz, sunset, tzHrs, tzSunset);
 
     if(tzHrs > tzSunset){
       return false;  // so it's night time in this timezone
@@ -365,7 +365,7 @@ export default class Middle extends Component {
         };
       } else {
         return {
-          day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet),
+          day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet, this.appData.currentLocationData.sunsetTime),
           hour: this.getHourOfDay(dataObject.time, this.appData.currentLocationData.utcOffSet),  // datatype string
           icon: dataObject.icon,                      // datatype string
           temp: Math.floor(dataObject.temperature),   // datatype int
@@ -386,6 +386,7 @@ export default class Middle extends Component {
       }
 
     getHourlyConditions(dataArray){
+      console.log(dataArray)
       return dataArray.map(this.pickOutDataPoints);
     }
 
@@ -396,7 +397,7 @@ export default class Middle extends Component {
     setMainViewBackGround(data){
 
 
-      let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime, );
+      let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime );
       let icon = data.currently.icon;
 
          if ( icon === 'cloudy' && day){
@@ -439,7 +440,6 @@ export default class Middle extends Component {
     }
 
     setLocationBarBackGround(data){
-
 
       let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime);
       let icon = data.currently.icon;
@@ -565,7 +565,6 @@ export default class Middle extends Component {
       }
     }
 
-
     handleNavSubmit(event) {
 
       // dont wnat app reset on form button submittions
@@ -616,10 +615,11 @@ export default class Middle extends Component {
       this.appData.currentLocationData = {
           index: index,
           name: `${this.appData.locationData[index].data.city}, ${this.appData.locationData[index].data.province}`,
+          sunsetTime: this.appData.forecastData[index].data.daily.data[0].sunsetTime,
           utcOffSet: this.appData.forecastData[index].data.offset,
           time: this.getCurrentTimeAtLocation(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset),
           temp: Math.floor(this.appData.forecastData[index].data.currently.temperature),
-          day: this.checkDay(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset),
+          day: this.checkDay(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset, this.appData.forecastData[index].data.daily.data[0].sunsetTime),
           icon: this.appData.forecastData[index].data.currently.icon
         };
 
@@ -631,7 +631,7 @@ export default class Middle extends Component {
         home: false,
         about: false,
         mainView: true,
-        locationBar: true,
+        locationBar: false,
         inputForm: false,
         controlsForm: true
       })
@@ -677,12 +677,13 @@ export default class Middle extends Component {
 
                   this.appData.forecastData = [...this.appData.forecastData, newForecast.data.mostRecentForecast];
                   this.appData.locationData =  [...this.appData.locationData, newForecast.data.mostRecentLocation];
-                  this.appDatacurrentLocationData = {
+                  this.appData.currentLocationData = {
                     index: this.appData.forecastData.length,
                     name: `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`,
+                    sunsetTime: newForecast.data.mostRecentForecast.data.daily.data[0].sunsetTime,
                     utcOffSet: newForecast.data.mostRecentForecast.data.offset,
                     time: this.getCurrentTimeAtLocation(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
-                    day: this.checkDay(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
+                    day: this.checkDay(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset, newForecast.data.mostRecentForecast.data.daily.data[0].sunsetTime),
                     temp: Math.floor(newForecast.data.mostRecentForecast.data.currently.apparentTemperature),
                     icon:`${newForecast.data.mostRecentForecast.data.currently.icon}`
                   };
@@ -693,7 +694,7 @@ export default class Middle extends Component {
                     timeStamp: newForecast.data.mostRecentForecast.data.currently.time,
                     sunsetTime: newForecast.data.mostRecentForecast.data.daily.data[0].sunsetTime,
                     time: this.getCurrentTimeAtLocation(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
-                    day: this.checkDay(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
+                    day: this.checkDay(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset, newForecast.data.mostRecentForecast.data.daily.data[0].sunsetTime),
                     temp: Math.floor(newForecast.data.mostRecentForecast.data.currently.apparentTemperature),
                     icon:`${newForecast.data.mostRecentForecast.data.currently.icon}`
                   }];
