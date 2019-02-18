@@ -358,7 +358,7 @@ export default class Middle extends Component {
 
       if (index === 0 ){
         return {
-          day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet),
+          day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet, this.appData.currentLocationData.sunsetTime),
           hour: 'Now',  // datatype string
           icon: dataObject.icon,                      // datatype string
           temp: Math.floor(dataObject.temperature),   // datatype int
@@ -408,9 +408,9 @@ export default class Middle extends Component {
             return "foggyDay";
           } else if ( icon === 'fog' && !day){
             return "foggyNight";
-          } else if ( icon === 'partly-cloudy-day' && day){
+          } else if ( icon === 'partly-cloudy-day'){
             return "partlyCloudyDay";
-          } else if ( icon === 'partly-cloudy-night' && !day){
+          } else if ( icon === 'partly-cloudy-night'){
             return "partlyCloudyNight";
           } else if ( icon === 'rain' && day){
             return "rainyDay";
@@ -452,9 +452,9 @@ export default class Middle extends Component {
             return "locationBar-foggyDay";
           } else if ( icon === 'fog' && !day){
             return "locationBar-foggyNight";
-          } else if ( icon === 'partly-cloudy-day' && day){
+          } else if ( icon === 'partly-cloudy-day'){
             return "locationBar-partlyCloudyDay";
-          } else if ( icon === 'partly-cloudy-night' && !day){
+          } else if ( icon === 'partly-cloudy-night'){
             return "locationBar-partlyCloudyNight";
           } else if ( icon === 'rain' && day){
             return "locationBar-rainyDay";
