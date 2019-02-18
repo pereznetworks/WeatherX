@@ -240,15 +240,16 @@
    height: 30px;
    margin: 2px 0 0 0;
    padding: 6px 0 1px 0;
-   font-size: 24px;
+   font-size: 32px;
    font-weight:bolder;
 }
 
 
  #tempSpacer{
+   width: 12px;
    margin: 0 0 0 0;
    padding: 0 0 0 0;
-   vertical-align: 22%;
+   vertical-align: 48%;
  }
 
 .temp:hover {
@@ -267,8 +268,8 @@
   background-size: 80%;
   border-radius: 50%;
   vertical-align: -16%;
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   margin: 0 4px 0 0px;
 }
 
