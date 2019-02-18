@@ -44,8 +44,8 @@ export default class Middle extends Component {
       this.state = {
         home: true,
         about: false,
-        inputForm: false,
-        controlsForm: true,
+        inputForm: true,
+        controlsForm: false,
         mainView: false,
         locationBar:false,
         geoLocation: false,
@@ -552,6 +552,24 @@ export default class Middle extends Component {
               inputForm: true,
               controlsForm: false
             })
+          } else if (event.target.title === "Celsius"){
+           this.setState({
+            home: true,
+            about: false,
+            mainView: false,
+            locationBar: true,
+            inputForm: false,
+            controlsForm: true
+          })
+        } else if (event.target.title === "Fahrenheit"){
+            this.setState({
+              home: true,
+              about: false,
+              mainView: false,
+              locationBar: true,
+              inputForm: false,
+              controlsForm: true
+            })
           }
         }
     }
@@ -708,7 +726,9 @@ export default class Middle extends Component {
                   home: true,
                   about: false,
                   mainView: false,
-                  locationBar:true
+                  locationBar:true,
+                  inputForm: false,
+                  controlsForm: true
                 })
 
               console.log(this.state, this.appData);

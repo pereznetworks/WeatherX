@@ -4,6 +4,7 @@ export default class InputControls extends Component {
 
   constructor(props) {
     super(props);
+    this.tempActive="tempActive"
     this.inputPlaceHolder = "type a City, State or City, Country";
     this.handleNavClick = this.handleNavClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -33,12 +34,14 @@ export default class InputControls extends Component {
     if (this.props.navState.controlsForm){
         return(
               <form id="inputControls" action="">
-                <i className="wi wi-celsius" id="tempC"
+                <i className="wi wi-celsius temp" id="tempC"
                   title="Celsius"
                   onClick={this.handleNavClick}></i>
-                <i className="wi wi-fahrenheit" id="tempF"
+                <span id="tempSpacer">-</span>
+                <i className="wi wi-fahrenheit tempActive" id="tempF"
                   title="Fahrenheit"
                   onClick={this.handleNavClick}></i>
+                <span id="tempSpacer">-</span>
                 <input
                   type="button"
                   id="addLocation"

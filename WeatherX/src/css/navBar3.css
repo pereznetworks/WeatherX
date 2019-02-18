@@ -130,7 +130,7 @@
 }
 
 #backHome-button{
-    background-image:url('../imgs/Menu-W-48.png');
+    background-image:url('../imgs/Menu-48-offW.png');
     float:left;
     text-align: left;
     align-content: left;
@@ -149,6 +149,10 @@
     height: 30px;
     width: 30px;
     border-radius: 6px;
+}
+
+#backHome-button:hover{
+  background-image:url('../imgs/Menu-48-4B4AA7-T.png');
 }
 
 #geoCoding-TextInput {
@@ -193,7 +197,7 @@
 }
 
 #geoCoding-TextSubmit:hover {
-  background-image:url('../imgs/Search-48-4B4AA7-B.png');
+  background-image:url('../imgs/Search-48-4B4AA7-T.png');
 }
 
 #geoLocation-Submit {
@@ -210,15 +214,15 @@
 }
 
 #about-Submit:hover {
-    background-image:url('../imgs/About-48-4B4AA7-B.png');
+    background-image:url('../imgs/About-48-4B4AA7-T.png');
 }
 
 #geoCoding-Submit:hover {
-    background-image:url('../imgs/Search-48-4B4AA7-B.png');
+    background-image:url('../imgs/Search-48-4B4AA7-T.png');
 }
 
 #geoLocation-Submit:hover{
-    background-image:url('../imgs/FindMe-48-4B4AA7-B.png');
+    background-image:url('../imgs/FindMe-48-4B4AA7-T.png');
 }
 
 #geoCoding-Input, #geoCoding-Submit, #geoCoding-Label, #geoLocation-Label, #about-Button-Label{
@@ -227,53 +231,49 @@
 
 /* input Control styles */
 
-
- #tempC{
-
-  font-size: 1.6em;
-  height: 24px;
-  width: 30px;
-  margin: 0 4px 0 0;
-  vertical-align: bottom;
+ .temp{
+  margin: 0;
+  padding: 0;
+ }
+ #tempC, #tempF{
+   width: 30px;
+   height: 30px;
+   margin: 2px 0 0 0;
+   padding: 6px 0 1px 0;
+   font-size: 24px;
+   font-weight:bolder;
 }
 
- #tempC:hover, #tempC:active{
-   color:#4B4AA7;
-   background-color: #000;
-   border-radius: 50%;
- }
+
  #tempSpacer{
+   margin: 0 0 0 0;
+   padding: 0 0 0 0;
+   vertical-align: 22%;
  }
- #tempF{
-  visibility: top;
-  font-size: 1.6em;
-  height: 24px;
-  width: 30px;
-  margin:0 0 0 4px;
-  vertical-align: bottom;
+
+.temp:hover {
+  color:#4B4AA7;
 }
 
-#tempF:hover, #tempF:active{
-  color:#4B4AA7;
-  background-color: #000;
-  border-radius: 50%;
+.tempActive{
+    color:#4B4AA7;
 }
 
  #addLocation{
   background-repeat: no-repeat;
-  background-position: top;
+  background-position: bottom;
   background-color: transparent;
   background-image:url('../imgs/Add-New-48-offW.png');
   background-size: 80%;
   border-radius: 50%;
-  vertical-align: top;
+  vertical-align: -3%;
   height: 30px;
   width: 30px;
-  margin: 0 4px 0 80px;
+  margin: 0 4px 0 0px;
 }
 
 #addLocation:hover {
-    background-image:url('../imgs/Add-New-48-4B4AA7-B.png');
+    background-image:url('../imgs/Add-New-48-4B4AA7-T.png');
 }
 /* tooltip styles */
 
@@ -334,7 +334,7 @@
   }
 
   #backHome-button{
-      background-image:url('../imgs/Menu-offW-48.png');
+      background-image:url('../imgs/Menu-48-offW.png');
   }
 
 
@@ -366,7 +366,7 @@
   #addLocation{
     height: 30px;
     width: 30px;
-    margin: 0 4px 8px 110px;
+    margin: 0 4px 8px 0px;
     padding-bottom: 0px;
     vertical-align: top;
   }
