@@ -56,15 +56,4 @@ export default class LocationBarDiv extends Component {
     );
   }
 
-}
-
-/*
-
-colors = clear night sky = #040429
-
-<TimeDisplay
-  getCurrentTimeAtLocation={this.props.getCurrentTimeAtLocation}
-  appData={this.props.appData}
-  indexno={this.props.indexno}
-/>
-*/
+};

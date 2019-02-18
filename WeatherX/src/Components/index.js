@@ -193,7 +193,6 @@ export default class Middle extends Component {
     // for specific location ..is it nighttime or daytime
     let tzHrs = this.getTZhours(this.getUpToSecDateOfLocation(dateInt), tz);
     let tzSunset = this.getTZhours(this.getUpToSecDateOfLocation(sunset), tz);
-    console.log(dateInt, tz, sunset, tzHrs, tzSunset);
 
     if(tzHrs > tzSunset){
       return false;  // so it's night time in this timezone
@@ -408,7 +407,6 @@ export default class Middle extends Component {
       }
 
     getHourlyConditions(dataArray){
-      console.log(dataArray)
       return dataArray.map(this.pickOutDataPoints);
     }
 
@@ -508,8 +506,6 @@ export default class Middle extends Component {
     handleNavClick(event) {
 
         // dont want app reset on form button submittions
-        console.log(event);
-        console.log(this.appData.geoCodeThis)
         if (this.appData.geoCodeThis === ''){
           this.setState({
             home: true,
@@ -696,9 +692,6 @@ export default class Middle extends Component {
           inputForm: false,
           controlsForm: true
         })
-
-        console.log(locationName, index);
-        console.log(this.appData, this.state);
       }
 
     }
@@ -724,14 +717,13 @@ export default class Middle extends Component {
       // }
 
       // once we have a valid location... get forecast data from backendServer
-      console.log(`${this.backendServer.url}${this.backendServer.port}${this.backendServer.path}${location}`)
+
       axios.get(`${this.backendServer.url}${this.backendServer.port}${this.backendServer.path}${location}`)
             .then(response => {
               let newForecast = {  // save new current foreeast
                 timeStamp: Date.now(),
                 data: response.data
               }
-              console.log(newForecast); // will end up with array of objects
 
               // currentLocation will always be the latest one entered, so new locationBar will be rendered for it
               // index of locationName array should always match index of forecastData array
@@ -774,12 +766,9 @@ export default class Middle extends Component {
                   controlsForm: true
                 })
 
-              console.log(this.state, this.appData);
-
             }).catch(err => {
 
               // No Chewy, THAT one goes there, THIS one goes here.... AAGH AANGH!
-              console.log('Error fetching or parsing data', err);
               this.setState(
                 {
                   errMsg: err
