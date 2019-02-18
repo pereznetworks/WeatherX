@@ -42,7 +42,7 @@ export default class NavBar3 extends Component {
                 <div id="navBar3" className=".middle-grid-item-1">
                   <InputControls
                     navState={this.props.navState}
-                    appData={this.appData}
+                    appData={this.props.appData}
                     handleNavClick={this.handleNavClick}
                     handleInputChange={this.handleInputChange}
                     handleNavSubmit={this.handleNavSubmit}

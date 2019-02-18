@@ -10,6 +10,11 @@ export default class LocationBar extends Component {
     this.showMeThisOne = this.showMeThisOne.bind(this);
     this.displayNewLocFirst = this.displayNewLocFirst.bind(this);
     this.checkDay=this.checkDay.bind(this);
+    this.tempTypeConversion=this.tempTypeConversion.bind(this);
+  }
+
+  tempTypeConversion(tempF, tempNum){
+    this.props.tempTypeConversion(tempF, tempNum);
   }
 
   checkDay(dateInt, tz, sunset){
@@ -99,6 +104,7 @@ export default class LocationBar extends Component {
         getCurrentTimeAtLocation={this.props.getCurrentTimeAtLocation}
         getUpToSecDateOfLocation={this.props.getUpToSecDateOfLocation}
         getLiveFormatedTime={this.props.getLiveFormatedTime}
+        tempTypeConversion={this.props.tempTypeConversion}
         wi = {weatherIcon}
         />
     );

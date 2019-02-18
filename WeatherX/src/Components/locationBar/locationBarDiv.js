@@ -2,16 +2,17 @@
 import React, { Component } from 'react';
 
 import TimeDisplay from "./timeDisplay.js";
+import TempDisplay from "./tempDisplay.js";
 
 export default class LocationBarDiv extends Component {
 
   constructor(props) {
     super(props);
-    this.refreshButton = false;
     this.locationCurrentTemp = Math.floor(this.props.appData.forecastData[this.props.indexno].data.currently.temperature);
     this.locationCurrentTime = this.props.getCurrentTimeAtLocation(this.props.appData.forecastData[this.props.indexno].data.currently.time, this.props.appData.forecastData[this.props.indexno].data.offset);
     this.locationCurrentName = `${this.props.appData.locationData[this.props.indexno].data.city}, ${this.props.appData.locationData[this.props.indexno].data.province}`;
     this.showMeThisOne = this.showMeThisOne.bind(this);
+    this.tempTypeConversion=this.tempTypeConversion.bind(this);
   }
   showMeThisOne(){
     this.props.showMeThisOne(this.locationCurrentName,this.props.indexno);
@@ -19,6 +20,10 @@ export default class LocationBarDiv extends Component {
 
   getCurrentTimeAtLocation(timeStamp){
     return this.props.getCurrentTimeAtLocation(timeStamp)
+  }
+
+  tempTypeConversion(tempF, tempNum){
+    this.props.tempTypeConversion(tempF, tempNum);
   }
 
   render(){
@@ -33,9 +38,11 @@ export default class LocationBarDiv extends Component {
           <p  indexno={this.props.indexno} id="locationName">{this.locationCurrentName}</p>
         </div>
         <div title="currentConditions" id="locationCondition">{this.props.wi}</div>
-        <div  id="temp-div" >
-          <p  id="currentTemp">{this.locationCurrentTemp}°</p>
-        </div>
+        <TempDisplay
+           locationCurrentTemp = {this.locationCurrentTemp}
+           appData = {this.props.appData}
+           tempTypeConversion={this.props.tempTypeConversion}
+          />
       </div>
     );
   }

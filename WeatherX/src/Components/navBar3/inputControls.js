@@ -32,23 +32,43 @@ export default class InputControls extends Component {
       this.inputPlaceHolder = "Please enter a location"
     }
     if (this.props.navState.controlsForm){
-        return(
-              <form id="inputControls" action="">
-                <i className="wi wi-celsius temp" id="tempC"
-                  title="Celsius"
-                  onClick={this.handleNavClick}></i>
-                <span id="tempSpacer">-</span>
-                <i className="wi wi-fahrenheit tempActive" id="tempF"
-                  title="Fahrenheit"
-                  onClick={this.handleNavClick}></i>
-                <span id="tempSpacer">-</span>
-                <input
-                  type="button"
-                  id="addLocation"
-                  title="Add Location"
-                  onClick={this.handleNavClick}/>
-              </form>
-        );
+        if (this.props.appData.fahrenheitType){
+          return(
+                <form id="inputControls" action="">
+                  <i className="wi wi-celsius temp" id="tempC"
+                    title="Celsius"
+                    onClick={this.handleNavClick}></i>
+                  <span id="tempSpacer">-</span>
+                  <i className="wi wi-fahrenheit tempActive" id="tempF"
+                    title="Fahrenheit"
+                    onClick={this.handleNavClick}></i>
+                  <span id="tempSpacer">-</span>
+                  <input
+                    type="button"
+                    id="addLocation"
+                    title="Add Location"
+                    onClick={this.handleNavClick}/>
+                </form>
+          );
+        } else {
+          return(
+                <form id="inputControls" action="">
+                  <i className="wi wi-celsius tempActive" id="tempC"
+                    title="Celsius"
+                    onClick={this.handleNavClick}></i>
+                  <span id="tempSpacer">-</span>
+                  <i className="wi wi-fahrenheit temp" id="tempF"
+                    title="Fahrenheit"
+                    onClick={this.handleNavClick}></i>
+                  <span id="tempSpacer">-</span>
+                  <input
+                    type="button"
+                    id="addLocation"
+                    title="Add Location"
+                    onClick={this.handleNavClick}/>
+                </form>
+          );
+        }
 
       } else {
 

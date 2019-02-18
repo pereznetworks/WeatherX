@@ -37,13 +37,32 @@ export default class DailyConditions extends Component {
     }
 
   render(){
-    return(
-      <tr>
-        <td id="dayOfWeek">{this.props.appData.dailyConditions[this.props.dayIndex].day}</td>
-        <td id="forecastCondition">{this.selectDailyConditions(this.props.dayIndex)}</td>
-        <td id="tempHigh">{this.props.appData.dailyConditions[this.props.dayIndex].tempHigh}°</td>
-        <td id="tempLow">{this.props.appData.dailyConditions[this.props.dayIndex].tempLow}°</td>
-      </tr>
-    );
+    if (this.props.appData.fahrenheitType){
+      return(
+        <tr>
+          <td id="dayOfWeek">{this.props.appData.dailyConditions[this.props.dayIndex].day}</td>
+          <td id="forecastCondition">{this.selectDailyConditions(this.props.dayIndex)}</td>
+          <td id="tempHigh">{this.props.appData.dailyConditions[this.props.dayIndex].tempHigh}
+              <span id="todayTempType">{this.props.appData.fahrenheitFont}</span>
+            </td>
+          <td id="tempLow">{this.props.appData.dailyConditions[this.props.dayIndex].tempLow}
+              <span id="todayTempType">{this.props.appData.fahrenheitFont}</span>
+            </td>
+        </tr>
+      );
+    } else {
+      return(
+        <tr>
+          <td id="dayOfWeek">{this.props.appData.dailyConditions[this.props.dayIndex].day}</td>
+          <td id="forecastCondition">{this.selectDailyConditions(this.props.dayIndex)}</td>
+          <td id="tempHigh">{this.props.appData.dailyConditions[this.props.dayIndex].tempHigh}
+              <span id="todayTempType">{this.props.appData.celsiusFont}</span>
+            </td>
+          <td id="tempLow">{this.props.appData.dailyConditions[this.props.dayIndex].tempLow}
+              <span id="todayTempType">{this.props.appData.celsiusFont}</span>
+            </td>
+        </tr>
+      );
+    }
   }
 }

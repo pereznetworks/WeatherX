@@ -94,7 +94,11 @@ export default class Middle extends Component {
         date: 0,
         currentDay: [],
         currentDayIndex: 0,
-        refreshArray: []
+        refreshArray: [],
+        fahrenheitType:true,
+        fahrenheitFont:"°f",
+        celsiusType:true,
+        celsiusFont:"°c"
       }; // all other appData
 
       // time, date conversion, date formatting methods
@@ -115,6 +119,9 @@ export default class Middle extends Component {
       this.checkDay = this.checkDay.bind(this);
       this.clock = this.clock.bind(this);
       this.getLiveFormatedTime = this.getLiveFormatedTime.bind(this);
+
+      // temp conversion
+      this.tempTypeConversion = this.tempTypeConversion.bind(this);
 
       // main app methods
       this.handleNavClick = this.handleNavClick.bind(this);
@@ -160,7 +167,11 @@ export default class Middle extends Component {
         date: new Date(),
         currentDay:[],
         currentDayIndex: 0,
-        refreshArray: []
+        refreshArray: [],
+        fahrenheitType:true,
+        fahrenheitFont:"°F",
+        celsiusType:true,
+        celsiusFont:"°C"
       };
     };  // contructing appData
 
@@ -343,6 +354,21 @@ export default class Middle extends Component {
     return daysOfWeek[dateOflocation.getDay()];
   }
 
+
+// temp type conversion method
+
+  tempTypeConversion(tempF, tempNum){
+    if (!tempF){
+      // if not fahrenheit, then convert back to fahrenheit
+      return Math.round((tempNum - 32 ) / 1.8);
+    } else {
+      return tempNum;
+    }
+     // wont need to convert fahrenheit back to celsius
+     // but if so...
+     // return Math.round((tempNum *  1.8) + 32);
+  }
+
 // methods for integrating geoCode results and forecastData points into components
 
     checkRefresh(indexno){
@@ -361,14 +387,14 @@ export default class Middle extends Component {
           day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet, this.appData.currentLocationData.sunsetTime),
           hour: 'Now',  // datatype string
           icon: dataObject.icon,                      // datatype string
-          temp: Math.floor(dataObject.temperature),   // datatype int
+          temp: this.tempTypeConversion(this.appData.fahrenheitType, Math.floor(dataObject.temperature)),   // datatype int
         };
       } else {
         return {
           day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet, this.appData.currentLocationData.sunsetTime),
           hour: this.getHourOfDay(dataObject.time, this.appData.currentLocationData.utcOffSet),  // datatype string
           icon: dataObject.icon,                      // datatype string
-          temp: Math.floor(dataObject.temperature),   // datatype int
+          temp: this.tempTypeConversion(this.appData.fahrenheitType, Math.floor(dataObject.temperature)),   // datatype int
         };
       }
     }
@@ -380,8 +406,8 @@ export default class Middle extends Component {
         return {
           day: daysOfWeek[today.getDay()],  // datatype string
           icon: dataObject.icon,                      // datatype string
-          tempLow: Math.floor(dataObject.temperatureLow),   // datatype int
-          tempHigh: Math.floor(dataObject.temperatureHigh),   // datatype int
+          tempLow: this.tempTypeConversion(this.appData.fahrenheitType, Math.floor(dataObject.temperatureLow)),   // datatype int
+          tempHigh: this.tempTypeConversion(this.appData.fahrenheitType, Math.floor(dataObject.temperatureHigh)),   // datatype int
         };
       }
 
@@ -561,6 +587,8 @@ export default class Middle extends Component {
             inputForm: false,
             controlsForm: true
           })
+          this.appData.celsiusType=true;
+          this.appData.fahrenheitType=false;
         } else if (event.target.title === "Fahrenheit"){
             this.setState({
               home: true,
@@ -570,6 +598,8 @@ export default class Middle extends Component {
               inputForm: false,
               controlsForm: true
             })
+            this.appData.celsiusType=false;
+            this.appData.fahrenheitType=true;
           }
         }
     }
@@ -636,7 +666,7 @@ export default class Middle extends Component {
           sunsetTime: this.appData.forecastData[index].data.daily.data[0].sunsetTime,
           utcOffSet: this.appData.forecastData[index].data.offset,
           time: this.getCurrentTimeAtLocation(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset),
-          temp: Math.floor(this.appData.forecastData[index].data.currently.temperature),
+          temp: this.tempTypeConversion(this.appData.fahrenheitType, Math.floor(this.appData.forecastData[index].data.currently.temperature)),
           day: this.checkDay(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset, this.appData.forecastData[index].data.daily.data[0].sunsetTime),
           icon: this.appData.forecastData[index].data.currently.icon
         };
@@ -767,8 +797,7 @@ export default class Middle extends Component {
           getCurrentTimeAtLocation={this.getCurrentTimeAtLocation}
           getUpToSecDateOfLocation={this.getUpToSecDateOfLocation}
           getLiveFormatedTime={this.getLiveFormatedTime}
-          checkRefresh={this.checkRefresh}
-          refreshArray={this.appData.refreshArray}
+          tempTypeConversion={this.tempTypeConversion}
           />
         <MainView
           navState={this.state}

@@ -45,6 +45,10 @@
   text-align:center;
 }
 
+#todayTempType{
+  font-size: .6em;
+  vertical-align: middle;
+}
 #tableHdr, #tableWeek{
   width: 100%;
 }

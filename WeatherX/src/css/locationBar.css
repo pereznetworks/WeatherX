@@ -61,14 +61,13 @@
     padding: 0% 0 2% 0;
   }
 
-  #refresh-div{
+  .tempType{
     float: right;
-    display: inline;
-    float: right;
-    height: 100%;
-    width: 5%;
-    margin: 0;
-    padding: 0;
+    font-size: 1.2em;
+    display: block;
+    line-height: 22px;
+    margin: 4% 0% 0 0;
+    padding: 0% 0 0% 0;
   }
 
 @media only screen and (min-width: 1020px){
