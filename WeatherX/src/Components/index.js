@@ -655,7 +655,14 @@ export default class Middle extends Component {
       this.appData.mainViewBackGround.splice(locationIndex, 1);
       this.appData.locationCount = this.appData.locationCount - 1;
 
-      this.handleNavClick(event);
+      this.setState({
+        home: true,
+        about: false,
+        mainView: false,
+        locationBar: true,
+        inputForm: false,
+        controlsForm: true
+      })
 
     }
 
