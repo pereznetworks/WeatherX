@@ -12,6 +12,7 @@ export default class LocationBar extends Component {
     this.checkDay=this.checkDay.bind(this);
     this.tempTypeConversion=this.tempTypeConversion.bind(this);
     this.removeLocation=this.removeLocation.bind(this);
+    this.startAClock=this.startAClock.bind(this);
   }
 
   tempTypeConversion(tempF, tempNum){
@@ -30,6 +31,9 @@ export default class LocationBar extends Component {
     this.props.removeLocation(event, locationIndex);
   }
 
+  startAClock(){
+    return this.props.startAClock();
+  }
   createGridItem(object, index){
     let currentConditions = this.props.appData.availLocationsArray[index];
     currentConditions.day = this.checkDay(currentConditions.timeStamp, currentConditions.utcOffSet, currentConditions.sunsetTime);
@@ -96,12 +100,10 @@ export default class LocationBar extends Component {
 
       } else if ( currentConditions.icon === 'wind' && !currentConditions.day){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-cloudy-gusts"></i>
-
       }
 
     return (
       <LocationBarDiv
-        navState={this.props.navState}
         appData={this.props.appData}
         key={index}
         indexno={index} value={this.props.appData.locationData[index]}
@@ -118,12 +120,12 @@ export default class LocationBar extends Component {
 
   displayNewLocFirst(){
     let arrayOfElements = this.props.appData.locationData.map(this.createGridItem);
-    arrayOfElements.reverse();
+    // arrayOfElements.reverse();
     return arrayOfElements;
   }
 
   render() {
-    if (this.props.navState.locationBar && this.props.appData.locationData.length > 0){
+      if (this.props.navState.locationBar){
         return (
           <div className='middle-grid-item-2'>{this.displayNewLocFirst()}</div>
         );

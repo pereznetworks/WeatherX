@@ -18,12 +18,11 @@ export default class NavBar3 extends Component {
   }
 
   handleNavClick(event) {
-    event.preventDefault();
     this.props.handleNavClick(event);
   }
 
   handleInputChange(event){
-      this.props.handleInputChange(event);
+    this.props.handleInputChange(event);
   }
 
   handleNavSubmit(event) {
@@ -32,38 +31,37 @@ export default class NavBar3 extends Component {
     this.props.handleNavClick(event);
   }
 
-  // so were using a form element here, but not actually using any form actions ot methods
-  // dont want to implement a router on this front end ...
-  // so instead just using axios to make apicall to backendServer and recv data then setState variables with data
-
+  // so were using a form element here, but not actually using any form actions or methods
+  // just using it to capture location input
+  
   render() {
-            if (this.props.navState.home){
-              return(
-                <div id="navBar3" className=".middle-grid-item-1">
-                  <InputControls
-                    navState={this.props.navState}
-                    appData={this.props.appData}
-                    handleNavClick={this.handleNavClick}
-                    handleInputChange={this.handleInputChange}
-                    handleNavSubmit={this.handleNavSubmit}
-                  />
-                </div>
-             );
-            } else {
-              return (
-                <div id="navBar3">
-                  <form id="geoLocation" action="">
-                    <div className="backHome-div">
-                      <input
-                        type="button"
-                        className="geo-button"
-                        id="backHome-button"
-                        title="backHome"
-                        onClick={this.props.handleNavClick}></input>
-                    </div>
-                  </form>
-                </div>
-              );
-            }
-    }
+      if (this.props.navState.home){
+        return(
+          <div id="navBar3" className="middle-grid-item-1">
+            <InputControls
+              navState={this.props.navState}
+              appData={this.props.appData}
+              handleNavClick={this.handleNavClick}
+              handleInputChange={this.handleInputChange}
+              handleNavSubmit={this.handleNavSubmit}
+            />
+          </div>
+       );
+      } else {
+        return (
+          <div id="navBar3">
+            <form id="geoLocation" action="">
+              <div className="backHome-div">
+                <input
+                  type="button"
+                  className="geo-button"
+                  id="backHome-button"
+                  title="backHome"
+                  onClick={this.props.handleNavClick}></input>
+              </div>
+            </form>
+          </div>
+        );
+      }
+   }
 }
