@@ -171,6 +171,16 @@ export default class Middle extends Component {
       };
     };  // contructing appData
 
+    // componentDidUpdate(){
+    //   this.setState({
+    //       home: true,
+    //       about: false,
+    //       mainView: false,
+    //       locationBar: true,
+    //       inputForm: false,
+    //       controlsForm: true
+    //     });
+    // }
     componentWillUnmount(){
       clearInterval(this.appData.tickTock);
       this.appData = null;
@@ -407,7 +417,7 @@ export default class Middle extends Component {
       }
 
     getHourlyConditions(dataArray){
-      return dataArray.map(this.pickOutDataPoints);
+       return dataArray.map(this.pickOutDataPoints);
     }
 
     getDailyConditions(dataArray){
@@ -655,14 +665,7 @@ export default class Middle extends Component {
       this.appData.mainViewBackGround.splice(locationIndex, 1);
       this.appData.locationCount = this.appData.locationCount - 1;
 
-      this.setState({
-        home: true,
-        about: false,
-        mainView: false,
-        locationBar: true,
-        inputForm: false,
-        controlsForm: true
-      })
+      this.handleNavClick(event);
 
     }
 
