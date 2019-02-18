@@ -11,6 +11,7 @@ export default class LocationBar extends Component {
     this.displayNewLocFirst = this.displayNewLocFirst.bind(this);
     this.checkDay=this.checkDay.bind(this);
     this.tempTypeConversion=this.tempTypeConversion.bind(this);
+    this.removeLocation=this.removeLocation.bind(this);
   }
 
   tempTypeConversion(tempF, tempNum){
@@ -21,8 +22,12 @@ export default class LocationBar extends Component {
     return this.props.checkDay(dateInt, tz, sunset);
   }
 
-  showMeThisOne(locationName, index){
-    this.props.showMeThisOne(locationName, index);
+  showMeThisOne(locationName, index, event){
+    this.props.showMeThisOne(locationName, index, event);
+  }
+
+  removeLocation(event, locationIndex){
+    this.props.removeLocation(event, locationIndex);
   }
 
   createGridItem(object, index){
@@ -105,6 +110,7 @@ export default class LocationBar extends Component {
         getUpToSecDateOfLocation={this.props.getUpToSecDateOfLocation}
         getLiveFormatedTime={this.props.getLiveFormatedTime}
         tempTypeConversion={this.props.tempTypeConversion}
+        removeLocation={this.removeLocation}
         wi = {weatherIcon}
         />
     );

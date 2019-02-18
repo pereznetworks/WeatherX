@@ -13,9 +13,11 @@ export default class LocationBarDiv extends Component {
     this.locationCurrentName = `${this.props.appData.locationData[this.props.indexno].data.city}, ${this.props.appData.locationData[this.props.indexno].data.province}`;
     this.showMeThisOne = this.showMeThisOne.bind(this);
     this.tempTypeConversion=this.tempTypeConversion.bind(this);
+    this.removeLocation=this.removeLocation.bind(this);
   }
-  showMeThisOne(){
-    this.props.showMeThisOne(this.locationCurrentName,this.props.indexno);
+
+  showMeThisOne(event){
+    this.props.showMeThisOne(this.locationCurrentName,this.props.indexno, event);
   }
 
   getCurrentTimeAtLocation(timeStamp){
@@ -26,9 +28,13 @@ export default class LocationBarDiv extends Component {
     this.props.tempTypeConversion(tempF, tempNum);
   }
 
+  removeLocation(event, indexno){
+    this.props.removeLocation(event, indexno);
+  }
+
   render(){
     return (
-      <div title="locationBar" className="locationBar-div" onClick={this.showMeThisOne} id={this.props.appData.locationBarBackGround[this.props.indexno]}>
+      <div title="locationBar" className="locationBar-div" indexno={this.props.indexno} onClick={this.showMeThisOne} id={this.props.appData.locationBarBackGround[this.props.indexno]}>
         <div  id="cityTime-div">
           <TimeDisplay
             getLiveFormatedTime={this.props.getLiveFormatedTime}
@@ -43,6 +49,9 @@ export default class LocationBarDiv extends Component {
            appData = {this.props.appData}
            tempTypeConversion={this.props.tempTypeConversion}
           />
+        <div
+          title="remove"
+          className="removeLocation"></div>
       </div>
     );
   }

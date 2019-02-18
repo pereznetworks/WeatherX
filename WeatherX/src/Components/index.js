@@ -63,14 +63,22 @@ export default class Middle extends Component {
         errMsg: '',
         err: false,
         geoCodeThis:'',
+        showMeThisOne:'',
         notADuplicateLocation:true,
+        date: new Date(),
+        currentDay:[],
+        currentDayIndex: 0,
+        forecastData: [],
         locationData: [],
-        locationCount: 0,
         availLocationsArray: [],
+        mainViewBackGround: [],
+        locationBarBackGround: [],
+        locationCount: 0,
         currentLocation:'',
         currentForecast: {},
-        showMeThisOne:'',
-        forecastData: [],
+        currentLocationData: [],
+        hourlyConditions: [],
+        dailyConditions: [],
         weatherConditions: {
           cloud:false,
           fog:false,
@@ -83,22 +91,12 @@ export default class Middle extends Component {
           thunder:false,
           wind:false,
         },
-        prevHourTimeStamp: [],
-        useHourlyConditions: [],
-        hourlyConditions: [],
-        dailyConditions: [],
         weatherIcon:{},
-        mainViewBackGround: [],
-        locationBarBackGround: [],
         tickTock: 1000,
-        date: 0,
-        currentDay: [],
-        currentDayIndex: 0,
-        refreshArray: [],
         fahrenheitType:true,
-        fahrenheitFont:"°f",
+        fahrenheitFont:"°F",
         celsiusType:true,
-        celsiusFont:"°c"
+        celsiusFont:"°C"
       }; // all other appData
 
       // time, date conversion, date formatting methods
@@ -128,7 +126,7 @@ export default class Middle extends Component {
       this.handleInputChange = this.handleInputChange.bind(this)
       this.handleNavSubmit = this.handleNavSubmit.bind(this);
       this.showMeThisOne = this.showMeThisOne.bind(this);
-      this.checkRefresh = this.checkRefresh.bind(this);
+      this.removeLocation = this.removeLocation.bind(this);
     }
 
     componentDidMount(){
@@ -136,14 +134,22 @@ export default class Middle extends Component {
         errMsg: '',
         err: false,
         geoCodeThis:'',
+        showMeThisOne:'',
         notADuplicateLocation:true,
+        date: new Date(),
+        currentDay:[],
+        currentDayIndex: 0,
+        forecastData: [],
         locationData: [],
-        locationCount: 0,
         availLocationsArray: [],
+        mainViewBackGround: [],
+        locationBarBackGround: [],
+        locationCount: 0,
         currentLocation:'',
         currentForecast: {},
-        showMeThisOne:'',
-        forecastData: [],
+        currentLocationData: [],
+        hourlyConditions: [],
+        dailyConditions: [],
         weatherConditions: {
           cloud:false,
           fog:false,
@@ -156,18 +162,8 @@ export default class Middle extends Component {
           thunder:false,
           wind:false,
         },
-        prevHourTimeStamp: [],
-        useHourlyConditions: [],
-        hourlyConditions: [],
-        dailyConditions: [],
         weatherIcon:{},
-        mainViewBackGround: [],
-        locationBarBackGround: [],
-        tickTock: 0,
-        date: new Date(),
-        currentDay:[],
-        currentDayIndex: 0,
-        refreshArray: [],
+        tickTock: 1000,
         fahrenheitType:true,
         fahrenheitFont:"°F",
         celsiusType:true,
@@ -511,8 +507,8 @@ export default class Middle extends Component {
 
     handleNavClick(event) {
 
-        // dont wnat app reset on form button submittions
-        event.preventDefault();
+        // dont want app reset on form button submittions
+        console.log(event);
         console.log(this.appData.geoCodeThis)
         if (this.appData.geoCodeThis === ''){
           this.setState({
@@ -524,7 +520,7 @@ export default class Middle extends Component {
             controlsForm: false
           })
         } else {
-          if (event.target.title === 'backHome'){
+          if (event.target.title === 'backHome' || event.target.title === 'remove'){
             this.setState({
               home: true,
               about: false,
@@ -653,41 +649,57 @@ export default class Middle extends Component {
 
     }
 
+// remove a location
+
+    removeLocation(event, locationIndex){
+      this.appData.locationData.splice(locationIndex, 1);
+      this.appData.forecastData.splice(locationIndex, 1);
+      this.appData.availLocationsArray.splice(locationIndex, 1);
+      this.appData.locationBarBackGround.splice(locationIndex, 1);
+      this.appData.mainViewBackGround.splice(locationIndex, 1);
+      this.appData.locationCount = this.appData.locationCount - 1;
+
+      this.handleNavClick(event);
+
+    }
+
 // this method simply takes the locationName and preps the data needed to display it
 // it moves the corresponding forecastData and locationData into the currentLocationData object
 // and preps hourlyConditions and dailyConditions array
 
-    showMeThisOne(locationName, index){
+    showMeThisOne(locationName, index, event){
 
-      // have forecastData ready ... now set mainView to true
-      this.appData.currentLocationData = {
-          index: index,
-          name: `${this.appData.locationData[index].data.city}, ${this.appData.locationData[index].data.province}`,
-          sunsetTime: this.appData.forecastData[index].data.daily.data[0].sunsetTime,
-          utcOffSet: this.appData.forecastData[index].data.offset,
-          time: this.getCurrentTimeAtLocation(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset),
-          temp: this.tempTypeConversion(this.appData.fahrenheitType, Math.floor(this.appData.forecastData[index].data.currently.temperature)),
-          day: this.checkDay(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset, this.appData.forecastData[index].data.daily.data[0].sunsetTime),
-          icon: this.appData.forecastData[index].data.currently.icon
-        };
+      if (event.target.title === 'remove'){
+        this.removeLocation(event, index);
+      } else {
+        // have forecastData ready ... now set mainView to true
+        this.appData.currentLocationData = {
+            index: index,
+            name: `${this.appData.locationData[index].data.city}, ${this.appData.locationData[index].data.province}`,
+            sunsetTime: this.appData.forecastData[index].data.daily.data[0].sunsetTime,
+            utcOffSet: this.appData.forecastData[index].data.offset,
+            time: this.getCurrentTimeAtLocation(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset),
+            temp: this.tempTypeConversion(this.appData.fahrenheitType, Math.floor(this.appData.forecastData[index].data.currently.temperature)),
+            day: this.checkDay(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset, this.appData.forecastData[index].data.daily.data[0].sunsetTime),
+            icon: this.appData.forecastData[index].data.currently.icon
+          };
 
-       this.appData.currentForecast = this.appData.forecastData[index].data;
-       this.appData.hourlyConditions = this.getHourlyConditions(this.appData.forecastData[index].data.hourly.data);
-       this.appData.dailyConditions = this.getDailyConditions(this.appData.forecastData[index].data.daily.data);
+         this.appData.currentForecast = this.appData.forecastData[index].data;
+         this.appData.hourlyConditions = this.getHourlyConditions(this.appData.forecastData[index].data.hourly.data);
+         this.appData.dailyConditions = this.getDailyConditions(this.appData.forecastData[index].data.daily.data);
 
-      this.setState({
-        home: false,
-        about: false,
-        mainView: true,
-        locationBar: false,
-        inputForm: false,
-        controlsForm: true
-      })
+        this.setState({
+          home: false,
+          about: false,
+          mainView: true,
+          locationBar: false,
+          inputForm: false,
+          controlsForm: true
+        })
 
-      console.log(locationName, index);
-
-      console.log(this.appData, this.state);
-
+        console.log(locationName, index);
+        console.log(this.appData, this.state);
+      }
 
     }
 
@@ -695,6 +707,7 @@ export default class Middle extends Component {
 // only handleNavSubmit calls this method
 // never called by other methods or components
 
+// this also the only method that adds a location
     requestDataFromServer(location){
 
       // really should have another 'middle' function to validate input...
@@ -798,6 +811,7 @@ export default class Middle extends Component {
           getUpToSecDateOfLocation={this.getUpToSecDateOfLocation}
           getLiveFormatedTime={this.getLiveFormatedTime}
           tempTypeConversion={this.tempTypeConversion}
+          removeLocation={this.removeLocation}
           />
         <MainView
           navState={this.state}

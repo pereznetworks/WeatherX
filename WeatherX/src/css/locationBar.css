@@ -47,7 +47,7 @@
   display: inline;
   float: left;
   height: 100%;
-  width: 30%;
+  width: 25%;
   margin: 0;
   padding: 2% 1% 0 2%;
 }
@@ -70,6 +70,24 @@
     padding: 0% 0 0% 0;
   }
 
+  .removeLocation{
+    background-image:url('../imgs/Garbage-Open-48-W-T.png');
+    float:left;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 160%;
+    text-decoration: none;
+    vertical-align:middle;
+    width:5%;
+    height:100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .removeLocation:hover{
+    background-image:url('../imgs/Garbage-Open-48-4B4AA7-T.png');
+  }
 @media only screen and (min-width: 1020px){
 
   #cityTime-div, #temp-div{
