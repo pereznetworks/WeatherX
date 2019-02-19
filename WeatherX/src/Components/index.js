@@ -6,6 +6,7 @@ import TitleBar from './titleBar';
 import NavBar3 from './navBar3';
 import MainView from "./mainView";
 import LocationBar from "./locationBar";
+import LocationBarDiv from "./locationBar/locationBarDiv.js";
 
 // import css styling
 import '../css/navBar3.css';
@@ -77,6 +78,8 @@ export default class Middle extends Component {
     this.setLocationBarBackGround = this.setLocationBarBackGround.bind(this);
     this.checkDay = this.checkDay.bind(this);
     this.getLiveFormatedTime = this.getLiveFormatedTime.bind(this);
+    this.displayNewLocFirst = this.displayNewLocFirst.bind(this);
+    this.createGridItem = this.createGridItem.bind(this);
 
     // temp conversion
     this.tempTypeConversion = this.tempTypeConversion.bind(this);
@@ -460,6 +463,102 @@ export default class Middle extends Component {
         }
   }
 
+  createGridItem(object, index){
+    let currentConditions = this.appData.availLocationsArray[index];
+    currentConditions.day = this.checkDay(currentConditions.timeStamp, currentConditions.utcOffSet, currentConditions.sunsetTime);
+    let weatherIcon;
+      if ( currentConditions.icon === 'cloudy'  && currentConditions.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-cloudy"></i>
+
+      } else if ( currentConditions.icon === 'cloudy'  && !currentConditions.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-cloudy"></i>
+
+      } else if ( currentConditions.icon === 'fog' && currentConditions.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-fog"></i>
+
+      } else if ( currentConditions.icon === 'fog' && !currentConditions.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-fog"></i>
+
+      } else if ( currentConditions.icon === 'partly-cloudy-day'){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index}  className="wi wi-day-sunny-overcast"></i>
+
+      } else if (currentConditions.icon === 'partly-cloudy-night'  ){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index}  className="wi wi-night-alt-cloudy"></i>
+
+      } else if ( currentConditions.icon === 'rain' && currentConditions.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-rain"></i>
+
+      } else if ( currentConditions.icon === 'rain' && !currentConditions.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-rain"></i>
+
+      } else if ( currentConditions.icon === 'clear-day' && currentConditions.day ){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-sunny"></i>
+
+      } else if ( currentConditions.icon === 'clear' && currentConditions.day ){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-sunny"></i>
+
+      } else if ( currentConditions.icon === 'clear-day' && !currentConditions.day ){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-clear"></i>
+
+      } else if ( currentConditions.icon === 'clear' && !currentConditions.day ){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-clear"></i>
+
+      } else if (currentConditions.icon === 'clear-night'){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-clear"></i>
+
+      } else if ( currentConditions.icon === 'snow' && currentConditions.day ){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-snow"></i>
+
+      }  else if ( currentConditions.icon === 'snow' && !currentConditions.day ){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-snow"></i>
+
+      } else if ( currentConditions.icon === 'scattered-showers' && currentConditions.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-showers"></i>
+
+      }else if ( currentConditions.icon === 'scattered-showers' && !currentConditions.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-showers"></i>
+
+      } else if ( currentConditions.icon === 'thunder' && currentConditions.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-thunderstorm"></i>
+
+      }  else if ( currentConditions.icon === 'thunder' && !currentConditions.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-thunderstorm"></i>
+
+      } else if ( currentConditions.icon === 'wind' && currentConditions.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-windy"></i>
+
+      } else if ( currentConditions.icon === 'wind' && !currentConditions.day){
+        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-cloudy-gusts"></i>
+      }
+
+    let locationCurrentName = `${this.appData.locationData[index].data.city}, ${this.appData.locationData[index].data.province}`;
+
+    return (
+      <LocationBarDiv
+        locationCurrentTemp={Math.floor(this.appData.forecastData[index].data.currently.temperature)}
+        locationCurrentTime={this.getCurrentTimeAtLocation(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset)}
+        locationCurrentName={locationCurrentName}
+        appData={this.appData}
+        key={index}
+        indexno={index} value={this.appData.locationData[index]}
+        showMeThisOne={this.showMeThisOne}
+        getCurrentTimeAtLocation={this.getCurrentTimeAtLocation}
+        getUpToSecDateOfLocation={this.getUpToSecDateOfLocation}
+        getLiveFormatedTime={this.getLiveFormatedTime}
+        tempTypeConversion={this.tempTypeConversion}
+        removeLocation={this.removeLocation}
+        wi = {weatherIcon}
+        />
+    );
+  }
+
+  displayNewLocFirst(){
+    let arrayOfElements = this.appData.locationData.map(this.createGridItem);
+    arrayOfElements.reverse();
+    return arrayOfElements;
+  }
+// responding to UI events
+
   handleNavClick(event) {
 
       // dont want app reset on form button submittions
@@ -613,6 +712,7 @@ export default class Middle extends Component {
     this.appData.mainViewBackGround.splice(locationIndex, 1);
     this.appData.locationCount = this.appData.locationCount - 1;
 
+    this.handleNavClick(event);
   }
 
 // this method simply takes the locationName and preps the data needed to display it
@@ -749,14 +849,9 @@ export default class Middle extends Component {
       <LocationBar
         navState={this.state}
         appData={this.appData}
-        handleNavClick={this.handleNavClick}
-        showMeThisOne={this.showMeThisOne}
-        checkDay={this.checkDay}
-        getCurrentTimeAtLocation={this.getCurrentTimeAtLocation}
-        getUpToSecDateOfLocation={this.getUpToSecDateOfLocation}
-        getLiveFormatedTime={this.getLiveFormatedTime}
-        tempTypeConversion={this.tempTypeConversion}
-        removeLocation={this.removeLocation}
+        createGridItem={this.createGridItem}
+        displayNewLocFirst={this.displayNewLocFirst}
+
         />
       <MainView
         navState={this.state}
