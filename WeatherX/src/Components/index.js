@@ -5,8 +5,7 @@ import axios from 'axios';
 import TitleBar from './titleBar';
 import NavBar3 from './navBar3';
 import MainView from "./mainView";
-// import LocationBar from "./locationBar";
-import LocationBarDiv from "./locationBar/locationBarDiv.js";
+import LocationBar from "./locationBar";
 
 // import css styling
 import '../css/navBar3.css';
@@ -129,12 +128,12 @@ export default class Middle extends Component {
       celsiusFont:"°C"
 
     };
-  };  // contructing appData
+  };  // contructing app's Data
 
   componentWillUnmount(){
     clearInterval(this.appData.interval);
     this.appData = null;
-  }; // destroy app and it's data
+  }; // destroy app and it's data when unloading app
 
   // may use dayJs-ext or moment0-timezone for timezone time adjustment
   // For now, using my own custom code to adjust from UTC to timezone offset of location
@@ -144,16 +143,30 @@ export default class Middle extends Component {
   return new Date(dateInt * 1000);
   }
 
-  checkDay(dateInt, tz, sunset){
+  checkDay(dateInt, tz, sunset, sunrise){
     // dont need actual current timeout
     // need to calc whether for a given hour of the day...
     // for specific location ..is it nighttime or daytime
-    let tzHrs = this.getTZhours(this.getUpToSecDateOfLocation(dateInt), tz);
-    let tzSunset = this.getTZhours(this.getUpToSecDateOfLocation(sunset), tz);
 
-    if(tzHrs > tzSunset){
+    const correct24hour = hrX => {
+      if (hrX == 24){
+       return 0;
+      } else if (hrX > 24){
+       return hrX - 24;
+     } else {
+       return hrX;
+     }
+    };
+
+    let tzHrs = correct24hour(this.getTZhours(this.getUpToSecDateOfLocation(dateInt), tz));
+    let tzSunset = correct24hour(this.getTZhours(this.getUpToSecDateOfLocation(sunset), tz));
+    let tzSunrise = correct24hour(this.getTZhours(this.getUpToSecDateOfLocation(sunrise), tz));
+
+    console.log(tzHrs, tzSunset,tzSunrise);
+
+    if(tzHrs > tzSunset || tzHrs <= tzSunrise ){
       return false;  // so it's night time in this timezone
-    } else {
+    } else if ( tzHrs <= tzSunset && tzHrs >= tzSunrise) {
       return true; // so it's still daytime in this timezone
     }
   }
@@ -320,60 +333,58 @@ export default class Middle extends Component {
      // return Math.round((tempNum *  1.8) + 32);
   }
 
-  // methods for integrating geoCode results and forecastData points into components
+  // methods for integrating TomTom and Forecast.io results components
 
-  checkRefresh(indexno){
-    this.appData.refreshArray =  [...this.appData.refreshArray, indexno];
-  }
+  pickOutDataPoints(dataObject, index){  // callback function for getHourlyConditions
 
-  pickOutDataPoints(dataObject, index){
-
-    // may implement an 'update' to hourly conditions later
-    // let dateX = this.getUpToSecDateOfLocation(dataObject.time);
-    // let hourX = this.getTZhours(dateX, this.appData.currentLocationData.utcOffSet);
-    // let currentHour =  this.getTZhours(new Date(), this.appData.currentLocationData.utcOffSet);
+    let day = this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet, this.appData.currentLocationData.sunsetTime, this.appData.currentLocationData.sunriseTime);
+    console.log(day);
+    let hour =  this.getHourOfDay(dataObject.time, this.appData.currentLocationData.utcOffSet);
+    let icon = dataObject.icon;
+    console.log(icon);
+    let temp = this.tempTypeConversion(this.appData.fahrenheitType, Math.floor(dataObject.temperature));
 
     if (index === 0 ){
       return {
-        day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet, this.appData.currentLocationData.sunsetTime),
+        day: day,     // datatype boolean
         hour: 'Now',  // datatype string
-        icon: dataObject.icon,                      // datatype string
-        temp: this.tempTypeConversion(this.appData.fahrenheitType, Math.floor(dataObject.temperature)),   // datatype int
+        icon: icon,   // datatype string
+        temp: temp,   // datatype int
       };
     } else {
       return {
-        day: this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet, this.appData.currentLocationData.sunsetTime),
-        hour: this.getHourOfDay(dataObject.time, this.appData.currentLocationData.utcOffSet),  // datatype string
-        icon: dataObject.icon,                      // datatype string
-        temp: this.tempTypeConversion(this.appData.fahrenheitType, Math.floor(dataObject.temperature)),   // datatype int
+        day: day,    // datatype boolean
+        hour: hour,  // datatype string
+        icon: icon,  // datatype string
+        temp: temp   // datatype int
       };
     }
   }
 
-  pickOutDailyDataPoints(dataObject, index){
+  pickOutDailyDataPoints(dataObject, index){ // calback function for getDailyConditions
+
       let today = new Date(dataObject.time * 1000);
       let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
       return {
         day: daysOfWeek[today.getDay()],  // datatype string
-        icon: dataObject.icon,                      // datatype string
+        icon: dataObject.icon,            // datatype string
         tempLow: this.tempTypeConversion(this.appData.fahrenheitType, Math.floor(dataObject.temperatureLow)),   // datatype int
         tempHigh: this.tempTypeConversion(this.appData.fahrenheitType, Math.floor(dataObject.temperatureHigh)),   // datatype int
       };
     }
 
-  getHourlyConditions(dataArray){
+  getHourlyConditions(dataArray){ // for each hour in a locations forecast, return an object of datapoints
      return dataArray.map(this.pickOutDataPoints);
   }
 
-  getDailyConditions(dataArray){
+  getDailyConditions(dataArray){ // for each day in a locations forecast, return an object of datapoints
     return dataArray.map(this.pickOutDailyDataPoints);
   }
 
-  setMainViewBackGround(data){
+  setMainViewBackGround(data){ // set appropriate background based on current weather condition
 
-
-    let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime );
+    let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime, data.daily.data[0].sunriseTime );
     let icon = data.currently.icon;
 
        if ( icon === 'cloudy' && day){
@@ -415,9 +426,9 @@ export default class Middle extends Component {
         }
   }
 
-  setLocationBarBackGround(data){
+  setLocationBarBackGround(data){ // set appropriate background based on current weather condition
 
-    let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime);
+    let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime, data.daily.data[0].sunriseTime);
     let icon = data.currently.icon;
 
        if ( icon === 'cloudy' && day){
@@ -461,9 +472,9 @@ export default class Middle extends Component {
 
   // return a ampped array of div elements with location data inserted
 
-  createGridItem(object, index){
+  createGridItem(object, index){ // for mapping locationData, inserts currentConditions into a LocationBar Div, inserted into grid
     let currentConditions = this.appData.availLocationsArray[index];
-    currentConditions.day = this.checkDay(currentConditions.timeStamp, currentConditions.utcOffSet, currentConditions.sunsetTime);
+    currentConditions.day = this.checkDay(currentConditions.timeStamp, currentConditions.utcOffSet, currentConditions.sunsetTime, currentConditions.sunriseTime);
     let weatherIcon;
       if ( currentConditions.icon === 'cloudy'  && currentConditions.day){
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-cloudy"></i>
@@ -530,7 +541,7 @@ export default class Middle extends Component {
       }
 
     return (
-      <LocationBarDiv
+      <LocationBar
         locationCurrentTemp={Math.floor(this.appData.forecastData[index].data.currently.temperature)}
         locationCurrentTime={this.getCurrentTimeAtLocation(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset)}
         locationCurrentName={`${this.appData.locationData[index].data.city}, ${this.appData.locationData[index].data.province}`}
@@ -548,9 +559,7 @@ export default class Middle extends Component {
     );
   }
 
-  // reverse the array so new locations are appear at the top
-
-  displayNewLocFirst(){
+  displayNewLocFirst(){ // reverse the array of locationBar grid items, so new locations appear at the top
 
     if (this.state.removeLocation){
       this.removeLocation(this.appData.removeIndexNo);
@@ -563,9 +572,7 @@ export default class Middle extends Component {
     }
   }
 
-  // using the index, splice all arrays with the effect of removing that location
-
-  removeLocation(locationIndex){
+  removeLocation(locationIndex){   // using a given index, splice all arrays with the effect of removing that location
     this.appData.locationData.splice(locationIndex, 1);
     this.appData.forecastData.splice(locationIndex, 1);
     this.appData.availLocationsArray.splice(locationIndex, 1);
@@ -577,112 +584,112 @@ export default class Middle extends Component {
   // responding to UI events
 
   handleNavClick(event, removeIndexNo) {
-         if ( this.appData.geoCodeThis === '' && event.target.title === 'Submit Search'){
-           this.setState({
-             home: true,
-             about: false,
-             mainView: false,
-             locationBar:true,
-             inputForm: true,
-             controlsForm: false,
-             removeLocation: false
-           })
-         } else if (event.target.title === 'backHome'){
-          this.setState({
-            home: true,
-            about: false,
-            mainView: false,
-            locationBar:true,
-            inputForm: false,
-            controlsForm: true,
-            removeLocation: false
-          })
-        } else if (event.target.title === 'Find Me'){
-          this.setState({
-            home: true,
-            about: false,
-            mainView: false,
-            locationBar:true,
-            inputForm: false,
-            controlsForm: true,
-            removeLocation: false
-          })
-        } else if (event.target.title === 'Submit Search'){
-          this.setState({
-            home: true,
-            about: false,
-            mainView: false,
-            locationBar:true,
-            inputForm: false,
-            controlsForm: true,
-            removeLocation: false
-          })
-        } else if (event.target.title === 'About WeatherX'){
-          this.setState({
-            home: false,
-            about: true,
-            mainView: false,
-            locationBar:false,
-            inputForm: false,
-            controlsForm: true,
-            removeLocation: false
-          })
-        } else if (event.target.title === 'locationBar'){
-          this.setState({
-            home: false,
-            about: false,
-            mainView: true,
-            locationBar: false,
-            inputForm: false,
-            controlsForm: true,
-            removeLocation: false
-          })
-        } else if (event.target.title === "Add Location"){
-          this.setState({
-            home: true,
-            about: false,
-            mainView: false,
-            locationBar: true,
-            inputForm: true,
-            controlsForm: false,
-            removeLocation: false
-          })
-        } else if (event.target.title === "Celsius"){
-         this.setState({
-          home: true,
-          about: false,
-          mainView: false,
-          locationBar: true,
-          inputForm: false,
-          controlsForm: true,
-          removeLocation: false
-        })
-        this.appData.celsiusType=true;
-        this.appData.fahrenheitType=false;
-        } else if (event.target.title === "Fahrenheit"){
-          this.setState({
-            home: true,
-            about: false,
-            mainView: false,
-            locationBar: true,
-            inputForm: false,
-            controlsForm: true,
-            removeLocation: false
-          })
-          this.appData.celsiusType=false;
-          this.appData.fahrenheitType=true;
-        } else if (event.target.title === "remove"){
-         this.setState({
-           home: true,
-           about: false,
-           mainView: false,
-           locationBar: true,
-           inputForm: false,
-           controlsForm: true,
-           removeLocation: true
-         })
-         this.appData.removeIndexNo = removeIndexNo;
-      }
+    if ( this.appData.geoCodeThis === '' && event.target.title === 'Submit Search'){
+       this.setState({
+         home: true,
+         about: false,
+         mainView: false,
+         locationBar:true,
+         inputForm: true,
+         controlsForm: false,
+         removeLocation: false
+       });
+    } else if (event.target.title === 'backHome'){
+      this.setState({
+        home: true,
+        about: false,
+        mainView: false,
+        locationBar:true,
+        inputForm: false,
+        controlsForm: true,
+        removeLocation: false
+      });
+    } else if (event.target.title === 'Find Me'){
+      this.setState({
+        home: true,
+        about: false,
+        mainView: false,
+        locationBar:true,
+        inputForm: false,
+        controlsForm: true,
+        removeLocation: false
+      });
+    } else if (event.target.title === 'Submit Search'){
+      this.setState({
+        home: true,
+        about: false,
+        mainView: false,
+        locationBar:true,
+        inputForm: false,
+        controlsForm: true,
+        removeLocation: false
+      });
+    } else if (event.target.title === 'About WeatherX'){
+      this.setState({
+        home: false,
+        about: true,
+        mainView: false,
+        locationBar:false,
+        inputForm: false,
+        controlsForm: true,
+        removeLocation: false
+      })
+    } else if (event.target.title === 'locationBar'){
+      this.setState({
+        home: false,
+        about: false,
+        mainView: true,
+        locationBar: false,
+        inputForm: false,
+        controlsForm: true,
+        removeLocation: false
+      });
+    } else if (event.target.title === "Add Location"){
+      this.setState({
+        home: true,
+        about: false,
+        mainView: false,
+        locationBar: true,
+        inputForm: true,
+        controlsForm: false,
+        removeLocation: false
+      });
+    } else if (event.target.title === "Celsius"){
+     this.setState({
+      home: true,
+      about: false,
+      mainView: false,
+      locationBar: true,
+      inputForm: false,
+      controlsForm: true,
+      removeLocation: false
+    });
+    this.appData.celsiusType=true;
+    this.appData.fahrenheitType=false;
+    } else if (event.target.title === "Fahrenheit"){
+      this.setState({
+        home: true,
+        about: false,
+        mainView: false,
+        locationBar: true,
+        inputForm: false,
+        controlsForm: true,
+        removeLocation: false
+      });
+      this.appData.celsiusType=false;
+      this.appData.fahrenheitType=true;
+    } else if (event.target.title === "remove"){
+     this.setState({
+       home: true,
+       about: false,
+       mainView: false,
+       locationBar: true,
+       inputForm: false,
+       controlsForm: true,
+       removeLocation: true
+     });
+     this.appData.removeIndexNo = removeIndexNo;
+    }
   }
 
   handleInputChange(event) {
@@ -744,10 +751,11 @@ export default class Middle extends Component {
           index: index,
           name: `${this.appData.locationData[index].data.city}, ${this.appData.locationData[index].data.province}`,
           sunsetTime: this.appData.forecastData[index].data.daily.data[0].sunsetTime,
+          sunriseTime: this.appData.forecastData[index].data.daily.data[0].sunriseTime,
           utcOffSet: this.appData.forecastData[index].data.offset,
           time: this.getCurrentTimeAtLocation(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset),
           temp: this.tempTypeConversion(this.appData.fahrenheitType, Math.floor(this.appData.forecastData[index].data.currently.temperature)),
-          day: this.checkDay(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset, this.appData.forecastData[index].data.daily.data[0].sunsetTime),
+          day: this.checkDay(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset, this.appData.forecastData[index].data.daily.data[0].sunsetTime, this.appData.forecastData[index].data.daily.data[0].sunriseTime),
           icon: this.appData.forecastData[index].data.currently.icon
         };
 
@@ -767,7 +775,7 @@ export default class Middle extends Component {
 
   }
 
-  // this method makes the apicall get req to backendServer
+  // this method makes an apicall, get request, to the backendServer
   // only handleNavSubmit calls this method
   // never called by other methods or components
 
@@ -805,9 +813,10 @@ export default class Middle extends Component {
                   index: this.appData.forecastData.length,
                   name: `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`,
                   sunsetTime: newForecast.data.mostRecentForecast.data.daily.data[0].sunsetTime,
+                  sunriseTime: newForecast.data.mostRecentForecast.data.daily.data[0].sunriseTime,
                   utcOffSet: newForecast.data.mostRecentForecast.data.offset,
                   time: this.getCurrentTimeAtLocation(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
-                  day: this.checkDay(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset, newForecast.data.mostRecentForecast.data.daily.data[0].sunsetTime),
+                  day: this.checkDay(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset, newForecast.data.mostRecentForecast.data.daily.data[0].sunsetTime, newForecast.data.mostRecentForecast.data.daily.data[0].sunriseTime),
                   temp: Math.floor(newForecast.data.mostRecentForecast.data.currently.apparentTemperature),
                   icon:`${newForecast.data.mostRecentForecast.data.currently.icon}`
                 };
@@ -817,8 +826,9 @@ export default class Middle extends Component {
                   utcOffSet: newForecast.data.mostRecentForecast.data.offset,
                   timeStamp: newForecast.data.mostRecentForecast.data.currently.time,
                   sunsetTime: newForecast.data.mostRecentForecast.data.daily.data[0].sunsetTime,
+                  sunriseTime: newForecast.data.mostRecentForecast.data.daily.data[0].sunriseTime,
                   time: this.getCurrentTimeAtLocation(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
-                  day: this.checkDay(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset, newForecast.data.mostRecentForecast.data.daily.data[0].sunsetTime),
+                  day: this.checkDay(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset, newForecast.data.mostRecentForecast.data.daily.data[0].sunsetTime, newForecast.data.mostRecentForecast.data.daily.data[0].sunriseTime),
                   temp: Math.floor(newForecast.data.mostRecentForecast.data.currently.apparentTemperature),
                   icon:`${newForecast.data.mostRecentForecast.data.currently.icon}`
                 }];
@@ -874,12 +884,3 @@ export default class Middle extends Component {
   }
 
 }
-
-/*
-<LocationBar
-  navState={this.state}
-  appData={this.appData}
-  handleNavClick={this.handleNavClick}
-  displayNewLocFirst={this.displayNewLocFirst}
-  />
-*/
