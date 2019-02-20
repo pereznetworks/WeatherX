@@ -1,12 +1,40 @@
 import React, { Component } from 'react';
-
-import LocationBarDiv from "./locationBarDiv.js";
-
 export default class LocationBar extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor(props){
+    super(props)
+    // this.state = {
+    //   locationBar:this.props.navState.locationBar
+    // };
+
+    this.handleNavClick = this.handleNavClick.bind(this);
+    this.displayNewLocFirst = this.displayNewLocFirst.bind(this);
   }
+
+  handleNavClick(event, index){
+    this.props.handleNavClick(event, index);
+  }
+
+  displayNewLocFirst(locationName, index, event){
+    return this.props.displayNewLocFirst();
+  }
+
+  render() {
+    if (this.props.navState.locationBar){
+      return (
+          <div className='middle-grid-item-2'>{this.displayNewLocFirst()}</div>
+        );
+    } else {
+      return null;
+    }
+  }
+}
+
+// conde commented out, as part of DRY'ing and simplifying code
+// import LocationBarDiv from "./locationBarDiv.js";
+// not needed, keeping for now
+
+
 
 
 /* may need, save for now
@@ -104,14 +132,3 @@ export default class LocationBar extends Component {
     return arrayOfElements;
   }
 */
-
-  render() {
-      if (this.props.navState.locationBar){
-        return (
-          <div className='middle-grid-item-2'>{this.props.displayNewLocFirst()}</div>
-        );
-      } else {
-        return null;
-      }
-  }
-}

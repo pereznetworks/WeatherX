@@ -5,7 +5,7 @@ import axios from 'axios';
 import TitleBar from './titleBar';
 import NavBar3 from './navBar3';
 import MainView from "./mainView";
-import LocationBar from "./locationBar";
+// import LocationBar from "./locationBar";
 import LocationBarDiv from "./locationBar/locationBarDiv.js";
 
 // import css styling
@@ -18,24 +18,24 @@ import '../css/weather.css';
 import '../css/weather-icons.css';
 import '../css/weather-icons-wind.css';
 
-// may use dayJs-ext or moment0-timezone for timezone time adjustment
-// For now, using my own custom code to adjust from UTC to timezone offset of location
+  // may use dayJs-ext or moment0-timezone for timezone time adjustment
+  // For now, using my own custom code to adjust from UTC to timezone offset of location
 
-// creates one component for all sub-components
+  // creates one component for all sub-components
 
-/*   state boolean values control  which components are rendered and displayed
-      home, about, mainView and locationBar
+  /*   state boolean values control  which components are rendered and displayed
+        home, about, mainView and locationBar
 
-      home: initial view of app
-            includes titleBar, navbar3
-            home and locationBar can be true at the same time, but about and mainView are false
-            when about is true; home, mainView and locationBar are false
-            when mainView is tru;  home, about and locationBar are false
+        home: initial view of app
+              includes titleBar, navbar3
+              home and locationBar can be true at the same time, but about and mainView are false
+              when about is true; home, mainView and locationBar are false
+              when mainView is tru;  home, about and locationBar are false
 
-      about: blog and about WeatherX app page
+        about: blog and about WeatherX app page
 
-      geoCoding and geoLocation : indicate which method used to pinpoint which location to get forecastData for
- */
+        geoCoding and geoLocation : indicate which method used to pinpoint which location to get forecastData for
+   */
 
 export default class Middle extends Component {
 
@@ -51,7 +51,8 @@ export default class Middle extends Component {
       locationBar:false,
       geoLocation: false,
       geoCoding: false,
-      noBlankInputMsg: false
+      noBlankInputMsg: false,
+      removeLocation: false
     }; // using state to control component rendering
 
     this.backendServer = {
@@ -94,6 +95,7 @@ export default class Middle extends Component {
 
   componentDidMount(){
     this.appData = {
+      removeLocation:0,
       errMsg: '',
       err: false,
       geoCodeThis:'',
@@ -130,6 +132,7 @@ export default class Middle extends Component {
       fahrenheitFont:"°F",
       celsiusType:true,
       celsiusFont:"°C"
+
     };
   };  // contructing appData
 
@@ -138,9 +141,9 @@ export default class Middle extends Component {
     this.appData = null;
   }; // destroy app and it's data
 
-// date format and timezone conversion methods
+  // date format and timezone conversion methods
 
-// a component start it's own clock by running this functon
+  // a component start it's own clock by running this functon
 
   getUpToSecDateOfLocation(dateInt){
     // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
@@ -309,8 +312,7 @@ export default class Middle extends Component {
     return daysOfWeek[dateOflocation.getDay()];
   }
 
-
-// temp type conversion method
+  // temp type conversion method
 
   tempTypeConversion(tempF, tempNum){
     if (!tempF){
@@ -324,7 +326,7 @@ export default class Middle extends Component {
      // return Math.round((tempNum *  1.8) + 32);
   }
 
-// methods for integrating geoCode results and forecastData points into components
+  // methods for integrating geoCode results and forecastData points into components
 
   checkRefresh(indexno){
     this.appData.refreshArray =  [...this.appData.refreshArray, indexno];
@@ -463,6 +465,8 @@ export default class Middle extends Component {
         }
   }
 
+  // return a ampped array of div elements with location data inserted
+
   createGridItem(object, index){
     let currentConditions = this.appData.availLocationsArray[index];
     currentConditions.day = this.checkDay(currentConditions.timeStamp, currentConditions.utcOffSet, currentConditions.sunsetTime);
@@ -531,13 +535,11 @@ export default class Middle extends Component {
         weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-cloudy-gusts"></i>
       }
 
-    let locationCurrentName = `${this.appData.locationData[index].data.city}, ${this.appData.locationData[index].data.province}`;
-
     return (
       <LocationBarDiv
         locationCurrentTemp={Math.floor(this.appData.forecastData[index].data.currently.temperature)}
         locationCurrentTime={this.getCurrentTimeAtLocation(this.appData.forecastData[index].data.currently.time, this.appData.forecastData[index].data.offset)}
-        locationCurrentName={locationCurrentName}
+        locationCurrentName={`${this.appData.locationData[index].data.city}, ${this.appData.locationData[index].data.province}`}
         appData={this.appData}
         key={index}
         indexno={index} value={this.appData.locationData[index]}
@@ -546,20 +548,41 @@ export default class Middle extends Component {
         getUpToSecDateOfLocation={this.getUpToSecDateOfLocation}
         getLiveFormatedTime={this.getLiveFormatedTime}
         tempTypeConversion={this.tempTypeConversion}
-        removeLocation={this.removeLocation}
+        handleNavClick={this.handleNavClick}
         wi = {weatherIcon}
         />
     );
   }
 
-  displayNewLocFirst(){
-    let arrayOfElements = this.appData.locationData.map(this.createGridItem);
-    arrayOfElements.reverse();
-    return arrayOfElements;
-  }
-// responding to UI events
+  // reverse the array so new locations are appear at the top
 
-  handleNavClick(event) {
+  displayNewLocFirst(){
+
+    if (this.state.removeLocation){
+      this.removeLocation(this.appData.removeIndexNo);
+    }
+
+    if (this.state.locationBar){
+      let arrayOfElements = this.appData.locationData.map(this.createGridItem);
+      arrayOfElements.reverse();
+      return arrayOfElements;
+    }
+  }
+
+  // using the index, splice all arrays with the effect of removing that location
+
+  removeLocation(locationIndex){
+    this.appData.locationData.splice(locationIndex, 1);
+    this.appData.forecastData.splice(locationIndex, 1);
+    this.appData.availLocationsArray.splice(locationIndex, 1);
+    this.appData.locationBarBackGround.splice(locationIndex, 1);
+    this.appData.mainViewBackGround.splice(locationIndex, 1);
+    this.appData.locationCount = this.appData.locationData.length;
+  }
+
+  // responding to UI events
+
+  handleNavClick(event, removeIndexNo) {
 
       // dont want app reset on form button submittions
       if (this.appData.geoCodeThis === ''){
@@ -569,17 +592,19 @@ export default class Middle extends Component {
           mainView: false,
           locationBar: true,
           inputForm: true,
-          controlsForm: false
+          controlsForm: false,
+          removeLocation: false
         })
       } else {
-        if (event.target.title === 'backHome' || event.target.title === 'remove'){
+        if (event.target.title === 'backHome'){
           this.setState({
             home: true,
             about: false,
             mainView: false,
             locationBar:true,
             inputForm: false,
-            controlsForm: true
+            controlsForm: true,
+            removeLocation: false
           })
         } else if (event.target.title === 'Find Me'){
           this.setState({
@@ -588,7 +613,8 @@ export default class Middle extends Component {
             mainView: false,
             locationBar:true,
             inputForm: false,
-            controlsForm: true
+            controlsForm: true,
+            removeLocation: false
           })
         } else if (event.target.title === 'Submit Search'){
           this.setState({
@@ -597,7 +623,8 @@ export default class Middle extends Component {
             mainView: false,
             locationBar:true,
             inputForm: false,
-            controlsForm: true
+            controlsForm: true,
+            removeLocation: false
           })
         } else if (event.target.title === 'About WeatherX'){
           this.setState({
@@ -606,7 +633,8 @@ export default class Middle extends Component {
             mainView: false,
             locationBar:false,
             inputForm: false,
-            controlsForm: true
+            controlsForm: true,
+            removeLocation: false
           })
         } else if (event.target.title === 'locationBar'){
           this.setState({
@@ -615,7 +643,8 @@ export default class Middle extends Component {
             mainView: true,
             locationBar: false,
             inputForm: false,
-            controlsForm: true
+            controlsForm: true,
+            removeLocation: false
           })
         } else if (event.target.title === "Add Location"){
           this.setState({
@@ -624,7 +653,8 @@ export default class Middle extends Component {
             mainView: false,
             locationBar: true,
             inputForm: true,
-            controlsForm: false
+            controlsForm: false,
+            removeLocation: false
           })
         } else if (event.target.title === "Celsius"){
          this.setState({
@@ -633,23 +663,36 @@ export default class Middle extends Component {
           mainView: false,
           locationBar: true,
           inputForm: false,
-          controlsForm: true
+          controlsForm: true,
+          removeLocation: false
         })
         this.appData.celsiusType=true;
         this.appData.fahrenheitType=false;
-      } else if (event.target.title === "Fahrenheit"){
+        } else if (event.target.title === "Fahrenheit"){
           this.setState({
             home: true,
             about: false,
             mainView: false,
             locationBar: true,
             inputForm: false,
-            controlsForm: true
+            controlsForm: true,
+            removeLocation: false
           })
           this.appData.celsiusType=false;
           this.appData.fahrenheitType=true;
-        }
+        } else if (event.target.title === "remove"){
+         this.setState({
+           home: true,
+           about: false,
+           mainView: false,
+           locationBar: true,
+           inputForm: false,
+           controlsForm: true,
+           removeLocation: true
+         })
+         this.appData.removeIndexNo = removeIndexNo;
       }
+    }
   }
 
   handleInputChange(event) {
@@ -701,29 +744,10 @@ export default class Middle extends Component {
 
   }
 
-// remove a location
-
-  removeLocation(event, locationIndex){
-
-    this.appData.locationData.splice(locationIndex, 1);
-    this.appData.forecastData.splice(locationIndex, 1);
-    this.appData.availLocationsArray.splice(locationIndex, 1);
-    this.appData.locationBarBackGround.splice(locationIndex, 1);
-    this.appData.mainViewBackGround.splice(locationIndex, 1);
-    this.appData.locationCount = this.appData.locationCount - 1;
-
-    this.handleNavClick(event);
-  }
-
-// this method simply takes the locationName and preps the data needed to display it
-// it moves the corresponding forecastData and locationData into the currentLocationData object
-// and preps hourlyConditions and dailyConditions array
+  // this method builds the arrays needed to to display each location's forecast data
 
   showMeThisOne(locationName, index, event){
 
-    if (event.target.title === 'remove'){
-      this.removeLocation(event, index);
-    } else {
       // have forecastData ready ... now set mainView to true
       this.appData.currentLocationData = {
           index: index,
@@ -746,17 +770,17 @@ export default class Middle extends Component {
         mainView: true,
         locationBar: false,
         inputForm: false,
-        controlsForm: true
+        controlsForm: true,
+        removeLocation: false
       })
-    }
 
   }
 
-// this method makes the apicall get req to backendServer
-// only handleNavSubmit calls this method
-// never called by other methods or components
+  // this method makes the apicall get req to backendServer
+  // only handleNavSubmit calls this method
+  // never called by other methods or components
 
-// this also the only method that adds a location
+  // this methods is also the only method that adds a location
   requestDataFromServer(location){
 
       // really should have another 'middle' function to validate input...
@@ -846,13 +870,9 @@ export default class Middle extends Component {
         handleNavSubmit={this.handleNavSubmit}
         getCurrentLocation={this.getCurrentLocation}
         />
-      <LocationBar
-        navState={this.state}
-        appData={this.appData}
-        createGridItem={this.createGridItem}
-        displayNewLocFirst={this.displayNewLocFirst}
-
-        />
+      <div className='middle-grid-item-2'>
+        {this.displayNewLocFirst()}
+      </div>
       <MainView
         navState={this.state}
         appData={this.appData}
@@ -861,4 +881,14 @@ export default class Middle extends Component {
     </div>
    );
   }
+
 }
+
+/*
+<LocationBar
+  navState={this.state}
+  appData={this.appData}
+  handleNavClick={this.handleNavClick}
+  displayNewLocFirst={this.displayNewLocFirst}
+  />
+*/

@@ -13,16 +13,15 @@ export default class LocationBarDiv extends Component {
       locationCurrentTime: this.props.locationCurrentTime,
       locationCurrentName: this.props.locationCurrentName
     };
-    this.removeMe= false;
     this.interval = null;
+    this.handleNavClick = this.handleNavClick.bind(this);
     this.showMeThisOne = this.showMeThisOne.bind(this);
     this.tempTypeConversion=this.tempTypeConversion.bind(this);
-    this.removeLocation=this.removeLocation.bind(this);
     this.clock=this.clock.bind(this);
   }
 
   componentDidMount(){
-    this.interval = setInterval(this.clock, 1000)
+    this.interval = setInterval(this.clock, 1000);
   }
 
   componentWillUnmount(){
@@ -36,13 +35,6 @@ export default class LocationBarDiv extends Component {
     console.log(this.state.newTime);
   }
 
-  showMeThisOne(event){
-    if (event.target.title === 'remove'){
-      clearInterval(this.interval)
-    }
-    this.props.showMeThisOne(this.locationCurrentName,this.props.indexno, event);
-  }
-
   getCurrentTimeAtLocation(timeStamp){
     return this.props.getCurrentTimeAtLocation(timeStamp)
   }
@@ -51,26 +43,33 @@ export default class LocationBarDiv extends Component {
     this.props.tempTypeConversion(tempF, tempNum);
   }
 
-  removeLocation(event, indexno){
-    this.props.removeLocation(event, indexno);
+  showMeThisOne(event){
+    if (event.target.title === 'remove'){
+      clearInterval(this.interval);
+      this.handleNavClick(event, this.props.indexno);
+    } else {
+      this.props.showMeThisOne(this.locationCurrentName,this.props.indexno, event);
+    }
+  }
+
+  handleNavClick(event, index){
+    this.props.handleNavClick(event, index);
   }
 
   render(){
     return (
-      <div title="locationBar" className="locationBar-div" indexno={this.props.indexno} onClick={this.showMeThisOne} id={this.props.appData.locationBarBackGround[this.props.indexno]}>
+      <div title="locationBar" className='locationBar-div' indexno={this.props.indexno} onClick={this.showMeThisOne} id={this.props.appData.locationBarBackGround[this.props.indexno]}>
         <div  id="cityTime-div">
           <p id="locationTime">{this.props.getLiveFormatedTime(this.state.newTime, this.props.appData.forecastData[this.props.indexno].data.offset)}</p>
-          <p  indexno={this.props.indexno} id="locationName">{this.state.locationCurrentName}</p>
+          <p  indexno={this.props.indexno} id="locationName">{`${this.props.appData.locationData[this.props.indexno].data.city}, ${this.props.appData.locationData[this.props.indexno].data.province}`}</p>
         </div>
         <div title="currentConditions" id="locationCondition">{this.props.wi}</div>
         <TempDisplay
-           locationCurrentTemp = {this.state.locationCurrentTemp}
-           appData = {this.props.appData}
+           locationCurrentTemp={Math.floor(this.props.appData.forecastData[this.props.indexno].data.currently.temperature)}
+           appData={this.props.appData}
            tempTypeConversion={this.props.tempTypeConversion}
           />
-        <div
-          title="remove"
-          className="removeLocation"></div>
+        <div key={this.props.indexno} indexno={this.props.indexno} title="remove" className="removeLocation"></div>
       </div>
     );
   }
