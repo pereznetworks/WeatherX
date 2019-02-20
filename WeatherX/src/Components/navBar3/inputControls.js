@@ -32,6 +32,7 @@ export default class InputControls extends Component {
       this.inputPlaceHolder = "Please enter a location"
     }
     if (this.props.navState.controlsForm){
+      
         if (this.props.appData.fahrenheitType){
           return(
                 <form id="inputControls" action="">
