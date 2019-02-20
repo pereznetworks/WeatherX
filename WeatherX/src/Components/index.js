@@ -18,11 +18,6 @@ import '../css/weather.css';
 import '../css/weather-icons.css';
 import '../css/weather-icons-wind.css';
 
-  // may use dayJs-ext or moment0-timezone for timezone time adjustment
-  // For now, using my own custom code to adjust from UTC to timezone offset of location
-
-  // creates one component for all sub-components
-
   /*   state boolean values control  which components are rendered and displayed
         home, about, mainView and locationBar
 
@@ -141,9 +136,8 @@ export default class Middle extends Component {
     this.appData = null;
   }; // destroy app and it's data
 
-  // date format and timezone conversion methods
-
-  // a component start it's own clock by running this functon
+  // may use dayJs-ext or moment0-timezone for timezone time adjustment
+  // For now, using my own custom code to adjust from UTC to timezone offset of location
 
   getUpToSecDateOfLocation(dateInt){
     // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
@@ -709,7 +703,7 @@ export default class Middle extends Component {
     // dont wnat app reset on form button submittions
     event.preventDefault();
 
-    if (!this.appData.geoCodeThis){
+    if (this.appData.geoCodeThis === ''){
 
       // dont accept blank input
       this.setState({
@@ -738,6 +732,7 @@ export default class Middle extends Component {
 
       if (this.appData.notADuplicateLocation){
           this.requestDataFromServer(this.appData.geoCodeThis);
+          this.appData.geoCodeThis = '';
       }
 
     }
