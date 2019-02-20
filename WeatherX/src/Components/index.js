@@ -578,8 +578,57 @@ export default class Middle extends Component {
 
   handleNavClick(event, removeIndexNo) {
 
-      // dont want app reset on form button submittions
-      if (this.appData.geoCodeThis === ''){
+      if (event.target.title === 'backHome'){
+        this.setState({
+          home: true,
+          about: false,
+          mainView: false,
+          locationBar:true,
+          inputForm: false,
+          controlsForm: true,
+          removeLocation: false
+        })
+      } else if (event.target.title === 'Find Me'){
+        this.setState({
+          home: true,
+          about: false,
+          mainView: false,
+          locationBar:true,
+          inputForm: false,
+          controlsForm: true,
+          removeLocation: false
+        })
+      } else if (event.target.title === 'Submit Search'){
+        this.setState({
+          home: true,
+          about: false,
+          mainView: false,
+          locationBar:true,
+          inputForm: false,
+          controlsForm: true,
+          removeLocation: false
+        })
+      } else if (event.target.title === 'About WeatherX'){
+        this.setState({
+          home: false,
+          about: true,
+          mainView: false,
+          locationBar:false,
+          inputForm: false,
+          controlsForm: true,
+          removeLocation: false
+        })
+      } else if (event.target.title === 'locationBar'){
+        this.setState({
+          home: false,
+          about: false,
+          mainView: true,
+          locationBar: false,
+          inputForm: false,
+          controlsForm: true,
+          removeLocation: false
+        })
+      } else if (event.target.title === "Add Location"){
         this.setState({
           home: true,
           about: false,
@@ -589,69 +638,20 @@ export default class Middle extends Component {
           controlsForm: false,
           removeLocation: false
         })
-      } else {
-        if (event.target.title === 'backHome'){
-          this.setState({
-            home: true,
-            about: false,
-            mainView: false,
-            locationBar:true,
-            inputForm: false,
-            controlsForm: true,
-            removeLocation: false
-          })
-        } else if (event.target.title === 'Find Me'){
-          this.setState({
-            home: true,
-            about: false,
-            mainView: false,
-            locationBar:true,
-            inputForm: false,
-            controlsForm: true,
-            removeLocation: false
-          })
-        } else if (event.target.title === 'Submit Search'){
-          this.setState({
-            home: true,
-            about: false,
-            mainView: false,
-            locationBar:true,
-            inputForm: false,
-            controlsForm: true,
-            removeLocation: false
-          })
-        } else if (event.target.title === 'About WeatherX'){
-          this.setState({
-            home: false,
-            about: true,
-            mainView: false,
-            locationBar:false,
-            inputForm: false,
-            controlsForm: true,
-            removeLocation: false
-          })
-        } else if (event.target.title === 'locationBar'){
-          this.setState({
-            home: false,
-            about: false,
-            mainView: true,
-            locationBar: false,
-            inputForm: false,
-            controlsForm: true,
-            removeLocation: false
-          })
-        } else if (event.target.title === "Add Location"){
-          this.setState({
-            home: true,
-            about: false,
-            mainView: false,
-            locationBar: true,
-            inputForm: true,
-            controlsForm: false,
-            removeLocation: false
-          })
-        } else if (event.target.title === "Celsius"){
-         this.setState({
+      } else if (event.target.title === "Celsius"){
+       this.setState({
+        home: true,
+        about: false,
+        mainView: false,
+        locationBar: true,
+        inputForm: false,
+        controlsForm: true,
+        removeLocation: false
+      })
+      this.appData.celsiusType=true;
+      this.appData.fahrenheitType=false;
+      } else if (event.target.title === "Fahrenheit"){
+        this.setState({
           home: true,
           about: false,
           mainView: false,
@@ -660,32 +660,19 @@ export default class Middle extends Component {
           controlsForm: true,
           removeLocation: false
         })
-        this.appData.celsiusType=true;
-        this.appData.fahrenheitType=false;
-        } else if (event.target.title === "Fahrenheit"){
-          this.setState({
-            home: true,
-            about: false,
-            mainView: false,
-            locationBar: true,
-            inputForm: false,
-            controlsForm: true,
-            removeLocation: false
-          })
-          this.appData.celsiusType=false;
-          this.appData.fahrenheitType=true;
-        } else if (event.target.title === "remove"){
-         this.setState({
-           home: true,
-           about: false,
-           mainView: false,
-           locationBar: true,
-           inputForm: false,
-           controlsForm: true,
-           removeLocation: true
-         })
-         this.appData.removeIndexNo = removeIndexNo;
-      }
+        this.appData.celsiusType=false;
+        this.appData.fahrenheitType=true;
+      } else if (event.target.title === "remove"){
+       this.setState({
+         home: true,
+         about: false,
+         mainView: false,
+         locationBar: true,
+         inputForm: false,
+         controlsForm: true,
+         removeLocation: true
+       })
+       this.appData.removeIndexNo = removeIndexNo;
     }
   }
 
