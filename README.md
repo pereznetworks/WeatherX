@@ -4,29 +4,28 @@ Daniel Perez, Captsone - Team TreeHouse FSJS Project
 Status:
 
   - 1: Front-end App and Back-end Server now working
-      - a: security note: only the front-end server will be able to make requests from back-end server
+      - a: security note: only the front-end server can make req from back-end server
         - i: allowing requests only from 1 specific ip address
         - ii: will have to keep this for production build
-  - 2: Front-end issue: fixed timezone issue
-        - a: using my own custom code to adjust for timezone offset and format time displayed
-        - b: may switch to dayjs-ext/momment-timezone depending on the progress either these modules
-  - 3: backend issue: now able to return both geocoded and forecast results to front-end app
-      - a: will need to switch to Mongod
-      - b: want to be completely done with any changes to data models before switching to Mongod
-  - 4: will need to switch away from [Weather-icons](https://www.npmjs.com/package/weather-icons)
-      - a: since last publish was 4 years ago!
+  - 2: Front-end features working:  
+      - a: geocoding working
+      - b: timeDisplay for each Location
+      - c: current and forecast data for each location
+      - d: add and removal of each location
+      - e: form input validation before submitting location search
+  - 3: Backend working:
+      - a: now able to return both geocoded forecast results to front-end app
+      - b: returning timezone, long/lat coordinates and location name
 
 To Do:
 
-  - front-end features:
-    - 2: newer weather icon module
-    - 3: background animation of current weather at given location: raining, snowing, sunny, etc.
-
-  - backend core:
-    - 1: secure Mongod using mongoose.js
-      - a: want to continue not using cookies if possible
-
-  - production build and deployment to hosting
+  - 1: front-end features:
+    - a: newer weather icon module
+    - b: geolocation?  May leave for next version.
+  - 2: backend core:
+    - a: secure Mongod using mongoose.js
+    - b: want to continue not using cookies if possible
+  - 3: production build and deployment to hosting
 
 
 # My Captsone Project:  Weather forecast service  
@@ -59,16 +58,11 @@ React.Js, https://reactjs.org/ and Babel.js, https://babeljs.io/, for front-end 
 
 [TomTom](https://developer.tomtom.com/maps-sdk-web) - for geocoding/geolocation services
 
-[MapBox](https://www.mapbox.com/) - for mapping services
-
 [Forcast.io](https://darksky.net/dev/docs) - for weather forecast data
-
 
 # Utility NPM packages to be used:
 
 [Axios](https://www.npmjs.com/package/axios) - for making api calls
-
-[Moment-timezone](https://github.com/moment/moment-timezone) - for converting date timestamps to given location timezone
 
 [Weather-icons](https://www.npmjs.com/package/weather-icons) - for displaying icons to indicate forecasted weather conditions
 
