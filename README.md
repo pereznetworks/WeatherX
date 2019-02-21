@@ -66,6 +66,8 @@ React.Js, https://reactjs.org/ and Babel.js, https://babeljs.io/, for front-end 
 
 [Weather-icons](https://www.npmjs.com/package/weather-icons) - for displaying icons to indicate forecasted weather conditions
 
+I wrote my own Date and Time conversion methods
+
 # Standards:
 
 Will be using javascript es6, web-apps best-practices, TLS2 security and web-standards!
