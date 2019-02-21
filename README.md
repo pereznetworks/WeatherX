@@ -51,7 +51,7 @@ This project uses Node.js, https://nodejs.org/ and Express.Js,"https://expressjs
 
 I use Mongoose, https://mongoosejs.com/", for db backend.
 
-React.Js, https://reactjs.org/ and Babel.js, https://babeljs.io/, for front-end UI/UX.
+React.Js, https://reactjs.org/ or front-end UI/UX, and Babel.js, https://babeljs.io/, for compiling JSX
 
 # This project integrates data from several API sources:  
 
