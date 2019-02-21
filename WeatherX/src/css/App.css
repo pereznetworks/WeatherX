@@ -15,3 +15,28 @@
     transform: rotate(360deg);
   }
 }
+
+/* The grid container */
+.grid-container {
+  position: absolute;
+  top: 0;
+  width:90%;
+  margin: 0 5% 0 5%;
+  display: grid;
+  z-index: -1;
+  grid-template-areas:
+    'top top top top top top'
+    'middle middle middle middle middle middle'
+    'bottom bottom bottom bottom bottom bottom';
+  /* grid-column-gap: 10px; - if you want gap between the columns */
+}
+
+.header{
+  grid-area: top;
+}
+.middle{
+  grid-area: middle;
+}
+.footer{
+  grid-area: bottom;
+}

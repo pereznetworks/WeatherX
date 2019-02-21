@@ -42,7 +42,7 @@
 
       <a class="navbar-brand order-1 mr-0"
           href="http://dap-dev.herokuapp.com"
-          target="_blank">Presented by Daniels App Works</a>
+          target="_blank">more by Daniel's App Works</a>
           <!-- navbar-brand : 'branding' adds additional component to navbar, can be an icon-img, href link or both   -->
           <!-- order-1 : ordering starts at 0, places nav-brand after navbar-toogler/nav component -->
 
@@ -60,10 +60,7 @@
       <!-- when displaying drop-menu use the following div, otherwise collapse into navbar-toggler button -->
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="#about">About</a>
-          <a class="nav-item nav-link" href="#features">Features</a>
-          <a class="nav-item nav-link" href="#in-depth">In-Depth</a>
+          <a class="nav-item nav-link" href="">The WeatherX App, coming soon!</a>
         </div>
       </div>
 
@@ -79,11 +76,10 @@
       <p class="lead">Building a great app using the latest technologies from the Full Stack JavaScript Tech Degree at Team TreeHouse</p>
       <div class="btn-group mt-4" role="group" aria-label="Callout buttons">
         <!-- .btn-group and role="group", make the buttons line up back to back, as 1 continuous button -->
-        <a class="link" target='_blank' href="http://10.100.10.103:3000">WeatherX</a>
+        <a class="link" href="">The WeatherX App, Coming Soon!</a>
       </div>
     </div>
   </div><!-- /jumbotron -->
-    <div id="about" class="mb-5"></div>
     <div class="container pt-4">
      <!-- container, is centered on screen, width adjusts based on pre-set media query break-points  -->
      <!-- pt: padding top, 4: 1.5 em  -->
@@ -91,7 +87,7 @@
     <!-- row for 'Daniel's Capstone Project'  -->
     <div class="row">
 
-      <div class="col-lg order-lg-2">
+      <div id="about" class="col-lg order-lg-2">
         <!-- col-lg, lg screens and smaller get lg columns, xtra-lg screens get 3 equal width columns  -->
         <!-- order-lg-1 class, re-orders from left to right, for lg screens only  -->
 
@@ -102,29 +98,35 @@
         <!-- img class: resize based on column width, rounder corners -->
         <!-- d-none d-sm-block: display image for all but small and xs screens -->
 
-        <p>The WeatherX Service...</p>
-        <p>a cutting edge Weather Service and an App.</p>
-        <p>Using Several API sources: MapBox, DarkSky, TimeZoneDB, ArcGIS and Google Earth... </p>
-        <p>to deliver and visualize current and forecast weather for any place on Earth.</p>
+        <p>STATUS:<a href="">Go-Live Date: March 1st, 2019</a> </p>
+        <p>WeatherX:</p>
+        <p>WeatherX is combination REST API and front-end web app.</p>
+        <p>It uses 2 API sources, TomTom and DarkSky, to get weather data for any place on Earth.</p>
+        <p>The backend server...</p>
+        <p>provides data to the front-end web app. It is a node/express.js server, with a Mongod database, that implements a REST API.</p>
+        <p>The frontend web app....</p>
+        <p>is built mobile-first, using react.js web application framework</p>
         <p><a target='_blank' href="https://github.com/pereznetworks/TD-Project12/blob/master/WeatherX/README.md">WeatherX GitHub Repo</a> </p>
         </div>
 
       <div class="col-lg order-lg-1">
         <h3 class="mb-4">Latest Technologies</h3>
         <p>Thanks to <a target='_blank' href="https://teamtreehouse.com">Team TreeHouse</a>, a great place for anyone to get started in Software Development.</p>
-        <p>This project uses <a target='_blank' href="https://nodejs.org/">Node.js</a> and <a target='_blank' href="https://expressjs.com/">Express.Js</a> for https server and routing, <a target='_blank' href="https://mongoosejs.com/">Mongoose</a> for db backend, <a target='_blank' href="https://reactjs.org/">React.Js</a> and <a target='_blank' href="https://babeljs.io/">Babel.js</a> for front-end UI/UX </p>
-        <p>And it's all javascript es2015, web-app best-practices, TSL2 security and html5 web-standards compliant!</p>
-        <p> Get an <a target='_blank' href="https://github.com/pereznetworks/TD-Project12/tree/master">In Depth</a> look at the how this project was made</p>
+        <p>This GitHub page, is basic front-end page built using Boostrap 4</p>
+        <p>My Captsone project uses <a target='_blank' href="https://nodejs.org/">Node.js</a> and <a target='_blank' href="https://expressjs.com/">Express.Js</a> for https server and routing, <a target='_blank' href="https://mongoosejs.com/">Mongoose</a> for db backend, <a target='_blank' href="https://reactjs.org/">React.Js</a> for front-end UI/UX </p>
+        <p>And it's all Javascript es2015, web-app best-practices, TSL2 security and html5 web-standards compliant!</p>
+        <p>I will be deploying and hosting my project live on <a href="https://www.heroku.com/">Heroku</a> </p>
       </div>
 
       <div class="col-lg order-lg-3">
         <h3 class="mb-4">A list of the Techologies Used</h3>
         <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action"><strong>MongoDB</strong>: NoSQL database</a>
-          <a href="#" class="list-group-item list-group-item-action"><strong>Express</strong>: Framework for Node</a>
-          <a href="#" class="list-group-item list-group-item-action"><strong>React</strong>: JavaScript library</a>
-          <a href="#" class="list-group-item list-group-item-action"><strong>Node.js</strong>: JavaScript environment</a>
-          <a href="#" class="list-group-item list-group-item-action"><strong>ES2015</strong>: Latest version of JavaScript</a>
+          <a href="#" class="list-group-item list-group-item-action"><strong>Mongoose</strong>: A NPM package for use with Mongod NoSQL database</a>
+          <a href="#" class="list-group-item list-group-item-action"><strong>MongoDB</strong>: A NoSQL database</a>
+          <a href="#" class="list-group-item list-group-item-action"><strong>Express.js</strong>: A Web Application Framework for Node.js</a>
+          <a href="#" class="list-group-item list-group-item-action"><strong>React.js</strong>: A JavaScript library for building interfaces</a>
+          <a href="#" class="list-group-item list-group-item-action"><strong>Node.js</strong>: JavaScript runtime environment built on Chromes' V8 Javascript Enginer</a>
+          <a href="#" class="list-group-item list-group-item-action"><strong>ES2015</strong>: latest version of JavaScript</a>
         </div>
       </div>
 

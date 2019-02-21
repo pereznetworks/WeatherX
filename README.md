@@ -1,5 +1,4 @@
-# TD-Project12
-Daniel Perez, Captsone - Team TreeHouse FSJS Project
+# TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
 Status:
 
