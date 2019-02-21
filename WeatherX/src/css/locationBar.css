@@ -84,13 +84,30 @@
     vertical-align:middle;
     width:5%;
     height:100%;
-    margin: 0;
+    margin: 0 2%;
     padding: 0;
   }
 
   .removeLocation:hover{
     background-image:url('../imgs/Garbage-Open-48-4B4AA7-T.png');
   }
+
+@media only screen and (min-width: 720px){
+  #cityTime-div, #temp-div{
+    padding: 0 0 2% 0;
+  }
+
+  #locationCondition{
+    font-size: 2.4em;
+    padding-top: 8px 18px;
+
+  }
+
+  .removeLocation{
+    background-size: 150%;
+  }
+}
+
 @media only screen and (min-width: 1020px){
 
   #cityTime-div, #temp-div{
@@ -101,6 +118,10 @@
     font-size: 2.4em;
     padding-top: 8px 18px;
 
+  }
+
+  .removeLocation{
+    background-size: 150%;
   }
 
 }
