@@ -27,7 +27,7 @@ To Do:
   - 3: production build and deployment to hosting
 
 
-# My Captsone Project:  Weather forecast service  
+# My Captsone Project:  WeatherX : A Weather forecast service  
 
 GeoCoding (Search) and Geo-Location Services
 
