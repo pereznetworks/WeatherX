@@ -34,8 +34,8 @@ export default class MainView extends Component {
       this.props.showMeThisOne();
     }
 
-    whatDayIsIt(dateInt){
-      return this.props.whatDayIsIt(dateInt);
+    whatDayIsIt(dateInt, utcOffSet){
+      return this.props.whatDayIsIt(dateInt, utcOffSet);
     }
 
   render() {

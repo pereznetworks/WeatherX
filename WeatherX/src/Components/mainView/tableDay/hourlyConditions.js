@@ -9,7 +9,6 @@ export default class HourlyConditions extends Component {
   }
 
   setHourlyConditionElements(object, index){
-        console.log(object);
         if (object.icon === 'cloudy' && object.day){
           return <td key={index} className="weatherSummary" ><i className="wi wi-day-cloudy"></i></td>
         } else if (object.icon === 'cloudy' && !object.day){

@@ -144,12 +144,17 @@ export default class Middle extends Component {
   }
 
   checkDay(dateInt, tz, sunset, sunrise){
-    // dont need actual current timeout
+    // dont need actual current time
     // need to calc whether for a given hour of the day...
-    // for specific location ..is it nighttime or daytime
+    // for specific location,
+    // given that timezone sunrise and sunset time
+    // ..is it nighttime or daytime
 
+    // getTZhours usess getUTCHours, which returns a 36 hr/day hour
+    // but here I am correting for a 24 hour/day hour
+    // so 24 hundred hours becomes, 0 hours, etc...
     const correct24hour = hrX => {
-      if (hrX == 24){
+      if (hrX === 24){
        return 0;
       } else if (hrX > 24){
        return hrX - 24;
@@ -162,8 +167,6 @@ export default class Middle extends Component {
     let tzSunset = correct24hour(this.getTZhours(this.getUpToSecDateOfLocation(sunset), tz));
     let tzSunrise = correct24hour(this.getTZhours(this.getUpToSecDateOfLocation(sunrise), tz));
 
-    console.log(tzHrs, tzSunset,tzSunrise);
-
     if(tzHrs > tzSunset || tzHrs <= tzSunrise ){
       return false;  // so it's night time in this timezone
     } else if ( tzHrs <= tzSunset && tzHrs >= tzSunrise) {
@@ -171,7 +174,8 @@ export default class Middle extends Component {
     }
   }
 
-  getTZhours(dateInt, tz){
+  getTZhours(dateInt, tz){ // get the UTChour() of a dateInt, then account for timezone offset
+
     let utc = dateInt.getUTCHours();
     let hrs;
 
@@ -191,12 +195,14 @@ export default class Middle extends Component {
         hrs = utc + tz;
     }
 
-    return hrs; // still a 24 hours hour
+    return hrs; // is a 36 hours/day hour
 
   }
 
-  formatTime(hrs, mins, secs){
-    hrs = Math.floor(hrs);
+  formatTime(hrs, mins, secs){  // format the time so it can be displayed as hh:mm:ss AM/PM
+
+    hrs = Math.floor(hrs); // every once in awhile getTZhours return a floating point hour, 10.5 (??)
+
     if (secs){
       if (hrs > 24){
          hrs = hrs - 24;
@@ -245,7 +251,7 @@ export default class Middle extends Component {
     }
   }
 
-  getLiveFormatedTime(dateInt, tz){
+  getLiveFormatedTime(dateInt, tz){ // get the time, given utc hr, min and secs and the timezone, for given location
     let date = dateInt;
     let hrs, mins, secs;
 
@@ -265,7 +271,7 @@ export default class Middle extends Component {
 
   }
 
-  getCurrentTimeAtLocation(dateInt, tz){
+  getCurrentTimeAtLocation(dateInt, tz){ // get the time, given utc hr, min and the timezone, for given location
     let date = this.appData.date;
     let hrs, mins;
 
@@ -280,15 +286,18 @@ export default class Middle extends Component {
 
   }
 
-  getHourOfDay(dateInt, tz){
+  getHourOfDay(dateInt, tz){ // return the hours of the day, for 00 hours, return day of week
+    // get hour of day, given utc hour and timezone offset for a given location
+    // if it's 12 AM, or midnight, return the day of week instead
 
+    // used in hourly conditions mainView table component
     const today = this.getUpToSecDateOfLocation(dateInt);
 
     let hrs = this.getTZhours(today, tz);
     let hourOfDay = this.formatTime(hrs);
     let nextDay;
 
-    this.appData.currentDay = [...this.appData.currentDay, today.getDay()];
+    this.appData.currentDay = [...this.appData.currentDay, this.whatDayIsIt(dateInt, tz)];
     this.appData.currentDayIndex = this.appData.currentDay.length - 1;
     let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -300,23 +309,55 @@ export default class Middle extends Component {
     }
   }
 
-  whatDayIsIt(dateInt){
-    // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
+  whatDayIsIt(dateInt, utcOffSet){ // what day is it for a given timezone, based on UTC time
 
-    let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    // let today = new Date();
-    // this.appData.currentDay = [...this.appData.currentDay, today.getDay()];
-    // this.appData.currentDayIndex = this.appData.currentDay.length - 1;
+    // returns a timeStamp using the dateInt * 1000
+    // the forecast.io timestamps needs to be * 1000 to be converted into a Date timeStamp
+    // this.getUpToSecDateOfLocation(1550674800)
+    const timeStamp = this.getUpToSecDateOfLocation(dateInt)
 
-    const dateOflocation = this.getUpToSecDateOfLocation(dateInt);
-
-    // if (dateOflocation.getDay() !== currentDay[0] ){
-    //   this.appData.refreshData = true;
-    // } else {
-    //   return daysOfWeek[dateOflocation.getDay()];
+    let dayOfWeek;
+    let utcHours = timeStamp.getUTCHours();
+    console.log(utcHours)
+    // if (utcHours < 12){
+    //   utcHours = utcHours + 12;
     // }
 
-    return daysOfWeek[dateOflocation.getDay()];
+    if (utcOffSet === 0){
+
+        dayOfWeek = timeStamp.getUTCDay();
+
+    } else if (utcOffSet < 0){
+          utcOffSet = Math.abs(utcOffSet);
+          if ( (utcHours - utcOffSet) <  0 ){
+            if (timeStamp.getUTCDay() === 0){
+              dayOfWeek = 7 - 1;
+            } else {
+              dayOfWeek = timeStamp.getUTCDay() - 1;
+            }
+          } else {
+            dayOfWeek = timeStamp.getUTCDay();
+          }
+    } else {
+      if ( (utcHours + utcOffSet) >=  24 ){
+        if (timeStamp.getUTCDay() === 6){
+          dayOfWeek = 0;
+        } else {
+          dayOfWeek = timeStamp.getUTCDay() + 1;
+        }
+      } else {
+        dayOfWeek = timeStamp.getUTCDay();
+      }
+    }
+
+    // console.log(timeStamp, utcHours, utcOffSet, dayOfWeek);
+
+    return dayOfWeek;
+
+
+    // use the following array wherever calling this function
+    // let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
   }
 
   // temp type conversion method
@@ -338,10 +379,8 @@ export default class Middle extends Component {
   pickOutDataPoints(dataObject, index){  // callback function for getHourlyConditions
 
     let day = this.checkDay(dataObject.time, this.appData.currentLocationData.utcOffSet, this.appData.currentLocationData.sunsetTime, this.appData.currentLocationData.sunriseTime);
-    console.log(day);
     let hour =  this.getHourOfDay(dataObject.time, this.appData.currentLocationData.utcOffSet);
     let icon = dataObject.icon;
-    console.log(icon);
     let temp = this.tempTypeConversion(this.appData.fahrenheitType, Math.floor(dataObject.temperature));
 
     if (index === 0 ){
@@ -363,11 +402,11 @@ export default class Middle extends Component {
 
   pickOutDailyDataPoints(dataObject, index){ // calback function for getDailyConditions
 
-      let today = new Date(dataObject.time * 1000);
+      // let today = new Date();
       let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
       return {
-        day: daysOfWeek[today.getDay()],  // datatype string
+        day: daysOfWeek[this.whatDayIsIt(dataObject.time, this.appData.currentLocationData.utcOffSet)],  // datatype string
         icon: dataObject.icon,            // datatype string
         tempLow: this.tempTypeConversion(this.appData.fahrenheitType, Math.floor(dataObject.temperatureLow)),   // datatype int
         tempHigh: this.tempTypeConversion(this.appData.fahrenheitType, Math.floor(dataObject.temperatureHigh)),   // datatype int

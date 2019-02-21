@@ -33,7 +33,6 @@ export default class LocationBar extends Component {
     this.setState({
       newTime: new Date()
     })
-    console.log(this.state.newTime);
   }
 
   getCurrentTimeAtLocation(timeStamp){

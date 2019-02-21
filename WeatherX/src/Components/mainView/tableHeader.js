@@ -12,8 +12,12 @@ export default class TableHdr extends Component {
     this.whatDayIsIt = this.whatDayIsIt.bind(this);
   }
 
-  whatDayIsIt(dateInt){
-    return this.props.whatDayIsIt(dateInt)
+  whatDayIsIt(dateInt, utcOffSet){
+
+    // the dateInt provided is for a given location, so
+    let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    return daysOfWeek[this.props.whatDayIsIt(dateInt, utcOffSet)]
   }
   render(){
     if (this.props.appData.fahrenheitType){
@@ -21,7 +25,7 @@ export default class TableHdr extends Component {
         <table id="tableHdr">
          <tbody>
             <tr>
-              <th id="dayOfWeek">{this.whatDayIsIt(this.dateInt)}</th>
+              <th id="dayOfWeek">{this.whatDayIsIt(this.dateInt, this.utcOffSet)}</th>
               <th id="today">TODAY</th>
               <th id="blank"></th>
               <th id="tempHigh">{this.tempHigh}
