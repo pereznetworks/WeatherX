@@ -28,8 +28,8 @@
 #clearDay, #clearNight, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
   float:left;
   width: 100%;
-  height: 100%;
-  padding: 0 0 0 0;
+  height: max-content;
+  padding: 0 0 4% 0;
   margin: 0 0 0 0;
   z-index: -1;
 }
@@ -72,7 +72,7 @@
 @media only screen and (min-width: 720px){
 
   #clearDay, clearNight, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
-      height:-webkit-fill-available;
+      height:max-content;
   }
 
   #locationBar-#clearDay, #locationBar-clearNight, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #locationBar-foggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
@@ -82,7 +82,7 @@
 
 @media only screen and (min-width: 1020px){
   #clearDay, clearNight, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
-      height:-webkit-fill-available;
+      height:max-content;
   }
 
   #locationBar-#clearDay, #locationBar-clearNight, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #locationBar-foggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {

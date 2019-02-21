@@ -13,8 +13,8 @@
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1em;
-  padding: 0 1% 0 1%;
+  /* font-size: 1em;
+  padding: 0 1% 0 1%; */
 }
 .wi-fw {
   text-align: center;
