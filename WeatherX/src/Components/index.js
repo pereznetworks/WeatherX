@@ -318,10 +318,6 @@ export default class Middle extends Component {
 
     let dayOfWeek;
     let utcHours = timeStamp.getUTCHours();
-    console.log(utcHours)
-    // if (utcHours < 12){
-    //   utcHours = utcHours + 12;
-    // }
 
     if (utcOffSet === 0){
 
