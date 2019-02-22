@@ -58,7 +58,7 @@
       - ii: no Geolocation of any kind is done by any code, modules or html/css used by this app.
 
 ## B: Geocoding: (converting a typed text, into a location with longitude and latitude coordinates )
-- 1: Geocoding is done using text submitted in the navBar3 InputControls form
+ - 1: Geocoding is done using text submitted in the navBar3 InputControls form
   - a: submitted text input is sent to the WeatherX's back-end server
       - i: the WeatherX Server sends this text a as part of API request to TomTom's Search API
       - ii: no geo-bias is done,
