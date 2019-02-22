@@ -52,25 +52,25 @@
 ## A: Geolocation (using the location services of a device or computer)
  - 1: NOT IMPLEMENTED.
  - 2: Every effort has been made to ensure that...there is NO GEOLOCATION in WeatherX
-   - a: due to concerns about what is done with data by api and others ...
+    - a: due to concerns about what is done with data by api and others ...
       - i: API sources, Browsers platforms(like Google Chrome), and open source NPM modules, etc..
-   - b: a code review has been done to make sure...
+    - b: a code review has been done to make sure...
       - ii: no Geolocation of any kind is done by any code, modules or html/css used by this app.
 
 ## B: Geocoding: (converting a typed text, into a location with longitude and latitude coordinates )
  - 1: Geocoding is done using text submitted in the navBar3 InputControls form
-  - a: submitted text input is sent to the WeatherX's back-end server
+    - a: submitted text input is sent to the WeatherX's back-end server
       - i: the WeatherX Server sends this text a as part of API request to TomTom's Search API
       - ii: no geo-bias is done,
           - 1: so TomTom's Search API  isonly aware of the requests coming from WeatherX's backend server
-  - b: results are received from TomTom's Search API to the WeatherX backend server and then
+    - b: results are received from TomTom's Search API to the WeatherX backend server and then
       - i: sent to DarkSky.net's API, results are received by the WeatherX backend server
-  - c: the WeatherX front-end app receives data for the searched location from the backend server
+    - c: the WeatherX front-end app receives data for the searched location from the backend server
       - ii: TomTom's geocoded data, is for the searched location: city, latitude and longitude, etc..        
       - iii: DarkSky's weather data results are the current and 8 days of forecast data of searched location
           - 1: includes timezone offset, sunsetTime and sunriseTime of searched location
           - 2: all date and time conversion is by referencing UTC time and timezone of location searched
-  - d: the WeatherX Front-End app is not location aware, no data cached or saved
+    - d: the WeatherX Front-End app is not location aware, no data cached or saved
       - i: so the WeatherX front-end app does need to nor is the app aware of the user's location in any way
       - ii: the WeatherX front-end web server, includes best practice security protocols and security headers
           - 1: besides this no analysis is made of the get requests to the WeatherX Front-end app
@@ -84,7 +84,7 @@
           - 3: backend server deletes all data, when it sent to the WeatherX front-end app
           - 4: backend server does not keep location and weather data cached or saved to a database
                - a: this means that even every single duplicate requests for the same location will need to processed again
-  - d: Since the app does not need to cache or save any session data back to the server...
+    - e: Since the app does not need to cache or save any session data back to the server...
       - i: at present, Cookies are not used by the WeatherX front-end app
       - ii: Cookies may need to implemented ...
            - 1: to control what a browser does with the front-end app's session data
@@ -93,7 +93,7 @@
 
 ## C: OAuth/login
  - 1: NOT IMPLEMENTED.
- - 12 Will keep reviewing whether to implement this feature
+ - 2 Will keep reviewing whether to implement this feature
     - a: due to concerns about what is done with data by ...
       - i: API sources, Browsers platforms(like Google Chrome), and open source NPM modules, etc..
 
