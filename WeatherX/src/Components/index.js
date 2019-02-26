@@ -50,7 +50,7 @@ export default class Middle extends Component {
     }; // using state to control component rendering
 
     this.backendServer = {
-      url: `http://10.100.10.103`,
+      url: `http://10.100.10.102`,
       port: `:9999`,
       path: '/weather:'
     }; // object to use when making calls to backendServer
