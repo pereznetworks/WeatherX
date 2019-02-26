@@ -67,6 +67,17 @@ body {
   padding:2%;
 }
 
+/* .attribDiv{
+  background: transparent;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  left: 0%;
+  padding: 1% 0;
+  z-index: +1;
+} */
+
 @media only screen and (min-width: 720px){
 
   .grid-main{

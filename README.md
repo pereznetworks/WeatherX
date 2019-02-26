@@ -2,7 +2,8 @@
 
 Status:
 
-  - 1: Front-end App and Back-end Server now working
+  - 1: Project Site Online : https://pereznetworks.github.io/TD-Project12/
+  - 2: Front-end App and Back-end Server now working
       - a: security note: only the front-end server can make req from back-end server
         - i: allowing requests only from 1 specific ip address
         - ii: will have to keep this for production build
@@ -12,7 +13,7 @@ Status:
       - c: current and forecast data for each location
       - d: add and removal of each location
       - e: form input validation before submitting location search
-  - 3: Backend working:
+  - 4: Backend working:
       - a: now able to return both geocoded forecast results to front-end app
       - b: returning timezone, long/lat coordinates and location name
 
