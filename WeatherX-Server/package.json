@@ -1,7 +1,7 @@
 {
   "name": "weatherx-server",
   "version": "0.0.1",
-  "description": "weatherx-server, using mapbox, forecast.io and timezonedb api",
+  "description": "weatherx-server, using tomtom, forecast.io api",
   "main": "index.js",
   "dependencies": {
     "axios": "^0.18.0",
@@ -12,10 +12,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "mongod --config etc/mongod.conf",
+    "prestart": "mongod --config data/etc/mongod.conf",
     "start": "nodemon --ignore data/ --ignore logs/ --inspect ./index.js",
     "stop": "mongo admin --eval 'db.shutdownServer()'",
-    "runMongod": "mongod --config etc/mongod.conf",
+    "runMongod": "mongod --config data/etc/mongod.conf",
     "cleanDb": "node ./src/seed-data/cleanDb.js"
   },
   "keywords": [

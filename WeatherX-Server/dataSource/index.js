@@ -17,6 +17,7 @@ const onceConnected = require('./mongoClient').onceConnected;
 const runFindQuery = require('./mongooseDocumentMethods').runFindQuery;
 const createNew = require('./mongooseDocumentMethods').createNew;
 const updateDoc = require('./mongooseDocumentMethods').updateDoc;
+const ForecastData = require('./models').ForecastData;
 
 // exporting methods that access forecast.io and mapbox geocoding api
 module.exports.getForecastApiCall= getForecastApiCall;

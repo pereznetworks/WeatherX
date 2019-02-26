@@ -8,7 +8,7 @@ var mongoose = require("mongoose");
 var currentForecastSchema = require('./currentForecastSchema.js');
 
 // creating a model
-const CurrentForecast = mongoose.model('currentForecast', currentForecastSchema);
+const ForecastData = mongoose.model('currentForecast', currentForecastSchema);
 
 // exporting the models
-module.exports.course = CurrentForecast;
+module.exports.course = ForecastData;
