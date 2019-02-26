@@ -6,6 +6,8 @@
 /data/db/*
 
 # ignore config folder and everything in it
+/dataSource
+/datasource/*
 /dataSource/config
 /dataSource/config/*
 /dataSource/config/index.js
