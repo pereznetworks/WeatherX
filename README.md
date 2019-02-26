@@ -13,19 +13,17 @@ Status:
       - c: current and forecast data for each location
       - d: add and removal of each location
       - e: form input validation before submitting location search
+      - f: attributions in place
   - 4: Backend working:
       - a: now able to return both geocoded forecast results to front-end app
       - b: returning timezone, long/lat coordinates and location name
 
 To Do:
 
-  - 1: front-end features:
-    - a: newer weather icon module
-    - b: geolocation?  May leave for next version.
-  - 2: backend core:
+  - 1: backend core:
     - a: secure Mongod using mongoose.js
     - b: want to continue not using cookies if possible
-  - 3: production build and deployment to hosting
+  - 2: production build and deployment to hosting
 
 
 # My Captsone Project:  WeatherX : A Weather forecast service  

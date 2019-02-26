@@ -9,6 +9,7 @@ const manageForecastData = require('../dataSource').manageForecastData;
 const manageLocData = require('../dataSource').manageLocData;
 const sampleJson = require('../dataSource/models/sample.json');
 
+
     // the home or root route
     main.get('/', (req, res, next) => {
         res.json( [{"WeatherX notice":"authorized use only"}] );

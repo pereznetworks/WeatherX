@@ -4,6 +4,10 @@
 /data
 /data/*
 /data/db/*
+/etc
+/etc/*
+/logs
+/logs/*
 
 # ignore config folder and everything in it
 

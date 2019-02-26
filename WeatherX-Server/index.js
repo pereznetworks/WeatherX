@@ -44,6 +44,16 @@ const runFindQuery = require('./dataSource').runFindQuery;
 const createNew = require('./dataSource').createNew;
 const updateDoc = require('./dataSource').updateDoc;
 
+// make mongoose connection available to all routes
+server.use(mongoConnect);
+server.use(mongoOnErr);
+server.use(mongoOnceConnected);
+
+// make mongoose document methods available to all routes
+server.use(runFindQuery);
+server.use(createNew);
+server.use(updateDoc);
+
 // connecting to mongodb...
 const db = mongoConnect();
 
@@ -56,14 +66,6 @@ db.on("error", function(err){
 db.once("open", function(){
 	mongoOnceConnected();
 });
-
-// // make mongoose connection available to all routes
-// server.use(db);
-
-// make mongoose document methods available to all routes
-// server.use(runFindQuery);
-// server.use(createNew);
-// server.use(updateDoc);
 
 // insert custom routes router here
 server.use(routes);

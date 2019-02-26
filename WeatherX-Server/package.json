@@ -8,12 +8,15 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "helmet": "^3.15.0",
-    "mongoose": "^5.0.14",
-    "morgan": "^1.9.0"
+    "mongoose": "^5.0.14"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --inspect index.js"
+    "prestart": "mongod --config etc/mongod.conf",
+    "start": "nodemon --ignore data/ --ignore logs/ --inspect ./index.js",
+    "stop": "mongo admin --eval 'db.shutdownServer()'",
+    "runMongod": "mongod --config etc/mongod.conf",
+    "cleanDb": "node ./src/seed-data/cleanDb.js"
   },
   "keywords": [
     "testing",
@@ -21,5 +24,9 @@
     "api"
   ],
   "author": "Daniel Perez. Capstone Project. WeatherX Server",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "morgan": "1.9.1",
+    "nodemon": "1.18.10"
+  }
 }
