@@ -8,22 +8,21 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "helmet": "^3.15.0",
-    "mongoose": "^5.0.14"
+    "sequelize": "4.42.1",
+    "sequelize-cli": "5.4.0",
+    "sqlite3": "4.0.6"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "mongod --config data/etc/mongod.conf",
-    "start": "nodemon --ignore data/ --ignore logs/ --inspect ./index.js",
-    "stop": "mongo admin --eval 'db.shutdownServer()'",
-    "runMongod": "mongod --config data/etc/mongod.conf",
-    "cleanDb": "node ./src/seed-data/cleanDb.js"
+    "start": "node --inspect ./index.js"
   },
   "keywords": [
-    "testing",
-    "forecast.io",
-    "api"
+    "reactjs",
+    "sequelize",
+    "sqlite3",
+    "rest api",
+    "axios"
   ],
-  "author": "Daniel Perez. Capstone Project. WeatherX Server",
+  "author": "Daniel Perez. Capstone Project. WeatherX Server using SQLite",
   "license": "MIT",
   "devDependencies": {
     "morgan": "1.9.1",
