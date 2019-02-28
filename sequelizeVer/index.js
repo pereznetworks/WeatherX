@@ -4,6 +4,14 @@
 
 // importing Express, and set the port it will accept connections on
 const express = require('express');
+
+// using sequelize for data ...
+// importing from models/index.js
+// .. which sets config, checks for or creates a db,
+// ... some other housekeeping and model importing into sequelize
+// .... then imports here
+const sequelize = require('./data/models').sequelize;
+
 // creating an Express 'server', don't want to confuse with 'front-end' part of this project
 const server = express();
 
@@ -32,9 +40,7 @@ server.use((req, res, next) => {
 	res.append('Access-Control-Allow-Methods', ['GET']);
 	res.append('Access-Control-Allow-Headers', ['Content-Type']);
 	next();
-})
-
-// sequelize stuff here ...
+});
 
 // insert custom routes router here
 server.use(routes);
@@ -62,7 +68,13 @@ server.use(function(err, req, res, next){
 		});
 });
 
-// start the server
-server.listen(port, function(){
-	console.log('Express server listening on port', port);
-});
+// sync the database, then start the server
+
+sequelize
+	.sync()
+	.then(
+			function(){
+				server.listen(port, function(){
+					console.log('Express server listening on port', port);
+				});
+			});

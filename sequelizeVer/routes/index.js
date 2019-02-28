@@ -7,7 +7,6 @@ const getForecastApiCall = require('../dataSource').getForecastApiCall;
 const getGeoCodeApiCall = require('../dataSource').getGeoCodeApiCall;
 const manageForecastData = require('../dataSource').manageForecastData;
 const manageLocData = require('../dataSource').manageLocData;
-const sampleJson = require('../dataSource/models/sample.json');
 
 // importing newForecastData document based on mongoose model
 const newForecastData = require('../dataSource').newForecastData;

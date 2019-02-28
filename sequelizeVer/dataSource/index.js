@@ -8,37 +8,8 @@ const getLocationCoordinates = require('./forecast').getLocationCoordinates;
 const manageForecastData = require('./forecast').manageForecastData;
 const manageLocData = require('./forecast').manageLocData;
 
-// my own modular mongoose connection method and callbacks
-const connect = require('./mongoClient').connect;
-const onErr = require('./mongoClient').onErr;
-const onceConnected = require('./mongoClient').onceConnected;
-
-// importing my own modular mongoose connection methods
-const runFindQuery = require('./mongooseDocumentMethods').runFindQuery;
-const createNew = require('./mongooseDocumentMethods').createNew;
-const updateDoc = require('./mongooseDocumentMethods').updateDoc;
-
-// importing ForecastData based on currentForecastSchema
-
-const NewForecast = require('./models').NewForecast;
-const NewLocation = require('./models').NewLocation;
-
 // exporting methods that access forecast.io and mapbox geocoding api
 module.exports.getForecastApiCall= getForecastApiCall;
 module.exports.getGeoCodeApiCall = getGeoCodeApiCall;
 module.exports.manageLocData = manageLocData;
 module.exports.manageForecastData = manageForecastData;
-
-// exporting my custom mongoose client connection methods
-module.exports.connect = connect;
-module.exports.onErr = onErr;
-module.exports.onceConnected = onceConnected;
-
-// exporting my own modular mongoose connection methods
-module.exports.runFindQuery = runFindQuery;
-module.exports.createNew = createNew;
-module.exports.updateDoc = updateDoc;
-
-// exporting mongooose document ForecastData
-module.exports.NewForecast = NewForecast;
-module.exports.NewForecast = NewLocation;
