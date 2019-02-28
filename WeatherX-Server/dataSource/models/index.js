@@ -5,10 +5,12 @@
 var mongoose = require("mongoose");
 
 // importing schema
-var currentForecastSchema = require('./currentForecastSchema.js');
+var forecastSchema = require('./forecastSchema.js');
 
 // creating a model
-const ForecastData = mongoose.model('currentForecast', currentForecastSchema);
+const NewForecast = mongoose.model('newForecast', forecastSchema);
+const NewLocation = mongoose.model('newLocation', forecastSchema);
 
 // exporting the models
-module.exports.course = ForecastData;
+module.exports.course = NewForecast;
+module.exports.course = NewLocation;

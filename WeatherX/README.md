@@ -2,26 +2,9 @@
 
 # STATUS: finishing touches...
 
-# TO DO:
+# Now Working: 
 
-## A: Attribution
-  - 1: for all of api data sources...
-    - a: need to place a logo somewhere on the screen...
-      - i: or a 'powered by ... ' menu that then shows...
-      - ii: all of API's logos as well as underlying tech used
-    - b: TomTom
-      - i: also already shows up in rendered map
-    - c: Forecast.io, now called DarkSky,
-      - i: can be placed at bottom of weather stats layer
-      - ii: and somewhere on map when radar-layer is enabled
-
-## B: to show province and country abbreviation ??
-  - 1: if screen space allows...
-    - a: for all locations, include the country abbreviation also
-
-# Now Working:  
-
-## A: UI
+## A: React State and Components
  - 1: State and AppData
     - a: state only manages UI components, basically true, render; false, don't render
     - b: now keeping all data in appData
@@ -47,9 +30,7 @@
     - c: going back to home view, multiple locations and current weather still present
     - d: as long as app not rest, can go back and forth and loads up to 10 locations
 
-# WeatherX DATA USAGE:
-
-## A: Geolocation (using the location services of a device or computer)
+## B: Geolocation (using the location services of a device or computer)
  - 1: NOT IMPLEMENTED.
  - 2: Every effort has been made to ensure that...there is NO GEOLOCATION in WeatherX
     - a: due to concerns about what is done with data by api and others ...
@@ -57,7 +38,7 @@
     - b: a code review has been done to make sure...
       - ii: no Geolocation of any kind is done by any code, modules or html/css used by this app.
 
-## B: Geocoding: (converting a typed text, into a location with longitude and latitude coordinates )
+## C: Geocoding: (converting a typed text, into a location with longitude and latitude coordinates )
  - 1: Geocoding is done using text submitted in the navBar3 InputControls form
     - a: submitted text input is sent to the WeatherX's back-end server
       - i: the WeatherX Server sends this text a as part of API request to TomTom's Search API
@@ -91,11 +72,16 @@
            - 2: to make sure whatever browser is forced to delete all the app's session data
       - iii: will need to used, if OAuth or GeoLocation ever is implemented in the app
 
-## C: OAuth/login
+## D: OAuth/login
  - 1: NOT IMPLEMENTED.
  - 2 Will keep reviewing whether to implement this feature
     - a: due to concerns about what is done with data by ...
       - i: API sources, Browsers platforms(like Google Chrome), and open source NPM modules, etc..
+
+## E: Attribution
+  - 1: href link to Team Treehouse and the following API sources provided in TitleBar
+    - a: TomTom
+    - b: Forecast.io, now called DarkSky
 
 ## React Readme
 

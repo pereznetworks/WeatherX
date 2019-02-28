@@ -9,6 +9,9 @@ const manageForecastData = require('../dataSource').manageForecastData;
 const manageLocData = require('../dataSource').manageLocData;
 const sampleJson = require('../dataSource/models/sample.json');
 
+// importing newForecastData document based on mongoose model
+const newForecastData = require('../dataSource').newForecastData;
+const newLocationData = require('../dataSource').newLocationData;
 
     // the home or root route
     main.get('/', (req, res, next) => {
@@ -30,6 +33,7 @@ const sampleJson = require('../dataSource/models/sample.json');
 
         axios.get(geoCodeApiCallUrl)
           .then(response => {
+
 
                 let longLat = response.data.results[0].position;
                 let cityName = response.data.results[0].address.municipality;

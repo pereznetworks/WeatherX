@@ -20,10 +20,9 @@ var Schema = mongoose.Schema;
 module.exports = new Schema({
   id:  mongoose.Schema.Types.ObjectId,
   timestamp: {
-       type: Date,
-       default: Date.now
+        type: Date
        },
-  data: {
-       any: Schema.Types.Mixed
-       },
+  forecastData: {
+        any: Schema.Types.Mixed
+       }
 });

@@ -58,7 +58,7 @@ const connect = function(port, dbName, configOptions){
     }
 
     if (!dbName){
-      dbName = 'course-api';
+      dbName = 'forecastDb';
     }
 
     if (!configOptions){

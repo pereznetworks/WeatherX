@@ -22,10 +22,11 @@ const logger = require('morgan'); // import a middleware logger module.. see NPM
 server.use(jsonParser()); // parse all req.body data as json and
 server.use(logger('dev')); // Concise output colored by response status for development use.
 
-// one secruity measure of many more unneeded
+// secruity measures
 const helmet = require('helmet')
 server.use(helmet());
 
+// allow requests from specific host
 server.use((req, res, next) => {
 	res.append('Access-Control-Allow-Origin', ['http://10.100.10.102:3000']);
 	res.append('Access-Control-Allow-Methods', ['GET']);
@@ -71,7 +72,6 @@ db.once("open", function(){
 server.use(routes);
 server.use('/', routes);
 server.use('/weather', routes);
-server.use('/geocode', routes);
 
 
 // prevent favicon errors, may include a real favicon eventually
