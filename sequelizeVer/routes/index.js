@@ -2,6 +2,10 @@ const express = require('express');
 const main = express.Router();
 const axios = require('axios');
 
+
+// importing sequelize, db and models
+const sequelizeDb = require('../data/models');
+
 // importing methods that access forecast.io and mapbox geocoding api
 const getForecastApiCall = require('../dataSource').getForecastApiCall;
 const getGeoCodeApiCall = require('../dataSource').getGeoCodeApiCall;
@@ -33,23 +37,45 @@ const newLocationData = require('../dataSource').newLocationData;
         axios.get(geoCodeApiCallUrl)
           .then(response => {
 
+            sequelizeDb.Location.create(response)
+              .then(Location => {
 
-                let longLat = response.data.results[0].position;
-                let cityName = response.data.results[0].address.municipality;
-                let province = response.data.results[0].address.countrySubdivision;
+                let longLat = Location.dataValues.data.results[0].position;
+                let cityName =  Location.dataValues.data.results[0].address.municipality;
+                let province =  Location.dataValues.data.results[0].address.countrySubdivision;
                 let loc = {latitude:longLat.lat,longitude:longLat.lon, city: cityName, province: province };
                 const db = manageLocData(loc);  // will nedd to replace this with mongoose code
                 let forecastApiCallUrl = getForecastApiCall(db.mostRecentLocation.data);
 
-
                 axios.get(forecastApiCallUrl)
                     .then(response => {
-                    const db = manageForecastData(response.data);  // will nedd to replace this with mongoose code
-                    res.json(db);
+
+                    sequelizeDb.Forecast.create(response).then( Forecast => {
+
+                      const db = manageForecastData(Forecast.dataValues.data);  // will nedd to replace this with mongoose code
+                      res.json(db);
+
+                    }).catch( err => {
+                        console.log('Error getting forecast data... ', err);
+                        next(err);
+                    });
+
                 }).catch(err => {
-                    console.log('Error getting forecast data... ', err);
+                    console.log('Error getting location data... ', err);
                       next(err);
                 });
+
+              }).catch(function(error){
+                if(error.name === "SequelizeValidationError") {
+
+                  // render the input validation msgs
+                  // note: will be at different indexes based on which fields had invalid input
+                  // so cannot simply iterate ... must refer to each using object key/value notation
+
+                } else {
+                  console.log(`error: ${error}`);
+                }
+              });
 
            }).catch(err => {
             console.log('Error geocding that location ... ', err);

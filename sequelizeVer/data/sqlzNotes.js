@@ -13,3 +13,5 @@
     },
   }
 }
+
+/* need a way to drop/delete a table after certain amount of time */

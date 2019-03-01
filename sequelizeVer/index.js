@@ -69,7 +69,6 @@ server.use(function(err, req, res, next){
 });
 
 // sync the database, then start the server
-
 sequelize
 	.sync()
 	.then(
