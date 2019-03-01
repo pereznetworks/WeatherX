@@ -1,19 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# ignore Mongo stuff
-/data
-/data/*
-/data/db/*
-/etc
-/etc/*
-/logs
-/logs/*
-
-# ignore config folder and everything in it
-
-/dataSource/config
-/dataSource/config/*
-/dataSource/config/index.js
+# ignore the sequelize database
+/data/library.db
 
 # dependencies
 /node_modules
