@@ -3,23 +3,23 @@
 
 # Location and Forecast data processing:
 
-  starting with fresh empty database
+  - starting with fresh empty database
+    - instance of Location table created and data processed
+    - instance of Forecast table created and data processed
+    - after res.json(data)
+    - then both instances destoryed
 
-  instance of Location table created and data processed
-  instance of Forecast table created and data processed
-    after res.json(data)
-    then both instances destoryed
+  - no data is saved
 
-
-  no data is saved
-
-  manageLocData and manageForecastData create local scoped db object
-  when gets trashed with each get request
+  - manageLocData and manageForecastData
+    - these methods create a local scoped db object
+    - which gets trashed after each get request
 
 ## ToDo:
 
 # the following items are still a work in progress...
 
+# Connection Pooling
 ```javascript
 
 /* for production, pooling will need to addressed */
@@ -34,12 +34,23 @@
       },
     }
   }
+```
 
-/* for production, need to turn off all the console logging
-  // could bring log to file module from code-base
+# Logging
+  - for production, need to turn off all the console logging
+
+```javascript
+/* could bring log to file module from code-base
     // then include option to :
       // turn on verbose or debug mode
         // default no logging */
+
+```
+
+# Per API usage terms, don't keep data
+ - this one is working, but need a built in QA for this
+
+```javascript
 
 /* need a way to drop/delete a table after certain amount of time
   // per API usage terms
