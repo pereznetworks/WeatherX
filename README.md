@@ -20,10 +20,7 @@ Status:
 
 To Do:
 
-  - 1: backend core:
-    - a: secure Mongod using mongoose.js
-    - b: want to continue not using cookies if possible
-  - 2: production build and deployment to hosting
+  - 1: production build and deployment to hosting
 
 
 # My Captsone Project:  WeatherX : A Weather forecast service  
@@ -48,7 +45,7 @@ Thanks to Team TreeHouse, https://teamtreehouse.com, a great place for makers, b
 
 This project uses Node.js, https://nodejs.org/ and Express.Js,"https://expressjs.com/" for https server and routing.
 
-For database using [Sequelize v4, SQLite v3 and Sequelize-CLI](http://docs.sequelizejs.com/) 
+For database using [Sequelize v4, SQLite v3 and Sequelize-CLI](http://docs.sequelizejs.com/)
 
 React.Js, https://reactjs.org/ or front-end UI/UX, and Babel.js, https://babeljs.io/, for compiling JSX
 
