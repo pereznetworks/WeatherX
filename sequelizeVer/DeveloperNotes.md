@@ -64,7 +64,7 @@
     }).then(() => {
       return sequelizeDb.model.destroy()
     }).then(numDels => {
-      // does destroy() return an error instead of # deletes ?
+      // if error, does destroy() return an error instead of # deletes ?
       if (isNaN(numDels)){
         next(Error(`Oops, problems cleanning up model table`))
       } else {
