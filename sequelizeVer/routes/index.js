@@ -56,7 +56,10 @@ const newLocationData = require('../dataSource').newLocationData;
                       const db = manageForecastData(Forecast.dataValues.data);  // will nedd to replace this with mongoose code
                       res.json(db);
 
-                     }).catch( err => {
+                      // not keeping data, part of TomTom usage terms
+                      sequelizeDb.Forecast.destroy({force:true,truncate:true});
+
+                    }).catch( err => {
                         console.log('Error getting forecast data... ', err);
                         next(err);
                      });
@@ -66,16 +69,18 @@ const newLocationData = require('../dataSource').newLocationData;
                       next(err);
                 });
 
+              }).then(()=>{
+                // not keeping data, part of DarkSky API usage terms
+                sequelizeDb.Location.destroy({force:true,truncate:true})
+
+              }).then(()=>{
+                 // prove that data in tables deleted, should console the word, 'found:' followed by nothng, twice
+                  // may write this to a log instead of logging to console
+                 sequelizeDb.Location.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
+                 sequelizeDb.Forecast.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
+
               }).catch(function(error){
-                if(error.name === "SequelizeValidationError") {
-
-                  // render the input validation msgs
-                  // note: will be at different indexes based on which fields had invalid input
-                  // so cannot simply iterate ... must refer to each using object key/value notation
-
-                } else {
-                  console.log(`error: ${error}`);
-                }
+                console.log(`error: ${error}`);
               });
 
            }).catch(err => {
