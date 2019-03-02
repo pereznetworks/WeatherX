@@ -1,4 +1,25 @@
 
+## Status:
+
+# Location and Forecast data processing:
+
+  starting with fresh empty database
+
+  instance of Location table created and data processed
+  instance of Forecast table created and data processed
+    after res.json(data)
+    then both instances destoryed
+
+
+  no data is saved
+
+  manageLocData and manageForecastData create local scoped db object
+  when gets trashed with each get request
+
+## ToDo:
+
+# the following items are still a work in progress...
+
 ```javascript
 
 /* for production, pooling will need to addressed */
