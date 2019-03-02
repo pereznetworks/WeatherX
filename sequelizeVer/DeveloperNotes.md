@@ -15,7 +15,7 @@
     - these methods create a local scoped db object
     - which gets trashed after each get request
 
-## ToDo:
+## To Do:
 
 # the following items are still a work in progress...
 
