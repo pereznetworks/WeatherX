@@ -48,7 +48,7 @@ Thanks to Team TreeHouse, https://teamtreehouse.com, a great place for makers, b
 
 This project uses Node.js, https://nodejs.org/ and Express.Js,"https://expressjs.com/" for https server and routing.
 
-I use Mongoose, https://mongoosejs.com/", for db backend.
+For database using [Sequelize v4, SQLite v3 and Sequelize-CLI](http://docs.sequelizejs.com/) 
 
 React.Js, https://reactjs.org/ or front-end UI/UX, and Babel.js, https://babeljs.io/, for compiling JSX
 

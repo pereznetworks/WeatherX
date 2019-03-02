@@ -7,11 +7,7 @@ backend server to provide front-end WeatherX app with data from several external
 
 ## TODO
 
-build mongoose data models based on forecast.io current and time-machine json data samples
-
 production and best-practice-security features needed for production build
-
-verify that only the WeatherX front-end app can access WeatherX back-end server
 
 ## WORKING
 
@@ -21,9 +17,16 @@ added basic routing
 
 added get /weather:location route
 
-built custom methods for forcast.io api call using axios to make api call to a dataSource folder
+switched to Sequelize@4, SQLite@3 and Sequelize-cli
+  Mongod starts a server with a listening port
+    the extra encryotion and security measures needed by Mongod make things more complicated
+  While this would be fun, Sequelize is good enough for now
+
+built custom methods for forcast.io api call using Axios to make api call to a dataSource folder
 
 using custom methods to manage data as requested, which just copies all data to an array of objects
+
+verified that only the WeatherX front-end app can access WeatherX back-end server
 
 ## License:
 
