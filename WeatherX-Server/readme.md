@@ -1,4 +1,4 @@
-# WeatherX Server - Sequelize version
+# WeatherX Server
 
 backend server to provide front-end WeatherX app with data from several external sources
 
