@@ -50,15 +50,16 @@ const newLocationData = require('../dataSource').newLocationData;
                 axios.get(forecastApiCallUrl)
                     .then(response => {
 
-                    sequelizeDb.Forecast.create(response).then( Forecast => {
+                    sequelizeDb.Forecast.create(response)
+                     .then( Forecast => {
 
                       const db = manageForecastData(Forecast.dataValues.data);  // will nedd to replace this with mongoose code
                       res.json(db);
 
-                    }).catch( err => {
+                     }).catch( err => {
                         console.log('Error getting forecast data... ', err);
                         next(err);
-                    });
+                     });
 
                 }).catch(err => {
                     console.log('Error getting location data... ', err);
