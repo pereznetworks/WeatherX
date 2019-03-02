@@ -1,3 +1,12 @@
+# WeatherX Server - Sequelize version
+
+backend server to provide front-end WeatherX app with data from several external sources
+
+[for detail on external source data and development roadmap see WeatherX app readme ](https://github.com/pereznetworks/TD-Project12/blob/master/WeatherX/README.md)
+
+## TODO
+
+Production and best-practice-security features needed for production build
 
 ## Status:
 

@@ -37,7 +37,7 @@ Display current and forecast weather stats, warning and alerts will be displayed
 
 # WeatherX server
 
-[Details and Status of WeatherX Server](https://github.com/pereznetworks/TD-Project12/blob/master/WeatherX-Server/readme.md)
+[Details and Status of WeatherX Server](https://github.com/pereznetworks/TD-Project12/blob/master/seqeulizeVer/readme.md)
 
 # Technologies to be used:
 

@@ -1,4 +1,4 @@
-# WeatherX Server
+# WeatherX Server - Mongod
 
 backend server to provide front-end WeatherX app with data from several external sources
 
