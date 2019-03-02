@@ -33,11 +33,11 @@ Display current and forecast weather stats, warning and alerts will be displayed
 
 # WeatherX app
 
-[Details and Status of WeatherX App](https://github.com/pereznetworks/TD-Project12/blob/master/WeatherX/README.md)
+[Details and Status of WeatherX App](https://github.com/pereznetworks/TD-Project12/blob/master/WeatherX/readme.md)
 
 # WeatherX server
 
-[Details and Status of WeatherX Server](https://github.com/pereznetworks/TD-Project12/blob/master/sequelizeVer/readme.md)
+[Details and Status of WeatherX Server](https://github.com/pereznetworks/TD-Project12/blob/master/WeatherX-Server/readme.md)
 
 # Technologies to be used:
 
