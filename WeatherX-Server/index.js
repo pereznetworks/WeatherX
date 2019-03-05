@@ -52,14 +52,14 @@ server.use('/weather', routes);
 server.get('/favicon.ico', (req, res, next) => res.status(204));
 
 // catch http 404 status code and forward to error handler
-server.use(function(req, res, next){
+server.use((req, res, next) => {
 	const err = new Error("Not Found");
 	err.status = 404;
 	next(err);
 });
 
 // Error Hander
-server.use(function(err, req, res, next){
+server.use((err, req, res, next) => {
 		res.status(err.status || 500);
 		res.json({
 			error: {

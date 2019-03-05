@@ -5,9 +5,9 @@
 src/config.js
 
 # ignore config folder and everything in it
-/dataSource/config
-/dataSource/config/*
-/dataSource/config/index.js
+dataSource/config
+dataSource/config/*
+dataSource/config/index.js
 
 # Logs
 logs
