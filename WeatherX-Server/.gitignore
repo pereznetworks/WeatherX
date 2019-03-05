@@ -3,6 +3,11 @@
 # ignore the sequelize database
 /data/library.db
 
+# ignore dataSource/config folder and everything in it
+/dataSource/config
+/dataSource/config/*
+/dataSource/config/index.js
+
 # dependencies
 /node_modules
 /.pnp

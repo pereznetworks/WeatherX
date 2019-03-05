@@ -1,14 +1,6 @@
 # on macOS filesystems ignore .DS_Store
 **/.DS_Store
 
-# ignore mapbox config file
-src/config.js
-
-# ignore config folder and everything in it
-dataSource/config
-dataSource/config/*
-dataSource/config/index.js
-
 # Logs
 logs
 *.log
