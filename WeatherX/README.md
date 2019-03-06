@@ -2,7 +2,26 @@
 
 # STATUS: finishing touches...
 
-# Now Working: 
+## A: Would like newer weather icons
+
+## B: react-scripts issues
+      - 1:  even after upgrading 2.1.5
+        - i:   url: https://nodesecurity.io/advisories/786     
+        - ii:  jest 23.6.0 - > all Jest sub-modules - > micromatch -> braces
+        - iii: needs to upgrade braces >=2.3.1 to fix DoS attack vulnerability
+              - a: need to upgrade to Jest 2.4.1
+              - b: react-scripts@3.0 will require and install Jest 2.4.1
+      - 2: 2  peer dependency not installed by react-scripts when running npm i
+        - i:  typescript@*
+              - a: react-scripts@2.5.1 -> pnp-webpack-plugin1.2.1 -> ts-pnp1.0.1 -> typescript@*
+              - b: react-scripts@3.0 will be adding typescript support, will require and install this
+      - 3: dependency on deprecated package
+        - i  kleur@2.0.2
+            - a: jest@23.6.0 -> jest-cli@23.6.0 -> prompts@0.1.14 -> kleur@2.0.2
+            - b: react-scripts@3.0         
+      - 4: react-scripts
+
+# Now Working:
 
 ## A: React State and Components
  - 1: State and AppData
