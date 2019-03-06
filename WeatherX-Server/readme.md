@@ -48,15 +48,19 @@ Production and best-practice-security features needed for production build
   - some of the options are ....
     - CLUSTER
      - looks like a great cluster abstraction but,
-     - does not run on node > v4, and hasn't updated in 2012
+     - does not seem to run on current version of node (10.15.1)
+     - hasn't updated since 2012
      - perhaps can look into forking the GITHUB repo for it and updating it
     - FORKY
       - embedding calls to node's cluster module in your code
       - manual management of processes
+      - not as much abstraction as would want
  - so for now ...
-   - using the THRONG for cluster abstraction, even though last update was 2016
-   - but using seems more straight-forward
-   - and is still a choice of preference on Heroku's Dev Docs
+   - using the THRONG
+      - offers complete cluster abstraction
+      - seems most straight-forward
+      - even though last update was 2016...
+        - is still a choice of preference on Heroku's Dev Docs
 
 # Connection Pooling
 ```javascript
