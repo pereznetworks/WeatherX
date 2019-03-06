@@ -1,7 +1,7 @@
 //  Wrapping server.js in Throng startFunction for cluster abstraction
 
 // 1: after installing it, require it....
-var throng = require('throng');
+const throng = require('throng');
 
 // 2: heroku dev docs indicate to check for process.env.WEB_CONCURRENCY
 // also checking for process.env.PORT
