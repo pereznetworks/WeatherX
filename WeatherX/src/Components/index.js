@@ -7,13 +7,14 @@ import NavBar3 from './navBar3';
 import MainView from "./mainView";
 import LocationBar from "./locationBar";
 
-// import css styling
+// import custon css styling
 import '../css/navBar3.css';
 import '../css/mainView.css';
 import '../css/locationBar.css';
 import '../css/grid-main2.css';
 import '../css/weather.css';
 
+// css from npm package weather-icons 
 import '../css/weather-icons.css';
 import '../css/weather-icons-wind.css';
 
@@ -87,7 +88,7 @@ export default class Middle extends Component {
     this.removeLocation = this.removeLocation.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount(){ // contructing app's Data
     this.appData = {
       removeLocation:0,
       errMsg: '',
@@ -126,21 +127,20 @@ export default class Middle extends Component {
       fahrenheitFont:"°F",
       celsiusType:true,
       celsiusFont:"°C"
-
     };
-  };  // contructing app's Data
+  };
 
-  componentWillUnmount(){
+  componentWillUnmount(){ // destroy app and it's data when unloading app
     clearInterval(this.appData.interval);
     this.appData = null;
-  }; // destroy app and it's data when unloading app
+  };
 
   // may use dayJs-ext or moment0-timezone for timezone time adjustment
   // For now, using my own custom code to adjust from UTC to timezone offset of location
 
   getUpToSecDateOfLocation(dateInt){
     // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
-  return new Date(dateInt * 1000);
+   return new Date(dateInt * 1000);
   }
 
   checkDay(dateInt, tz, sunset, sunrise){
