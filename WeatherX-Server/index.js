@@ -2,7 +2,7 @@
 // some of the options are ....
 // CLUSTER
 // ... looks like a great cluster abstraction but,
-// ... does not seem to run on current version of node (10.15.1), and hasn't updated in 2012
+// ... does not seem to run on current version of node (10.15.1), and hasn't updated since 2012
 // ... perhaps can look into forking the GITHUB repo for it and updating it
 // the FORKY module requires
 // ... embedding calls to node's cluster module in your code
