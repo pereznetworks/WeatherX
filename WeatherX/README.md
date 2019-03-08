@@ -16,18 +16,6 @@
         - apparently happens when trying to load node.js `cluster` module in a browser
           - react-dom renders it's components in a browser
 
-## C: react-scripts, micromatch/braces low-risk DoS vulnerabilities       
- - 1: work-around ...
-   - a: ./npmrc {save=true, save-exact=true}
-   - b: npm uninstall typescript braces@2.3.1 kleur@2.0.2 jest@23.6 jest-resolve@23.6
-   - c: npm install typescript braces@2.3.2 kleur@3.0.2 jest@24.3 jest-resolve@24.3
-   - d: npm upgrade * (just to be sure any outdated deps are up'ed)
-   - e: cat SKIP_PREFLIGHT_CHECK=true > .env
-   - f: npm start will then run with safe npm packages
-   - g: but a npm install will put all the unsafe packages back
-   - h: ... until create-react-app/react-scripts releases 3.0 version
-
-
 # Now Working:
 
 ## A: Attribution
@@ -70,7 +58,7 @@
     - d: as long as app is not reset, can go back and forth and loads between locations
 
 ## C: Geolocation (using the location services of a device or computer)
- - 1: NOT IMPLEMENTED. 
+ - 1: NOT IMPLEMENTED.
 
  - 2: Every effort has been made to ensure that ... NO GEOLOCATION is done in this app
     - a: due to concerns about what is done with location-data by api and others ...
