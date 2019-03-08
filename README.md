@@ -37,11 +37,11 @@ Display current and forecast weather stats, warning and alerts will be displayed
 
 # WeatherX app
 
-[Details and Status of WeatherX App](./WeatherX/readme.md)
+[Details and Status of WeatherX App](https://github.com/pereznetworks/TD-Project12/tree/master/WeatherX)
 
 # WeatherX server
 
-[Details and Status of WeatherX Server](./WeatherX-Server/readme.md)
+[Details and Status of WeatherX Server](https://github.com/pereznetworks/TD-Project12/tree/master/WeatherX-Server)
 
 # Technologies to be used:
 
