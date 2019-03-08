@@ -45,6 +45,9 @@
   text-align:center;
 }
 
+#cityName {
+  padding-top: 10px;
+}
 #todayTempType{
   font-size: .6em;
   vertical-align: middle;

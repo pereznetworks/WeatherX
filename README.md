@@ -1,13 +1,17 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
-Status:
+# Status:
 
   - 1: Project Site Online : https://pereznetworks.github.io/TD-Project12/
-  - 2: Front-end App and Back-end Server now working
-      - a: security note: only the front-end server can make req from back-end server
-        - i: allowing requests only from 1 specific ip address
-        - ii: will have to keep this for production build
-  - 2: Front-end features working:  
+  - 2: Security and Data-Processing
+      - a: only the front-end server can make req from back-end server
+        - i: security and access-control headers
+              - allow only GET requests
+              - allow only connection from WeatherX front-end host
+        - ii no OAuth, no Geo-Location - so no user data to keep track of
+      - b: Geo-Location, OAuth, db-server accessible via network port not implemented
+        - i: using sequelize/sqlite, internal database only, which deletes all data every time
+  - 3: Front-end features working:  
       - a: geocoding working
       - b: timeDisplay for each Location
       - c: current and forecast data for each location
@@ -15,12 +19,12 @@ Status:
       - e: form input validation before submitting location search
       - f: attributions in place
   - 4: Backend working:
-      - a: now able to return both geocoded forecast results to front-end app
-      - b: returning timezone, long/lat coordinates and location name
+      - a: returning forecast data
+      - b: returning location data
+      - c: security protocols in place
 
-To Do:
-
-  - 1: production build and deployment to hosting
+# To Do:
+  - 1: get ready for production build and deployment to hosting
 
 
 # My Captsone Project:  WeatherX : A Weather forecast service  

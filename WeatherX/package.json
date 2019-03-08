@@ -5,7 +5,13 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "react-scripts": "2.1.5"
+    "braces": "^2.3.2",
+    "jest": "^24.3.0",
+    "jest-resolve": "^24.3.0",
+    "kleur": "3.0.2",
+    "react-dom": "^16.8.4",
+    "react-scripts": "^2.1.8",
+    "typescript": "^3.3.3333"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -6,11 +6,43 @@ backend server to provide front-end WeatherX app with data from several external
 
 ## TODO
 
-Production and best-practice-security features needed for production build
+ - almost done with with pre-flight for a production build !
+ - Connection Pooling setting for sequelize ?
+ - should I implement a better Logging module, besides to the console ?
+   - I think Heroku's App management/dashboard may have some tools
+   - preferable logging I can turn on and off,
 
-## Status:
+## Working:
 
-# Location and Forecast data processing:
+# Cluster Server
+
+  - Per Heroku Deployement Best Practice, Throng, is used for simple clustering abstraction
+
+# Secure Headers & Auth
+
+  - Per Express.js Best Practice, using HELMET for basic secure Headers
+  - Access-Control headers set to only allow specific host to make requests from server
+  - Only allowed METHOD is `GET`  
+  - path `/` yields `authorized use only`
+  - path `/weather:location` yields json formatted forecast and location data
+
+  - since only the WeatherX front-end app will be making requests
+    - no User Auth will be implemented
+
+  - However, I may want to
+    - load the react.js front-end app from the WeatherX server itself..?
+    - but don't want to mistakenly publish my api keys
+
+  - Current implementation means that
+    - No matter where a user accesses the WeatherX front-end server from...
+    - TomTom and DarskSky API's will only know the origin of requests as coming from WeatherX server
+    - WeatherX front-end only communicates with the WeatherX Server  
+
+# Data Processing - short version
+
+  - this data processing model is driven by TomTom and DarskSky API uage terms
+
+  - sequelize@4, sqlite@3 and sequelize-cli@4
 
   - starting with fresh empty database
     - instance of Location table created and data processed
@@ -20,49 +52,33 @@ Production and best-practice-security features needed for production build
 
   - no data is saved
 
-  - manageLocData and manageForecastData
+  - manageLocData and manageForecastData object
     - these methods create a local scoped db object
     - which gets trashed after each get request
 
-## To Do:
+# Axios & Data processing:
 
-# the following items are still a work in progress...
+  - used for `/weather:location`
 
-# DEPLOYMENT BEST PRACTICE
-  - already usng npm and git
+  - 1st api call to TomTom
+    - returns geocoded data for req.param.location
+    - geocoded data used to create a Location sqlite doc instance
 
-  - already using npmrc
+  - 2nd api call to DarskSky.net
+    - response.coordinates from TomTom api call used as arg
+    - forecast data used to create a Forecast sqlite doc instance
 
-  - already using javascript es6
+  - data from Location and Forecast instance ..
+    - mapped into a json object, using manageLocData and manageForecastData methods
+    - returned as res.json to get req
 
-  - Clustering, see section below
+  - both sqlite Location and Forecast doc instances..
+    - are destroyed
 
-  - use PostgreSQL instead of sqlite
-    - the reasons for this are valid but do not apply to this server's REST-API implementation
-    - no data from API SOURCES will be saved or stored
-    - no auth or user data will ever need to be saved
+  - manageLocData and manageForecastData objects are set to null
 
-# Clustering
 
- - Heroku deployment indicates that built-in clustering is BEST PRACTICE
-  - some of the options are ....
-    - CLUSTER
-     - looks like a great cluster abstraction but,
-     - does not seem to run on current version of node (10.15.1)
-     - hasn't updated since 2012
-     - perhaps can look into forking the GITHUB repo for it and updating it
-    - FORKY
-      - embedding calls to node's cluster module in your code
-      - manual management of processes
-      - not as much abstraction as would want
- - so for now ...
-   - using the THRONG
-      - offers complete cluster abstraction
-      - seems most straight-forward
-      - even though last update was 2016...
-        - is still a choice of preference on Heroku's Dev Docs
-
-# Connection Pooling
+# TODO: Connection Pooling for sequelize/sqlite?
 ```javascript
 
 /* for production, pooling will need to addressed */
@@ -79,7 +95,7 @@ Production and best-practice-security features needed for production build
   }
 ```
 
-# Logging
+# TODO: Logging
   - for production, need to turn off all the console logging
 
 ```javascript
@@ -87,41 +103,5 @@ Production and best-practice-security features needed for production build
      then include option to :
        turn on verbose or debug mode
          default no logging */
-
-```
-
-# Per API usage terms, don't keep data
- - this one is working, but need a built in QA for this
-
-```javascript
-
-/* need a way to drop/delete a table after certain amount of time
-   per API usage terms
-     use modelInstance.Destroy ?
-       apparently cant be used as async so cannt follow with .then().catch()
-         but the destroy() returns num of del instances */
-
-  sequelizeDb.model.create()
-    .then(modelInstance => {
-       do stuff
-    }).then(() => {
-      return sequelizeDb.model.destroy()
-    }).then(numDels => {
-       if error, does destroy() return an error instead of # deletes ?
-      if (isNaN(numDels)){
-        next(Error(`Oops, problems cleanning up model table`))
-      } else {
-         what to do with numDels
-         need someway to QA this
-        sequelizeDb.model.findAll()
-          .then(found => {
-            console.log(`found: ${found}\n`)
-          })  should return found and blank space
-      }
-
-    }).catch(err => {
-       response to and or log seqeulize create error
-    })
-
 
 ```
