@@ -13,8 +13,8 @@
       - that's not for a map view
       - when trying a few
         - ran into a compile error `could not resolve cluster`
-        - apparently happens when trying to load node.js `cluster` module in a browser
-          - react-dom renders it's components in a browser
+        - apparently happens when trying to load node.js `cluster` module in a broswer environment
+          - react-dom does render it's components in a browser environment, (duh!)
 
 # Now Working:
 

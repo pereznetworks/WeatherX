@@ -14,7 +14,7 @@ import '../css/locationBar.css';
 import '../css/grid-main2.css';
 import '../css/weather.css';
 
-// css from npm package weather-icons 
+// css from npm package weather-icons
 import '../css/weather-icons.css';
 import '../css/weather-icons-wind.css';
 
@@ -51,10 +51,10 @@ export default class Middle extends Component {
     }; // using state to control component rendering
 
     this.backendServer = {
-      url: `http://10.100.10.102`,
-      port: `:9999`,
-      path: '/weather:'
-    }; // object to use when making calls to backendServer
+      url: `${process.env.SERVERURL}`,
+      port: `${process.env.SERVERPORT}`,
+      path: `${process.env.SERVERPATH}`
+    };
 
 
     // clock, time, date conversion, date formatting methods
