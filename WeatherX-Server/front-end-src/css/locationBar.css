@@ -1,0 +1,150 @@
+
+.locationBar-div {
+  width: 100%;
+  height: 80px;
+  margin: 0 0 0 0;
+  padding: 10px 0;
+  color: #f5f5f5;
+}
+
+.hideLocationBarDiv{
+  display:none;
+}
+#cityTime-div{
+  display: inline;
+  float: left;
+  height: 100%;
+  width: 35%;
+  margin: 0;
+  padding: 2% 0 0 2%;
+  font-size: 16px;
+}
+
+  #locationTime, #locationName {
+    margin:1% 10%;
+    display: block;
+    line-height:13px;
+    font-size: .8em;
+  }
+
+  #locationTime{
+    padding: 2% 0 2% 0;
+  }
+
+  #locationName{
+   padding: 0 0 3% 0;
+  }
+
+#locationCondition{
+  height:100%;
+  width: 30%;
+  display: inline;
+  float: left;
+  color:#fff;
+  font-size: 3em;
+  padding: 4px 20px;
+  text-align: center;
+}
+
+#temp-div{
+  display: inline;
+  float: left;
+  height: 100%;
+  width: 25%;
+  margin: 0;
+  padding: 2% 1% 0 2%;
+}
+
+  #currentTemp {
+    float: right;
+    font-size: 2.8em;
+    display: block;
+    line-height: 22px;
+    margin: 7% 0% 3% 0;
+    padding: 0% 0 2% 0;
+  }
+
+  .tempType{
+    float: right;
+    font-size: 1.2em;
+    display: block;
+    line-height: 22px;
+    margin: 4% 0% 0 0;
+    padding: 0% 0 0% 0;
+  }
+
+  .removeLocation{
+    background-image:url('../imgs/Garbage-Open-48-W-T.png');
+    float:left;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 200%;
+    text-decoration: none;
+    vertical-align:middle;
+    width:5%;
+    height:100%;
+    margin: 0 2%;
+    padding: 0;
+  }
+
+  .removeLocation:hover{
+    background-image:url('../imgs/Garbage-Open-48-4B4AA7-T.png');
+  }
+
+@media only screen and (min-width: 720px){
+  #cityTime-div, #temp-div{
+    padding: 0 0 2% 0;
+  }
+
+  #locationCondition{
+    font-size: 2.4em;
+    padding-top: 8px 18px;
+
+  }
+
+  .removeLocation{
+    background-size: 150%;
+  }
+}
+
+@media only screen and (min-width: 1020px){
+
+  #cityTime-div, #temp-div{
+    padding: 0 0 2% 0;
+  }
+
+  #locationCondition{
+    font-size: 2.4em;
+    padding-top: 8px 18px;
+
+  }
+
+  .removeLocation{
+    background-size: 150%;
+  }
+
+}
+
+/*  not needed for now
+#refreshButton{
+  background-image:url('../imgs/Refresh-48.png');
+  float:left;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 120%;
+  text-decoration: none;
+  vertical-align:middle;
+  height: 20px;
+  width: 20px;
+  border-radius: 6px;
+  margin: 0;
+  padding: 0;
+  display:none;
+}
+
+#refreshButton:hover{
+  background-image:url('../imgs/Refresh-48-4B4AA7-B.png');
+}
+*/

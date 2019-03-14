@@ -1,0 +1,164 @@
+* {
+  box-sizing: border-box;
+  font-size: 12px;
+  border: none;
+  outline: none;
+}
+
+body {
+  background-color: #282c34;
+}
+
+/* The main grid  */
+
+.grid-main{
+  width:100%;
+  height:100%;
+  display: grid;
+  grid-template-areas:'middle middle middle middle middle middle';
+  /* grid-column-gap: 10px; - if you want gap between the columns */
+}
+
+.left-margin {
+  display:none;
+  grid-area: left;
+  width:0;
+  height: 100%;
+  /* background-color: #282c34; */
+}
+
+.middle {
+  display:inline;
+  grid-area: middle;
+  width:100%;
+  margin: 0;
+  height:fit-content;
+  z-index: +1;
+
+}
+
+.right-margin {
+  display:none;
+  grid-area: right;
+  width:0;
+  height: 0%;
+}
+
+.fillin{
+  background: transparent;
+  width:100px;
+  height:100%;
+
+}
+
+.middle-grid-container {
+  width:100%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: auto;
+  padding: 10px;
+  margin: 0;
+}
+
+.middle-grid-item-0, .middle-grid-item-1, .middle-grid-item-2, .middle-grid-item-3, .middle-grid-item-4,
+.middle-grid-item-5, .middle-grid-item-6, .middle-grid-item-7, .middle-grid-item-8, .middle-grid-item-9 {
+  /* background-color: #000; */
+  height:80px;
+  padding:2%;
+}
+
+/* .attribDiv{
+  background: transparent;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  left: 0%;
+  padding: 1% 0;
+  z-index: +1;
+} */
+
+@media only screen and (min-width: 720px){
+
+  .grid-main{
+    width:100%;
+    height:100%;
+    display: grid;
+    grid-template-areas:'left middle middle right';
+    /* grid-column-gap: 10px; - if you want gap between the columns */
+  }
+
+  .left-margin, .right-margin{
+    display:inline;
+    width:100%;
+    height:100%;
+  }
+
+  .middle{
+    width:100%;
+  }
+
+
+}
+
+@media only screen and (min-width: 1020px){
+  *{
+    font-size: 16px;
+  }
+  .grid-main{
+    width:100%;
+    height:100%;
+    display: grid;
+    grid-template-areas:'left middle middle right';
+    /* grid-column-gap: 10px; - if you want gap between the columns */
+  }
+
+  .left-margin, .right-margin{
+   display:inline;
+   width:100%;
+   height:100%;
+  }
+
+  .middle{
+    width:100%;
+  }
+
+}
+
+/* @media only screen and (min-width: 432px){
+  .grid-main{
+    width:100%;
+    height:100%;
+    display: grid;
+    grid-template-areas:'middle middle middle middle middle middle';
+  }
+
+  .left-margin, .right-margin{
+   display:none;
+   width:100%;
+   z-index: +1;
+  }
+
+  .middle{
+    width:100%;
+  }
+} */
+
+/* @media only screen and (min-width: 560px){
+  .grid-main{
+    width:100%;
+    height:100%;
+    display: grid;
+    grid-template-areas:'left middle middle middle middle right';
+  }
+
+  .left-margin, .right-margin{
+   display:inline;
+   width:100%;
+   z-index: +1;
+  }
+
+  .middle{
+    width:100%;
+  }
+} */
