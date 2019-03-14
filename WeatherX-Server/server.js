@@ -2,9 +2,12 @@
 
 'use strict'; // makes sure, among other things, that no unneeded errors creep into my code
 
-// for use when deploying into production, otherwise use env='development' and port=9999
+// for use when deploying into production, otherwise use env='development', port=9999
 const env = process.env.NODE_ENV || 'development';
 const port = process.env.PORT || 9999;
+
+// for ACAO=localhost or process.env.SERVER_URL
+const acao = process.env.SERVER_URL || 'http://localhost:3000';
 
 // importing Express, and set the port it will accept connections on
 const express = require('express');
