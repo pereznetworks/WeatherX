@@ -18,7 +18,7 @@
       - commands\scripts will point to the copied scripts
 
   - 2: setup app using react-router
-      - this is a significant change,
+      - separare step since this is a significant change,
       - it requires some changes to the apps logic and structure
 
   - 3: implement ssr, using webpack config and plugins
