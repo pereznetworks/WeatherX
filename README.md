@@ -13,7 +13,7 @@
 
   - 1: remove react-scripts
       - wanted react-scripts to make dependency maintenance easy
-      - but this project needs these improvements
+        - but this project needs these improvements
 
       - npm run eject : removes react-scripts and setups everything needed
         - will copy all the configuration files and the transitive dependencies
