@@ -1,5 +1,12 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
+# To Do:
+  - 1: implement 1 WeatherX Server
+       - started project to merge front-end and back-end code
+  - 2: get ready for production build and deployment to hosting
+      - did as many prep for Productions and Best Practice as possible
+      - need to complete To Do 1: implement 1 WeatherX Server  
+
 # Status:
 
   - 1: Project Site Online : https://pereznetworks.github.io/TD-Project12/
@@ -22,10 +29,6 @@
       - a: returning forecast data
       - b: returning location data
       - c: security protocols in place
-
-# To Do:
-  - 1: get ready for production build and deployment to hosting
-
 
 # My Captsone Project:  WeatherX : A Weather forecast service  
 
