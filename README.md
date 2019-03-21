@@ -10,16 +10,19 @@
 
 # Steps to Complete
 
-  - 1: remove the training wheels =)
-    - npm run eject : removes react-scripts and setups everything needed
-    - will copy all the configuration files and the transitive dependencies
-      - (Webpack, Babel, ESLint, etc)
-    - All of the commands\scripts except `eject` will still work,
-      - commands\scripts will point to the copied scripts
+  - 1: remove react-scripts
+      - wanted react-scripts to make dependency maintenance easy
+      - but this project needs these improvements
+
+      - npm run eject : removes react-scripts and setups everything needed
+        - will copy all the configuration files and the transitive dependencies
+          - (Webpack, Babel, ESLint, etc)
+        - All of the commands\scripts except `eject` will still work,
+        - commands\scripts will point to the copied scripts
 
   - 2: setup app using react-router
       - separate step since this is a significant change,
-      - it requires some changes to the apps logic and structure
+      - it requires major changes to the apps logic and structure
 
   - 3: implement ssr, using webpack config and plugins
       - using alexm's github repo as a template
