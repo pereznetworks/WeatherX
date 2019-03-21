@@ -2,20 +2,21 @@
 
 # Status:
 
-  - The last few months have been weighing production decisions
-    - basically, the issue is a balance between 2 basic goals
-      - demonstrating cool technology
-      - security and performance of the production app
-  - Weighing pros and cons on both sides...     
-    - dependency vulnerabilities
-      - many, but not all, are fixed in react-scripts 3.0
-        - as of this writing, react-scripts, is still in alpha
-    - security and performance
-      - ssr opens up the both to more options
-    - securing back-end API routes
-      - current front-end AXIOS call to back-end server will not be needed
-      - methods for making external API calls can be internalized
-
+  - In Dec. 2018, I had a death in the family
+    - I am finally getting back to finishing this project
+     - I have recently been weighing some production decisions
+      - basically, the issue is a balance between 2 basic goals
+        - demonstrating cool technology
+        - security and performance of a production app
+    - Weighing pros and cons on both sides...     
+      - dependency vulnerabilities of the front-end app - WeatherX
+        - not all of the npm packages I dep on are fixed in react-scripts 3.0
+          - as of this writing, react-scripts, is still in alpha
+      - security and performance
+        - ssr opens up the both to more options
+      - securing back-end API routes
+        - current front-end AXIOS call to back-end server will not be needed
+        - route that makes external API calls can be made into a  internalized method
 
 # To Do:
   - 1: implement 1 WeatherX Server
