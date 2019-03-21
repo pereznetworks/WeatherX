@@ -1,4 +1,4 @@
-# TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
+# TD-Project12 : SSR-0.0.1 Branch
 
 # Status:
 
