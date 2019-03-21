@@ -8,11 +8,11 @@
       - can implement better Security, better performance
       - front-end and back-end can be merged, run as 1 server
 
-# first need to upgrade deps from alexm's original ssr github repo
+# upgrade deps, if use deps from alexm's original ssr github repo:
   - has 2 deprecated npm package dependencies and some vulnerabilities
       - vulnerabilities can be fixed with some slick npm/npu commands
-      - nomnom is a dep of 2 npm packages
-        - project/folder$ npm list nomnom
+        - nomnom is a dep of 2 npm packages
+          - project/folder$ npm list nomnom
             ```
             ├─┬ enzyme@3.2.0
             │ └─┬ rst-selector-parser@2.2.3
@@ -22,10 +22,11 @@
               └─┬ jscodeshift@0.4.1
                 └── nomnom@1.8.1
             ```
-        - webpack-cli@3.3.0 has removed dependency on jscodeshift entirely
-        - enzyme's dep, rst-selector-parser, has moved to commander.js
-        - so need to upgrade to latest enzyme and webpack -cli
-          - then see if everything still works
+  - need to upgrade to latest enzyme and webpack -cli
+    - then see if everything still works
+      - webpack-cli@3.3.0 seems to have removed dep on jscodeshift entirely
+      - enzyme's dep, rst-selector-parser, has moved to commander.js
+
 
 # Steps to Complete
 
