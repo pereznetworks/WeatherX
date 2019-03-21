@@ -34,7 +34,8 @@
 
   - 5: merge this branch with master
       - will use issue-pull request
-
+      - tag and preserve this branch for posterity
+      
 # GitHub Project Site
 
 (Main GitHub Project Site )https://pereznetworks.github.io/TD-Project12/
