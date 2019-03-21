@@ -1,13 +1,34 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
+# Status:
+
+  - The last few months have been weighing production decisions
+    - basically, the issue is a balance between 2 basic goals
+      - demonstrating cool technology
+      - security and performance of the production app
+  - Weighing pros and cons on both sides...     
+    - dependency vulnerabilities
+      - many, but not all, are fixed in react-scripts 3.0
+        - as of this writing, react-scripts, is still in alpha
+    - security and performance
+      - ssr opens up the both to more options
+    - securing back-end API routes
+      - current front-end AXIOS call to back-end server will not be needed
+      - methods for making external API calls can be internalized
+
+
 # To Do:
   - 1: implement 1 WeatherX Server
-       - started project to merge front-end and back-end code
+       - started branch and project to merge front-end and back-end code
+          - using GitHub issue/project/pull-request
+            - makes merge easier
+            - is best-practice
+            - great opportunity to show-off some skills
   - 2: get ready for production build and deployment to hosting
       - did as many prep for Productions and Best Practice as possible
       - need to complete To Do 1: implement 1 WeatherX Server  
 
-# Status:
+# Current Features:
 
   - 1: Project Site Online : https://pereznetworks.github.io/TD-Project12/
   - 2: Security and Data-Processing
