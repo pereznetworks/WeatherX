@@ -60,7 +60,7 @@
 
 # GitHub Project Site
 
-(Main GitHub Project Site )https://pereznetworks.github.io/TD-Project12/
+[Main GitHub Project Site](https://pereznetworks.github.io/TD-Project12/)
 
 # License:
 
