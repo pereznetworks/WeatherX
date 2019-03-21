@@ -23,7 +23,7 @@
               └─┬ jscodeshift@0.4.1
                 └── nomnom@1.8.1
             ```
-            
+
   - need to upgrade to latest enzyme and webpack -cli
     - then see if everything still works
       - webpack-cli@3.3.0 seems to have removed dep on jscodeshift entirely
@@ -44,7 +44,7 @@
 
   - 2: setup app using react-router
       - separate step since this is a significant change,
-      - it requires major changes to the apps logic and structure
+      - it requires major changes to logic and structure of the app
 
   - 3: implement ssr, using webpack config and plugins
       - using alexm's github repo as a template
