@@ -8,7 +8,7 @@
       - can implement better Security, better performance
       - front-end and back-end can be merged, run as 1 server
 
-# upgrade deps, if use deps from alexm's original ssr github repo:
+# upgrade deps, if use any of alexm's original ssr github repo:
   - has 2 deprecated npm package dependencies and some vulnerabilities
       - vulnerabilities can be fixed with some slick npm/npu commands
         - nomnom is a dep of 2 npm packages
