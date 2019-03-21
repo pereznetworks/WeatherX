@@ -58,10 +58,6 @@
       - will use issue-pull request
       - tag and preserve this branch for posterity
 
-# GitHub Project Site
-
-[Main GitHub Project Site](https://pereznetworks.github.io/TD-Project12/)
-
 # License:
 
 [MIT](https://github.com/pereznetworks/TD-Project12/blob/master/LICENSE)
