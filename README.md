@@ -13,6 +13,7 @@
       - vulnerabilities can be fixed with some slick npm/npu commands
       - nomnom is a dep of 2 npm packages
         - project/folder$ npm list nomnom
+            ```
             ├─┬ enzyme@3.2.0
             │ └─┬ rst-selector-parser@2.2.3
             │   └─┬ nearley@2.11.0
@@ -20,6 +21,7 @@
             └─┬ webpack-cli@2.0.9
               └─┬ jscodeshift@0.4.1
                 └── nomnom@1.8.1
+            ```
         - webpack-cli@3.3.0 has removed dependency on jscodeshift entirely
         - enzyme's dep, rst-selector-parser, has moved to commander.js
         - so need to upgrade to latest enzyme and webpack -cli
