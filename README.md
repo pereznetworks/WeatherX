@@ -1,7 +1,5 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
-# GitHub Project Site : https://pereznetworks.github.io/TD-Project12/
-
 # Status: This branch is for implementing Server-Side-Rendering for the WeatherX front-end app.
 
   - Goal: Switch to SSR, will bring many benefits, below I list a few
@@ -29,6 +27,10 @@
 
   - 5: merge this branch with master
       - will use issue-pull request
+
+# GitHub Project Site
+
+(Main GitHub Project Site )https://pereznetworks.github.io/TD-Project12/
 
 # License:
 
