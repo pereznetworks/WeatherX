@@ -8,6 +8,23 @@
       - can implement better Security, better performance
       - front-end and back-end can be merged, run as 1 server
 
+# first need to upgrade deps from alexm's original ssr github repo
+  - has 2 deprecated npm package dependencies and some vulnerabilities
+      - vulnerabilities can be fixed with some slick npm/npu commands
+      - nomnom is a dep of 2 npm packages
+        - project/folder$ npm list nomnom
+            ├─┬ enzyme@3.2.0
+            │ └─┬ rst-selector-parser@2.2.3
+            │   └─┬ nearley@2.11.0
+            │     └── nomnom@1.6.2
+            └─┬ webpack-cli@2.0.9
+              └─┬ jscodeshift@0.4.1
+                └── nomnom@1.8.1
+        - webpack-cli@3.3.0 has removed dependency on jscodeshift entirely
+        - enzyme's dep, rst-selector-parser, has moved to commander.js
+        - so need to upgrade to latest enzyme and webpack -cli
+          - then see if everything still works
+
 # Steps to Complete
 
   - 1: remove react-scripts
@@ -35,7 +52,7 @@
   - 5: merge this branch with master
       - will use issue-pull request
       - tag and preserve this branch for posterity
-      
+
 # GitHub Project Site
 
 (Main GitHub Project Site )https://pereznetworks.github.io/TD-Project12/
