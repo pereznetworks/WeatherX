@@ -22,7 +22,9 @@
       - it requires some changes to the apps logic and structure
 
   - 3: implement ssr, using webpack config and plugins
-      - https://github.com/alexnm/react-ssr/tree/basic
+      - using alexm's github repo as a template
+        - https://github.com/alexnm/react-ssr/tree/basic
+        - going with basic, since wont be using Ruby for this project
 
   - 4: merge back-end server
       - basically adding internal use-only routes
