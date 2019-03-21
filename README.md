@@ -13,6 +13,7 @@
       - vulnerabilities can be fixed with some slick npm/npu commands
   - 2 npm package dependencies have dep on deprecated npm package
       - project/folder$ npm list nomnom
+
             ```
             ├─┬ enzyme@3.2.0
             │ └─┬ rst-selector-parser@2.2.3
@@ -22,6 +23,7 @@
               └─┬ jscodeshift@0.4.1
                 └── nomnom@1.8.1
             ```
+            
   - need to upgrade to latest enzyme and webpack -cli
     - then see if everything still works
       - webpack-cli@3.3.0 seems to have removed dep on jscodeshift entirely
