@@ -10,8 +10,9 @@
         - security and performance of a production app
     - Weighing pros and cons on both sides...     
       - dependency vulnerabilities of the front-end app - WeatherX
-        - not all of the npm packages I dep on are fixed in react-scripts 3.0
-          - as of this writing, react-scripts, is still in alpha
+        - one of these npm packages...react-scripts, has some issues
+          - the issues are fixed in react-scripts@3.0
+            - as of this writing, this version is still in alpha
       - security and performance
         - ssr opens up the both to more options
       - securing back-end API routes
