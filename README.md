@@ -2,12 +2,11 @@
 
 # Status:
 
-  - implementing Server-Side-Rendering for the WeatherX front-end app.
-
-  - Goal: Switch to SSR, will bring many benefits, below I list a few
-    - front-end will more closely align with Best Practices,
-    - can implement better Security, better performance
-    - front-end and back-end can be merged, run as 1 server
+  - implementing React-Router, Server-Side-Rendering Merge front-end and back-end
+    - will bring many benefits, I list the ones that inspired this branch of the project
+      - front-end will more closely align with Best Practices,
+      - can implement better Security, better performance
+      - front-end and back-end can be merged, run as 1 server
 
 # Steps to Complete
 
