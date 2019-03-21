@@ -14,7 +14,7 @@
           - the issues are fixed in react-scripts@3.0
             - as of this writing, this version is still in alpha
       - security and performance
-        - ssr opens up the both to more options
+        - ssr opens up more options for both
       - securing back-end API routes
         - current front-end AXIOS call to back-end server will not be needed
         - route that makes external API calls can be made into a  internalized method
