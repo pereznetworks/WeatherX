@@ -1,6 +1,8 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
-# Status: This branch is for implementing Server-Side-Rendering for the WeatherX front-end app.
+# Status:
+
+  - implementing Server-Side-Rendering for the WeatherX front-end app.
 
   - Goal: Switch to SSR, will bring many benefits, below I list a few
     - front-end will more closely align with Best Practices, can implement better Security, better performance
