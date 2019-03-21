@@ -51,9 +51,7 @@ export default class Middle extends Component {
     }; // using state to control component rendering
 
     this.backendServer = {
-      url: `${process.env.SERVERURL}`,
-      port: `${process.env.SERVERPORT}`,
-      path: `${process.env.SERVERPATH}`
+      url: `${process.env.SERVERURL || `http://localhost:9999/weather`}`
     };
 
 
@@ -512,67 +510,67 @@ export default class Middle extends Component {
     currentConditions.day = this.checkDay(currentConditions.timeStamp, currentConditions.utcOffSet, currentConditions.sunsetTime, currentConditions.sunriseTime);
     let weatherIcon;
       if ( currentConditions.icon === 'cloudy'  && currentConditions.day){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-cloudy"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-day-cloudy"></i>
 
       } else if ( currentConditions.icon === 'cloudy'  && !currentConditions.day){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-cloudy"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-cloudy"></i>
 
       } else if ( currentConditions.icon === 'fog' && currentConditions.day){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-fog"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-day-fog"></i>
 
       } else if ( currentConditions.icon === 'fog' && !currentConditions.day){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-fog"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-night-fog"></i>
 
       } else if ( currentConditions.icon === 'partly-cloudy-day'){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index}  className="wi wi-day-sunny-overcast"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index}  className="wi wi-day-sunny-overcast"></i>
 
       } else if (currentConditions.icon === 'partly-cloudy-night'  ){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index}  className="wi wi-night-alt-cloudy"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index}  className="wi wi-night-alt-cloudy"></i>
 
       } else if ( currentConditions.icon === 'rain' && currentConditions.day){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-rain"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-day-rain"></i>
 
       } else if ( currentConditions.icon === 'rain' && !currentConditions.day){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-rain"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-rain"></i>
 
       } else if ( currentConditions.icon === 'clear-day' && currentConditions.day ){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-sunny"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-day-sunny"></i>
 
       } else if ( currentConditions.icon === 'clear' && currentConditions.day ){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-sunny"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-day-sunny"></i>
 
       } else if ( currentConditions.icon === 'clear-day' && !currentConditions.day ){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-clear"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-night-clear"></i>
 
       } else if ( currentConditions.icon === 'clear' && !currentConditions.day ){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-clear"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-night-clear"></i>
 
       } else if (currentConditions.icon === 'clear-night'){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-clear"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-night-clear"></i>
 
       } else if ( currentConditions.icon === 'snow' && currentConditions.day ){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-snow"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-day-snow"></i>
 
       }  else if ( currentConditions.icon === 'snow' && !currentConditions.day ){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-snow"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-snow"></i>
 
       } else if ( currentConditions.icon === 'scattered-showers' && currentConditions.day){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-showers"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-day-showers"></i>
 
       }else if ( currentConditions.icon === 'scattered-showers' && !currentConditions.day){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-showers"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-showers"></i>
 
       } else if ( currentConditions.icon === 'thunder' && currentConditions.day){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-thunderstorm"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-day-thunderstorm"></i>
 
       }  else if ( currentConditions.icon === 'thunder' && !currentConditions.day){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-thunderstorm"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-thunderstorm"></i>
 
       } else if ( currentConditions.icon === 'wind' && currentConditions.day){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-day-windy"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-day-windy"></i>
 
       } else if ( currentConditions.icon === 'wind' && !currentConditions.day){
-        weatherIcon = <i style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-cloudy-gusts"></i>
+        weatherIcon = <i title={currentConditions.icon} style={{"fontSize" : "1em"}} key={index} className="wi wi-night-alt-cloudy-gusts"></i>
       }
 
     return (
@@ -832,7 +830,7 @@ export default class Middle extends Component {
 
       // once we have a valid location... get forecast data from backendServer
 
-    axios.get(`${this.backendServer.url}${this.backendServer.port}${this.backendServer.path}${location}`)
+    axios.get(`${this.backendServer.url}:${location}`)
           .then(response => {
             let newForecast = {  // save new current foreeast
               timeStamp: Date.now(),
