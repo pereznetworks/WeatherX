@@ -1,6 +1,6 @@
 # TD-Project12 : SSR-0.0.1 Branch
 
-# Status:
+# Status: currently on PREP TASK
 
   - implementing React-Router, Server-Side-Rendering Merge front-end and back-end
     - will bring many benefits, I list the ones that inspired this branch of the project
@@ -8,7 +8,8 @@
       - can implement better Security, better performance
       - front-end and back-end can be merged, run as 1 server
 
-# upgrade deps, if use any of alexm's original ssr github repo:
+# PREP TASK:
+- upgrade deps, if use any of alexm's original ssr github repo:
   - some vulnerabilities
       - vulnerabilities can be fixed with some slick npm/npu commands
   - 2 npm package dependencies have dep on deprecated npm package
