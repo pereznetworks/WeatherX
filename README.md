@@ -81,7 +81,7 @@ For database using [Sequelize v4, SQLite v3 and Sequelize-CLI](http://docs.seque
 
 React.Js, https://reactjs.org/ or front-end UI/UX, and Babel.js, https://babeljs.io/, for compiling JSX
 
-Server-side-rendering was inspired by [Alex Moldovan](https://github.com/alexnm)
+Server-side-rendering was inspired by [Alex Moldovan](https://github.com/alexnm). 
 Specificly his [ssr github repo/basic branch](https://github.com/alexnm/react-ssr/tree/basic)
 
 # This project integrates data from several API sources:  
