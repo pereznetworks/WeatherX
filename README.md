@@ -20,7 +20,7 @@
 
 # To Do:
   - 1: implement 1 WeatherX Server
-       - started SSR-0.0.1 branch and project to..
+       - started SSR-0.0.1 Branch and project to..
          - merge front-end and back-end code
             - using GitHub issue/project/pull-request
               - makes merge easier
