@@ -57,7 +57,7 @@
 
 # My Captsone Project:  WeatherX : A Weather forecast service  
 
-GeoCoding (Search) and Geo-Location Services
+GeoCoding (Search) Services
 
 Get Time and Weather of a given location,
 
