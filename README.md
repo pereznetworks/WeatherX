@@ -34,7 +34,7 @@
 
 # Current Features:
 
-  - 1: Project Site Online : https://pereznetworks.github.io/TD-Project12/
+  - 1: Project Page : https://pereznetworks.github.io/TD-Project12/
   - 2: Security and Data-Processing
       - a: only the front-end server can make req from back-end server
         - i: security and access-control headers
