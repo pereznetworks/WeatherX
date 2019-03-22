@@ -18,7 +18,8 @@
         - current front-end AXIOS call to back-end server will not be needed
         - route that makes external API calls can be made into a  internalized method
 
-  - [Click here for Status on SSR-0.0.1](https://github.com/pereznetworks/TD-Project12/tree/ssr-0.0.1)
+  - [Click here for Status on SSR-0.0.1 Branch](https://github.com/pereznetworks/TD-Project12/tree/ssr-0.0.1)
+
 # To Do:
   - 1: implement 1 WeatherX Server
        - started branch and project to merge front-end and back-end code
