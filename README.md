@@ -59,6 +59,8 @@
       - will use issue-pull request
       - tag and preserve this branch for posterity
 
+[Back to Master Branch](https://github.com/pereznetworks/TD-Project12/tree/master)
+
 # License:
 
 [MIT](https://github.com/pereznetworks/TD-Project12/blob/master/LICENSE)
