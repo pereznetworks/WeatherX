@@ -2,8 +2,7 @@
 
 # Status:
 
-  - In Dec. 2018, I had a death in the family
-    - I am finally getting back to finishing this project
+  - In Dec. 2018, I had a death in the family, I am finally getting back to finishing this project
      - I have recently been weighing some production decisions
       - basically, the issue is a balance between 2 basic goals
         - demonstrating cool technology
