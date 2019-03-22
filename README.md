@@ -25,7 +25,7 @@
             - makes merge easier
             - is best-practice
             - great opportunity to show-off some skills
-  [Click here for Status on SSR-0.0.1 Branch](https://github.com/pereznetworks/TD-Project12/tree/ssr-0.0.1)
+  - [Click here for Status on SSR-0.0.1 Branch](https://github.com/pereznetworks/TD-Project12/tree/ssr-0.0.1)
 
   - 2: get ready for production build and deployment to hosting
       - did as many prep for Productions and Best Practice as possible
