@@ -3,13 +3,14 @@
 # Status: currently on PREP TASK
 
   - implementing React-Router, Server-Side-Rendering Merge front-end and back-end
-    - will bring many benefits, I list the ones that inspired this branch of the project
-      - front-end will more closely align with Best Practices,
-      - can implement better Security, better performance
-      - front-end and back-end can be merged, run as 1 server
+    - Heroku best-practice is to setup cluster-abstraction, which requires SSR for react 
+      - will bring many other benefits,
+        - I list the ones that inspired this branch of the project
+        - front-end will more closely align with Best Practices,
+        - can implement better Security, better performance
+        - front-end and back-end can be merged, run as 1 server
 
   - there are at least 3 options that I am considering...
-     - Heroku best-practice is to setup cluster-abstraction, which requires that SSR for react 
 
 # PREP TASK: Weigh options
 
