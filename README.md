@@ -9,6 +9,7 @@
       - front-end and back-end can be merged, run as 1 server
 
   - there are at least 3 options that I am considering...
+     - Heroku best-practice is to setup cluster-abstraction, which requires that SSR for react 
 
 # PREP TASK: Weigh options
 
