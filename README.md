@@ -8,7 +8,10 @@
         - demonstrating cool technology
         - security and performance of a production app
     - Weighing pros and cons on both sides...     
-      - dependency vulnerabilities of the front-end app - WeatherX
+      - first, Heroku, the hosting service I will be using,
+        - encourages clustering using cluster-abstraction
+           - which requires SSR for my react front-end  
+      - 2nd, dependency vulnerabilities,
         - one of these npm packages...react-scripts, has some issues
           - the issues are fixed in react-scripts@3.0
             - as of this writing, this version is still in alpha
@@ -16,7 +19,7 @@
         - ssr opens up more options for both
       - securing back-end API routes
         - current front-end AXIOS call to back-end server will not be needed
-        - route that makes external API calls can be made into a  internalized method
+        - route that makes external API calls can be made into a internalized method
 
 # To Do:
   - 1: implement 1 WeatherX Server
@@ -81,7 +84,7 @@ For database using [Sequelize v4, SQLite v3 and Sequelize-CLI](http://docs.seque
 
 React.Js, https://reactjs.org/ or front-end UI/UX, and Babel.js, https://babeljs.io/, for compiling JSX
 
-Server-side-rendering was inspired by [Alex Moldovan](https://github.com/alexnm). 
+Server-side-rendering was inspired by [Alex Moldovan](https://github.com/alexnm).
 Specificly his [ssr github repo/basic branch](https://github.com/alexnm/react-ssr/tree/basic)
 
 # This project integrates data from several API sources:  
