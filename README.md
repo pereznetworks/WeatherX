@@ -14,12 +14,24 @@
 
 # PREP TASK: Weigh options
 
+- Would love to use Option B, but is the most complicated of the 3 options
+
+- WeatherX SSR Basics: (combining options A and C)
+  - implemented basic react-router for front-end
+  - run a react-scripts build for react-front-end
+  - configure server to import APP from 'build of react-front-end'
+  - renderedAPP = renderToString(App)
+  - wrap renderedAPP in an htmlTemplate
+  - res.end(htmlTemplate)
+
 - Option A:
   - https://github.com/ayroblu/ssr-create-react-app-v2
     - this works with react-scripts
       - does or can integrate other server routes,
       - can include CSS Modules, Fonts, Imgs, etc..
-      - but like options C, Redux is used here also..
+      - Redux, can't use Redux for this project
+        - will have find a way to work without it
+
 
 - Option B:
   - https://github.com/smooth-code/loadable-components/tree/master/examples/server-side-rendering
@@ -30,9 +42,9 @@
 
 - Option C:
   - https://github.com/alexnm/react-ssr/tree/basic
+    - at 'basic' level does not include any css or css modules
     - would require that I run react-scripts reject
-    - this option uses Ruby, along with React-Router
-      - I cant use Ruby for my project,
+      - I cant use Redux for my project,
         - but may be able to incorporate ideas from "basic" tagged branch  
     - will need to upgrade deps, if use any of alexm's original ssr github repo:
       - some vulnerabilities, mostly the same as react-scripts 2.1.8
