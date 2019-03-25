@@ -14,14 +14,17 @@
 
 # PREP TASK: Weigh options
 
-- Would love to use Option B: 
+- Would love to use Option B:
   - but is the most complicated of the 3 options
 
 - WeatherX SSR Basics: (combining options A and C):
-  - implemented basic react-router for front-end
+  - implement basic react-router for front-end
   - run a react-scripts build for react-front-end
-  - configure server to import APP from 'build of react-front-end'
+  - configure server to serve static files from public folder
   - renderedAPP = renderToString(App)
+    - option A uses REDUX for this
+    - option B uses loadable for this part
+    - options C uses straight babel-register for this, with no css 
   - wrap renderedAPP in an htmlTemplate
   - res.end(htmlTemplate)
 
