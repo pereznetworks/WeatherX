@@ -22,6 +22,8 @@
         - route that makes external API calls can be made into a internalized method
 
 # To Do:
+  - [Click here for Status on SSR-0.0.1 Branch](https://github.com/pereznetworks/TD-Project12/tree/ssr-0.0.1)
+
   - 1: implement 1 WeatherX Server
    - started SSR-0.0.1 Branch and project to..
      - merge front-end and back-end code
@@ -33,7 +35,6 @@
         - https://github.com/smooth-code/loadable-components/tree/master/examples/server-side-rendering
         - https://github.com/ayroblu/ssr-create-react-app-v2
         - https://github.com/alexnm/react-ssr/tree/basic
-    - [Click here for Status on SSR-0.0.1 Branch](https://github.com/pereznetworks/TD-Project12/tree/ssr-0.0.1)
 
   - 2: get ready for production build and deployment to hosting
       - did as many prep for Productions and Best Practice as possible
