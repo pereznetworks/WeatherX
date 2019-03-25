@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, BrowserRouter as Router, Route, Redirect} from "react-router-dom";
+import { Switch, BrowserRouter as Router, Route} from "react-router-dom";
 
 // import custom css
 import './css/App.css';
@@ -25,18 +25,14 @@ class Grid extends Component {
 
 // implementing a simple Router
 // this is just a front-end ...so there is a Redirect
-// any trying to add location or other weather query strings to the url ... 
+// any trying to add location or other weather query strings to the url ...
 // will simply be redirect back to the root or home route
 class App extends Component {
   render(){
     return (
       <Router>
           <Switch>
-            <Route exact path="/" component={Grid} />
-            <Route path="/*" render={() =>
-              (<Redirect to={"/"}/>)
-            }
-            />
+            <Route path="/" component={Grid} />
           </Switch>
       </Router>
     )
@@ -44,3 +40,8 @@ class App extends Component {
 };
 
 export default App;
+
+// <Route path="/*" render={() =>
+//   (<Redirect to={"/"}/>)
+// }
+// />
