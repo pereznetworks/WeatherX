@@ -8,15 +8,8 @@ import './css/grid-main2.css';
 // importing custom components
 import Middle from './Components';
 
+// wrapping all components in a grid section, "middle"
 class Grid extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: new Date()
-      // no state at this level yet
-    };
-  } // end constructor()
 
   render() {
     return (
@@ -30,6 +23,10 @@ class Grid extends Component {
 
 }; // end component
 
+// implementing a simple Router
+// this is just a front-end ... there is a Redirect
+// so that those trying to add query strings to the url ...
+// will simply be redirect back to the root or home route
 class App extends Component {
   render(){
     return (
