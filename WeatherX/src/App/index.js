@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 // import ReactMap from "react-mapbox-gl";
 // import logo from '../imgs/logo.svg';
-import '../css/App.css';
-import '../css/grid-main2.css';
+import './css/App.css';
+import './css/grid-main2.css';
 
 // importing custom components
-import Middle from '../Components';
+import Middle from './Components';
 
 // import accessToken from './config.js';
 // importing mapbox accessToken from separate gitgnored file
 
 
-class MainApp extends Component {
+export default class App extends Component {
 
   constructor(props) {
     super(props);
@@ -31,6 +31,4 @@ class MainApp extends Component {
     );
   } // end render()
 
-} // end App component
-
-export default MainApp;
+}; // end App component
