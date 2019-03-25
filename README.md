@@ -19,6 +19,7 @@
     - this works with react-scripts
       - does or can integrate other server routes,
       - can include CSS Modules, Fonts, Imgs, etc..
+      - but like options C, Redux is used here also..
 
 - Option B:
   - https://github.com/smooth-code/loadable-components/tree/master/examples/server-side-rendering
