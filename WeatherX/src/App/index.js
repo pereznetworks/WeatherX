@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-// import ReactMap from "react-mapbox-gl";
-// import logo from '../imgs/logo.svg';
+import { Switch, BrowserRouter as Router, Route} from "react-router-dom";
+
+// import custom css
 import './css/App.css';
 import './css/grid-main2.css';
 
 // importing custom components
 import Middle from './Components';
 
-// import accessToken from './config.js';
-// importing mapbox accessToken from separate gitgnored file
-
-
-export default class App extends Component {
+class Grid extends Component {
 
   constructor(props) {
     super(props);
@@ -31,4 +28,18 @@ export default class App extends Component {
     );
   } // end render()
 
-}; // end App component
+}; // end component
+
+class App extends Component {
+  render(){
+    return (
+      <Router>
+          <Switch>
+            <Route path="/" component={Grid} />
+          </Switch>
+      </Router>
+    )
+  }
+};
+
+export default App;
