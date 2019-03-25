@@ -14,9 +14,10 @@
 
 # PREP TASK: Weigh options
 
-- Would love to use Option B, but is the most complicated of the 3 options
+- Would love to use Option B: 
+  - but is the most complicated of the 3 options
 
-- WeatherX SSR Basics: (combining options A and C)
+- WeatherX SSR Basics: (combining options A and C):
   - implemented basic react-router for front-end
   - run a react-scripts build for react-front-end
   - configure server to import APP from 'build of react-front-end'
