@@ -16,23 +16,22 @@
 
   - Option A: - https://github.com/smooth-code/loadable-components/tree/master/examples/server-side-rendering
     - this is currently supported by newest version of webpack
-      - this options actually REQUIRES react-scrips, react-router
-      - and integrates other server routes,
-      - includes CSS Modules
+      - would require me to eject from react-scripts
+      - does or can integrate other server routes,
+      - can include CSS Modules, Fonts, Imgs, etc..
 
   - Option B: - https://github.com/ayroblu/ssr-create-react-app-v2
-    - this is OLDER Code and npm packages
-      - can get this to work but requires re-tooling
-      - options actually REQUIRES react-scrips, react-router
-      - and integrates other server routes,
-      - includes CSS Modules
+    - this works with react-scripts
+      - does or can integrate other server routes,
+      - can include CSS Modules, Fonts, Imgs, etc..
 
   - Option C: - https://github.com/alexnm/react-ssr/tree/basic
     - would require that I run react-scripts reject
     - this option uses Ruby, along with React-Router
-      - I cant use Ruby for my project  
-    - upgrade deps, if use any of alexm's original ssr github repo:
-      - some vulnerabilities
+      - I cant use Ruby for my project,
+        - but may be able to incorporate ideas from "basic" tagged branch  
+    - will need to upgrade deps, if use any of alexm's original ssr github repo:
+      - some vulnerabilities, mostly the same as react-scripts 2.1.8
         - vulnerabilities can be fixed with some slick npm/npu commands
         - 2 npm package dependencies have dep on deprecated npm package
         - project/folder$ npm list nomnom
