@@ -3,7 +3,7 @@
 # Status: currently on PREP TASK
 
   - implementing React-Router, Server-Side-Rendering Merge front-end and back-end
-    - Heroku best-practice is to setup cluster-abstraction, which requires SSR for react 
+    - Heroku best-practice is to setup cluster-abstraction, which requires SSR for react
       - will bring many other benefits,
         - I list the ones that inspired this branch of the project
         - front-end will more closely align with Best Practices,
@@ -29,7 +29,9 @@
 
   - Option C: - https://github.com/alexnm/react-ssr/tree/basic
     - would require that I run react-scripts reject
-      - upgrade deps, if use any of alexm's original ssr github repo:
+    - this option uses Ruby, along with React-Router
+      - I cant use Ruby for my project  
+    - upgrade deps, if use any of alexm's original ssr github repo:
       - some vulnerabilities
         - vulnerabilities can be fixed with some slick npm/npu commands
         - 2 npm package dependencies have dep on deprecated npm package
@@ -69,9 +71,6 @@
       - it requires major changes to logic and structure of the app
 
   - 3: implement ssr, using webpack config and plugins
-      - using alexm's github repo as a template
-        - https://github.com/alexnm/react-ssr/tree/basic
-        - going with basic, since wont be using Ruby for this project
 
   - 4: merge back-end server
       - basically adding internal use-only routes
