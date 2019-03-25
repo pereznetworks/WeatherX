@@ -24,8 +24,8 @@ class Grid extends Component {
 }; // end component
 
 // implementing a simple Router
-// this is just a front-end ... there is a Redirect
-// so that those trying to add query strings to the url ...
+// this is just a front-end ...so there is a Redirect
+// any trying to add location or other weather query strings to the url ... 
 // will simply be redirect back to the root or home route
 class App extends Component {
   render(){
