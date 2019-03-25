@@ -23,13 +23,17 @@
 
 # To Do:
   - 1: implement 1 WeatherX Server
-       - started SSR-0.0.1 Branch and project to..
-         - merge front-end and back-end code
-            - using GitHub issue/project/pull-request
-              - makes merge easier
-              - is best-practice
-              - great opportunity to show-off some more skills
-  - [Click here for Status on SSR-0.0.1 Branch](https://github.com/pereznetworks/TD-Project12/tree/ssr-0.0.1)
+   - started SSR-0.0.1 Branch and project to..
+     - merge front-end and back-end code
+        - using GitHub issue/project/pull-request
+          - makes merge easier
+          - is best-practice
+          - great opportunity to show-off some more skills
+    - Weighing 3 Options for SSR
+        - https://github.com/smooth-code/loadable-components/tree/master/examples/server-side-rendering
+        - https://github.com/ayroblu/ssr-create-react-app-v2
+        - https://github.com/alexnm/react-ssr/tree/basic
+    - [Click here for Status on SSR-0.0.1 Branch](https://github.com/pereznetworks/TD-Project12/tree/ssr-0.0.1)
 
   - 2: get ready for production build and deployment to hosting
       - did as many prep for Productions and Best Practice as possible
@@ -83,9 +87,6 @@ This project uses Node.js, https://nodejs.org/ and Express.Js,"https://expressjs
 For database using [Sequelize v4, SQLite v3 and Sequelize-CLI](http://docs.sequelizejs.com/)
 
 React.Js, https://reactjs.org/ or front-end UI/UX, and Babel.js, https://babeljs.io/, for compiling JSX
-
-Server-side-rendering was inspired by [Alex Moldovan](https://github.com/alexnm).
-Specificly his [ssr github repo/basic branch](https://github.com/alexnm/react-ssr/tree/basic)
 
 # This project integrates data from several API sources:  
 
