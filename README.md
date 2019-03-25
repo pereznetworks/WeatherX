@@ -14,18 +14,21 @@
 
 # PREP TASK: Weigh options
 
-  - Option A: - https://github.com/smooth-code/loadable-components/tree/master/examples/server-side-rendering
+- Option A:
+  - https://github.com/ayroblu/ssr-create-react-app-v2
+    - this works with react-scripts
+      - does or can integrate other server routes,
+      - can include CSS Modules, Fonts, Imgs, etc..
+
+- Option B:
+  - https://github.com/smooth-code/loadable-components/tree/master/examples/server-side-rendering
     - this is currently supported by newest version of webpack
       - would require me to eject from react-scripts
       - does or can integrate other server routes,
       - can include CSS Modules, Fonts, Imgs, etc..
 
-  - Option B: - https://github.com/ayroblu/ssr-create-react-app-v2
-    - this works with react-scripts
-      - does or can integrate other server routes,
-      - can include CSS Modules, Fonts, Imgs, etc..
-
-  - Option C: - https://github.com/alexnm/react-ssr/tree/basic
+- Option C:
+  - https://github.com/alexnm/react-ssr/tree/basic
     - would require that I run react-scripts reject
     - this option uses Ruby, along with React-Router
       - I cant use Ruby for my project,
