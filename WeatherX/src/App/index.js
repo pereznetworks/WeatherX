@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, BrowserRouter as Router, Route} from "react-router-dom";
+import { Switch, BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 
 // import custom css
 import './css/App.css';
@@ -35,7 +35,11 @@ class App extends Component {
     return (
       <Router>
           <Switch>
-            <Route path="/" component={Grid} />
+            <Route exact path="/" component={Grid} />
+            <Route path="/*" render={() =>
+              (<Redirect to={"/"}/>)
+            }
+            />
           </Switch>
       </Router>
     )
