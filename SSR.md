@@ -86,7 +86,7 @@
     - c: run it to make sure it works
 
   - Task 2: integrate backend server
-    - * this part looks easy now, but it took me hours of trial/error
+    - this part looks easy now, but it took me hours of trial/error
       - ...whew!!
     - a: mkdir and copied to a backendServer folder
     - b: changes to integrate backendServer
