@@ -41,12 +41,12 @@
           - and deprecated packages
     - Task 5: React-Router
       - a: okay so, react-router needs a DOM to work..
-       - i: but server-side, there is NO DOM..
+          - but server-side, there is NO DOM..
       - b: 2 options for getting React-Router to work in SSR
-       - i: use loadable-components module, really cool stuff..
-          - [the Loadable-Components](https://github.com/smooth-code/loadable-components)
-        - ii: or use Redux, also really cool stuff...
-          - [SSR Example with Redux](https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9)
+          - use loadable-components module, really cool stuff..
+            - [the Loadable-Components](https://github.com/smooth-code/loadable-components)
+          - or use Redux, also really cool stuff...
+            - [SSR Example with Redux](https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9)
         - iii: I of course choose neither... the way of pain !!!
           - okay, so no react-router at all,
             - it is a simpler setup, and it works!  
