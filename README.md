@@ -3,54 +3,30 @@
 # Status:
 
   - In Dec. 2018, I had a death in the family, I am finally getting back to finishing this project
-     - I have recently been weighing some production decisions
-      - basically, the issue is a balance between 2 basic goals
-        - demonstrating cool technology
-        - security and performance of a production app
-    - Weighing pros and cons on both sides...     
-      - first, Heroku, the hosting service I will be using,
-        - encourages clustering using cluster-abstraction
-           - which requires SSR for my react front-end  
-      - 2nd, dependency vulnerabilities,
-        - one of these npm packages...react-scripts, has some issues
-          - the issues are fixed in react-scripts@3.0
-            - as of this writing, this version is still in alpha
-      - security and performance
-        - ssr opens up more options for both
-      - securing back-end API routes
-        - current front-end AXIOS call to back-end server will not be needed
-        - route that makes external API calls can be made into a internalized method
+     - I have recently been weighing decisions before publishing my live
+       - I recently upgraded my project
+         - implemented SSR for React front-end
+         - combined React front-end with back-end code
+         - [SSR-Planning notes](./SSR-PLANNING)
+         - [SSR-Implementation notes](./SSR-Implementation)
 
 # To Do:
-  - [Click here for Status on SSR-0.0.1 Branch](https://github.com/pereznetworks/TD-Project12/tree/ssr-0.0.1)
-
-  - 1: implement 1 WeatherX Server
-   - started SSR-0.0.1 Branch and project to..
-     - merge front-end and back-end code
-        - using GitHub issue/project/pull-request
-          - makes merge easier
-          - is best-practice
-          - great opportunity to show-off some more skills
-    - Weighing 3 Options for SSR
-        - https://github.com/smooth-code/loadable-components/tree/master/examples/server-side-rendering
-        - https://github.com/ayroblu/ssr-create-react-app-v2
-        - https://github.com/alexnm/react-ssr/tree/basic
-
-  - 2: get ready for production build and deployment to hosting
-      - did as many prep for Productions and Best Practice as possible
-      - need to complete To Do 1: implement 1 WeatherX Server  
+  - 2: After a lomg detour, get ready for production build and deployment to hosting
+     - review HEROKU/Express/React Best Practices
+     - compress or minify SSR React build, app.bundle.js and app.css
 
 # Current Features:
 
   - 1: Project Page : https://pereznetworks.github.io/TD-Project12/
   - 2: Security and Data-Processing
-      - a: only the front-end server can make req from back-end server
-        - i: security and access-control headers
-              - allow only GET requests
-              - allow only connection from WeatherX front-end host
-        - ii no OAuth, no Geo-Location - so no user data to keep track of
+      - a: security and access-control headers
+        - i: allow only GET requests
+        - ii: allow only connection from WeatherX front-end host
+        - iii: no OAuth, no Geo-Location - so no user data to keep track of
       - b: Geo-Location, OAuth, db-server accessible via network port not implemented
-        - i: using sequelize/sqlite, internal database only, which deletes all data every time
+        - i: using sequelize/sqlite, internal database only,
+          - deletes all data with each Search
+          - per API usage terms
   - 3: Front-end features working:  
       - a: geocoding working
       - b: timeDisplay for each Location
@@ -70,14 +46,6 @@ GeoCoding (Search) Services
 Get Time and Weather of a given location,
 
 Display current and forecast weather stats, warning and alerts will be displayed on side-bar-like area.
-
-# WeatherX app
-
-[Details and Status of WeatherX App](https://github.com/pereznetworks/TD-Project12/tree/master/WeatherX)
-
-# WeatherX server
-
-[Details and Status of WeatherX Server](https://github.com/pereznetworks/TD-Project12/tree/master/WeatherX-Server)
 
 # Technologies to be used:
 
@@ -102,6 +70,11 @@ React.Js, https://reactjs.org/ or front-end UI/UX, and Babel.js, https://babeljs
 [Weather-icons](https://www.npmjs.com/package/weather-icons) - for displaying icons to indicate forecasted weather conditions
 
 I wrote my own Date and Time conversion methods
+
+Although I used create-react-app to start the project...
+- After a lot of agonizing and planning, I chose to leave it for a basic SSR Implementation.
+  - [SSR-Planning notes](./SSR-PLANNING)
+  - [SSR-Implementation notes](./SSR-Implementation)
 
 # Standards:
 
