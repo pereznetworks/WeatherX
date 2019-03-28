@@ -3,23 +3,20 @@
   - [React SSR Baseline](https://github.com/alexnm/react-ssr/tree/basic)
     - Task 1: Clone the repo
     - Task 2: placed my react components in place of /Components/Layout.js
-      - import my react main component instead of layout
-      - run it...
+      - a: import my react main component instead of layout
+      - b: run it...
         - Oops, !@@$%!!!
         - reactDOM barfs on anything but jsx
         - remove css and assets...run it again...okay that's better
         - but no styling, ugh!!
     - Task 3: figure out how to add support for css and other assets
-
-  [See Webpack's really great documentaton](https://webpack.js.org/concepts)
-
-  [also thanks to another SSR Example](https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9)
-
-       - c: using plugins
-          - MiniCssExtractPlugin
+      - a: [See Webpack's really great documentaton](https://webpack.js.org/concepts)
+      - b: [also thanks to another SSR Example](https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9)
+      - c: using plugins
+            - MiniCssExtractPlugin
             - css-loader, sass-loader, file-loader
             - setup a very basic scss import file
-       - d: in src/server.js, add ...
+      - d: in src/server.js, add ...
             ```
                 import "ignore-styles"
 
@@ -43,18 +40,17 @@
           - npm reports all kinds of nasty vulnerabilities
           - and deprecated packages
     - Task 5: React-Router
-      - a: 2 options for getting React-Router to work in SSR
+      - a: react-router needs a DOM to work..
+       - i: but server-side, there is NO DOM..
+      - b: 2 options for getting React-Router to work in SSR
        - i: use loadable-components module, really cool stuff..
-
-  [the Loadable-Components](https://github.com/smooth-code/loadable-components)
-        - ii: or use Redux
-
-  [SSR Example with Redux](https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9)
-
-        - iii: I of course choose neither...
-          - the way of pain !!!
-          - okay, it is a simpler setup, but it works!  
-           - see Step 2:
+          - [the Loadable-Components](https://github.com/smooth-code/loadable-components)
+        - ii: or use Redux, also really cool stuff...
+          - [SSR Example with Redux](https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9)
+        - iii: I of course choose neither... the way of pain !!!
+          - okay, so no react-router at all,
+            - it is a simpler setup, and it works!  
+            - see Step 2:
 
 # Step 2: Upgrade to newest versions of all packages, webpack, babel, etc...
 
