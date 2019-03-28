@@ -10,8 +10,8 @@
         - remove css and assets...run it again...okay that's better
         - but no styling, ugh!!
     - Task 3: figure out how to add support for css and other assets
-       - a: [See Webpack's really great documentaton][https://webpack.js.org/concepts]
-       - b: [also thanks to another SSR Example][https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9]
+  [See Webpack's really great documentaton][https://webpack.js.org/concepts]
+  [also thanks to another SSR Example][https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9]
        - c: using plugins
           - MiniCssExtractPlugin
             - css-loader, sass-loader, file-loader
@@ -41,10 +41,11 @@
           - and deprecated packages
     - Task 5: React-Router
       - a: 2 options for getting React-Router to work in SSR
-        - i: [the Loadable-Components](https://github.com/smooth-code/loadable-components)
+       - i: use loadable-components module, really cool stuff..
+  [the Loadable-Components](https://github.com/smooth-code/loadable-components)
         - ii: or use Redux
-          - [SSR Example with Redux][https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9]
-        - c: I of course choose neither...
+  [SSR Example with Redux][https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9]
+        - iii: I of course choose neither...
           - the way of pain !!!
           - okay, it is a simpler setup, but it works!  
            - see Step 2:
@@ -61,7 +62,7 @@
         - dooh!, !@#$%!!!!
     - 2: okay, port any code over to newer syntax
       - a: this was frustrating at first.... but solution was simple...
-        - [Thanks to Webpack's really great documentaton][https://webpack.js.org/concepts]
+  [Thanks again to Webpack's really great documentaton][https://webpack.js.org/concepts]
       - c: replace 'babel-register' with '@babel/register', where ever used
       - d: reduce .baberc to most extreme basic
         ```
