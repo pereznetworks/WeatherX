@@ -140,3 +140,6 @@ typings/
 # ignore the dist and build folders
 dist
 build
+
+# config
+./backendServer/dataSource/config/*
