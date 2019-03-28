@@ -52,52 +52,52 @@
 
 # Step 2: Upgrade to newest versions of all packages, webpack, babel, etc...
 
-    - 1: First, Resolve vulnerabilities ...
-      - a: use ncu -u and npm i to upgrade all packages and dependencies
-      - b: switch to @babel/core, @babel/preset-env, @babel/preset-react, @babel/register
-      - c: uninstall hooks
-        - does not seem to work properly after these upgrade
-      - d: great, now nothing works..
-        - webpack.config.js barfs big time...
-        - dooh!, !@#$%!!!!
-    - 2: okay, port any code over to newer syntax
-      - a: this was frustrating at first.... but solution was simple...
-  [Thanks again to Webpack's really great documentaton][https://webpack.js.org/concepts]
-      - c: replace 'babel-register' with '@babel/register', where ever used
-      - d: reduce .baberc to most extreme basic
-        ```
-            {
-              "presets": [
-                "@babel/preset-env",
-                "@babel/preset-react"
-              ]
-            }
-        ```
+  - 1: First, Resolve vulnerabilities ...
+    - a: use ncu -u and npm i to upgrade all packages and dependencies
+    - b: switch to @babel/core, @babel/preset-env, @babel/preset-react, @babel/register
+    - c: uninstall hooks
+      - does not seem to work properly after these upgrade
+    - d: great, now nothing works..
+      - webpack.config.js barfs big time...
+      - dooh!, !@#$%!!!!
+  - 2: okay, port any code over to newer syntax
+    - a: this was frustrating at first.... but solution was simple...
+[Thanks again to Webpack's really great documentaton][https://webpack.js.org/concepts]
+    - c: replace 'babel-register' with '@babel/register', where ever used
+    - d: reduce .baberc to most extreme basic
+      ```
+          {
+            "presets": [
+              "@babel/preset-env",
+              "@babel/preset-react"
+            ]
+          }
+      ```
 
 # STEP 3 : Combining my React SSR FE with my Backend Server
 
-    - Task 1: wrap React SSR app in cluster abstraction : Throng
-      - a: wrapped index.js in basic throng starter code
-      - b: npm i --save throng  
-      - c: run it to make sure it works
+  - Task 1: wrap React SSR app in cluster abstraction : Throng
+    - a: wrapped index.js in basic throng starter code
+    - b: npm i --save throng  
+    - c: run it to make sure it works
 
-    - Task 2: integrate backend server
-      - * this part looks easy now, but it took me hours of trial/error
-        - ...whew!!
-      - a: mkdir and copied to a backendServer folder
-      - b: changes to integrate backendServer
-        - i: remove root, '/', route path from backendServer/routes/index.js
-        - ii: change package target to server.js
-        - iii: change data\comfig.json to point ./backendServer/..
-        - iv: remove index.js, and npm package.json, etc..
-        - vi: merge backendServer/server.js with src/server.js code
-        - vii: move require @babel/register into app.get("/") route handler
-        - viii: use 'localhost:3000' in react axios call in src/Component/index.js  
-      - c: npm run dev
-        - i: use nodemon --inspect
-        - ii cool ... front-end server starts and back-end starts
-        - iii: front-end react ui renders
-        - iv: data retrieved and ui components work
+  - Task 2: integrate backend server
+    - * this part looks easy now, but it took me hours of trial/error
+      - ...whew!!
+    - a: mkdir and copied to a backendServer folder
+    - b: changes to integrate backendServer
+      - i: remove root, '/', route path from backendServer/routes/index.js
+      - ii: change package target to server.js
+      - iii: change data\comfig.json to point ./backendServer/..
+      - iv: remove index.js, and npm package.json, etc..
+      - vi: merge backendServer/server.js with src/server.js code
+      - vii: move require @babel/register into app.get("/") route handler
+      - viii: use 'localhost:3000' in react axios call in src/Component/index.js  
+    - c: npm run dev
+      - i: use nodemon --inspect
+      - ii cool ... front-end server starts and back-end starts
+      - iii: front-end react ui renders
+      - iv: data retrieved and ui components work
 
-    - Task 3: Document and have a beer!!
-      - 1: Preferably a stout beer
+  - Task 3: Document and have a beer!!
+    - 1: Preferably a stout beer
