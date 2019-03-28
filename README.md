@@ -3,7 +3,7 @@
 # Status:
 
   - In Dec. 2018, I had a death in the family, I am finally getting back to finishing this project
-     - I have recently been weighing decisions before publishing my live
+     - I have recently been weighing decisions before finally publishing
        - I recently upgraded my project
          - implemented SSR for React front-end
          - combined React front-end with back-end code
