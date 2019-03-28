@@ -24,7 +24,7 @@
   - renderedAPP = renderToString(App)
     - option A uses REDUX for this
     - option B uses loadable for this part
-    - options C uses straight babel-register for this, with no css 
+    - options C uses straight babel-register for this, with no css
   - wrap renderedAPP in an htmlTemplate
   - res.end(htmlTemplate)
 
@@ -75,28 +75,7 @@
 
 # Steps to Complete
 
-  - 1: depending on option chosen, remove react-scripts
-      - using react-scripts to make managing dependencies easy
-        - but either way this project needs these improvements
-
-      - npm run eject : removes react-scripts and setups everything needed
-        - will copy all the configuration files and the transitive dependencies
-          - (Webpack, Babel, ESLint, etc)
-        - All of the commands\scripts except `eject` will still work,
-        - commands\scripts will point to the copied scripts
-
-  - 2: setup app using react-router
-      - separate step since this is a significant change,
-      - it requires major changes to logic and structure of the app
-
-  - 3: implement ssr, using webpack config and plugins
-
-  - 4: merge back-end server
-      - basically adding internal use-only routes
-
-  - 5: merge this branch with master
-      - will use issue-pull request
-      - tag and preserve this branch for posterity
+ [Steps to Complete](./SSR.md)
 
 [Back to Master Branch](https://github.com/pereznetworks/TD-Project12/tree/master)
 
