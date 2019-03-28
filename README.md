@@ -14,7 +14,7 @@
   - 2: After a long detour, I am getting ready for production build and deployment to hosting
      - review HEROKU/Express/React Best Practices
      - compress or minify SSR React build, app.bundle.js and app.css
-     - I am sure there are other production issues 
+     - I am sure there are other production issues
 
 # Current Features:
 
@@ -24,9 +24,9 @@
         - i: allow only GET requests
         - ii: allow only connection from WeatherX front-end host
         - iii: no OAuth, no Geo-Location - so no user data to keep track of
-      - b: Geo-Location, OAuth, db-server accessible via network port not implemented
-        - i: using sequelize/sqlite, internal database only,
-          - deletes all data with each Search
+      - b: External REST API, is implemented and working
+        - i: using sequelize/sqlite
+          - deletes all data with each Search and response
           - per API usage terms
   - 3: Front-end features working:  
       - a: geocoding working
