@@ -75,7 +75,7 @@
 
 # Steps to Complete
  - So I really went down the rabbit hole on this one
-   - [After much deliberation, I took these steps...](./SSR.md)
+   - [After much deliberation, I took these steps...](./SSR-Implementaton.md)
 
 [Back to Master Branch](https://github.com/pereznetworks/TD-Project12/tree/master)
 
