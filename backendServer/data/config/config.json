@@ -1,0 +1,35 @@
+{
+  "development": {
+    "storage": "./backendServer/data/library.db",
+    "dialect": "sqlite",
+    "operatorsAliases": false,
+    "seederStorage": "json",
+    "seederStoragePath": "./backendServer/data/seeders/seedData.json",
+    "seederStorageTableName": "seed_data",
+    "migrationStorage": "json",
+    "migrationStoragePath": "./data/migrations/migrationData.json",
+    "migrationStorageTableName": "seed_data"
+  },
+  "test": {
+    "storage": "./backendServer/testdata/library.db",
+    "dialect": "sqlite",
+    "operatorsAliases": false,
+    "seederStorage": "json",
+    "seederStoragePath": "./backendServer/testdata/seeders/seedData.json",
+    "seederStorageTableName": "seed_data",
+    "migrationStorage": "json",
+    "migrationStoragePath": "./backendServer/testdata/migrations/migrationData.json",
+    "migrationStorageTableName": "seed_data"
+  },
+  "production": {
+    "storage": "./backendServer/prod/library.db",
+    "dialect": "sqlite",
+    "operatorsAliases": false,
+    "seederStorage": "json",
+    "seederStoragePath": "./backendServer/prod/seeders/seedData.json",
+    "seederStorageTableName": "seed_data",
+    "migrationStorage": "json",
+    "migrationStoragePath": "./backendServer/prod/migrations/migrationData.json",
+    "migrationStorageTableName": "seed_data"
+  }
+}
