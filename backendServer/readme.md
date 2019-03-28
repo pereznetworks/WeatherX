@@ -22,11 +22,9 @@ backend server to provide front-end WeatherX app with data from several external
   - Per Express.js Best Practice, using HELMET for basic secure Headers
   - Access-Control headers set to only allow specific host to make requests from server
   - Only allowed METHOD is `GET`  
-  - path `/` yields `authorized use only`
   - path `/weather:location` yields json formatted forecast and location data
 
-  - since only the WeatherX front-end app will be making requests
-    - no User Auth will be implemented
+  - need to allow only the WeatherX front-end app to make requests
 
   - However, I may want to
     - load the react.js front-end app from the WeatherX server itself..?
