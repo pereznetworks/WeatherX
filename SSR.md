@@ -49,7 +49,7 @@
   [the Loadable-Components](https://github.com/smooth-code/loadable-components)
         - ii: or use Redux
 
-  [SSR Example with Redux]([https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9)
+  [SSR Example with Redux](https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9)
 
         - iii: I of course choose neither...
           - the way of pain !!!
