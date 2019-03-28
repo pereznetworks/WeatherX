@@ -1,5 +1,5 @@
 {
-  "name": "WeatherX SSR Branch",
+  "name": "weatherx",
   "version": "0.0.1",
   "description": "WeatherX with Server-Side-Rendering, using tomtom, forecast.io api",
   "main": "webpack.config.js",
