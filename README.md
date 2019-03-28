@@ -11,9 +11,10 @@
          - [SSR-Implementation notes](./SSR-Implementation)
 
 # To Do:
-  - 2: After a lomg detour, get ready for production build and deployment to hosting
+  - 2: After a long detour, I am getting ready for production build and deployment to hosting
      - review HEROKU/Express/React Best Practices
      - compress or minify SSR React build, app.bundle.js and app.css
+     - I am sure there are other production issues 
 
 # Current Features:
 
