@@ -40,7 +40,7 @@
           - npm reports all kinds of nasty vulnerabilities
           - and deprecated packages
     - Task 5: React-Router
-      - a: react-router needs a DOM to work..
+      - a: okay so, react-router needs a DOM to work..
        - i: but server-side, there is NO DOM..
       - b: 2 options for getting React-Router to work in SSR
        - i: use loadable-components module, really cool stuff..
