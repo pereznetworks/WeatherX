@@ -91,17 +91,18 @@
     - a: mkdir and copied to a backendServer folder
     - b: changes to integrate backendServer
       - i: remove root, '/', route path from backendServer/routes/index.js
-      - ii: change package target to server.js
+      - ii: remove npm package, etc from backendServer folder
       - iii: change data\comfig.json to point ./backendServer/..
-      - iv: remove index.js, and npm package.json, etc..
+      - iv: remove index.js
       - vi: merge backendServer/server.js with src/server.js code
       - vii: move require @babel/register into app.get("/") route handler
       - viii: use 'localhost:3000' in react axios call in src/Component/index.js  
     - c: npm run dev
-      - i: use nodemon --inspect
+      - i: use nodemon --inspect, so can debug in Chrome
       - ii cool ... front-end server starts and back-end starts
       - iii: front-end react ui renders
       - iv: data retrieved and ui components work
+        - after the 9umtith try .. =)
 
   - Task 3: Document and have a beer!!
     - 1: Preferably a stout beer
