@@ -143,3 +143,7 @@ build
 
 # config
 backendServer/dataSource/config/index.js
+
+# dist
+dist
+dist/*
