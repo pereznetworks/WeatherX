@@ -13,7 +13,7 @@
 
   [See Webpack's really great documentaton](https://webpack.js.org/concepts)
 
-  [also thanks to another SSR Example][https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9]
+  [also thanks to another SSR Example](https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9)
 
        - c: using plugins
           - MiniCssExtractPlugin
