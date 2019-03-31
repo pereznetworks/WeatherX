@@ -148,3 +148,7 @@ backendServer/data/*.db
 # dist
 dist
 dist/*
+
+# may use this as wrapper for entire servr and ssr react app, but not yet
+src/webServer.js
+src/webServer.js
