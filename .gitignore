@@ -143,10 +143,19 @@ build
 
 # sequelize config and data
 backendServer/dataSource/config/index.js
+<<<<<<< HEAD
 backendServer/data/library.db
+=======
+backendServer/data/*.db
+>>>>>>> 0903ad4f41385b2bc96b835a9b8738cc6d44b93b
 
 # dist
 dist
 dist/*
 
+<<<<<<< HEAD
+=======
+# may use this as wrapper for entire servr and ssr react app, but not yet
+src/webServer.js
+>>>>>>> 0903ad4f41385b2bc96b835a9b8738cc6d44b93b
 src/webServer.js
