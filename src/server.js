@@ -62,7 +62,7 @@ const htmlTemplate = reactDom => {
 };
 
 app.get( "/", ( req, res ) => {
-  require ('ignore-styles');
+  // require ('ignore-styles');
   require ('@babel/register')({
     ignore: /\/(build|node_modules)\//,
     presets: ['env', 'react-app']
@@ -83,17 +83,20 @@ app.get('/favicon.ico', (req, res, next) => res.status(204));
 app.use((req, res, next) => {
 	const err = new Error("Not Found");
 	err.status = 404;
+  err.message = "Oops, Please, use the syntax, weather:city, state or weather:city, country"
 	next(err);
 });
 
 // Error Hander
 app.use((err, req, res, next) => {
 		res.status(err.status || 500);
-		res.json({
-			error: {
-				message: err.message
+		res.json(
+     {
+		  	"error": {
+			  	"message": `${err.message}`
 			}
-		});
+		 }
+    );
 });
 
 // sync the sequelize database, then start the server

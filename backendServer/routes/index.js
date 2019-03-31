@@ -2,6 +2,14 @@ const express = require('express');
 const main = express.Router();
 const axios = require('axios');
 
+// limiting /weather:location to only GET reqs from SAME-ORIGIN as SERVER
+
+main.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Methods", "GET")
+  next();
+});
 
 // importing sequelize, db and models
 const sequelizeDb = require('../data/models');
@@ -24,6 +32,8 @@ const newLocationData = require('../dataSource').newLocationData;
 
     // the weather route, returns current forecast
     main.get('/weather:location', (req, res, next) => {
+
+      console.log(`\n...processing new GET request...\n`);
         let removeLeading = /([^:])\w+/g;
         let locationArray = req.params.location.match(removeLeading);
         let locationString = locationArray.toString();
@@ -59,6 +69,11 @@ const newLocationData = require('../dataSource').newLocationData;
                       // not keeping data, part of TomTom usage terms
                       sequelizeDb.Forecast.destroy({force:true,truncate:true});
 
+                    }).then(()=>{
+                       // prove that data in tables deleted, should console the word, 'found:' followed by nothng, twice
+                        // may write this to a log instead of logging to console
+                       sequelizeDb.Location.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
+
                     }).catch( err => {
                         console.log('Error getting forecast data... ', err);
                         next(err);
@@ -72,12 +87,6 @@ const newLocationData = require('../dataSource').newLocationData;
               }).then(()=>{
                 // not keeping data, part of DarkSky API usage terms
                 sequelizeDb.Location.destroy({force:true,truncate:true})
-
-              }).then(()=>{
-                 // prove that data in tables deleted, should console the word, 'found:' followed by nothng, twice
-                  // may write this to a log instead of logging to console
-                 sequelizeDb.Location.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
-                 sequelizeDb.Forecast.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
 
               }).catch(function(error){
                 console.log(`error: ${error}`);
