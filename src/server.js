@@ -18,18 +18,6 @@ app.use(logger('dev')); // Concise output colored by response status for develop
 const helmet = require('helmet')
 app.use(helmet());
 
-// using sequelize for data ...
-// importing from models/index.js
-// .. which sets config, checks for or creates a db, imports models into sequelize
-// .... then imported here
-const sequelize = require('../backendServer/data/models').sequelize;
-
-// setting up a routes module
-const routes = require('../backendServer/routes/index.js');
-
-app.use(routes);
-app.use('/weather', routes);
-
 /* front-end modules and routes, using REACT SSR baseline */
 /* REACT SSR baseline from https://github.com/alexnm/react-ssr  */
 import 'ignore-styles';
@@ -99,11 +87,7 @@ app.use((err, req, res, next) => {
     );
 });
 
-// sync the sequelize database, then start the server
-sequelize
-  .sync()
-  .then(() => {
-    app.listen(3000, () => {
-      console.log('Express server listening on port', 3000);
-    });
-  });
+// then start the server
+app.listen(3000, () => {
+    console.log('Express server listening on port', 3000);
+});

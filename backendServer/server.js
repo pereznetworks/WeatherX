@@ -20,6 +20,18 @@ app.use(logger('dev')); // Concise output colored by response status for develop
 const helmet = require('helmet')
 app.use(helmet());
 
+// using sequelize for data ...
+// importing from models/index.js
+// .. which sets config, checks for or creates a db, imports models into sequelize
+// .... then imported here
+const sequelize = require('../backendServer/data/models').sequelize;
+
+// setting up a routes module
+const routes = require('../backendServer/routes/index.js');
+
+app.use(routes);
+app.use('/weather', routes);
+
 // prevent favicon errors, may include a real favicon eventually
 app.get('/favicon.ico', (req, res, next) => res.status(204));
 
@@ -44,6 +56,6 @@ app.use((err, req, res, next) => {
 });
 
 // start server
-app.listen(3000, () => {
-  console.log('Express server listening on port', 3000);
+app.listen(9999, () => {
+  console.log('Express server listening on port', 9999);
 });
