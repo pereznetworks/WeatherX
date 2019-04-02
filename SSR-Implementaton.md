@@ -81,6 +81,13 @@
           }
       ```
 
+# RE-CAP:
+  - so at this point we have 2 separate servers
+    - REACT SSR server, very nice
+    - the same backend server with one basic route for \weather:location
+    - now for the next step...
+      - we have to combine the 2..
+
 # STEP 3 : Combining my React SSR FE with my Backend Server
 
   - Task 1: wrap React SSR app in cluster abstraction : Throng
