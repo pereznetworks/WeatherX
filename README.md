@@ -1,9 +1,8 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
 # Status:
-
-I: - In Dec. 2018, I had a death in the family, I am finally getting back to finishing this project
-  1:  in March 2019, studied up on NPM packages vulnerabilities and updates
+I:  - In Dec. 2018, I had a death in the family, I am finally getting back to finishing this project
+  1:  - in March 2019, studied up on NPM packages vulnerabilities and updates
       A: - could no longer wait for all vulnerabilities in create-react-app to be patched
       B: - found all other vulnerabilities had been patched in @Babel/core and latest WebPack
       c: - needed to move to SSR anyway...
