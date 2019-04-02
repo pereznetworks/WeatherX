@@ -4,12 +4,12 @@
 
   - In Dec. 2018, I had a death in the family, I am finally getting back to finishing this project
      - I have recently been weighing decisions before finally publishing
-      - as of April 1st 2019
-       - All branches of modules and code are patched and updated to latest packages
-         - My Sequelize code has not been migrated to latest Sequelize yet
-          - sequelize is still 4.42.1",
-          - sequelize-cli is v5.4.0",
-          - sqlite3 is 4.0.6"
+       - as of April 1st 2019
+         - All branches of modules and code are patched and updated to latest packages
+           - My Sequelize code has not been migrated to latest Sequelize yet
+            - sequelize is still 4.42.1",
+            - sequelize-cli is v5.4.0",
+            - sqlite3 is 4.0.6"
        - I recently upgraded my project
          - implemented SSR for React front-end
          - combined React front-end with back-end code
