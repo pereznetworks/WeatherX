@@ -16,8 +16,8 @@
   - I recently upgraded my project so I now have 1 Express Server
       - A: implemented SSR for React front-end
       - B: combined React front-end with back-end code
-        - i:  [SSR-Planning notes](./SSR-PLANNING.md)
-        - ii: [SSR-Implementation notes](./SSR-Implementation.md)
+        - i:  [SSR-Planning notes](./SSR-PLANNING)
+        - ii: [SSR-Implementation notes](./SSR-Implementation)
         - iv: [Preserved branch that keeps Backend and FrontEnd Servers separate ](https://github.com/pereznetworks/TD-Project12/tree/separateFEandBEserver)
 
 # To Do:
