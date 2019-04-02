@@ -24,11 +24,11 @@ const manageLocData = require('../dataSource').manageLocData;
 const newForecastData = require('../dataSource').newForecastData;
 const newLocationData = require('../dataSource').newLocationData;
 
-    // // the home or root route
-    // main.get('/', (req, res, next) => {
-    //     res.json( [{"WeatherX notice":"authorized use only"}] );
-    //     res.end();
-    // });
+    // the home or root route
+    main.get('/', (req, res, next) => {
+        res.json( [{"WeatherX notice":"authorized use only"}] );
+        res.end();
+    });
 
     // the weather route, returns current forecast
     main.get('/weather:location', (req, res, next) => {
