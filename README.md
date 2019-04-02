@@ -8,7 +8,7 @@
       - C: needed to move to SSR anyway...
         - i: to read of my agony on this, see SSR-Planning and Implementation notes below
   - 2: as of April 1st 2019
-      - A: All branches of modules and code are patched and updated to latest packages
+      - A: For all branches, code migrated and modules are patched, updated to latest packages
       - B:  My Sequelize code has not been migrated to latest Sequelize yet
         - i: sequelize is still 4.42.1",
         - ii: sequelize-cli is v5.4.0",
