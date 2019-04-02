@@ -18,7 +18,6 @@
       - B: combined React front-end with back-end code
         - i:  [SSR-Planning notes](./SSR-PLANNING.md)
         - ii: [SSR-Implementation notes](./SSR-Implementation.md)
-        - iii:[Preserved branch that](https://github.com/pereznetworks/TD-Project12/blob/ssr-0.0.1) 
         - iv: [Preserved branch that keeps Backend and FrontEnd Servers separate ](https://github.com/pereznetworks/TD-Project12/tree/separateFEandBEserver)
 
 # To Do:
