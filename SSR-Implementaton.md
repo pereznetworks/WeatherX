@@ -35,23 +35,24 @@
     }
 
 ```
-    - Task 4: with the above steps, the main React UI component loads
-      - a: yah!!!
-      - b: dooh!
-          - npm reports all kinds of nasty vulnerabilities
-          - and deprecated packages
-    - Task 5: React-Router
-      - a: okay so, react-router needs a DOM to work..
-          - but server-side, there is NO DOM..
-      - b: 2 options for getting React-Router to work in SSR
-          - use loadable-components module, really cool stuff..
-            - [the Loadable-Components](https://github.com/smooth-code/loadable-components)
-          - or use Redux, also really cool stuff...
-            - [SSR Example with Redux](https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9)
-        - iii: I of course choose neither... the way of pain !!!
-          - okay, so no react-router at all,
-            - it is a simpler setup, and it works!  
-            - see Step 2:
+
+  - Task 4: with the above steps, the main React UI component loads
+    - a: yah!!!
+    - b: dooh!
+        - npm reports all kinds of nasty vulnerabilities
+        - and deprecated packages
+  - Task 5: React-Router
+    - a: okay so, react-router needs a DOM to work..
+        - but server-side, there is NO DOM..
+    - b: 2 options for getting React-Router to work in SSR
+        - use loadable-components module, really cool stuff..
+          - [the Loadable-Components](https://github.com/smooth-code/loadable-components)
+        - or use Redux, also really cool stuff...
+          - [SSR Example with Redux](https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9)
+      - iii: I of course choose neither... the way of pain !!!
+        - okay, so no react-router at all,
+          - it is a simpler setup, and it works!  
+          - see Step 2:
 
 # Step 2: Upgrade to newest versions of all packages, webpack, babel, etc...
 
