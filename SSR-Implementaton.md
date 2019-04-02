@@ -60,7 +60,8 @@
     - a: use ncu -u and npm i to upgrade all packages and dependencies
     - b: switch to @babel/core, @babel/preset-env, @babel/preset-react, @babel/register
     - c: uninstall hooks
-      - does not seem to work properly after these upgrade
+      - does not seem to work properly after these upgrades anyway
+        - will have to fix later
     - d: great, now nothing works..
       - webpack.config.js barfs big time...
       - dooh!, !@#$%!!!!
