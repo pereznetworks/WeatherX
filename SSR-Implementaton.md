@@ -104,8 +104,10 @@
       - i: use nodemon --inspect, so can debug in Chrome
       - ii cool ... front-end server starts and back-end starts
       - iii: front-end react ui renders
-      - iv: data retrieved and ui components work
-        - after the 9umtith try .. =)
+      - iv: it works
+        - rest api route returns json data
+        - ssr react ui components work and get and display data
+          - after the 9 millionth try .. =)
 
   - Task 3: Document and have a beer!!
     - 1: Preferably a stout beer
