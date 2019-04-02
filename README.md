@@ -1,24 +1,24 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
 # Status:
-I:  - In Dec. 2018, I had a death in the family, I am finally getting back to finishing this project
-  1:  - in March 2019, studied up on NPM packages vulnerabilities and updates
-      A: - could no longer wait for all vulnerabilities in create-react-app to be patched
-      B: - found all other vulnerabilities had been patched in @Babel/core and latest WebPack
-      c: - needed to move to SSR anyway...
-        i:    - to read of my agony on this, see SSR-Planning and Implementation notes below
-  2:  - as of April 1st 2019
-      A:  - All branches of modules and code are patched and updated to latest packages
-      B:  - My Sequelize code has not been migrated to latest Sequelize yet
-        i:    - sequelize is still 4.42.1",
-        ii:   - sequelize-cli is v5.4.0",
-        iii:  - sqlite3 is 4.0.6"
-  3: - I recently upgraded my project so I now have 1 Express Server
-      A:  - implemented SSR for React front-end
-      B:  - combined React front-end with back-end code
-        i:    - [SSR-Planning notes](./SSR-PLANNING.md)
-        ii:   - [SSR-Implementation notes](./SSR-Implementation.md)
-        iii:  - [Preserved branch that keeps Backend and FrontEnd Servers separate ][https://github.com/pereznetworks/TD-Project12/tree/separateFEandBEserver]
+- I: In Dec. 2018, I had a death in the family, I am finally getting back to finishing this project
+  - 1: in March 2019, studied up on NPM packages vulnerabilities and updates
+      - A: could no longer wait for all vulnerabilities in create-react-app to be patched
+      - B: found all other vulnerabilities had been patched in @Babel/core and latest WebPack, etc..
+      - C: needed to move to SSR anyway...
+        - i: to read of my agony on this, see SSR-Planning and Implementation notes below
+  - 2: as of April 1st 2019
+      - A: All branches of modules and code are patched and updated to latest packages
+      - B:  My Sequelize code has not been migrated to latest Sequelize yet
+        - i: sequelize is still 4.42.1",
+        - ii: sequelize-cli is v5.4.0",
+        - iii:  sqlite3 is 4.0.6"
+  - I recently upgraded my project so I now have 1 Express Server
+      - A: implemented SSR for React front-end
+      - B: combined React front-end with back-end code
+        - i: [SSR-Planning notes](./SSR-PLANNING.md)
+        - ii: [SSR-Implementation notes](./SSR-Implementation.md)
+        - iii: [Preserved branch that keeps Backend and FrontEnd Servers separate ][https://github.com/pereznetworks/TD-Project12/tree/separateFEandBEserver]
 
 # To Do:
   - 1: implement OAuth and a basic built-in json view for displaying queried json data
