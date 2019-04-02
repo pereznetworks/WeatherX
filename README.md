@@ -1,10 +1,12 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
-# Purpose of this branch...
+# Purpose of this branch...posterity =)
 
-  - preserves the /weather:location and /, root (SSR REACT), routes as separate express servers
+  - this basically the same as the SSR-0.0.1 branch
+  - but preserves the 2 routes as separate express servers
+    - /weather:location, REST API
+    - /, root route for the SSR REACT APP
 
-  - this was basically the last step in moving to running 1 server, instead of 2
 
 # License:
 

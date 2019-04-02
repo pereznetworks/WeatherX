@@ -88,6 +88,6 @@ app.use((err, req, res, next) => {
 });
 
 // then start the server
-app.listen(3000, () => {
-    console.log('Express server listening on port', 3000);
-});
+  app.listen(3000, () => {
+      console.log('Express server listening on port', 3000);
+  });

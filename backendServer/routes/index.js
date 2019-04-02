@@ -66,13 +66,20 @@ const newLocationData = require('../dataSource').newLocationData;
                       const db = manageForecastData(Forecast.dataValues.data);  // will nedd to replace this with mongoose code
                       res.json(db);
 
+                    }).then(()=>{
+
+                      // this innernost .then should happen last, after res.json()
+                      // but these are all async methods, so result may seem to log "out-of-order"
+
+                      // not keeping data, part of DarkSky API usage terms
+                      sequelizeDb.Location.destroy({force:true,truncate:true})
                       // not keeping data, part of TomTom usage terms
                       sequelizeDb.Forecast.destroy({force:true,truncate:true});
 
-                    }).then(()=>{
-                       // prove that data in tables deleted, should console the word, 'found:' followed by nothng, twice
-                        // may write this to a log instead of logging to console
-                       sequelizeDb.Location.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
+                      // prove that data in tables deleted, should console the word, 'found:' followed by nothng, twice
+                      // may write this to a log instead of logging to console
+                      sequelizeDb.Location.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
+                      sequelizeDb.Forecast.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
 
                     }).catch( err => {
                         console.log('Error getting forecast data... ', err);
@@ -83,10 +90,6 @@ const newLocationData = require('../dataSource').newLocationData;
                     console.log('Error getting location data... ', err);
                       next(err);
                 });
-
-              }).then(()=>{
-                // not keeping data, part of DarkSky API usage terms
-                sequelizeDb.Location.destroy({force:true,truncate:true})
 
               }).catch(function(error){
                 console.log(`error: ${error}`);

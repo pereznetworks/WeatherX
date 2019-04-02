@@ -51,7 +51,7 @@ export default class Middle extends Component {
     }; // using state to control component rendering
 
     this.backendServer = {
-      url: `http://localhost:3000/weather`
+      url: `http://localhost:9999/weather`
     };
 
 

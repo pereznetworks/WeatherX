@@ -1,7 +1,5 @@
-/* BE server */
-
-import express from "express";
-import path from "path";
+const express = require("express");
+const path = require("path");
 
 // create an express app/server
 const app = express();
@@ -55,7 +53,11 @@ app.use((err, req, res, next) => {
     );
 });
 
-// start server
-app.listen(9999, () => {
-  console.log('Express server listening on port', 9999);
-});
+// sync the sequelize database, then start the server
+sequelize
+  .sync()
+  .then(() => {
+    app.listen(9999, () => {
+      console.log('Express server listening on port', 9999);
+    });
+  });
