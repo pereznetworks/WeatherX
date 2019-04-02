@@ -18,8 +18,8 @@
       - B: combined React front-end with back-end code
         - i: [SSR-Planning notes](./SSR-PLANNING.md)
         - ii: [SSR-Implementation notes](./SSR-Implementation.md)
-        - iii: [Preserved branch that keeps Backend and FrontEnd Servers separate ][https://github.com/pereznetworks/TD-Project12/tree/separateFEandBEserver]
-
+        - iii: [Preserved branch that keeps Backend and FrontEnd Servers separate ](https://github.com/pereznetworks/TD-Project12/tree/separateFEandBEserver)
+        
 # To Do:
   - 1: implement OAuth and a basic built-in json view for displaying queried json data
     - users can use the WeatheX app with no login
