@@ -66,13 +66,18 @@ Display current and forecast weather stats, warning and alerts will be displayed
 
 # Technologies to be used:
 
-Thanks to Team TreeHouse, https://teamtreehouse.com, a great place for makers, breakers, engineers... really anyone to brush-up on, gain new, or even get started in Software Development.
+Thanks to [Team TreeHouse](https://teamtreehouse.com), a great place for makers, breakers, engineers... really anyone to brush-up on, gain new, or even get started in Software Development.
 
-This project uses Node.js, https://nodejs.org/ and Express.Js,"https://expressjs.com/" for https server and routing.
+This project uses [Node.js](https://nodejs.org/) and [Express.Js](https://expressjs.com/) for https server and routing.
 
 For database using [Sequelize v4, SQLite v3 and Sequelize-CLI](http://docs.sequelizejs.com/)
 
-React.Js, https://reactjs.org/ or front-end UI/UX, and Babel.js, https://babeljs.io/, for compiling JSX
+[React.Js](https://reactjs.org/) or front-end UI/UX, [Babel](https://babeljs.io/) and [WebPack](https://webpack.js.org/concepts) for compiling React Components after ejecting from react-scripts.
+
+Although I used create-react-app to start the project...
+- After a lot of agonizing and planning, I chose to leave it for a basic SSR Implementation.
+  - [SSR-Planning notes](./SSR-PLANNING)
+  - [SSR-Implementation notes](./SSR-Implementation)
 
 # This project integrates data from several API sources:  
 
@@ -87,11 +92,6 @@ React.Js, https://reactjs.org/ or front-end UI/UX, and Babel.js, https://babeljs
 [Weather-icons](https://www.npmjs.com/package/weather-icons) - for displaying icons to indicate forecasted weather conditions
 
 I wrote my own Date and Time conversion methods
-
-Although I used create-react-app to start the project...
-- After a lot of agonizing and planning, I chose to leave it for a basic SSR Implementation.
-  - [SSR-Planning notes](./SSR-PLANNING)
-  - [SSR-Implementation notes](./SSR-Implementation)
 
 # Standards:
 
