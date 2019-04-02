@@ -17,8 +17,8 @@
             - css-loader, sass-loader, file-loader
             - setup a very basic scss import file
       - d: in src/server.js, add ...
-            ```
-                import "ignore-styles"
+            ```javascript
+                import "ignore-styles";
 
                 require ('babel-register')({
                   ignore: /\/(build|node_modules)\//,
