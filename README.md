@@ -16,10 +16,11 @@
   - I recently upgraded my project so I now have 1 Express Server
       - A: implemented SSR for React front-end
       - B: combined React front-end with back-end code
-        - i: [SSR-Planning notes](./SSR-PLANNING.md)
+        - i:  [SSR-Planning notes](./SSR-PLANNING.md)
         - ii: [SSR-Implementation notes](./SSR-Implementation.md)
-        - iii: [Preserved branch that keeps Backend and FrontEnd Servers separate ](https://github.com/pereznetworks/TD-Project12/tree/separateFEandBEserver)
-        
+        - iii:[Preserved branch that](https://github.com/pereznetworks/TD-Project12/blob/ssr-0.0.1) 
+        - iv: [Preserved branch that keeps Backend and FrontEnd Servers separate ](https://github.com/pereznetworks/TD-Project12/tree/separateFEandBEserver)
+
 # To Do:
   - 1: implement OAuth and a basic built-in json view for displaying queried json data
     - users can use the WeatheX app with no login
