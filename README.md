@@ -2,20 +2,19 @@
 
 # Status:
 
-  - In Dec. 2018, I had a death in the family, I am finally getting back to finishing this project
-     - I have recently been weighing decisions before finally publishing
-       - as of April 1st 2019
-         - All branches of modules and code are patched and updated to latest packages
-           - My Sequelize code has not been migrated to latest Sequelize yet
-            - sequelize is still 4.42.1",
-            - sequelize-cli is v5.4.0",
-            - sqlite3 is 4.0.6"
-       - I recently upgraded my project
-         - implemented SSR for React front-end
-         - combined React front-end with back-end code
-         - [SSR-Planning notes](./SSR-PLANNING)
-         - [SSR-Implementation notes](./SSR-Implementation)
-         - [Preserved branch that Backend and FrontEnd Servers separate ][https://github.com/pereznetworks/TD-Project12/tree/separateFEandBEserver]
+  - In Dec. 2018, I had a death in the family, I am finally getting back to finishing this project\
+    - as of April 1st 2019
+      - All branches of modules and code are patched and updated to latest packages
+        - My Sequelize code has not been migrated to latest Sequelize yet
+          - sequelize is still 4.42.1",
+          - sequelize-cli is v5.4.0",
+          - sqlite3 is 4.0.6"
+    - I recently upgraded my project
+      - implemented SSR for React front-end
+      - combined React front-end with back-end code
+          - [SSR-Planning notes](./SSR-PLANNING)
+          - [SSR-Implementation notes](./SSR-Implementation)
+          - [Preserved branch that Backend and FrontEnd Servers separate ][https://github.com/pereznetworks/TD-Project12/tree/separateFEandBEserver]
 
 # To Do:
   - 1: implement OAuth and a basic built-in json view for displaying queried json data
