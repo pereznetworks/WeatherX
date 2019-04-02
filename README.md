@@ -2,13 +2,14 @@
 
 # Purpose of this branch...(for posterity =)
 
-  - this basically the same as the SSR-0.0.1 branch
+  - this basically is the same as the SSR-0.0.1 branch
   - but preserves the 2 routes as separate express servers
     - /weather:location,
       - basic OPEN REST API,
         - no auth, no users login, no session store, no pretty display for data queried
     - /, root route for the SSR REACT APP
       - full REACT SSR App
+  - has code migrated to work with and has installed all the same patched or updated packages
 
 (click here go back to Master branch of Project)[https://github.com/pereznetworks/TD-Project12]
 
