@@ -13,9 +13,9 @@
       - a: [See Webpack's really great documentaton](https://webpack.js.org/concepts)
       - b: [also thanks to another SSR Example](https://medium.com/@benlu/ssr-with-create-react-app-v2-1b8b520681d9)
       - c: using plugins
-            - MiniCssExtractPlugin
-            - css-loader, sass-loader, file-loader
-            - setup a very basic scss import file
+        - i: [MiniCssExtractPlugin](https://webpack.js.org/plugins/mini-css-extract-plugin/#repo-httpsgithubcomwebpack-contribmini-css-extract-plugin)
+        - ii: css-loader, sass-loader, file-loader
+        - iii: setup a very basic scss import file
       - d: in src/server.js, add ...
 ```javascript
 
