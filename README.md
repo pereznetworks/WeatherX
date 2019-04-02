@@ -55,6 +55,9 @@
       - a: returning forecast data
       - b: returning location data
       - c: security protocols in place
+  - 5: Combined 3 and 4 into 1 Server, 2 routes
+      - a: '/', runs React SSR, using only Babel/Webpack and 1 Webpack plugin
+      - b: '/weather:location' routes is the REST API route
 
 # My Captsone Project:  WeatherX : A Weather forecast service  
 
