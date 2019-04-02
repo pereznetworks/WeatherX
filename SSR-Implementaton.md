@@ -17,23 +17,24 @@
             - css-loader, sass-loader, file-loader
             - setup a very basic scss import file
       - d: in src/server.js, add ...
-            ```javascript
-                import "ignore-styles";
+```javascript
 
-                require ('babel-register')({
-                  ignore: /\/(build|node_modules)\//,
-                  presets: ['env', 'react-app']
-                });
+    import "ignore-styles";
 
-                function htmlTemplate(reactDom){
-                  return `<!DOCTYPE html>
-                    ...                  
-                       <link rel="stylesheet" href="./app.css">
-                    ...
-                  `
-                }
+    require ('babel-register')({
+      ignore: /\/(build|node_modules)\//,
+      presets: ['env', 'react-app']
+    });
 
-            ```
+    function htmlTemplate(reactDom){
+      return `<!DOCTYPE html>
+        ...                  
+           <link rel="stylesheet" href="./app.css">
+        ...
+      `
+    }
+
+```
     - Task 4: with the above steps, the main React UI component loads
       - a: yah!!!
       - b: dooh!
