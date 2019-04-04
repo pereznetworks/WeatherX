@@ -4,6 +4,7 @@ export default class InputControls extends Component {
 
   constructor(props) {
     super(props);
+
     this.tempActive="tempActive"
     this.inputPlaceHolder = "type a City, State or City, Country";
     this.handleNavClick = this.handleNavClick.bind(this);
@@ -21,14 +22,14 @@ export default class InputControls extends Component {
   }
 
   handleNavSubmit(event) {
-    event.preventDefault();
-    this.props.handleNavSubmit(event);
+    event.preventDefault();    
     this.props.handleNavClick(event);
+    this.props.handleNavSubmit(event);
   }
 
   render(){
 
-    if (this.props.navState.noBlankInputMsg){
+    if (this.props.navState.errInputMsg){
       this.inputPlaceHolder = "Please enter a location"
     }
     if (this.props.navState.controlsForm){
@@ -77,6 +78,7 @@ export default class InputControls extends Component {
               <form id="inputControls" action="">
                 <input
                   type="text"
+                  value={this.props.navState.inputValue}
                   id="geoCoding-TextInput"
                   placeholder={this.inputPlaceHolder}
                   onChange={this.handleInputChange}/>

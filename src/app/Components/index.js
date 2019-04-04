@@ -46,8 +46,9 @@ export default class Middle extends Component {
       locationBar:false,
       geoLocation: false,
       geoCoding: false,
-      noBlankInputMsg: false,
-      removeLocation: false
+      errInputMsg: false,
+      removeLocation: false,
+      inputValue: ''
     }; // using state to control component rendering
 
     this.backendServer = {
@@ -616,8 +617,24 @@ export default class Middle extends Component {
 
   // responding to UI events
 
+  handleInputChange(event) {
+    event.preventDefault();
+    this.appData.geoCodeThis = event.target.value;
+    this.setState({
+      inputValue: event.target.value,
+      errInputMsg: false
+    })
+  } // end handleInputChange
+
   handleNavClick(event, removeIndexNo) {
-    if ( this.appData.geoCodeThis === '' && event.target.title === 'Submit Search'){
+
+    event.preventDefault();
+
+    // for now just checking for commoa delimited location like...city, state
+    let lookForCommaBetween = /,(?=[\sA-Za-z])/g;
+
+    if ( event.target.title === 'Submit Search'){
+      if ( this.appData.geoCodeThis === '' || !this.appData.geoCodeThis.match(lookForCommaBetween) ){
        this.setState({
          home: true,
          about: false,
@@ -625,8 +642,22 @@ export default class Middle extends Component {
          locationBar:true,
          inputForm: true,
          controlsForm: false,
-         removeLocation: false
+         removeLocation: false,
+         errInputMsg: true,
+         inputValue: ''
        });
+     } else {
+       this.setState({
+         home: true,
+         about: false,
+         mainView: false,
+         locationBar:true,
+         inputForm: false,
+         controlsForm: true,
+         removeLocation: false,
+         errInputMsg: false,
+       });
+     }
     } else if (event.target.title === 'backHome'){
       this.setState({
         home: true,
@@ -635,7 +666,9 @@ export default class Middle extends Component {
         locationBar:true,
         inputForm: false,
         controlsForm: true,
-        removeLocation: false
+        removeLocation: false,
+        errInputMsg: false,
+        inputValue: ''
       });
     } else if (event.target.title === 'Find Me'){
       this.setState({
@@ -645,17 +678,9 @@ export default class Middle extends Component {
         locationBar:true,
         inputForm: false,
         controlsForm: true,
-        removeLocation: false
-      });
-    } else if (event.target.title === 'Submit Search'){
-      this.setState({
-        home: true,
-        about: false,
-        mainView: false,
-        locationBar:true,
-        inputForm: false,
-        controlsForm: true,
-        removeLocation: false
+        removeLocation: false,
+        errInputMsg: false,
+        inputValue: ''
       });
     } else if (event.target.title === 'About WeatherX'){
       this.setState({
@@ -665,7 +690,9 @@ export default class Middle extends Component {
         locationBar:false,
         inputForm: false,
         controlsForm: true,
-        removeLocation: false
+        removeLocation: false,
+        errInputMsg: false,
+        inputValue: ''
       })
     } else if (event.target.title === 'locationBar'){
       this.setState({
@@ -675,7 +702,9 @@ export default class Middle extends Component {
         locationBar: false,
         inputForm: false,
         controlsForm: true,
-        removeLocation: false
+        removeLocation: false,
+        errInputMsg: false,
+        inputValue: ''
       });
     } else if (event.target.title === "Add Location"){
       this.setState({
@@ -685,7 +714,9 @@ export default class Middle extends Component {
         locationBar: true,
         inputForm: true,
         controlsForm: false,
-        removeLocation: false
+        removeLocation: false,
+        errInputMsg: false,
+        inputValue: ''
       });
     } else if (event.target.title === "Celsius"){
      this.setState({
@@ -695,7 +726,9 @@ export default class Middle extends Component {
       locationBar: true,
       inputForm: false,
       controlsForm: true,
-      removeLocation: false
+      removeLocation: false,
+      errInputMsg: false,
+      inputValue: ''
     });
     this.appData.celsiusType=true;
     this.appData.fahrenheitType=false;
@@ -707,7 +740,9 @@ export default class Middle extends Component {
         locationBar: true,
         inputForm: false,
         controlsForm: true,
-        removeLocation: false
+        removeLocation: false,
+        errInputMsg: false,
+        inputValue: ''
       });
       this.appData.celsiusType=false;
       this.appData.fahrenheitType=true;
@@ -719,40 +754,27 @@ export default class Middle extends Component {
        locationBar: true,
        inputForm: false,
        controlsForm: true,
-       removeLocation: true
+       removeLocation: true,
+       errInputMsg: false,
+       inputValue: ''
      });
      this.appData.removeIndexNo = removeIndexNo;
     }
-  }
-
-  handleInputChange(event) {
-    event.preventDefault();
-    if (!event){
-      this.appData.geoCodeThis = '';
-    } else {
-      this.appData.geoCodeThis = event.target.value;
-    }
-  }
+  } // end handleNavClick
 
   handleNavSubmit(event) {
 
-    // dont wnat app reset on form button submittions
     event.preventDefault();
 
-    if (this.appData.geoCodeThis === ''){
+    // really should have another 'middle' function to validate input...
+    // to keep invalid requests to server from using up api call bandwitdh and limits
+    // otherwise will need to get a db of all citynames from everywhere !!
 
-      // dont accept blank input
-      this.setState({
-        home: true,
-        about: false,
-        mainView: false,
-        locationBar:true,
-        inputForm: true,
-        controlsForm: false,
-        noBlankInputMsg:true
-      })
+    // for now just checking for commoa delimited location like...city, state
+    let lookForCommaBetween = /,(?=[\sA-Za-z])/g;
 
-    } else {
+    if (!this.state.errInputMsg){
+      // dont accept blank input or input with no commna
       // dont accept duplicate locations
       // only get and store forecast data for a new location
       const compareLocationName = (item, index) => {
@@ -773,12 +795,13 @@ export default class Middle extends Component {
 
     }
 
-  }
+  } // end hanldeNavSubmit
 
   // this method builds the arrays needed to to display each location's forecast data
 
   showMeThisOne(locationName, index, event){
       event.preventDefault();
+
       // have forecastData ready ... now set mainView to true
       this.appData.currentLocationData = {
           index: index,
@@ -814,19 +837,6 @@ export default class Middle extends Component {
 
   // this methods is also the only method that adds a location
   requestDataFromServer(location){
-
-      // really should have another 'middle' function to validate input...
-      // to keep invalid requests to server from using up api call bandwitdh and limits
-
-      // if no province, state then default to CA, or US
-      // otherwise will need to get a db of all citynames from everywhere !!
-      // like...
-      // let lookForCommaBetween = /,(?=[\sA-Za-z])/g;
-      // if (!location.match(lookForCommaBetween)){
-      //    location = `${this.state.geoCodeThis}, CA`;
-      //    or
-      //    location = `${this.state.geoCodeThis}, US`;
-      // }
 
       // once we have a valid location... get forecast data from backendServer
 
