@@ -13,7 +13,7 @@ const startFunction = () => {
   require( "@babel/register" )( {
       presets: [ "@babel/preset-env" ],
   } );
-  require( "./src/server" );
+  require( "./src/webserver.js" );
 };
 
 // 4: use throng to start CONCURRENCY number of servers, all listening on the same port

@@ -18,12 +18,6 @@ app.use(logger('dev')); // Concise output colored by response status for develop
 const helmet = require('helmet')
 app.use(helmet());
 
-// using sequelize for data ...
-// importing from models/index.js
-// .. which sets config, checks for or creates a db, imports models into sequelize
-// .... then imported here
-const sequelize = require('../backendServer/data/models').sequelize;
-
 // setting up a routes module
 const routes = require('../backendServer/routes/index.js');
 
@@ -31,8 +25,9 @@ app.use(routes);
 app.use('/weather', routes);
 
 app.use('/weather', function(req, res, next){
-  res.header("Access-Control-Allow-Origin", "http://10.100.10.102");
+  res.header("Access-Control-Allow-Origin", "http://10.100.10.102:3000/");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET");
   next();
 });
 
@@ -68,10 +63,13 @@ const htmlTemplate = reactDom => {
 };
 
 app.get( "/", ( req, res ) => {
-  //require ('ignore-styles');
+  //including @babel/register to compile jsx, but ignore [ regex matched stuff]
   require ('@babel/register')({
-    ignore: /\/(build|node_modules)\//,
-    presets: ['env', 'react-app']
+    ignore: [/\/(build|node_modules)\//],
+    presets: [
+         "@babel/preset-env",
+        "@babel/preset-react"
+      ]
   });
 
   const jsx = (<Start />)
@@ -105,11 +103,4 @@ app.use((err, req, res, next) => {
     );
 });
 
-// sync the sequelize database, then start the server
-sequelize
-  .sync()
-  .then(() => {
-    app.listen(3000, () => {
-      console.log('Express server listening on port', 3000);
-    });
-  });
+module.exports = app;
