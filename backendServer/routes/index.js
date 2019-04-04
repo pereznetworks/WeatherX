@@ -54,7 +54,7 @@ const newLocationData = require('../dataSource').newLocationData;
                 let cityName =  Location.dataValues.data.results[0].address.municipality;
                 let province =  Location.dataValues.data.results[0].address.countrySubdivision;
                 let loc = {latitude:longLat.lat,longitude:longLat.lon, city: cityName, province: province };
-                const db = manageLocData(loc);  // will nedd to replace this with mongoose code
+                const db = manageLocData(loc);  
                 let forecastApiCallUrl = getForecastApiCall(db.mostRecentLocation.data);
 
                 axios.get(forecastApiCallUrl)
@@ -63,7 +63,7 @@ const newLocationData = require('../dataSource').newLocationData;
                     sequelizeDb.Forecast.create(response)
                      .then( Forecast => {
 
-                      const db = manageForecastData(Forecast.dataValues.data);  // will nedd to replace this with mongoose code
+                      const db = manageForecastData(Forecast.dataValues.data);
                       res.json(db);
 
                       // not keeping data, part of TomTom usage terms
