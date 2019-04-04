@@ -66,6 +66,7 @@ const getGeoCodeApiCall = searchTerm => {
   // due to cost may want to not use up apicalls to sources for every invalid respsonse
   // need to parse req.param.locaton for valid city, state, and or zip-codes
   // TomTom's STRUCTURED geocode search is an option
+  let lookForCommaAtBeginning = /^,(?=[\sA-Za-z])/g;
   let lookForCommaBetween = /,(?=[\sA-Za-z])/g;
   let lookForWords = /[A-Za-z]\w+/g;
   let findNumbers = /[0-9]/g;

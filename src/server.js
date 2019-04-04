@@ -97,7 +97,8 @@ app.use((err, req, res, next) => {
 		res.json(
      {
 		  	"error": {
-			  	"message": `${err.message}`
+			  	"message": `${err.message}`,
+          "err": `${err}`
 			}
 		 }
     );

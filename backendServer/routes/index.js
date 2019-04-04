@@ -33,16 +33,17 @@ const newLocationData = require('../dataSource').newLocationData;
     // the weather route, returns current forecast
     main.get('/weather:location', (req, res, next) => {
 
-      console.log(`\n...processing new GET request...\n`);
-        let removeLeading = /([^:])\w+/g;
-        let locationArray = req.params.location.match(removeLeading);
-        let locationString = locationArray.toString();
-        let geoCodeApiCallUrl = getGeoCodeApiCall(locationString)
+      if (!req.params.location || geoCodeApiCallUrl === 'Oops' ){
+        let errorMsg = `Opps, it seems we did not receive a valid location: place type a city, state or zipcode, then a ',' followed by a country abbreviation`;
+        next(new Error(`${errorMsg}`));
+      }
 
-        if (!req.params.location || geoCodeApiCallUrl === 'Oops' ){
-              let errorMsg = `Opps, it seems we did not receive a valid location: place type a city, state or zipcode, then a ',' followed by a country abbreviation`;
-              next(new Error(`${errorMsg}`));
-            }
+      console.log(`\n...processing new GET request...\n`);
+
+      let removeLeading = /([^:])\w+/g;
+      let locationArray = req.params.location.match(removeLeading);
+      let locationString = locationArray.toString();
+      let geoCodeApiCallUrl = getGeoCodeApiCall(locationString);
 
         axios.get(geoCodeApiCallUrl)
           .then(response => {
@@ -54,7 +55,7 @@ const newLocationData = require('../dataSource').newLocationData;
                 let cityName =  Location.dataValues.data.results[0].address.municipality;
                 let province =  Location.dataValues.data.results[0].address.countrySubdivision;
                 let loc = {latitude:longLat.lat,longitude:longLat.lon, city: cityName, province: province };
-                const db = manageLocData(loc);  
+                const db = manageLocData(loc);
                 let forecastApiCallUrl = getForecastApiCall(db.mostRecentLocation.data);
 
                 axios.get(forecastApiCallUrl)

@@ -619,11 +619,15 @@ export default class Middle extends Component {
 
   handleInputChange(event) {
     event.preventDefault();
-    this.appData.geoCodeThis = event.target.value;
-    this.setState({
-      inputValue: event.target.value,
-      errInputMsg: false
-    })
+    if (!event.target.value){
+      this.appData.geoCodeThis = ''
+    } else {
+      this.appData.geoCodeThis = event.target.value;
+      this.setState({
+        inputValue: event.target.value,
+        errInputMsg: false
+      })
+    }
   } // end handleInputChange
 
   handleNavClick(event, removeIndexNo) {
@@ -631,15 +635,17 @@ export default class Middle extends Component {
     event.preventDefault();
 
     // for now just checking for commoa delimited location like...city, state
-    let lookForCommaBetween = /,(?=[\sA-Za-z])/g;
+    const lookForCommaBetween = /,(?=[\sA-Za-z])/g;
+    const lookForCommaAtBeginning = /^,(?=[\sA-Za-z])/g;
+    const findNumbers = /[0-9]+/g;
 
     if ( event.target.title === 'Submit Search'){
-      if ( this.appData.geoCodeThis === '' || !this.appData.geoCodeThis.match(lookForCommaBetween) ){
+      if ( this.appData.geoCodeThis === '' || this.appData.geoCodeThis.match(lookForCommaBetween) == null || this.appData.geoCodeThis.match(lookForCommaAtBeginning) !== null || this.appData.geoCodeThis.match(findNumbers) !== null ){
        this.setState({
          home: true,
          about: false,
          mainView: false,
-         locationBar:true,
+         locationBar: false,
          inputForm: true,
          controlsForm: false,
          removeLocation: false,
@@ -651,7 +657,7 @@ export default class Middle extends Component {
          home: true,
          about: false,
          mainView: false,
-         locationBar:true,
+         locationBar: true,
          inputForm: false,
          controlsForm: true,
          removeLocation: false,
@@ -773,7 +779,7 @@ export default class Middle extends Component {
     // for now just checking for commoa delimited location like...city, state
     let lookForCommaBetween = /,(?=[\sA-Za-z])/g;
 
-    if (!this.state.errInputMsg){
+    if (this.state.errInputMsg){
       // dont accept blank input or input with no commna
       // dont accept duplicate locations
       // only get and store forecast data for a new location

@@ -8,8 +8,7 @@
     "seederStorageTableName": "seed_data",
     "migrationStorage": "json",
     "migrationStoragePath": "./data/migrations/migrationData.json",
-    "migrationStorageTableName": "seed_data",
-    "logging": false
+    "migrationStorageTableName": "seed_data"
   },
   "test": {
     "storage": "./backendServer/testdata/library.db",
@@ -20,8 +19,7 @@
     "seederStorageTableName": "seed_data",
     "migrationStorage": "json",
     "migrationStoragePath": "./backendServer/testdata/migrations/migrationData.json",
-    "migrationStorageTableName": "seed_data",
-    "logging": false
+    "migrationStorageTableName": "seed_data"
   },
   "production": {
     "storage": "./backendServer/prod/library.db",
