@@ -65,11 +65,12 @@ const getGeoCodeApiCall = searchTerm => {
 
   // due to cost may want to not use up apicalls to sources for every invalid respsonse
   // need to parse req.param.locaton for valid city, state, and or zip-codes
-  // ONLY IF using TomTom's structured geocode search
+  // TomTom's STRUCTURED geocode search is an option
   let lookForCommaBetween = /,(?=[\sA-Za-z])/g;
   let lookForWords = /[A-Za-z]\w+/g;
+  let findNumbers = /[0-9]/g;
   let alphanumberic = /\w+/g;
-  let lookforCountry = /(?<=,)[A-Za-z]\w+/g;
+  let lookforWordAfterComma = /(?<=,)[A-Za-z]\w+/g;
   let lookforZipCode = /^\d+$/g;
   let lookForForeignPostalCode = /([A-Za-z0-9])\w+([\s])\w+/g;
   let countryCode = `US`;  // setting default
