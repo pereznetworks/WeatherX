@@ -30,6 +30,12 @@ const routes = require('../backendServer/routes/index.js');
 app.use(routes);
 app.use('/weather', routes);
 
+app.use('/weather', function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "http://10.100.10.102");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 /* front-end modules and routes, using REACT SSR baseline */
 /* REACT SSR baseline from https://github.com/alexnm/react-ssr  */
 import 'ignore-styles';
@@ -62,7 +68,7 @@ const htmlTemplate = reactDom => {
 };
 
 app.get( "/", ( req, res ) => {
-  require ('ignore-styles');
+  //require ('ignore-styles');
   require ('@babel/register')({
     ignore: /\/(build|node_modules)\//,
     presets: ['env', 'react-app']
