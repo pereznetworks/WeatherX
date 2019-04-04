@@ -10,8 +10,13 @@ const CONCURRENCY = process.env.WEB_CONCURRENCY || 1;
 // 3: setup a startFunction, imports the function to start the server
 // using this method, each 'cluster worker', will start server that has it's own exclusive database
 const startFunction = () => {
+
+  // using @babel/register here, since react build, jsx , will need to compiled  
   require( "@babel/register" )( {
-      presets: [ "@babel/preset-env" ],
+      presets: [
+           "@babel/preset-env",
+          "@babel/preset-react"
+        ],
   } );
   require( "./src/webserver.js" );
 };
