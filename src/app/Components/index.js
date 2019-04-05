@@ -100,6 +100,7 @@ export default class Middle extends Component {
       currentDayIndex: 0,
       forecastData: [],
       locationData: [],
+      locationName: [],
       availLocationsArray: [],
       mainViewBackGround: [],
       locationBarBackGround: [],
@@ -634,11 +635,17 @@ export default class Middle extends Component {
 
     event.preventDefault();
 
-    // for now just checking for commoa delimited location like...city, state
+    // would like a comprehesive global list of city, province, country names...
+    // but for now ...
+    // regexps for basic input validation
+    // for now just checking for comma delimited location like...city, state
     const lookForCommaBetween = /,(?=[\sA-Za-z])/g;
+    // for any input that start with a comma
     const lookForCommaAtBeginning = /^,(?=[\sA-Za-z])/g;
+    // and for numbers anywhere in the input
     const findNumbers = /[0-9]+/g;
 
+    // this first if condition, does the basic input validation
     if ( event.target.title === 'Submit Search'){
       if ( this.appData.geoCodeThis === '' || this.appData.geoCodeThis.match(lookForCommaBetween) == null || this.appData.geoCodeThis.match(lookForCommaAtBeginning) !== null || this.appData.geoCodeThis.match(findNumbers) !== null ){
        this.setState({
@@ -772,31 +779,51 @@ export default class Middle extends Component {
 
     event.preventDefault();
 
-    // really should have another 'middle' function to validate input...
-    // to keep invalid requests to server from using up api call bandwitdh and limits
-    // otherwise will need to get a db of all citynames from everywhere !!
+    // if there is NO input err, then check for dup searchs, if none make axios call to backendServer
+    if (!this.state.errInputMsg){
 
-    // for now just checking for commoa delimited location like...city, state
-    let lookForCommaBetween = /,(?=[\sA-Za-z])/g;
-
-    if (this.state.errInputMsg){
-      // dont accept blank input or input with no commna
-      // dont accept duplicate locations
       // only get and store forecast data for a new location
       const compareLocationName = (item, index) => {
-        let locationName = `${item.cityName}, ${item.province}`;
-        if (locationName === this.appData.geoCodeThis){
+
+        // first isolate city, province and the make Upper Case
+        const findEachWord = /[\sA-Za-z]+/g;
+
+        const locationCity = item.match(findEachWord)[0].toUpperCase();
+        const locationProvice = item.match(findEachWord)[1].toUpperCase();
+        const compareLocationName = `${locationCity}, ${locationProvice}`;
+
+        const city = this.appData.geoCodeThis.match(findEachWord)[0].toUpperCase();
+        const province = this.appData.geoCodeThis.match(findEachWord)[1].toUpperCase();
+        const compareInput = `${city}, ${province}`;
+
+        // then compare
+        if (compareLocationName === compareInput){
           this.appData.notADuplicateLocation = false;
          }
       };
 
-      if (this.appData.locationData.length > 0){
-        this.appData.locationData.forEach(compareLocationName);
+      // if there are other names in the locationData array.. compare each of these also
+      if (this.appData.locationName.length > 0){
+        this.appData.locationName.forEach(compareLocationName);
       }
 
+      // if no dups, then we have a new valid location
       if (this.appData.notADuplicateLocation){
           this.requestDataFromServer(this.appData.geoCodeThis);
           this.appData.geoCodeThis = '';
+      } else {
+        this.setState({
+          home: true,
+          about: false,
+          mainView: false,
+          locationBar: true,
+          inputForm: true,
+          controlsForm: false,
+          removeLocation: false,
+          errInputMsg: false,
+          noDupsMsg: true,
+          inputValue: ''
+        });
       }
 
     }
@@ -858,6 +885,7 @@ export default class Middle extends Component {
 
                 this.appData.forecastData = [...this.appData.forecastData, newForecast.data.mostRecentForecast];
                 this.appData.locationData =  [...this.appData.locationData, newForecast.data.mostRecentLocation];
+                this.appData.locationName = [...this.appData.locationName, `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`];
                 this.appData.currentLocationData = {
                   index: this.appData.forecastData.length,
                   name: `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`,

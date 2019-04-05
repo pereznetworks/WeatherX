@@ -22,7 +22,7 @@ export default class InputControls extends Component {
   }
 
   handleNavSubmit(event) {
-    event.preventDefault();    
+    event.preventDefault();
     this.props.handleNavClick(event);
     this.props.handleNavSubmit(event);
   }
@@ -31,6 +31,8 @@ export default class InputControls extends Component {
 
     if (this.props.navState.errInputMsg){
       this.inputPlaceHolder = "Please enter a location"
+    } else if ( this.props.navState.noDupsMsg){
+      this.inputPlaceHolder = "Please enter a DIFFERENT location"
     }
     if (this.props.navState.controlsForm){
 
