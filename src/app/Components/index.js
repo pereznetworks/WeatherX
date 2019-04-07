@@ -632,7 +632,8 @@ export default class Middle extends Component {
   } // end handleInputChange
 
   handleNavClick(event, removeIndexNo) {
-
+    // for clicks other than the submit of the NavBar3/input form
+    // check source element's title and set state appropriatly
     event.preventDefault();
 
    if (event.target.title === 'backHome'){
@@ -765,62 +766,62 @@ export default class Middle extends Component {
          controlsForm: false,
          removeLocation: false,
          errInputMsg: true,
+         noDupsMsg: false,
          inputValue: ''
        });
        return null;
-       // so if there is an err detected in geoCodeThis (or submitted input) ...
-       // resest State, so input placeholder is updated with appropriate prompt
-       // dont continue, no request to backend server
-       }
-     }
+         // so if there is an err detected in geoCodeThis (or submitted input) ...
+         // resest State, so input placeholder is updated with appropriate prompt
+         // dont continue, no request to backend server
 
-    if (!this.state.errInputMsg){
-      // if there is NO input err, then check for dup searchs, if none make axios call to backendServer
-
-     // so only want to get and forecast data for a new location
-
-      // check for dups, if input is a dup, set notADuplicateLocation to false
-      const compareLocationName = (item, index) => {
-
-        // first isolate city, province and the make Upper Case
-        const findEachWord = /[\sA-Za-z]+/g;
-
-        const locationCity = item.match(findEachWord)[0].toUpperCase();
-        const locationProvice = item.match(findEachWord)[1].toUpperCase();
-        const compareLocationName = `${locationCity}, ${locationProvice}`;
-
-        const city = this.appData.geoCodeThis.match(findEachWord)[0].toUpperCase();
-        const province = this.appData.geoCodeThis.match(findEachWord)[1].toUpperCase();
-        const compareInput = `${city}, ${province}`;
-
-        // then compare
-        if (compareLocationName === compareInput){
-          this.appData.notADuplicateLocation = false;
-         }
-      };
-
-      // if there are other names in the locationData array.. compare each of these also
-      if (this.appData.locationName.length > 0){
-        this.appData.locationName.forEach(compareLocationName);
-      }
-
-      // if no dups, then we have a new valid location
-      if (this.appData.notADuplicateLocation){
-          this.requestDataFromServer(this.appData.geoCodeThis);
-          this.appData.geoCodeThis = '';
       } else {
-        this.setState({
-          home: true,
-          about: false,
-          mainView: false,
-          locationBar: true,
-          inputForm: true,
-          controlsForm: false,
-          removeLocation: false,
-          errInputMsg: false,
-          noDupsMsg: true,
-          inputValue: ''
-        });
+
+       // so only want to get and forecast data for a new location
+
+        // check for dups, if input is a dup, set notADuplicateLocation to false
+        const compareLocationName = (item, index) => {
+
+          // first isolate city, province and the make Upper Case
+          const findEachWord = /[\sA-Za-z]+/g;
+
+          const locationCity = item.match(findEachWord)[0].toUpperCase();
+          const locationProvice = item.match(findEachWord)[1].toUpperCase();
+          const compareLocationName = `${locationCity}, ${locationProvice}`;
+
+          const city = this.appData.geoCodeThis.match(findEachWord)[0].toUpperCase();
+          const province = this.appData.geoCodeThis.match(findEachWord)[1].toUpperCase();
+          const compareInput = `${city}, ${province}`;
+
+          // then compare
+          if (compareLocationName === compareInput){
+            this.appData.notADuplicateLocation = false;
+           }
+        };
+
+        // if there are other names in the locationData array.. compare each of these also
+        if (this.appData.locationName.length > 0){
+          this.appData.locationName.forEach(compareLocationName);
+        }
+
+        // if no dups, then we have a new valid location
+        if (this.appData.notADuplicateLocation){
+            this.requestDataFromServer(this.appData.geoCodeThis);
+            this.appData.geoCodeThis = '';
+        } else {
+          this.setState({
+            home: true,
+            about: false,
+            mainView: false,
+            locationBar: true,
+            inputForm: true,
+            controlsForm: false,
+            removeLocation: false,
+            errInputMsg: false,
+            noDupsMsg: true,
+            inputValue: ''
+          });
+        }
+
       }
 
     }
@@ -856,7 +857,10 @@ export default class Middle extends Component {
         locationBar: false,
         inputForm: false,
         controlsForm: true,
-        removeLocation: false
+        removeLocation: false,
+        errInputMsg: false,
+        noDupsMsg: false,
+        inputValue: ''
       })
 
   }
