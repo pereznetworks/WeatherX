@@ -652,7 +652,7 @@ export default class Middle extends Component {
          home: true,
          about: false,
          mainView: false,
-         locationBar: false,
+         locationBar: true,
          inputForm: true,
          controlsForm: false,
          removeLocation: false,
