@@ -252,7 +252,6 @@ export default class Middle extends Component {
   }
 
   getLiveFormatedTime(dateInt, tz){ // get the time, given utc hr, min and secs and the timezone, for given location
-    
     let date = dateInt;
     let hrs, mins, secs;
 
