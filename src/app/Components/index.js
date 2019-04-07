@@ -616,22 +616,6 @@ export default class Middle extends Component {
     this.appData.locationBarBackGround.splice(locationIndex, 1);
     this.appData.mainViewBackGround.splice(locationIndex, 1);
     this.appData.locationCount = this.appData.locationData.length;
-    // if no more locations, don't render the ControlsForm div
-    if(this.appData.locationCount == 0){
-      this.setState({
-        home: true,
-        about: false,
-        inputForm: true,
-        controlsForm: false,
-        mainView: false,
-        locationBar:false,
-        geoLocation: false,
-        geoCoding: false,
-        errInputMsg: false,
-        removeLocation: false,
-        inputValue: ''
-      });
-    }
   }
 
   // responding to UI events
@@ -650,9 +634,10 @@ export default class Middle extends Component {
   }
 
   handleNavClick(event, removeIndexNo) {
+
     // for clicks other than the submit of the NavBar3/input form
     // check source element's title and set state appropriatly
-    event.preventDefault();
+   event.preventDefault();
 
    if (event.target.title === 'backHome'){
       this.setState({
@@ -743,17 +728,39 @@ export default class Middle extends Component {
       this.appData.celsiusType=false;
       this.appData.fahrenheitType=true;
     } else if (event.target.title === "remove"){
-     this.setState({
-       home: true,
-       about: false,
-       mainView: false,
-       locationBar: true,
-       inputForm: false,
-       controlsForm: true,
-       removeLocation: true,
-       errInputMsg: false,
-       inputValue: ''
-     });
+
+      // if no more locations, don't render the ControlsForm div
+      if (this.appData.locationCount == 1){
+
+        this.setState({
+          home: true,
+          about: false,
+          inputForm: true,
+          controlsForm: false,
+          mainView: false,
+          locationBar:false,
+          geoLocation: false,
+          geoCoding: false,
+          errInputMsg: false,
+          removeLocation: false,
+          inputValue: ''
+        });
+
+      } else {
+
+        this.setState({
+           home: true,
+           about: false,
+           mainView: false,
+           locationBar: true,
+           inputForm: false,
+           controlsForm: true,
+           removeLocation: true,
+           errInputMsg: false,
+           inputValue: ''
+         });
+
+      }
      this.appData.removeIndexNo = removeIndexNo;
     }
   }
