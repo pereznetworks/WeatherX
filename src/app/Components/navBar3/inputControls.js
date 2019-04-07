@@ -23,7 +23,6 @@ export default class InputControls extends Component {
 
   handleNavSubmit(event) {
     event.preventDefault();
-    this.props.handleNavClick(event);
     this.props.handleNavSubmit(event);
   }
 

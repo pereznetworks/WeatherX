@@ -629,7 +629,7 @@ export default class Middle extends Component {
         errInputMsg: false
       })
     }
-  } // end handleInputChange
+  }
 
   handleNavClick(event, removeIndexNo) {
     // for clicks other than the submit of the NavBar3/input form
@@ -738,7 +738,7 @@ export default class Middle extends Component {
      });
      this.appData.removeIndexNo = removeIndexNo;
     }
-  } // end handleNavClick
+  }
 
   handleNavSubmit(event) {
 
@@ -754,9 +754,31 @@ export default class Middle extends Component {
     // and for numbers anywhere in the input
     const findNumbers = /[0-9]+/g;
 
+    // check for dups, if input is a dup, set notADuplicateLocation to false
+    const compareLocationName = (item, index) => {
+
+      // first isolate city, province and the make Upper Case
+      const findEachWord = /[\sA-Za-z]+/g;
+
+      const locationCity = item.match(findEachWord)[0].toUpperCase();
+      const locationProvice = item.match(findEachWord)[1].toUpperCase();
+      const compareLocationName = `${locationCity}, ${locationProvice}`;
+
+      const city = this.appData.geoCodeThis.match(findEachWord)[0].toUpperCase();
+      const province = this.appData.geoCodeThis.match(findEachWord)[1].toUpperCase();
+      const compareInput = `${city}, ${province}`;
+
+      // then compare
+      if (compareLocationName === compareInput){
+        this.appData.notADuplicateLocation = false;
+      } else {
+        this.appData.notADuplicateLocation = true;
+      }
+    };
+
     // do basic input validation
-    if ( event.target.title === 'Submit Search'){
       if ( this.appData.geoCodeThis === '' || this.appData.geoCodeThis.match(lookForCommaBetween) == null || this.appData.geoCodeThis.match(lookForCommaAtBeginning) !== null || this.appData.geoCodeThis.match(findNumbers) !== null ){
+
        this.setState({
          home: true,
          about: false,
@@ -769,34 +791,10 @@ export default class Middle extends Component {
          noDupsMsg: false,
          inputValue: ''
        });
-       return null;
-         // so if there is an err detected in geoCodeThis (or submitted input) ...
-         // resest State, so input placeholder is updated with appropriate prompt
-         // dont continue, no request to backend server
 
       } else {
 
        // so only want to get and forecast data for a new location
-
-        // check for dups, if input is a dup, set notADuplicateLocation to false
-        const compareLocationName = (item, index) => {
-
-          // first isolate city, province and the make Upper Case
-          const findEachWord = /[\sA-Za-z]+/g;
-
-          const locationCity = item.match(findEachWord)[0].toUpperCase();
-          const locationProvice = item.match(findEachWord)[1].toUpperCase();
-          const compareLocationName = `${locationCity}, ${locationProvice}`;
-
-          const city = this.appData.geoCodeThis.match(findEachWord)[0].toUpperCase();
-          const province = this.appData.geoCodeThis.match(findEachWord)[1].toUpperCase();
-          const compareInput = `${city}, ${province}`;
-
-          // then compare
-          if (compareLocationName === compareInput){
-            this.appData.notADuplicateLocation = false;
-           }
-        };
 
         // if there are other names in the locationData array.. compare each of these also
         if (this.appData.locationName.length > 0){
@@ -805,28 +803,30 @@ export default class Middle extends Component {
 
         // if no dups, then we have a new valid location
         if (this.appData.notADuplicateLocation){
+
             this.requestDataFromServer(this.appData.geoCodeThis);
             this.appData.geoCodeThis = '';
+
         } else {
+
           this.setState({
             home: true,
             about: false,
             mainView: false,
             locationBar: true,
-            inputForm: true,
-            controlsForm: false,
+            inputForm: false,
+            controlsForm: true,
             removeLocation: false,
             errInputMsg: false,
             noDupsMsg: true,
             inputValue: ''
           });
+
         }
 
       }
 
-    }
-
-  } // end hanldeNavSubmit
+  }
 
   // this method builds the arrays needed to to display each location's forecast data
 
@@ -922,8 +922,11 @@ export default class Middle extends Component {
                 mainView: false,
                 locationBar:true,
                 inputForm: false,
-                controlsForm: true
-              })
+                controlsForm: true,
+                errInputMsg: false,
+                noDupsMsg: false,
+                inputValue: ''
+              });
 
           }).catch(err => {
 
