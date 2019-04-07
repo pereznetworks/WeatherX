@@ -49,7 +49,7 @@ export default class Middle extends Component {
       errInputMsg: false,
       removeLocation: false,
       inputValue: ''
-    }; // using state to control component rendering
+    }; // initial state components
 
     this.backendServer = {
       url: `http://10.100.10.102:3000/weather`
@@ -607,13 +607,31 @@ export default class Middle extends Component {
     }
   }
 
-  removeLocation(locationIndex){   // using a given index, splice all arrays with the effect of removing that location
+  removeLocation(locationIndex){
+    // using a given index, splice all arrays with the effect of removing that location
     this.appData.locationData.splice(locationIndex, 1);
+    this.appData.locationName.splice(locationIndex, 1);
     this.appData.forecastData.splice(locationIndex, 1);
     this.appData.availLocationsArray.splice(locationIndex, 1);
     this.appData.locationBarBackGround.splice(locationIndex, 1);
     this.appData.mainViewBackGround.splice(locationIndex, 1);
     this.appData.locationCount = this.appData.locationData.length;
+    // if no more locations, don't render the ControlsForm div
+    if(this.appData.locationCount == 0){
+      this.setState({
+        home: true,
+        about: false,
+        inputForm: true,
+        controlsForm: false,
+        mainView: false,
+        locationBar:false,
+        geoLocation: false,
+        geoCoding: false,
+        errInputMsg: false,
+        removeLocation: false,
+        inputValue: ''
+      });
+    }
   }
 
   // responding to UI events
@@ -784,6 +802,7 @@ export default class Middle extends Component {
          about: false,
          mainView: false,
          locationBar: true,
+         inputControls: false,
          controlsForm: true,
          removeLocation: false,
          errInputMsg: true,
