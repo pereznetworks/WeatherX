@@ -23,7 +23,6 @@ export default class InputControls extends Component {
 
   handleNavSubmit(event) {
     event.preventDefault();
-    this.props.handleNavClick(event);
     this.props.handleNavSubmit(event);
   }
 
@@ -39,37 +38,57 @@ export default class InputControls extends Component {
         if (this.props.appData.fahrenheitType){
           return(
                 <form id="inputControls" action="">
-                  <i className="wi wi-celsius temp" id="tempC"
-                    title="Celsius"
-                    onClick={this.handleNavClick}></i>
-                  <span id="tempSpacer">-</span>
-                  <i className="wi wi-fahrenheit tempActive" id="tempF"
-                    title="Fahrenheit"
-                    onClick={this.handleNavClick}></i>
-                  <span id="tempSpacer">-</span>
                   <input
-                    type="button"
-                    id="addLocation"
-                    title="Add Location"
-                    onClick={this.handleNavClick}/>
+                    type="text"
+                    value={this.props.navState.inputValue}
+                    id="geoCoding-TextInput"
+                    placeholder={this.inputPlaceHolder}
+                    onChange={this.handleInputChange}/>
+                  <input
+                    type="submit"
+                    defaultValue=" "
+                    id="geoCoding-TextSubmit"
+                    title="Submit Search"
+                    onClick={this.handleNavSubmit}
+                    onSubmit={this.handleNavSubmit}/>
+                  <div className="controlsDiv">
+                    <span id="tempSpacer"> </span>
+                    <i className="wi wi-celsius temp" id="tempC"
+                      title="Celsius"
+                      onClick={this.handleNavClick}></i>
+                    <span id="tempSpacer"> </span>
+                    <i className="wi wi-fahrenheit tempActive" id="tempF"
+                      title="Fahrenheit"
+                      onClick={this.handleNavClick}></i>
+                  </div>
                 </form>
           );
         } else {
           return(
                 <form id="inputControls" action="">
-                  <i className="wi wi-celsius tempActive" id="tempC"
-                    title="Celsius"
-                    onClick={this.handleNavClick}></i>
-                  <span id="tempSpacer">-</span>
-                  <i className="wi wi-fahrenheit temp" id="tempF"
-                    title="Fahrenheit"
-                    onClick={this.handleNavClick}></i>
-                  <span id="tempSpacer">-</span>
                   <input
-                    type="button"
-                    id="addLocation"
-                    title="Add Location"
-                    onClick={this.handleNavClick}/>
+                    type="text"
+                    value={this.props.navState.inputValue}
+                    id="geoCoding-TextInput"
+                    placeholder={this.inputPlaceHolder}
+                    onChange={this.handleInputChange}/>
+                  <input
+                    type="submit"
+                    defaultValue=" "
+                    id="geoCoding-TextSubmit"
+                    title="Submit Search"
+                    onClick={this.handleNavSubmit}
+                    onSubmit={this.handleNavSubmit}/>
+                  <div className="controlsDiv">
+                    <span id="tempSpacer"> </span>
+                    <i className="wi wi-celsius temp" id="tempC"
+                      title="Celsius"
+                      onClick={this.handleNavClick}></i>
+                    <span id="tempSpacer"> </span>
+                    <i className="wi wi-fahrenheit tempActive" id="tempF"
+                      title="Fahrenheit"
+                      onClick={this.handleNavClick}></i>
+                  </div>
                 </form>
           );
         }
