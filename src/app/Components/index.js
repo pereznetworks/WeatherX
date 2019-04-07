@@ -46,12 +46,13 @@ export default class Middle extends Component {
       locationBar:false,
       geoLocation: false,
       geoCoding: false,
-      noBlankInputMsg: false,
-      removeLocation: false
+      errInputMsg: false,
+      removeLocation: false,
+      inputValue: ''
     }; // using state to control component rendering
 
     this.backendServer = {
-      url: `http://localhost:9999/weather`
+      url: `http://10.100.10.102:3000/weather`
     };
 
 
@@ -99,6 +100,7 @@ export default class Middle extends Component {
       currentDayIndex: 0,
       forecastData: [],
       locationData: [],
+      locationName: [],
       availLocationsArray: [],
       mainViewBackGround: [],
       locationBarBackGround: [],
@@ -616,17 +618,59 @@ export default class Middle extends Component {
 
   // responding to UI events
 
+  handleInputChange(event) {
+    event.preventDefault();
+    if (!event.target.value){
+      this.appData.geoCodeThis = ''
+    } else {
+      this.appData.geoCodeThis = event.target.value;
+      this.setState({
+        inputValue: event.target.value,
+        errInputMsg: false
+      })
+    }
+  } // end handleInputChange
+
   handleNavClick(event, removeIndexNo) {
-    if ( this.appData.geoCodeThis === '' && event.target.title === 'Submit Search'){
+
+    event.preventDefault();
+
+    // would like a comprehesive global list of city, province, country names...
+    // but for now ...
+    // regexps for basic input validation
+    // for now just checking for comma delimited location like...city, state
+    const lookForCommaBetween = /,(?=[\sA-Za-z])/g;
+    // for any input that start with a comma
+    const lookForCommaAtBeginning = /^,(?=[\sA-Za-z])/g;
+    // and for numbers anywhere in the input
+    const findNumbers = /[0-9]+/g;
+
+    // this first if condition, does the basic input validation
+    if ( event.target.title === 'Submit Search'){
+      if ( this.appData.geoCodeThis === '' || this.appData.geoCodeThis.match(lookForCommaBetween) == null || this.appData.geoCodeThis.match(lookForCommaAtBeginning) !== null || this.appData.geoCodeThis.match(findNumbers) !== null ){
        this.setState({
          home: true,
          about: false,
          mainView: false,
-         locationBar:true,
+         locationBar: true,
          inputForm: true,
          controlsForm: false,
-         removeLocation: false
+         removeLocation: false,
+         errInputMsg: true,
+         inputValue: ''
        });
+     } else {
+       this.setState({
+         home: true,
+         about: false,
+         mainView: false,
+         locationBar: true,
+         inputForm: false,
+         controlsForm: true,
+         removeLocation: false,
+         errInputMsg: false,
+       });
+     }
     } else if (event.target.title === 'backHome'){
       this.setState({
         home: true,
@@ -635,7 +679,9 @@ export default class Middle extends Component {
         locationBar:true,
         inputForm: false,
         controlsForm: true,
-        removeLocation: false
+        removeLocation: false,
+        errInputMsg: false,
+        inputValue: ''
       });
     } else if (event.target.title === 'Find Me'){
       this.setState({
@@ -645,17 +691,9 @@ export default class Middle extends Component {
         locationBar:true,
         inputForm: false,
         controlsForm: true,
-        removeLocation: false
-      });
-    } else if (event.target.title === 'Submit Search'){
-      this.setState({
-        home: true,
-        about: false,
-        mainView: false,
-        locationBar:true,
-        inputForm: false,
-        controlsForm: true,
-        removeLocation: false
+        removeLocation: false,
+        errInputMsg: false,
+        inputValue: ''
       });
     } else if (event.target.title === 'About WeatherX'){
       this.setState({
@@ -665,7 +703,9 @@ export default class Middle extends Component {
         locationBar:false,
         inputForm: false,
         controlsForm: true,
-        removeLocation: false
+        removeLocation: false,
+        errInputMsg: false,
+        inputValue: ''
       })
     } else if (event.target.title === 'locationBar'){
       this.setState({
@@ -675,7 +715,9 @@ export default class Middle extends Component {
         locationBar: false,
         inputForm: false,
         controlsForm: true,
-        removeLocation: false
+        removeLocation: false,
+        errInputMsg: false,
+        inputValue: ''
       });
     } else if (event.target.title === "Add Location"){
       this.setState({
@@ -685,7 +727,9 @@ export default class Middle extends Component {
         locationBar: true,
         inputForm: true,
         controlsForm: false,
-        removeLocation: false
+        removeLocation: false,
+        errInputMsg: false,
+        inputValue: ''
       });
     } else if (event.target.title === "Celsius"){
      this.setState({
@@ -695,7 +739,9 @@ export default class Middle extends Component {
       locationBar: true,
       inputForm: false,
       controlsForm: true,
-      removeLocation: false
+      removeLocation: false,
+      errInputMsg: false,
+      inputValue: ''
     });
     this.appData.celsiusType=true;
     this.appData.fahrenheitType=false;
@@ -707,7 +753,9 @@ export default class Middle extends Component {
         locationBar: true,
         inputForm: false,
         controlsForm: true,
-        removeLocation: false
+        removeLocation: false,
+        errInputMsg: false,
+        inputValue: ''
       });
       this.appData.celsiusType=false;
       this.appData.fahrenheitType=true;
@@ -719,66 +767,74 @@ export default class Middle extends Component {
        locationBar: true,
        inputForm: false,
        controlsForm: true,
-       removeLocation: true
+       removeLocation: true,
+       errInputMsg: false,
+       inputValue: ''
      });
      this.appData.removeIndexNo = removeIndexNo;
     }
-  }
-
-  handleInputChange(event) {
-    event.preventDefault();
-    if (!event){
-      this.appData.geoCodeThis = '';
-    } else {
-      this.appData.geoCodeThis = event.target.value;
-    }
-  }
+  } // end handleNavClick
 
   handleNavSubmit(event) {
 
-    // dont wnat app reset on form button submittions
     event.preventDefault();
 
-    if (this.appData.geoCodeThis === ''){
+    // if there is NO input err, then check for dup searchs, if none make axios call to backendServer
+    if (!this.state.errInputMsg){
 
-      // dont accept blank input
-      this.setState({
-        home: true,
-        about: false,
-        mainView: false,
-        locationBar:true,
-        inputForm: true,
-        controlsForm: false,
-        noBlankInputMsg:true
-      })
-
-    } else {
-      // dont accept duplicate locations
       // only get and store forecast data for a new location
       const compareLocationName = (item, index) => {
-        let locationName = `${item.cityName}, ${item.province}`;
-        if (locationName === this.appData.geoCodeThis){
+
+        // first isolate city, province and the make Upper Case
+        const findEachWord = /[\sA-Za-z]+/g;
+
+        const locationCity = item.match(findEachWord)[0].toUpperCase();
+        const locationProvice = item.match(findEachWord)[1].toUpperCase();
+        const compareLocationName = `${locationCity}, ${locationProvice}`;
+
+        const city = this.appData.geoCodeThis.match(findEachWord)[0].toUpperCase();
+        const province = this.appData.geoCodeThis.match(findEachWord)[1].toUpperCase();
+        const compareInput = `${city}, ${province}`;
+
+        // then compare
+        if (compareLocationName === compareInput){
           this.appData.notADuplicateLocation = false;
          }
       };
 
-      if (this.appData.locationData.length > 0){
-        this.appData.locationData.forEach(compareLocationName);
+      // if there are other names in the locationData array.. compare each of these also
+      if (this.appData.locationName.length > 0){
+        this.appData.locationName.forEach(compareLocationName);
       }
 
+      // if no dups, then we have a new valid location
       if (this.appData.notADuplicateLocation){
           this.requestDataFromServer(this.appData.geoCodeThis);
           this.appData.geoCodeThis = '';
+      } else {
+        this.setState({
+          home: true,
+          about: false,
+          mainView: false,
+          locationBar: true,
+          inputForm: true,
+          controlsForm: false,
+          removeLocation: false,
+          errInputMsg: false,
+          noDupsMsg: true,
+          inputValue: ''
+        });
       }
 
     }
 
-  }
+  } // end hanldeNavSubmit
 
   // this method builds the arrays needed to to display each location's forecast data
 
   showMeThisOne(locationName, index, event){
       event.preventDefault();
+
       // have forecastData ready ... now set mainView to true
       this.appData.currentLocationData = {
           index: index,
@@ -815,19 +871,6 @@ export default class Middle extends Component {
   // this methods is also the only method that adds a location
   requestDataFromServer(location){
 
-      // really should have another 'middle' function to validate input...
-      // to keep invalid requests to server from using up api call bandwitdh and limits
-
-      // if no province, state then default to CA, or US
-      // otherwise will need to get a db of all citynames from everywhere !!
-      // like...
-      // let lookForCommaBetween = /,(?=[\sA-Za-z])/g;
-      // if (!location.match(lookForCommaBetween)){
-      //    location = `${this.state.geoCodeThis}, CA`;
-      //    or
-      //    location = `${this.state.geoCodeThis}, US`;
-      // }
-
       // once we have a valid location... get forecast data from backendServer
 
     axios.get(`${this.backendServer.url}:${location}`)
@@ -842,6 +885,7 @@ export default class Middle extends Component {
 
                 this.appData.forecastData = [...this.appData.forecastData, newForecast.data.mostRecentForecast];
                 this.appData.locationData =  [...this.appData.locationData, newForecast.data.mostRecentLocation];
+                this.appData.locationName = [...this.appData.locationName, `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`];
                 this.appData.currentLocationData = {
                   index: this.appData.forecastData.length,
                   name: `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`,
