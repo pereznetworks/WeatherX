@@ -26,14 +26,12 @@ export default class NavBar3 extends Component {
   }
 
   handleNavSubmit(event) {
-    event.preventDefault();
     this.props.handleNavSubmit(event);
-    this.props.handleNavClick(event);
   }
 
   // so were using a form element here, but not actually using any form actions or methods
   // just using it to capture location input
-  
+
   render() {
       if (this.props.navState.home){
         return(
