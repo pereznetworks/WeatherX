@@ -635,43 +635,7 @@ export default class Middle extends Component {
 
     event.preventDefault();
 
-    // would like a comprehesive global list of city, province, country names...
-    // but for now ...
-    // regexps for basic input validation
-    // for now just checking for comma delimited location like...city, state
-    const lookForCommaBetween = /,(?=[\sA-Za-z])/g;
-    // for any input that start with a comma
-    const lookForCommaAtBeginning = /^,(?=[\sA-Za-z])/g;
-    // and for numbers anywhere in the input
-    const findNumbers = /[0-9]+/g;
-
-    // this first if condition, does the basic input validation
-    if ( event.target.title === 'Submit Search'){
-      if ( this.appData.geoCodeThis === '' || this.appData.geoCodeThis.match(lookForCommaBetween) == null || this.appData.geoCodeThis.match(lookForCommaAtBeginning) !== null || this.appData.geoCodeThis.match(findNumbers) !== null ){
-       this.setState({
-         home: true,
-         about: false,
-         mainView: false,
-         locationBar: true,
-         inputForm: true,
-         controlsForm: false,
-         removeLocation: false,
-         errInputMsg: true,
-         inputValue: ''
-       });
-     } else {
-       this.setState({
-         home: true,
-         about: false,
-         mainView: false,
-         locationBar: true,
-         inputForm: false,
-         controlsForm: true,
-         removeLocation: false,
-         errInputMsg: false,
-       });
-     }
-    } else if (event.target.title === 'backHome'){
+   if (event.target.title === 'backHome'){
       this.setState({
         home: true,
         about: false,
@@ -779,10 +743,43 @@ export default class Middle extends Component {
 
     event.preventDefault();
 
-    // if there is NO input err, then check for dup searchs, if none make axios call to backendServer
-    if (!this.state.errInputMsg){
+    // would like a comprehesive global list of city, province, country names...
+    // but for now ...
+    // regexps for basic input validation
+    // for now just checking for comma delimited location like...city, state
+    const lookForCommaBetween = /,(?=[\sA-Za-z])/g;
+    // for any input that start with a comma
+    const lookForCommaAtBeginning = /^,(?=[\sA-Za-z])/g;
+    // and for numbers anywhere in the input
+    const findNumbers = /[0-9]+/g;
 
-      // only get and store forecast data for a new location
+    // do basic input validation
+    if ( event.target.title === 'Submit Search'){
+      if ( this.appData.geoCodeThis === '' || this.appData.geoCodeThis.match(lookForCommaBetween) == null || this.appData.geoCodeThis.match(lookForCommaAtBeginning) !== null || this.appData.geoCodeThis.match(findNumbers) !== null ){
+       this.setState({
+         home: true,
+         about: false,
+         mainView: false,
+         locationBar: true,
+         inputForm: true,
+         controlsForm: false,
+         removeLocation: false,
+         errInputMsg: true,
+         inputValue: ''
+       });
+       return null;
+       // so if there is an err detected in geoCodeThis (or submitted input) ...
+       // resest State, so input placeholder is updated with appropriate prompt
+       // dont continue, no request to backend server
+       }
+     }
+
+    if (!this.state.errInputMsg){
+      // if there is NO input err, then check for dup searchs, if none make axios call to backendServer
+
+     // so only want to get and forecast data for a new location
+
+      // check for dups, if input is a dup, set notADuplicateLocation to false
       const compareLocationName = (item, index) => {
 
         // first isolate city, province and the make Upper Case
