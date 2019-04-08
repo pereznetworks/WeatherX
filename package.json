@@ -2,6 +2,7 @@
   "name": "weatherx",
   "version": "0.0.1",
   "description": "WeatherX with Server-Side-Rendering, using tomtom, forecast.io api",
+  "proxy": "http://localhost:3000",
   "main": "webpack.config.js",
   "engines": {
     "node": "10.15.1"

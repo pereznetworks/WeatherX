@@ -25,7 +25,7 @@ app.use(routes);
 app.use('/weather', routes);
 
 app.use('/weather', function(req, res, next){
-  res.header("Access-Control-Allow-Origin", "http://10.100.10.102:3000/");
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000/");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET");
   next();

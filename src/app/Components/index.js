@@ -52,7 +52,7 @@ export default class Middle extends Component {
     }; // initial state components
 
     this.backendServer = {
-      url: `http://10.100.10.102:3000/weather`
+      url: `/weather`
     };
 
 
