@@ -26,7 +26,7 @@ const newLocationData = require('../dataSource').newLocationData;
 
     // the home or root route
     main.get('/', (req, res, next) => {
-        res.json( [{"WeatherX notice":"use thje path /weather:[city], [state]"}
+        res.json( [{"Welcome to WeatherX API":"use /weather:[city], [state]"}
       ] );
         res.end();
     });
