@@ -26,7 +26,8 @@ const newLocationData = require('../dataSource').newLocationData;
 
     // the home or root route
     main.get('/', (req, res, next) => {
-        res.json( [{"WeatherX notice":"authorized use only"}] );
+        res.json( [{"WeatherX notice":"use thje path /weather:[city], [state]"}
+      ] );
         res.end();
     });
 
@@ -69,17 +70,20 @@ const newLocationData = require('../dataSource').newLocationData;
                     }).then(()=>{
 
                       // this innernost .then should happen last, after res.json()
-                      // but these are all async methods, so result may seem to log "out-of-order"
-
-                      // not keeping data, part of DarkSky API usage terms
-                      sequelizeDb.Location.destroy({force:true,truncate:true})
-                      // not keeping data, part of TomTom usage terms
-                      sequelizeDb.Forecast.destroy({force:true,truncate:true});
+                      // these are all async methods, so result may seem to log "out-of-order"
 
                       // prove that data in tables deleted, should console the word, 'found:' followed by nothng, twice
-                      // may write this to a log instead of logging to console
-                      sequelizeDb.Location.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
-                      sequelizeDb.Forecast.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
+                      // may write this to a log file instead of logging to console, but then would have to clear logs
+                      // may simply disable logging for prodction env
+
+                      // not keeping data, part of DarkSky API usage terms
+                      sequelizeDb.Location.destroy({force:true,truncate:true}).then(()=>{
+                          sequelizeDb.Location.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
+                        });
+                      // not keeping data, part of TomTom usage terms
+                      sequelizeDb.Forecast.destroy({force:true,truncate:true}).then(()=>{
+                          sequelizeDb.Forecast.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
+                      });
 
                     }).catch( err => {
                         console.log('Error getting forecast data... ', err);
