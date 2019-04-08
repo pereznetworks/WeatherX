@@ -1,4 +1,4 @@
-// methods for access api
+// methods for accessing external api, managing data
 
 const current = {
   mostRecentForecast: {},
@@ -24,14 +24,19 @@ const manageLocData = loc => {
 
 
 const manageForecastData = forecast => {
+
+  // requiring custom module for removing unused data from DarkSky
+  const reduceForecastDataSet = require('./reduceDataSet.js').reduceForecastDataSet;
+
   if (forecast){
     if (current.mostRecentForecast){ // push current forecast onto array
       db.forecastArray.push(current.mostRecentForecast);
     }
     current.mostRecentForecast = {  // save new current foreeast
       timeStamp: Date.now(),
-      data: forecast
+      data: reduceForecastDataSet(forecast)  // reducing dataset to just the data WeatherX currently uses
     } // will end up with an array of objects: [{timeStamp:<dateInt>, data:forecast.json}]
+
     return current;
   }
 }; // will need to replace this with mongoose code also
