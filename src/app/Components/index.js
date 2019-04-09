@@ -903,41 +903,41 @@ export default class Middle extends Component {
           .then(response => {
             let newForecast = {  // save new current foreeast
               timeStamp: Date.now(),
-              data: response.data
+              data: JSON.parse(JSON.stringify(response.data))
             }
 
             // currentLocation will always be the latest one entered, so new locationBar will be rendered for it
             // index of locationName array should always match index of forecastData array
 
-                this.appData.forecastData = [...this.appData.forecastData, newForecast.data.mostRecentForecast];
-                this.appData.locationData =  [...this.appData.locationData, newForecast.data.mostRecentLocation];
-                this.appData.locationName = [...this.appData.locationName, `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`];
+                this.appData.forecastData = [...this.appData.forecastData, newForecast.data[1]];
+                this.appData.locationData =  [...this.appData.locationData, newForecast.data[0]];
+                this.appData.locationName = [...this.appData.locationName, `${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`];
                 this.appData.currentLocationData = {
                   index: this.appData.forecastData.length,
-                  name: `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`,
-                  sunsetTime: newForecast.data.mostRecentForecast.data.daily.data[0].sunsetTime,
-                  sunriseTime: newForecast.data.mostRecentForecast.data.daily.data[0].sunriseTime,
-                  utcOffSet: newForecast.data.mostRecentForecast.data.offset,
-                  time: this.getCurrentTimeAtLocation(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
-                  day: this.checkDay(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset, newForecast.data.mostRecentForecast.data.daily.data[0].sunsetTime, newForecast.data.mostRecentForecast.data.daily.data[0].sunriseTime),
-                  temp: Math.floor(newForecast.data.mostRecentForecast.data.currently.apparentTemperature),
-                  icon:`${newForecast.data.mostRecentForecast.data.currently.icon}`
+                  name: `${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`,
+                  sunsetTime: newForecast.data[1].data.daily.data[0].sunsetTime,
+                  sunriseTime: newForecast.data[1].data.daily.data[0].sunriseTime,
+                  utcOffSet: newForecast.data[1].data.offset,
+                  time: this.getCurrentTimeAtLocation(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset),
+                  day: this.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime),
+                  temp: Math.floor(newForecast.data[1].data.currently.apparentTemperature),
+                  icon:`${newForecast.data[1].data.currently.icon}`
                 };
                 this.appData.availLocationsArray = [...this.appData.availLocationsArray, {
                   index: this.appData.forecastData.length,
-                  name: `${newForecast.data.mostRecentLocation.data.city}, ${newForecast.data.mostRecentLocation.data.province}`,
-                  utcOffSet: newForecast.data.mostRecentForecast.data.offset,
-                  timeStamp: newForecast.data.mostRecentForecast.data.currently.time,
-                  sunsetTime: newForecast.data.mostRecentForecast.data.daily.data[0].sunsetTime,
-                  sunriseTime: newForecast.data.mostRecentForecast.data.daily.data[0].sunriseTime,
-                  time: this.getCurrentTimeAtLocation(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset),
-                  day: this.checkDay(newForecast.data.mostRecentForecast.data.currently.time, newForecast.data.mostRecentForecast.data.offset, newForecast.data.mostRecentForecast.data.daily.data[0].sunsetTime, newForecast.data.mostRecentForecast.data.daily.data[0].sunriseTime),
-                  temp: Math.floor(newForecast.data.mostRecentForecast.data.currently.apparentTemperature),
-                  icon:`${newForecast.data.mostRecentForecast.data.currently.icon}`
+                  name: `${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`,
+                  utcOffSet: newForecast.data[1].data.offset,
+                  timeStamp: newForecast.data[1].data.currently.time,
+                  sunsetTime: newForecast.data[1].data.daily.data[0].sunsetTime,
+                  sunriseTime: newForecast.data[1].data.daily.data[0].sunriseTime,
+                  time: this.getCurrentTimeAtLocation(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset),
+                  day: this.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime),
+                  temp: Math.floor(newForecast.data[1].data.currently.apparentTemperature),
+                  icon:`${newForecast.data[1].data.currently.icon}`
                 }];
                 this.appData.locationCount = this.appData.locationCount + 1;
-                this.appData.mainViewBackGround = [...this.appData.mainViewBackGround, this.setMainViewBackGround(newForecast.data.mostRecentForecast.data)];
-                this.appData.locationBarBackGround =  [...this.appData.locationBarBackGround, this.setLocationBarBackGround(newForecast.data.mostRecentForecast.data)];
+                this.appData.mainViewBackGround = [...this.appData.mainViewBackGround, this.setMainViewBackGround(newForecast.data[1].data)];
+                this.appData.locationBarBackGround =  [...this.appData.locationBarBackGround, this.setLocationBarBackGround(newForecast.data[1].data)];
 
               // refreshing state of main components
               // requestDataFromServer is only called by NavBar3's submit form
@@ -963,6 +963,7 @@ export default class Middle extends Component {
             )
           });
   }
+
 
   render(){
    return(

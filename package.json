@@ -8,8 +8,8 @@
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --progress",
-    "dev-reactApp": "webpack --watch --progress & nodemon --inspect ./index.js",
-    "dev-server": "nodemon --inspect backendServer/server.js",
+    "dev-reactApp": "webpack --watch --progress & nodemon --inspect=127.0.0.1:9230 ./index.js",
+    "dev-server": "nodemon --inspect=127.0.0.1:9229 backendServer/server.js",
     "linter": "eslint src",
     "bundlesize": "bundlesize",
     "precommit": "eslint src --quiet"
