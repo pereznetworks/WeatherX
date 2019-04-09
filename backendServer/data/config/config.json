@@ -8,7 +8,8 @@
     "seederStorageTableName": "seed_data",
     "migrationStorage": "json",
     "migrationStoragePath": "./data/migrations/migrationData.json",
-    "migrationStorageTableName": "seed_data"
+    "migrationStorageTableName": "seed_data",
+    "logging": false
   },
   "test": {
     "storage": "./backendServer/testdata/library.db",

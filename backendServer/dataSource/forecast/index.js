@@ -1,24 +1,23 @@
 // methods for accessing external api, managing data
 
-const current = {
-  mostRecentForecast: {},
-  mostRecentLocation: {}
-}
-const db = {
-  locationArray: [],
-  forecastArray: []
-}; // will need to replace this with mongoose code
+let mostRecentForecast = {};
+let mostRecentLocation = {};
+
+// const db = {
+//   locationArray: [],
+//   forecastArray: []
+// }; // will need to replace this with mongoose code
 
 const manageLocData = loc => {
   if (loc){
-    if (current.mostRecentLocation){ // push current forecast onto array
-      db.locationArray.push(current.mostRecentLocation);
-    }
-    current.mostRecentLocation = {  // save new current foreeast
+    // if (current.mostRecentLocation){ // push current forecast onto array
+    //   db.locationArray.push(current.mostRecentLocation);
+    // }
+    mostRecentLocation = {  // save new current foreeast
       timeStamp: Date.now(),
       data: loc
     } // will end up with an array of objects: [{timeStamp:<dateInt>, data:forecast.json}]
-    return current;
+    return mostRecentLocation;
   }
 }; // will need to replace this with mongoose code also
 
@@ -29,15 +28,15 @@ const manageForecastData = forecast => {
   const reduceForecastDataSet = require('./reduceDataSet.js').reduceForecastDataSet;
 
   if (forecast){
-    if (current.mostRecentForecast){ // push current forecast onto array
-      db.forecastArray.push(current.mostRecentForecast);
-    }
-    current.mostRecentForecast = {  // save new current foreeast
+    // if (current.mostRecentForecast){ // push current forecast onto array
+    //   db.forecastArray.push(current.mostRecentForecast);
+    // }
+    mostRecentForecast = {  // save new current foreeast
       timeStamp: Date.now(),
       data: reduceForecastDataSet(forecast)  // reducing dataset to just the data WeatherX currently uses
     } // will end up with an array of objects: [{timeStamp:<dateInt>, data:forecast.json}]
 
-    return current;
+    return mostRecentForecast;
   }
 }; // will need to replace this with mongoose code also
 

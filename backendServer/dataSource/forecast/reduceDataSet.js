@@ -55,7 +55,6 @@ const reduceForecastDataSet = (forecast) => {
   });
 
   console.log(`reducing, third stage complete... `);
-
   return reducedDataSet;
 };
 

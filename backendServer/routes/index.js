@@ -24,12 +24,6 @@ const manageLocData = require('../dataSource').manageLocData;
 const newForecastData = require('../dataSource').newForecastData;
 const newLocationData = require('../dataSource').newLocationData;
 
-    // // the home or root route
-    // main.get('/', (req, res, next) => {
-    //     res.json( [{"WeatherX notice":"authorized use only"}] );
-    //     res.end();
-    // });
-
     // the weather route, returns current forecast
     main.get('/weather:location', (req, res, next) => {
 
@@ -38,7 +32,7 @@ const newLocationData = require('../dataSource').newLocationData;
         next(new Error(`${errorMsg}`));
       }
 
-      console.log(`\n...processing new GET request...\n`);
+      console.log(`\n...processing new GET request...\nusing async functions, some of the following logs may seem to be out of order\n`);
 
       let removeLeading = /([^:])\w+/g;
       let locationArray = req.params.location.match(removeLeading);
@@ -55,8 +49,11 @@ const newLocationData = require('../dataSource').newLocationData;
                 let cityName =  Location.dataValues.data.results[0].address.municipality;
                 let province =  Location.dataValues.data.results[0].address.countrySubdivision;
                 let loc = {latitude:longLat.lat,longitude:longLat.lon, city: cityName, province: province };
-                const db = manageLocData(loc);
-                let forecastApiCallUrl = getForecastApiCall(db.mostRecentLocation.data);
+
+                // going through this process to send 1 response with 1 set of json data
+                const db = [];
+                db.push(manageLocData(loc));
+                let forecastApiCallUrl = getForecastApiCall(db[0].data);
 
                 axios.get(forecastApiCallUrl)
                     .then(response => {
@@ -64,16 +61,26 @@ const newLocationData = require('../dataSource').newLocationData;
                     sequelizeDb.Forecast.create(response)
                      .then( Forecast => {
 
-                      const db = manageForecastData(Forecast.dataValues.data);
+                      db.push(manageForecastData(Forecast.dataValues.data));
                       res.json(db);
 
-                      // not keeping data, part of TomTom usage terms
-                      sequelizeDb.Forecast.destroy({force:true,truncate:true});
+                      console.log(`response sent, deleting data.., should get 2 "found:" folloewd by nothing`);
+                      db.splice(0, db.length)
 
                     }).then(()=>{
                        // prove that data in tables deleted, should console the word, 'found:' followed by nothng, twice
                         // may write this to a log instead of logging to console
-                       sequelizeDb.Location.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
+                        // or just turnoff sequelize logging for production
+
+                        // not keeping data, part of DarkSky usage terms
+                        sequelizeDb.Forecast.destroy({force:true,truncate:true}).then(()=>{
+                          sequelizeDb.Forecast.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
+                        });
+
+                        // not keeping data, part of TomTom API usage terms
+                        sequelizeDb.Location.destroy({force:true,truncate:true}).then(()=>{
+                          sequelizeDb.Location.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
+                        });
 
                     }).catch( err => {
                         console.log('Error getting forecast data... ', err);
@@ -84,10 +91,6 @@ const newLocationData = require('../dataSource').newLocationData;
                     console.log('Error getting location data... ', err);
                       next(err);
                 });
-
-              }).then(()=>{
-                // not keeping data, part of DarkSky API usage terms
-                sequelizeDb.Location.destroy({force:true,truncate:true})
 
               }).catch(function(error){
                 console.log(`error: ${error}`);
