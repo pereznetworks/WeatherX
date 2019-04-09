@@ -141,9 +141,10 @@ typings/
 dist
 build
 
-# sequelize config and data
+# sequelize config and sample data
 backendServer/dataSource/config/index.js
-backendServer/data/config/*.json
+backendServer/data/config/sampleData.json
+backendServer/data/config/fullSampleData.json
 backendServer/data/*.db
 
 # dist
