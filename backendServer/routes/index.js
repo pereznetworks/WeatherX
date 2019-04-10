@@ -42,7 +42,7 @@ const newLocationData = require('../dataSource').newLocationData;
         axios.get(geoCodeApiCallUrl)
           .then(response => {
 
-            sequelizeDb.Location.create(response)
+            sequelizeDb.Locations.create(response)
               .then(Location => {
 
                 let longLat = Location.dataValues.data.results[0].position;
@@ -58,7 +58,7 @@ const newLocationData = require('../dataSource').newLocationData;
                 axios.get(forecastApiCallUrl)
                     .then(response => {
 
-                    sequelizeDb.Forecast.create(response)
+                    sequelizeDb.Forecasts.create(response)
                      .then( Forecast => {
 
                       db.push(manageForecastData(Forecast.dataValues.data));
@@ -73,13 +73,13 @@ const newLocationData = require('../dataSource').newLocationData;
                         // or just turnoff sequelize logging for production
 
                         // not keeping data, part of DarkSky usage terms
-                        sequelizeDb.Forecast.destroy({force:true,truncate:true}).then(()=>{
-                          sequelizeDb.Forecast.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
+                        sequelizeDb.Forecasts.destroy({force:true,truncate:true}).then(()=>{
+                          sequelizeDb.Forecasts.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
                         });
 
                         // not keeping data, part of TomTom API usage terms
-                        sequelizeDb.Location.destroy({force:true,truncate:true}).then(()=>{
-                          sequelizeDb.Location.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
+                        sequelizeDb.Locations.destroy({force:true,truncate:true}).then(()=>{
+                          sequelizeDb.Locations.findAll().then(found => console.dir(`found: ${found}`)).catch(err => console.log(err));
                         });
 
                     }).catch( err => {
