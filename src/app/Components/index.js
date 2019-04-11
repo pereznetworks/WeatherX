@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import axios from 'axios';
 
 // importing sub-components
@@ -33,7 +33,6 @@ import './assets/css/weather-icons-wind.css';
    */
 
 export default class Middle extends Component {
-
   constructor(props) {
     super(props);
 
@@ -81,7 +80,7 @@ export default class Middle extends Component {
 
     // main app methods
     this.handleNavClick = this.handleNavClick.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleNavSubmit = this.handleNavSubmit.bind(this);
     this.showMeThisOne = this.showMeThisOne.bind(this);
     this.removeLocation = this.removeLocation.bind(this);
@@ -128,12 +127,12 @@ export default class Middle extends Component {
       celsiusType:true,
       celsiusFont:"°C"
     };
-  };
+  }
 
   componentWillUnmount(){ // destroy app and it's data when unloading app
     clearInterval(this.appData.interval);
     this.appData = null;
-  };
+  }
 
   // may use dayJs-ext or moment0-timezone for timezone time adjustment
   // For now, using my own custom code to adjust from UTC to timezone offset of location
@@ -182,11 +181,11 @@ export default class Middle extends Component {
     if (tz < 0){
       tz = Math.abs(tz);
       if (utc < 12 ){
-        utc = utc + 24
+        utc = utc + 24;
         hrs = utc - tz;
       } else if (utc === 0){
         hrs = utc - tz;
-        hrs = 24 - tz
+        hrs = 24 - tz;
       } else {
         hrs = utc - tz;
       }
@@ -314,7 +313,7 @@ export default class Middle extends Component {
     // returns a timeStamp using the dateInt * 1000
     // the forecast.io timestamps needs to be * 1000 to be converted into a Date timeStamp
     // this.getUpToSecDateOfLocation(1550674800)
-    const timeStamp = this.getUpToSecDateOfLocation(dateInt)
+    const timeStamp = this.getUpToSecDateOfLocation(dateInt);
 
     let dayOfWeek;
     let utcHours = timeStamp.getUTCHours();
@@ -423,9 +422,9 @@ export default class Middle extends Component {
     let icon = data.currently.icon;
 
        if ( icon === 'cloudy' && day){
-          return "cloudyDay"
+          return "cloudyDay";
         } else if ( icon === 'cloudy' && !day){
-           return "cloudyNight"
+           return "cloudyNight";
         } else if ( icon === 'fog' && day){
           return "foggyDay";
         } else if ( icon === 'fog' && !day){

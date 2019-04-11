@@ -1,5 +1,6 @@
 {
     "extends": "fortech-react",
+    "plugin":["eslint-plugin-html"],
     "env": {
         "browser": true,
         "jest": true

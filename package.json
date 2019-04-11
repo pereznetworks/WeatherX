@@ -9,23 +9,23 @@
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --progress",
-    "dev": "webpack --watch --progress & nodemon --inspect ./index.js",
+    "start": "webpack --watch --progress & nodemon --inspect ./index.js",
     "linter": "eslint src",
     "bundlesize": "bundlesize",
     "precommit": "eslint src --quiet"
   },
   "dependencies": {
-    "ignore-styles": "5.0.1",
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
-    "throng": "4.0.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "helmet": "^3.15.0",
+    "ignore-styles": "5.0.1",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
     "sequelize": "4.42.1",
     "sequelize-cli": "5.4.0",
-    "sqlite3": "^4.0.6"
+    "sqlite3": "^4.0.6",
+    "throng": "4.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.4.0",
@@ -44,20 +44,20 @@
     "eslint-loader": "^2.1.2",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react": "7.12.4",
     "express": "^4.16.4",
     "file-loader": "3.0.1",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "jest": "^24.5.0",
     "mini-css-extract-plugin": "0.5.0",
+    "morgan": "1.9.1",
     "node-sass": "4.11.0",
     "nodemon": "1.18.10",
     "sass-loader": "7.1.0",
     "webpack": "4.29.6",
     "webpack-bundle-analyzer": "^3.1.0",
     "webpack-cli": "3.3.0",
-    "webpack-dev-server": "^3.2.1",
-    "morgan": "1.9.1"
+    "webpack-dev-server": "^3.2.1"
   },
   "browserslist": [
     "> 1%",
