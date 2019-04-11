@@ -15,9 +15,11 @@
         $ cat ~/.npmrc
      ```
   B: - get a DarkSky API Key
-  [DarkSky API](https://darksky.net/dev)
+  - [DarkSky API](https://darksky.net/dev)
+
   C: - get a TomTom API Key to use their Search API
-  [TomTom Search API](https://developer.tomtom.com/search-api/search-api-documentation)
+  - [TomTom Search API](https://developer.tomtom.com/search-api/search-api-documentation)
+
   D: - place your keys in an index.js file in the folder path...
       - this file already has an entry in the project's .gitignore file
         - backendServer/config/index.js
@@ -25,6 +27,7 @@
       module.exports.forecastKey = "0123456789abcdefghiklmnop"; // replace with your DarkSky key
       module.expports.geoCodeKey = "0123456789abcdefghiklmnop"; // replace with your TomTom key
     ```
+
   E: - from a unix shell prompt run npm i and npm start
     ```
         $ npm i
