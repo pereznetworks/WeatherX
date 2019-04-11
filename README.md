@@ -23,8 +23,9 @@
 
   D: - place your keys in an index.js file in the folder path...
 
-      - this file already has an entry in the project's .gitignore file
-      - backendServer/config/index.js
+     - this file already has an entry in the project's .gitignore file
+     - backendServer/config/index.js
+
     ```javascript
       module.exports.forecastKey = "0123456789abcdefghiklmnop"; // replace with your DarkSky key
       module.expports.geoCodeKey = "0123456789abcdefghiklmnop"; // replace with your TomTom key
