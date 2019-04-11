@@ -4,8 +4,8 @@
 - To run this project yourself...
 
   A: - clone this repo and configure npm to not allow dependency drift
-    - this to keep newer versions of dependencies from getting installed
-      - which may cause the project to not run
+       - this to keep newer versions of dependencies from getting installed
+         - which may cause the project to not run
      ```
        $ npm config set save=true
        $ npm config set save-exact=true
