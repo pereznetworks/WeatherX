@@ -22,8 +22,9 @@
   - [TomTom Search API](https://developer.tomtom.com/search-api/search-api-documentation)
 
   D: - place your keys in an index.js file in the folder path...
+
       - this file already has an entry in the project's .gitignore file
-        - backendServer/config/index.js
+      - backendServer/config/index.js
     ```javascript
       module.exports.forecastKey = "0123456789abcdefghiklmnop"; // replace with your DarkSky key
       module.expports.geoCodeKey = "0123456789abcdefghiklmnop"; // replace with your TomTom key
@@ -35,14 +36,16 @@
         $ npm start
     ```
   F: - browse to http://locahost:3000 to get the REACT APP
+
   G: - browse to http://localhost:3000/weather:location
+
       - replace the param, 'location', with a city, state or a city, country, like so...
         - London, England
         - Tokyo, Japan
         - New York, NY
         - Chicago, IL
   H: - or goto my hosted WeatherX site...
-    [not Live yet](https://almostThere)
+  - [not Live yet](https://almostThere)
 
 # GO-LIVE Date: May 1, 2019:
 
