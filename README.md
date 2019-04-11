@@ -43,10 +43,13 @@
      - replace the param, 'location', with a city, state or a city, country, like so...
      -  the browser will replace your spaces with %20's
 
-     -  http://localhost:3000/weather:London,%20England
-     -  http://localhost:3000/weather:Tokyo,%20Japan
-     -  http://localhost:3000/weather:New%20York,%20NY
-     -  http://localhost:3000/weather:Chicago,%20IL
+      -  http://localhost:3000/weather:London,%20England
+
+      -  http://localhost:3000/weather:Tokyo,%20Japan
+
+      -  http://localhost:3000/weather:New%20York,%20NY
+
+      -  http://localhost:3000/weather:Chicago,%20IL
 
   H: - or goto my hosted WeatherX site...
   - [not Live yet](https://almostThere)
