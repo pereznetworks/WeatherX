@@ -63,7 +63,7 @@
       - have calculated custom location, weather, timestamp types
         - this means....
           - others cannot simply use my api route as way around DarkSky/TomTom's developer licensing
-    - some modules, live the live time-clock, will need to stay in react-app src code,
+    - some modules, like the live time-clock, will need to stay in react-app src code,
       - but will get the needed timestamp to start with
 
   - 3: get ready for production build and deployment to hosting
