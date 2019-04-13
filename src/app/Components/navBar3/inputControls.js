@@ -5,6 +5,8 @@ export default class InputControls extends Component {
   constructor(props) {
     super(props);
 
+    this.commaBetween = /,(?=[\sA-Za-z])/g;
+
     this.tempActive="tempActive"
     this.inputPlaceHolder = "type a City, State or City, Country";
     this.handleNavClick = this.handleNavClick.bind(this);
@@ -43,7 +45,10 @@ export default class InputControls extends Component {
                     value={this.props.navState.inputValue}
                     id="geoCoding-TextInput"
                     placeholder={this.inputPlaceHolder}
-                    onChange={this.handleInputChange}/>
+                    onChange={this.handleInputChange}
+                    pattern={this.commaBetween}
+                    required
+                    />
                   <input
                     type="submit"
                     defaultValue=" "
