@@ -5,8 +5,8 @@
 - STEPS
   - I: Recheck and complete all project requirements
   - II: Recheck and complete all project exceed requirements
-  - III: Finish ToDo item # 1
-  - IV: Finish ToDo item # 2 - Publish and GO-LIVE
+  - III: Finish ToDo items 1 -3
+  - IV: Finish ToDo item # 4 - Publish and GO-LIVE
   - V: Finish Documentation and Submit project
 
 # To Do:
@@ -15,7 +15,7 @@
     - I think I should secure and auth the weather forecast and location route
   - 2: write MOCHA/CHAI tests
   - 3: code review and fix any remaining bugs
-  - 3: get ready for production build and deployment to hosting
+  - 4: get ready for production build and deployment to hosting
      - review HEROKU/Express/React Best Practices
      - compress or minify SSR React build, app.bundle.js and app.css
      - I am sure there are other production issues
