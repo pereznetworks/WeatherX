@@ -1,5 +1,25 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
+# GO-LIVE Date: May 1, 2019:
+
+- STEPS
+  - I: Recheck and complete all project requirements
+  - II: Recheck and complete all project exceed requirements
+  - III: Finish ToDo item # 1
+  - IV: Finish ToDo item # 2 - Publish and GO-LIVE
+  - V: Finish Documentation and Submit project
+
+# To Do:
+  - 1: Due to DarkSky and TomTom licensing and data usage terms....
+    - need to keep my api keys private
+    - I think I should secure and auth the weather forecast and location route
+  - 2: write MOCHA/CHAI tests
+  - 3: code review and fix any remaining bugs
+  - 3: get ready for production build and deployment to hosting
+     - review HEROKU/Express/React Best Practices
+     - compress or minify SSR React build, app.bundle.js and app.css
+     - I am sure there are other production issues
+
 # Reviewers and Developers:
 - To run this project yourself...
 
@@ -53,38 +73,6 @@
 
   H: - or goto my hosted WeatherX site...
   - [not Live yet](https://almostThere)
-
-# GO-LIVE Date: May 1, 2019:
-
-- STEPS
-  - I: Recheck and complete all project requirements
-  - II: Recheck and complete all project exceed requirements
-  - III: Finish ToDo item # 1
-  - IV: Finish ToDo item # 2 - Publish and GO-LIVE
-  - V: Finish Documentation and Submit project
-
-# To Do:
-  - 1: Due to DarkSky and TomTom licensing and data usage terms....
-    - need to move data integration modules from react-app src code to server code
-    - react-app only needs to do the data integration once
-      - react-app will get the time, day-of-week, day-or-night, timezone, etc...
-        - already calculated in res.data from server  
-        - and will be using custom types of my own
-    - the data displayed in json format using api route, /weather:location, will be...
-      - data derived from my custom code
-        - so I will not need to worry about DarkSky/TomTom use-terms
-        - since the data displayed is mostly my derived data not theirs
-      - have calculated custom location, weather, timestamp types
-        - this means....
-          - others cannot simply use my api route as way around DarkSky/TomTom's developer licensing
-    - some modules, like the live time-clock, will need to stay in react-app src code,
-      - but will get the needed timestamp to start with
-
-  - 3: get ready for production build and deployment to hosting
-     - review HEROKU/Express/React Best Practices
-     - compress or minify SSR React build, app.bundle.js and app.css
-     - I am sure there are other production issues
-
 
 # As of April 1st 2019: Death in the Family, 1 Server, 2 Routes
 - I: In Dec. 2018, I had a death in the family, I am finally getting back to finishing this project
