@@ -1,6 +1,7 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
-# GO-LIVE Date: May 1, 2019:
+# GO-LIVE Date: May 1, 2019:  
+[Project Site](https://pereznetworks.github.io/TD-Project12/)
 
 - STEPS
   - I: Recheck and complete all project requirements
