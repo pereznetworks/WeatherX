@@ -6,7 +6,7 @@
 # PROJECT UPDATE:
   - Well after much consternation it looks like I will be dropping REACT... :disappointed_relieved:
     - then main issue is deploying a REACT app that access data using server-side database
-      - with only REACT, either WEBPACK/BABEL or CREATE-REACT-APP, and REACT-ROUTER on NODE.JS/EXPRESS using MONGOD, PostgreSQL, MYSQL
+      - with only REACT, either WEBPACK/BABEL or CREATE-REACT-APP, and REACT-ROUTER on NODE.JS/EXPRESS using MONGOD or PostgreSQL or  MYSQL
       - many solutions I found involve REDUX, ANGULAR and other frameworks which are outside the scope of this project
 
 # PROJECT 12 v.0.0.2
