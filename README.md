@@ -3,18 +3,6 @@
 # GO-LIVE Date: May 1, 2019:  
 [Project Site](./)
 
-- STEPS:
-  - I: review project standard and exceed requirements and re-design weather using EXPRESS, PUG and PostgreSQL
-  - II: plan modules and write unit-tests using Mocha-Chai
-  - III: add any custom code following the module-pattern and npm, so that these can be re-used, and as beginning of a code-base
-  - IV: Rewrite project to use pug-html rendering and associated routes
-  - V: use a Heroku supported PostgreSQL Implementation
-  - VI: implement Heroku best practice in process of doing steps I through IV
-  - VII: test and fix any UI and Server-side bugs
-  - VII: perform Heroku and Express pre-deployment steps
-  - IX: deploy to Heroku live - retest all modules and modiules of project
-  - X: Finish Documentation and Submit project
-
 # PROJECT UPDATE:
 - Well after much consternation it looks like I will be dropping REACT... :disappointed_relieved:
   - and implementing the views of my Weather App using PUG….
@@ -34,6 +22,23 @@
         - and then the full weather-details view that is rendered when a location-weather-summary is clicked-on…
     - well that's it :sweat_smile:  
     - of course many details to work out… but I now see light at the end of my tunnel…. :joy:
+
+
+# GITHUB PROJECT DECISIONS:
+  - I will be preserving the current master branch as a branch or even a fork to another project github repo.
+  - I will be implementing the same overall UI, css-grid, html, ui-color design and weather-icons, but using PUG templates
+
+# STEPS:
+  - I: review project standard and exceed requirements and re-design weather-app using EXPRESS, PUG and PostgreSQL
+  - II: plan modules and write unit-tests using Mocha-Chai
+  - III: add any custom code following the module-pattern and npm, so that these can be re-used, and as beginning of a code-base
+  - IV: Rewrite project to use pug-html rendering and associated routes
+  - V: use a Heroku supported PostgreSQL Implementation
+  - VI: implement Heroku best practice in process of doing steps I through IV
+  - VII: test and fix any UI and Server-side bugs
+  - VII: perform Heroku and Express pre-deployment steps
+  - IX: deploy to Heroku live - retest all modules and modiules of project
+  - X: Finish Documentation and Submit project
 
 # FINAL PUSH:
   - now for the final push on this project…. on your mark, get set.. :sonic:
