@@ -61,15 +61,10 @@
   C: - get a TomTom API Key to use their Search API
   - [TomTom Search API](https://developer.tomtom.com/search-api/search-api-documentation)
 
-  D: - place your keys in an index.js file in the folder path...
-
-     - this file already has an entry in the project's .gitignore file
-     - backendServer/config/index.js
-
-    ```javascript
-      module.exports.forecastKey = "0123456789abcdefghiklmnop"; // replace with your DarkSky key
-      module.expports.geoCodeKey = "0123456789abcdefghiklmnop"; // replace with your TomTom key
-    ```
+  D: - place api keys in a gitignored .env file at the root of the project
+      - file starting with each with REACT_APP_NAME_OF_KEY..
+      - modify code use ...
+    `const REACT_APP_NAME_OF_KEY = process.env.REACT_APP_NAME_OF_KEY;`
 
   E: - from a unix shell prompt run npm i and npm start
     ```
