@@ -11,6 +11,11 @@ backend server to provide front-end WeatherX app with data from several external
    - I think Heroku's App management/dashboard may have some tools
    - preferable logging I can turn on and off,
 
+- place api keys in a gitignored .env
+  - file starting with each with REACT_APP_NAME_OF_KEY..
+  - modify code use ...
+`const REACT_APP_NAME_OF_KEY = process.env.REACT_APP_NAME_OF_KEY;`
+
 ## Working:
 
 # Cluster Server
