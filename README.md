@@ -16,9 +16,9 @@
   - X: Finish Documentation and Submit project
 
 # PROJECT UPDATE:
-- Well after much consternation it looks like I will be dropping REACT... :white_frowning_face:
+- Well after much consternation it looks like I will be dropping REACT... :disappointed_relieved:
   - and implementing the views of my Weather App using PUG….
-  - on the bright-side I will finally be deploying my app and submitting... :rolling_on_the_floor_laughing: …  
+  - on the bright-side I will finally be deploying my app and submitting... :laughing::
   - so on my express server
     - the home page will be rendered with a simple app header and input form
     - ….after….location input is submitted
