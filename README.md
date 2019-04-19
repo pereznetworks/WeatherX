@@ -31,7 +31,7 @@
 
 
 # GITHUB PROJECT DECISIONS:
-  - I will be preserving the current master branch as a branch or even a fork to another project github repo.
+  - I will be preserving the current master branch as a branch or even a fork on another project github repo.
   - I will be implementing the same overall UI, css-grid, html, ui-color design and weather-icons, but using PUG templates
 
 # STEPS:
