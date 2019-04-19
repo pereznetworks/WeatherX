@@ -4,9 +4,14 @@
 [Project Site](./)
 
 # PROJECT UPDATE:
-- Well after much consternation it looks like I will be dropping REACT... :disappointed_relieved:
-  - and implementing the views of my Weather App using PUG….
-  - on the bright-side I will finally be deploying my app and submitting... :laughing:
+  - Well after much consternation it looks like I will be dropping REACT... :disappointed_relieved:
+    - then main issue is deploying a REACT app that access data using server-side database
+      - with only REACT, either WEBPACK/BABEL or CREATE-REACT-APP, and REACT-ROUTER on NODE.JS/EXPRESS using MONGOD, PostgreSQL, MYSQL
+      - many solutions I found involve REDUX, ANGULAR and other frameworks which are outside the scope of this project
+
+# PROJECT 12 v.0.0.2
+  - So I will be implementing the views of my Weather App using PUG….
+    - on the bright-side I will finally be deploying my app and submitting... :laughing:
   - so on my express server
     - the home page will be rendered with a simple app header and input form
     - ….after….location input is submitted
@@ -20,8 +25,9 @@
       - 1 for home, which have the input search form as a sub-view
         - and also will also render the weather-summaries sub-view for each location…
         - and then the full weather-details view that is rendered when a location-weather-summary is clicked-on…
-    - well that's it :sweat_smile:  
-    - of course many details to work out… but I now see light at the end of my tunnel…. :joy:
+  - well that's it :sweat_smile:  
+    - of course many details to work out…
+    - but I now see light at the end of my tunnel…. :joy:
 
 
 # GITHUB PROJECT DECISIONS:
@@ -41,7 +47,7 @@
   - X: Finish Documentation and Submit project
 
 # FINAL PUSH:
-  - now for the final push on this project…. on your mark, get set.. :sonic:
+  - now for the final push on this project…. on your mark, get set.. :runner:
 
 # PROJECT Documentation
 
