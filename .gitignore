@@ -142,7 +142,7 @@ dist
 build
 
 # sequelize config and data
-/backendServer/dataSource/config/index.js
+backendServer/dataSource/config/index.js
 /backendServer/data/*.db
 /backendServer/data/config/fullSampleData.json
 /backendServer/data/config/SampleData.json
