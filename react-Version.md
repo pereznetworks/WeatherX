@@ -1,5 +1,42 @@
 
-# Reviewers and Developers:
+# Project Gotchas
+
+- For this project to be deployed live, to Heroku or AWS or some other hosting service, 2 basic problems will need to solved:
+
+  - how to prevent the /api backend-server route from being accessed via the internet
+  - how to get server-side data back to the react-app
+    - not using a internet accessible /api route
+  - POSSIBLE SOLUTION  
+    - use a session-store-like process to generate a custom api-key
+    - write a route handler that requires your custom api-key
+    - then hide that key in your react-app using env vars and REACT_APP declaration
+    - from location input form make a AXIOS call to the backendServer
+      - submitting the custom api-key
+    - on the server-side, when a axios call is made...
+      - check for a api key, send back a not-auth err msg
+      - check that the api key is valid, send back a not-auth err msg
+      - if valid, process the request and send back the data
+    - delete custom api keys when each app session dies
+    - allow only current active session to use thier api keys to make api calls to backendServer
+    - valid custom api keys would be generated and packaged with each new react-app session
+      - this means that each time that a request is made to the home route
+        - and the react app needs rendered to a client browser
+        - then the react app needs be a new app-bundle needs to be compiled
+  - GOAL
+    - when a non-auth'ed request is made to the backendServer's /api route  
+      - then that request is redirected to the front-end Weather app
+
+  - 1 of the GOTCHAs
+    - a hacker could possibly, browse to the front-end site, get the custom api key
+    - then use the custom api key separately from the react-app, but while the react-app's session is still live
+    - Heroku's method for hiding environment variables is supposed to prevent this...
+      - but it still prints a WARNING
+        - that private api keys should not be embedded in react app builds
+  - 2nd of the GOTCHAs
+    - the API sources used in by this project, FORBID from allowing non-licensed members from seeing their raw api data
+    - those members that do allow this would have their membership terminated
+
+#  Developers:
 - To run this project yourself...
 
   A: - clone this repo and configure npm to not allow dependency drift
@@ -52,30 +89,6 @@
 
   H: - or goto my hosted WeatherX site...
   - [not Live yet](https://almostThere)
-
-# As of April 1st 2019: Death in the Family, 1 Server, 2 Routes
-- I: In Dec. 2018, I had a death in the family, I am finally getting back to finishing this project
-  - 1: I have been following create-react-app and NPM package vulnerabilities and updates
-      - A: could no longer wait for all vulnerabilities in create-react-app to be patched
-      - B: found all other vulnerabilities had been patched in @Babel/core and latest WebPack, etc..
-      - C: needed to move to SSR anyway...
-        - i: to read of my agony on this, see SSR-Planning and Implementation notes below
-  - 2: as of April 1st 2019
-      - A: For all branches, code migrated and modules are patched, updated to latest packages
-      - B:  My Sequelize code has not been migrated to latest Sequelize yet
-        - i: sequelize is still 4.42.1",
-        - ii: sequelize-cli is v5.4.0",
-        - iii:  sqlite3 is 4.0.6"
-  - 3: also upgraded my project so I now have 1 Express Server
-      - A: implemented SSR for React front-end
-      - B: combined React front-end with back-end code
-        - i:  [SSR-Planning notes](https://github.com/pereznetworks/TD-Project12/blob/master/SSR-PLANNING.md)
-        - ii: [SSR-Implementation notes](https://github.com/pereznetworks/TD-Project12/blob/master/SSR-Implementaton.md)
-        - iii: [Preserved branch that keeps Backend and FrontEnd Servers separate ](https://github.com/pereznetworks/TD-Project12/tree/separateFEandBEserver)
-  - 4: 1 Server, 2 routes
-      - A: the home, root, route responds with the WeatherX React app
-      - B: the /weather:location route responds with forecast and location data in json format for given location
-      - C: all other routes and path attempts route back to a friendly helper msg in json format
 
 # Current Features:
 
