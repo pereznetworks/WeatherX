@@ -62,8 +62,8 @@
   - [TomTom Search API](https://developer.tomtom.com/search-api/search-api-documentation)
 
   D: - place api keys in a gitignored .env file at the root of the project
-      - file starting with each with REACT_APP_NAME_OF_KEY..
-      - modify code use ...
+     - file starting with each with REACT_APP_NAME_OF_KEY..
+     - modify code use ...
     `const REACT_APP_NAME_OF_KEY = process.env.REACT_APP_NAME_OF_KEY;`
 
   E: - from a unix shell prompt run npm i and npm start
