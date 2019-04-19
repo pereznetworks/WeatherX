@@ -1,14 +1,19 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
 # GO-LIVE Date: May 1, 2019:  
-[Project Site](https://pereznetworks.github.io/TD-Project12/)
+[Project Site](./)
 
-- STEPS
-  - I: Recheck and complete all project requirements
-  - II: Recheck and complete all project exceed requirements
-  - III: Finish ToDo items 1 -3
-  - IV: Finish ToDo item # 4 - Publish and GO-LIVE
-  - V: Finish Documentation and Submit project
+- STEPS:
+  - I: review project standard and exceed requirements and re-design weather using EXPRESS, PUG and PostgreSQL
+  - II: plan modules and write unit-tests using Mocha-Chai
+  - III: add any custom code following the module-pattern and npm, so that these can be re-used, and as beginning of a code-base
+  - IV: Rewrite project to use pug-html rendering and associated routes
+  - V: use a Heroku supported PostgreSQL Implementation
+  - VI: implement Heroku best practice in process of doing steps I through IV
+  - VII: test and fix any UI and Server-side bugs
+  - VII: perform Heroku and Express pre-deployment steps
+  - IX: deploy to Heroku live - retest all modules and modiules of project
+  - X: Finish Documentation and Submit project
 
 # PROJECT UPDATE:
 - Well after much consternation it looks like I will be dropping REACT .. :white_frowning_face:
@@ -36,7 +41,7 @@
 # PROJECT Documentation
 
   I of course will be rewriting the project-documentation and the project-site for this project
-   
+
 # License:
 
 [MIT](https://github.com/pereznetworks/TD-Project12/blob/master/LICENSE)
