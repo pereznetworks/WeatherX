@@ -10,7 +10,7 @@
       - where the /api route is not accessible via the internet
       - there are many solutions, which unfortunately are outside the scope of this project
 
-# PROJECT 12 v.0.0.2
+# PROJECT 12 v.0.2.0
   - So I will be implementing the views of my Weather App using PUG….
     - on the bright-side I will finally be deploying my app and submitting... :laughing:
   - so on my express server
