@@ -1,0 +1,23 @@
+{
+  "name": "weatherx",
+  "version": "0.2.0",
+  "description": "weatherx weather forecast for a given location",
+  "main": "index.js",
+  "dependencies": {
+    "weatherxserver": "weatherxserver/index.js"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pereznetworks/TD-Project12.git"
+  },
+  "author": "Daniel Perez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pereznetworks/TD-Project12/issues"
+  },
+  "homepage": "https://github.com/pereznetworks/TD-Project12#readme"
+}
