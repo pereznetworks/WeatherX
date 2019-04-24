@@ -2,28 +2,5 @@ extends layout
 //- passed in variables to fill-in tag textContents's, href url paths and css id's
 block content
   div(class="middle middle-grid-container")
-    div(id="titleBar" class='middle-grid-item-0')
-      a(id="title" href="https://pereznetworks.github.io/TD-Project12/") WeatherX
-      a(id="titleText" href="https://pereznetworks.github.io/TD-Project12/") About WeatherX
-      a(class="attribLink" href="https://teamtreehouse.com") Thanks to: Team Treehouse.
-      a(class="attribLink" href="https://darksky.net/poweredby/") Powered By Dark Sky
-      a(class="attribLink" href="https://developer.tomtom.com/tomtom-maps-apis-developers") and Tom Tom
-    div(id="navBar3" class="middle-grid-item-1")
-    if tempType == "Fahrenheit"
-      form( id="inputControls" action="")
-        input(type="text" value="" id="geoCoding-TextInput" placeholder="" required)
-        input(type="submit" defaultValue=" " id="geoCoding-TextSubmit" title="Submit Search" onClick=handleNavSubmit onSubmit=handleNavSubmit)
-        div(class="controlsDiv")
-          span(id="tempSpacer")
-          i(class="wi wi-celsius temp" id="tempC" title="Celsius" onClick=handleNavClick)
-          span(id="tempSpacer")
-          i(class="wi wi-fahrenheit tempActive" id="tempF" title="Fahrenheit" onClick=handleNavClick)
-    else if tempType == "Celsius"
-      form(id="inputControls" action="")
-         input(type="text" value="" id="geoCoding-TextInput" placeholder="" onChange=handleInputChange)
-         input(type="submit" defaultValue=" " id="geoCoding-TextSubmit" title="Submit Search" onClick=handleNavSubmit onSubmit=handleNavSubmit)
-         div(class="controlsDiv")
-           span(id="tempSpacer")
-           i(class="wi wi-celsius temp" id="tempC" title="Celsius" onClick=handleNavClick)
-           span(id="tempSpacer")
-           i(class="wi wi-fahrenheit tempActive" id="tempF" title="Fahrenheit" onClick=handleNavClick)
+    include ./titleBar.pug
+    include ./navBar.pug

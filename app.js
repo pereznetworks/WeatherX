@@ -27,7 +27,7 @@ const locals = require('./views/locals.js');
 // now which routes to use routers with
 app.use('/', (req, res, next) => {
   // renders the a title bar and navbar with tempType controls
-  res.render('index', locals.inputControls)
+  res.render('index', locals.homePg)
 });
 
 // catch 404 and forward to error handler

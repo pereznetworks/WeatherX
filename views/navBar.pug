@@ -1,0 +1,16 @@
+div(id="navBar3" class="middle-grid-item-1")
+  form( id="inputControls" action="\weather" method="get")
+    input(type="text" value=`${prevInput}` name="geoCodeThis" id="geoCoding-TextInput" placeholder=`${inputMsg.default}` required onChange=handleInputChange)
+    input(type="submit" defaultValue=" " id="geoCoding-TextSubmit" title="Submit Search" onClick=handleNavSubmit onSubmit=handleNavSubmit)
+    if tempType == "Fahrenheit"
+      div(class="controlsDiv")
+        span(id="tempSpacer")
+        i(class="wi wi-celsius temp" id="tempC" title="Celsius" onClick=handleNavClick)
+        span(id="tempSpacer")
+        i(class="wi wi-fahrenheit tempActive" id="tempF" title="Fahrenheit" onClick=handleNavClick)
+    else if tempType == "Celsius"
+       div(class="controlsDiv")
+         span(id="tempSpacer")
+         i(class="wi wi-celsius temp" id="tempC" title="Celsius" onClick=handleNavClick)
+         span(id="tempSpacer")
+         i(class="wi wi-fahrenheit tempActive" id="tempF" title="Fahrenheit" onClick=handleNavClick)
