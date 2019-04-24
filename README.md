@@ -9,7 +9,7 @@
       - with only REACT, either WEBPACK/BABEL or CREATE-REACT-APP, and REACT-ROUTER on NODE.JS/EXPRESS using MONGOD or PostgreSQL or  MYSQL
         - main trouble is passing the data to the react components
         - where the /api route is not accessible via the internet (fetch/axios)
-      - there are may be solutions
+      - there may be solutions
         - which unfortunately are outside the scope of this project
 
 # PROJECT 12 v.0.2.0
