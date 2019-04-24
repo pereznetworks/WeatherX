@@ -21,11 +21,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// importing static variables to pass to rendered view
 const locals = require('./views/locals.js');
 
 // now which routes to use routers with
 app.use('/', (req, res, next) => {
-  //res.end(`Please excuse our dust while we renovate =)`);
+  // renders the a title bar and navbar with tempType controls
   res.render('index', locals.inputControls)
 });
 
