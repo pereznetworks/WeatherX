@@ -1,0 +1,452 @@
+/* Default styling rules are...
+   designed for smallest portrait-mode mobile devices first
+   media queries adapt for larger screens and then landscape-mode
+*/
+
+/* navBar3  and navBar3 parent div styles */
+
+*{
+  color:#e0e0e0
+}
+
+#navBar3{
+  align-content: center;
+  text-align: center;
+  justify-content: center;
+  height: fit-content;
+  background-color: #282c34;
+  color:#fff;
+  width:100%;
+  margin: auto;
+}
+
+/* titleBar styles */
+
+#titleBar{
+  padding:0;
+  border:0;
+  width:100%;
+  height:max-content;
+  margin: 0;
+  text-align: center;
+}
+
+#title {
+  font-size: 1.5em;
+  width: auto;
+  height: 60%;
+  margin: 0 0;
+  border: 0;
+  text-decoration: none;
+}
+
+#title:hover{
+  color:#17a2b8;
+}
+
+#titleText {
+  font-size: .8em;
+  width: 100%;
+  height: 60%;
+  display: block;
+  text-align: center;
+  margin: 0 0;
+  border: 0;
+  text-decoration: none;
+}
+
+#titleText:hover{
+  color:#17a2b8;
+}
+
+/* input controls form div*/
+
+#inputControls{
+  display:inline;
+  margin: auto;
+}
+
+.attribLink {
+  display: inline;
+  font-size: .8em;
+  width: auto;
+  height: 1%;
+  text-align: center;
+  margin: 0 0;
+  padding: 1% 1% 0 0;
+  border: 0;
+  text-decoration: none;
+}
+
+.attribLink:hover{
+  color:#17a2b8;
+}
+/* input Form styles */
+
+.geo-button-div, {
+  width:auto;
+}
+
+.about-button-div{
+  display:inline;
+  width:30px;
+  float:left;
+  text-align: left;
+}
+
+.geocoding-div{
+  float:left;
+  display:inline;
+  margin: 0 0 0 0%;
+  width: 80%;
+}
+
+.geolocation-div, .backhome-div {
+  display: inline;
+  width: 30px;
+  height: 30px;
+  float: left;
+  margin: 0;
+}
+
+.geo-button, .about-button, .tempType{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  background-size: 120%;
+  text-decoration: none;
+  font-size: .8em;
+  color: #fff;
+  border: none;
+  vertical-align:middle;
+  padding: 0;
+  text-align: center;
+  align-content: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 6px;
+}
+
+.geo-button-label, .about-button-label {
+  display:block;
+  text-align: center;
+  align-content: center;
+  width:auto;
+  height: 20px;
+  font-size: .8em;
+}
+
+.backHome-div{
+  width:30px;
+  position: absolute;
+  top:5%;
+  left:5%;
+  background-color: transparent;
+}
+
+#backHome-button{
+    background-image:url('../imgs/Menu-48-offW.png');
+    float:left;
+    text-align: left;
+    align-content: left;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 120%;
+    text-decoration: none;
+    font-size: .8em;
+    color: #fff;
+    border: none;
+    vertical-align:middle;
+    padding: 0;
+    text-align: center;
+    align-content: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 6px;
+}
+
+#backHome-button:hover{
+  background-image:url('../imgs/Menu-48-4B4AA7-T.png');
+}
+
+#geoCoding-TextInput {
+  border: 0 solid #000;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  color: #000;
+  background-color: #bbb;
+  width: 215px;
+  height: 26px;
+  display: inline;
+  font-size: .8em;
+  vertical-align: middle;
+  margin-right: 1%;
+  padding: 0;
+  margin: 0;
+}
+
+#geoCoding-TextInput::placeholder{
+  color:#000;
+}
+
+#geoCoding-TextSubmit {
+  background-image:url('../imgs/Search-48.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 120%;
+  text-decoration: none;
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  display: inline;
+  border: none;
+  vertical-align: middle;
+  padding: 0;
+  margin: 0 0 0 0;
+  border-radius: 6px;
+  color:transparent
+}
+
+#geoCoding-TextSubmit:hover {
+  background-image:url('../imgs/Search-48-4B4AA7-T.png');
+}
+
+#geoLocation-Submit {
+    background-image:url('../imgs/FindMe-48.png');
+    margin: 0 1% 0 0;
+}
+
+#about-Submit {
+    background-image:url('../imgs/About-48.png');
+}
+
+#geoCoding-Submit {
+    background-image:url('../imgs/Search-48.png');
+}
+
+#about-Submit:hover {
+    background-image:url('../imgs/About-48-4B4AA7-T.png');
+}
+
+#geoCoding-Submit:hover {
+    background-image:url('../imgs/Search-48-4B4AA7-T.png');
+}
+
+#geoLocation-Submit:hover{
+    background-image:url('../imgs/FindMe-48-4B4AA7-T.png');
+}
+
+#geoCoding-Input, #geoCoding-Submit, #geoCoding-Label, #geoLocation-Label, #about-Button-Label{
+  display:none;
+}
+
+/* input Control styles */
+
+ .temp{
+  margin: 0;
+  padding: 0;
+ }
+
+ .controlsDiv{
+   display:block;
+   text-align: center;
+ }
+
+ #tempC, #tempF{
+   width: 30px;
+   height: 30px;
+   margin: 0 0 4px 0;
+   padding: 6px 0 1px 0;
+   font-size: 32px;
+   font-weight:bolder;
+   vertical-align: middle;
+ }
+
+
+ #tempSpacer{
+   width: 10px;
+   margin: 0 0 0 0;
+   padding: 0 0 0 0;
+   vertical-align: 48%;
+ }
+
+.temp:hover {
+  color:#4B4AA7;
+}
+
+.tempActive{
+    color:#4B4AA7;
+}
+
+ #addLocation{
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-color: transparent;
+  background-image:url('../imgs/Add-New-48-offW.png');
+  background-size: 80%;
+  border-radius: 50%;
+  vertical-align: -16%;
+  height: 40px;
+  width: 40px;
+  margin: 0 4px 0 0px;
+}
+
+#addLocation:hover {
+    background-image:url('../imgs/Add-New-48-4B4AA7-T.png');
+}
+/* tooltip styles */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+/* Media Queries
+   built and tested on Safaris Responsive Design Mode and Chrome DevTools Device Toolbar
+   and a few actual Apple Android devices, Macs and Windows 10 PC's
+*/
+
+@media only screen and (min-width: 360px){
+  #geoCoding-TextInput{
+    width:250px;
+  }
+}
+
+@media only screen and (min-width: 420px){
+  #navBar3{
+    width:100%;
+    margin: auto;
+  }
+
+  /* .geocoding-div {
+    width:88%;
+  } */
+
+  #geoCoding-TextInput{
+    width:300px;
+  }
+
+}
+
+@media only screen and (min-width: 720px){
+
+  #navBar3{
+    width:95%;
+    margin: auto;
+  }
+
+  #backHome-button{
+      background-image:url('../imgs/Menu-48-offW.png');
+  }
+
+
+  /* .geocoding-div {
+    width:85%;
+  } */
+
+  #geoCoding-TextInput{
+    width:320px;
+  }
+
+  #temp-div{
+    padding: 0 2% 0 2%;
+  }
+
+  #currentTemp{
+    line-height: 20px;
+  }
+}
+
+@media only screen and (min-width: 1020px){
+  #tempC{
+      font-size: 1.4em;
+  }
+  #tempF{
+     font-size: 1.4em;
+  }
+
+  #addLocation{
+    height: 30px;
+    width: 30px;
+    margin: 0 4px 8px 0px;
+    padding-bottom: 0px;
+    vertical-align: top;
+  }
+}
+
+/* media query templates
+
+  @media only screen and (min-width: 360px) {
+
+  }
+
+  @media only screen and (min-width: 560px) and (min-height: 320px) {
+
+  }
+
+  @media only screen and (min-width: 410px) and (min-height:660px){
+
+  }
+
+  @media only screen and (min-width: 720px) and (min-height:300px){
+
+  }
+
+  @media only screen and (min-width: 800px) and (min-height:375px){
+
+  }
+
+  @media only screen and (min-width: 720px) and (min-height:1024px){
+
+  }
+
+  @media only screen and (min-width: 900px){
+
+  }
+
+  @media only screen and (min-width: 1100px){
+
+  }
+
+  @media only screen and (min-width: 1300px){
+
+  }
+
+  @media only screen and (min-width: 1600px){
+
+  }
+*/
+
+/* uneeded styles
+
+  #mainView div {
+   width:300px;
+   height:600px;
+   text-align: center;
+   background-color:#000;
+  }
+
+  #backHome-button:hover{
+    background-image:url('../imgs/Menu-48-4B4AA7-B.png');
+  }
+
+*/

@@ -1,0 +1,177 @@
+
+*{
+  color: #E0E0E0;
+}
+
+.mainView{
+  scroll-behavior: auto;
+  width: 100%;
+  height: max-content;
+  margin: 0 0 0 0;
+  padding: 8% 0 0 0;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+#mainViewHeader{
+  width:100%;
+  height:fit-content;
+  display:block;
+  margin:8% 0 0 0;
+  padding:0;
+}
+
+#mainView h1 {
+  line-height:25%;
+  font-size:4em;
+  text-align: center;
+  background: transparent;
+}
+
+#mainView h3, #mainView p {
+  text-align: center;
+  background: transparent;
+}
+
+#mainView h3 {
+  font-size: 1.5em;
+}
+
+#cityName, #currentConditions, #todayTemp, #AboutHeader{
+  display:block;
+  text-align:center;
+}
+
+#cityName {
+  padding-top: 10px;
+}
+#todayTempType{
+  font-size: .6em;
+  vertical-align: middle;
+}
+#tableHdr, #tableWeek{
+  width: 100%;
+}
+
+#dayOfWeek{
+  width:21%;
+  text-align: left;
+  padding: 0 0 0 5%;
+}
+
+#today{
+  font-size: .8em;
+  width:21%;
+  text-align:left;
+}
+#blank{
+  width:14%;
+}
+
+#tempHigh, #tempLow{
+  width:14%
+}
+
+.scrollingEnabled{
+  overflow: scroll;
+}
+
+#tableDays {
+  font-size: .8em;
+  width: 100%;
+  border-top: 1px solid #f9f9f9a8;
+  border-bottom: 1px solid #f9f9f9a8;
+}
+
+#tableDays th, #tableDays td{
+  text-align: center;
+  margin: 0 0 0 10%;
+  padding: 0 18px 18px 18px;
+  background: transparent;
+  font-weight: lighter;
+}
+
+#tableWeek tbody{
+  margin-top: 20px 0;
+}
+
+#tableWeek th, #tableWeek td {
+  margin: 10px 0;
+}
+
+#tableWeek td {
+  text-align: center;
+  margin: 0 0 0 10%;
+  height: 30px;
+}
+
+#tableWeek #dayOfWeek{
+  text-align: left;
+  padding: 0 0 0 5%;
+}
+
+@media only screen and (min-width: 720px) and (min-height:300px){
+
+}
+
+@media only screen and (min-width: 800px) and (min-height:375px){
+
+}
+
+@media only screen and (min-width: 720px) and (min-height:1024px){
+  #mainView{
+    width: 70%;
+    left: 14%;
+  }
+}
+
+@media only screen and (min-width: 720px){
+  #mainView{
+    width: 70%;
+    left: 14%;
+  }
+}
+
+@media only screen and (min-width: 900px){
+  #mainView{
+    width: 70%;
+    left: 14%;
+  }
+
+  #mainViewHeader{
+    margin: 5% 0 0 0;
+  }
+}
+
+@media only screen and (min-width: 1100px){
+  #mainView{
+    width: 70%;
+    left: 14%;
+  }
+  #mainViewHeader{
+    margin: 5% 0 0 0;
+  }
+}
+
+@media only screen and (min-width: 1300px){
+  #mainView{
+    width: 70%;
+    left: 14%;
+  }
+  #mainViewHeader{
+    margin: 5% 0 0 0;
+  }
+}
+
+@media only screen and (min-width: 1600px){
+  #mainView{
+    width: 70%;
+    left: 14%;
+  }
+  #mainViewHeader{
+    margin: 5% 0 0 0;
+  }
+}
