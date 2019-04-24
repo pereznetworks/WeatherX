@@ -5,10 +5,12 @@
 
 # PROJECT UPDATE:
   - Well after much consternation it looks like I will be dropping REACT... :disappointed_relieved:
-    - then main issue is deploying a REACT app that access data using server-side database
+    - then main issue is deploying a REACT app that accesses data using a server-side database
       - with only REACT, either WEBPACK/BABEL or CREATE-REACT-APP, and REACT-ROUTER on NODE.JS/EXPRESS using MONGOD or PostgreSQL or  MYSQL
-      - where the /api route is not accessible via the internet
-      - there are many solutions, which unfortunately are outside the scope of this project
+        - main trouble is passing the data to the react components
+        - where the /api route is not accessible via the internet (fetch/axios)
+      - there are may be solutions
+        - which unfortunately are outside the scope of this project
 
 # PROJECT 12 v.0.2.0
   - So I will be implementing the views of my Weather App using PUG….
