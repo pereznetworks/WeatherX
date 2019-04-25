@@ -1,0 +1,11 @@
+if locationBar.locationCityState
+  div(title="locationBar" class='locationBar-div' id=`${locationBar.locationBarBackGround}`)
+    div(id="cityTime-div")
+      p(id="locationTime")=`${locationBar.liveFormattedTime}`
+      p(indexno=`${indexno}` id="locationName")=`${locationBar.locationCityState}`
+    div(title="currentConditions" id="locationCondition")
+      i(title=`${locationBar.currentConditions}` style="font-size:1.2em;" class=`${locationBar.wiClass}`)
+    include ./tempDisplay.pug
+    div(indexno=`${indexno}` title="remove" class="removeLocation")
+else
+  div

@@ -1,6 +1,6 @@
 div(id="navBar3" class="middle-grid-item-1")
   form( id="inputControls" action="\weather" method="get")
-    input(type="text" value=`${prevInput}` name="geoCodeThis" id="geoCoding-TextInput" placeholder=`${inputMsg.default}` required onChange=handleInputChange)
+    input(type="text" name="geoCodeThis" id="geoCoding-TextInput" placeholder=`${initialView.defaultMsg}` required onChange=handleInputChange)
     input(type="submit" defaultValue=" " id="geoCoding-TextSubmit" title="Submit Search" onClick=handleNavSubmit onSubmit=handleNavSubmit)
     if tempType == "Fahrenheit"
       div(class="controlsDiv")

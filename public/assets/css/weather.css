@@ -41,7 +41,7 @@
   background-image: linear-gradient(to bottom left, #484848,#48c4e0); /* Standard syntax (must be last) */
 }
 
-#locationBar-clearNight, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #flocationBar-oggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
+#locationBar-clearNight, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #flocationBar-foggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
   height:80px;
   padding-top:12px;
   background-color: #757575;

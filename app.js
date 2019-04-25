@@ -22,12 +22,32 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // importing static variables to pass to rendered view
-const locals = require('./views/locals.js');
+const locals = {
+  searchResults: {
+    forecast: false,
+    initialView: require('./views/initialView/locals.js').homePg,
+    locationBar: require(`./views/locationBarView/locals.js`).locationBar
+  }
+}
+
+// home page, renders index, or initialView
+app.get('/', (req, res, next) => {
+  // renders the a title bar  and navbar with tempType controls
+  // locationBar only renders if locationCityState is not blank
+  console.log(locals.searchResults);
+  res.render('index', locals.searchResults)
+
+});
+
 
 // now which routes to use routers with
-app.use('/', (req, res, next) => {
-  // renders the a title bar and navbar with tempType controls
-  res.render('index', locals.homePg)
+app.get('/weather', (req, res, next) => {
+  // gecodes req.query.searchInput, uses result to get forecast data
+  // send data back to home page usign a redirect
+
+  locals.searchResults.forecast = true;
+  locals.searchResults.locationBar.locationCityState = req.query.geoCodeThis;
+  res.redirect('/')
 });
 
 // catch 404 and forward to error handler

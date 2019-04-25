@@ -977,7 +977,7 @@ export default class Middle extends Component {
         getCurrentLocation={this.getCurrentLocation}
         />
       <div className='middle-grid-item-2'>
-        {this.displayNewLocFirst()}
+        {this.f()}
       </div>
       <MainView
         navState={this.state}
