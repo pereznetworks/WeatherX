@@ -16,10 +16,12 @@
     "sequelize": "^5.7.4",
     "throng": "4.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --inspect index.js"
+    "start": "nodemon --inspect --watch index.js"
   },
   "repository": {
     "type": "git",

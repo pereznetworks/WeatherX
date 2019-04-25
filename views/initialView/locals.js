@@ -9,7 +9,7 @@ module.exports.homePg = {
   defaultMsg: "Please enter a location",
   tryAgainMsg: "Please enter city, state or city, country",
   projectSiteLink: "https://pereznetworks.github.io/TD-Project12/",
-  aboutProjectSiteLink: "https://pereznetworks.github.io/TD-Project12/",
+  aboutProjectSiteLink: "https://github.com/pereznetworks/TD-Project12/tree/master",
   teamTreehouse: "https://teamtreehouse.com",
   darksky: "https://darksky.net/poweredby/",
   tomtom: "https://developer.tomtom.com/tomtom-maps-apis-developers"
