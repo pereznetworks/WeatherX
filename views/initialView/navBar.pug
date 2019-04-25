@@ -1,14 +1,14 @@
-div(id="navBar3" class="middle-grid-item-1")
+div(id="navBar" class="middle-grid-item-1")
   form( id="inputControls" action="\weather" method="get")
     input(type="text" name="geoCodeThis" id="geoCoding-TextInput" placeholder=`${initialView.defaultMsg}` required onChange=handleInputChange)
     input(type="submit" defaultValue=" " id="geoCoding-TextSubmit" title="Submit Search" onClick=handleNavSubmit onSubmit=handleNavSubmit)
-    if tempType == "Fahrenheit"
+    if tempTypeFahrenheit
       div(class="controlsDiv")
         span(id="tempSpacer")
         i(class="wi wi-celsius temp" id="tempC" title="Celsius" onClick=handleNavClick)
         span(id="tempSpacer")
         i(class="wi wi-fahrenheit tempActive" id="tempF" title="Fahrenheit" onClick=handleNavClick)
-    else if tempType == "Celsius"
+    else
        div(class="controlsDiv")
          span(id="tempSpacer")
          i(class="wi wi-celsius temp" id="tempC" title="Celsius" onClick=handleNavClick)

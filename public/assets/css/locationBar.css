@@ -46,6 +46,10 @@
   text-align: center;
 }
 
+#conditionIcon:hover{
+ color:#4B4AA7;
+}
+
 #temp-div{
   display: inline;
   float: left;

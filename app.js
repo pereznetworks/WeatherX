@@ -21,12 +21,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // importing static variables to pass to rendered view
 const locals = {
   searchResults: {
     forecast: false,
     initialView: require('./views/initialView/locals.js').homePg,
-    locationBar: require(`./views/locationBarView/locals.js`).locationBar
+    locationBar: require(`./views/locationBarView/locals.js`).locationBar,
+    mainView: require('./views/mainView/locals.js').mainView
   }
 }
 
@@ -44,10 +46,21 @@ app.get('/', (req, res, next) => {
 app.get('/weather', (req, res, next) => {
   // gecodes req.query.searchInput, uses result to get forecast data
   // send data back to home page usign a redirect
-
+  locals.searchResults.initialView.middleGridItemNo += 1;
   locals.searchResults.forecast = true;
   locals.searchResults.locationBar.locationCityState = req.query.geoCodeThis;
   res.redirect('/')
+});
+
+app.get('/mainView', (req, res, next) => {
+  // requires already gecoded location and forecast data
+  // otherwise redirect to home page
+  // else renders mainView
+  if (locals.searchResults.forecast){
+    res.render('mainView/detail.pug', locals.searchResults)
+  } else {
+    res.redirect('/')
+  }
 });
 
 // catch 404 and forward to error handler

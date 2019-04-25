@@ -2,7 +2,8 @@
 // static variables to pass as locals to pug when rendering each view
 
 module.exports.homePg = {
-  tempType: "Fahrenheit",
+  middleGridItemNo:1,
+  tempTypeFahrenheit:true,
   prevInput: "",
   goeCodeThis: "",
   defaultMsg: "Please enter a location",

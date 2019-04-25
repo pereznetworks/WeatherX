@@ -1,0 +1,11 @@
+extends ../layout
+block content
+  div(class="backHome-div")
+    a(type="button" class="geo-button" id="backHome-button" title="backHome" href="/")
+  //- include ./initialView/titleBar.pug
+  div(style="padding-top:28px" class="mainView" title='mainView' id=`${mainView.background}`)
+    //-include ./mainViewHdr.pug
+    //-include ./tableHdr.pug
+    div(class="scrollingEnabled")
+      //-include ./tableDay.pug
+    //-include ./tableWeek.pug

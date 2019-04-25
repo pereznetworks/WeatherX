@@ -2,8 +2,8 @@ const tempUtils = require(`../utils`).temp;
 const timeUtils = require(`../utils`).time;
 
 module.exports.locationBar = {
-  currentTemp: 0, //tempUtils.tempTypeConversion(appData.fahrenheitType, locationCurrentTemp),
-  locationCurrentTemp: -34, // Math.floorappData.forecastData[indexno].data.currently.temperature,
+  tempFahrenheit: 0, //tempUtils.tempTypeConversion(appData.fahrenheitType, locationCurrentTemp),
+  tempCelsius: -34, // Math.floorappData.forecastData[indexno].data.currently.temperature,
   locationBarBackGround: 'locationBar-clearDay', // appData.locationBarBackGround[indexno]
   liveFormattedTime: `12:00 PM`, //${getLiveFormatedTime(newTime, appData.forecastData[indexno].data.offset)}
   locationCityState: null, // `${appData.locationData[indexno].data.city}, ${appData.locationData[indexno].data.province}`

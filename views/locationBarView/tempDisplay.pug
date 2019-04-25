@@ -1,7 +1,7 @@
 div(id="temp-div")
   if locationBar.fahrenheitType
     p(class="tempType" title="Fahrenheit")=`${locationBar.fahrenheitFont}`
-    p(id="currentTemp" title=`${locationBar.locationCurrentTemp}`)=`${locationBar.locationCurrentTemp}`
+    p(id="currentTemp" title=`${locationBar.tempFahrenheit}`)=`${locationBar.tempFahrenheit}`
   else
     p(class="tempType" title="Celsius")=`${locationBar.celsiusFont}`
-    p(id="currentTemp" title=`${locationBar.currentTemp}`)=`${locationBar.currentTemp}`
+    p(id="currentTemp" title=`${locationBar.tempCelsius}`)=`${locationBar.tempCelsius}`
