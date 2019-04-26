@@ -1,7 +1,9 @@
+- var tempTypeC = document.getElementById("tempC").className
+- var tempTypeF = document.getElementById("tempF").className
 div(id="temp-div")
-  if locationBar.fahrenheitType
+  if tempF == "wi wi-fahrenheit tempActive"
     p(class="tempType" title="Fahrenheit")=`${locationBar.fahrenheitFont}`
-    p(id="currentTemp" title=`${locationBar.tempFahrenheit}`)=`${locationBar.tempFahrenheit}`
+    p(id="currentTemp" title=`${locationBar.tempFahrenheit}`)=`${locationBar[indexNo].tempFahrenheit}`
   else
     p(class="tempType" title="Celsius")=`${locationBar.celsiusFont}`
-    p(id="currentTemp" title=`${locationBar.tempCelsius}`)=`${locationBar.tempCelsius}`
+    p(id="currentTemp" title=`${locationBar.tempCelsius}`)=`${locationBar[indexNo].tempCelsius}`

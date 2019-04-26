@@ -5,10 +5,14 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+
 // creating the express app
 const app = express();
 
-// routes go here
+
+// basic secruity measures
+const helmet = require('helmet')
+app.use(helmet());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,46 +26,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// importing static variables to pass to rendered view
-const locals = {
-  searchResults: {
-    forecast: false,
-    initialView: require('./views/initialView/locals.js').homePg,
-    locationBar: require(`./views/locationBarView/locals.js`).locationBar,
-    mainView: require('./views/mainView/locals.js').mainView
-  }
-}
+// importing routes
+const routes = require('./routes/index.js');
 
-// home page, renders index, or initialView
-app.get('/', (req, res, next) => {
-  // renders the a title bar  and navbar with tempType controls
-  // locationBar only renders if locationCityState is not blank
-  console.log(locals.searchResults);
-  res.render('index', locals.searchResults)
-
-});
-
-
-// now which routes to use routers with
-app.get('/weather', (req, res, next) => {
-  // gecodes req.query.searchInput, uses result to get forecast data
-  // send data back to home page usign a redirect
-  locals.searchResults.initialView.middleGridItemNo += 1;
-  locals.searchResults.forecast = true;
-  locals.searchResults.locationBar.locationCityState = req.query.geoCodeThis;
-  res.redirect('/')
-});
-
-app.get('/mainView', (req, res, next) => {
-  // requires already gecoded location and forecast data
-  // otherwise redirect to home page
-  // else renders mainView
-  if (locals.searchResults.forecast){
-    res.render('mainView/detail.pug', locals.searchResults)
-  } else {
-    res.redirect('/')
-  }
-});
+app.use('/', routes);
+app.use('/weatherCurrent', routes);
+app.use('/weatherForecast', routes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

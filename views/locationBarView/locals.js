@@ -7,12 +7,12 @@ module.exports.locationBar = {
   locationBarBackGround: 'locationBar-clearDay', // appData.locationBarBackGround[indexno]
   liveFormattedTime: `12:00 PM`, //${getLiveFormatedTime(newTime, appData.forecastData[indexno].data.offset)}
   locationCityState: null, // `${appData.locationData[indexno].data.city}, ${appData.locationData[indexno].data.province}`
+  currentConditions: 'clearDay',
+  wiClass: "wi wi-day-sunny",
   indexnoe: 0, // indexno?
   weatherIcon:{},
   fahrenheitType:true,
   fahrenheitFont:"°F",
   celsiusType:true,
-  celsiusFont:"°C",
-  currentConditions: 'clearDay',
-  wiClass: "wi wi-day-sunny"
+  celsiusFont:"°C"
 }
