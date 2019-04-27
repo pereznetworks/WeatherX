@@ -17,10 +17,37 @@ const locals = {
 }
 
 const createLoctions = locationName  => {
+  // doing this here means only a valid query will set forecast flag true
+  locals.searchResults.forecast = true;
   // locationBars
-  locals.searchResults.locationBarArray.push({locationName: locationName, tempFahrenheit:0, tempCelsius:-34, locationBarBackGround:'locationBar-clearDay', liveFormattedTime:`12:00 PM`, currentCondition:'clearDay', wiClass:"wi wi-day-sunny"});
+  locals.searchResults.locationBarArray.push(
+    {
+      locationName: locationName,
+      tempFahrenheit:0,
+      tempCelsius:-34,
+      locationBarBackGround:'locationBar-clearDay',
+      liveFormattedTime:`12:00 PM`, currentCondition:'clearDay',
+      wiClass:"wi wi-day-sunny"
+    }
+  ); // end locationBarArray.push
   // mainViews
-  locals.searchResults.mainViewArray.push({location:{name:locationName}, currentConditions: {tempFahrenheit:0, tempCelsius:-34, locationBarBackGround:'locationBar-clearDay', liveFormattedTime:`12:00 PM`, currentCondition:'clearDay', wiClass:"wi wi-day-sunny"}});
+  locals.searchResults.mainViewArray.push(
+    {
+      location:
+          {
+            name:locationName
+          },
+       currentConditions:
+          {
+            tempFahrenheit:0,
+            tempCelsius:-34,
+            mainViewBackGround:'locationBar-clearDay',
+            liveFormattedTime:`12:00 PM`,
+            currentCondition:'clearDay',
+            wiClass:"wi wi-day-sunny"
+          }
+    }
+  ); // end mainViewArray.push
 }
 // home page, renders index, or initialView
 main.get('/', (req, res, next) => {
@@ -34,7 +61,6 @@ main.get('/', (req, res, next) => {
 main.get('/weatherCurrent', (req, res, next) => {
   // gecodes req.query.searchInput, uses result to get forecast data
   // send data back to home page usign a redirect
-
   locals.searchResults.arrayLength = locals.searchResults.locationBarArray.length;
   locals.searchResults.currentIndex = locals.searchResults.arrayLength - 1;
   createLoctions(req.query.geoCodeThis);
