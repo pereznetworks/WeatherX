@@ -16,8 +16,9 @@ const locals = {
   }
 }
 
-
+// convert Fahrenheit to Celsius and Celsius to Fahrenheit
 const convertTemp = (tempType, tempNum) => {
+
   if (tempType  == "Celsius"){
     // so converting from Fahrenheit to Celsius
     return ((tempNum - 32 ) / 1.8).toPrecision(4);
@@ -26,8 +27,11 @@ const convertTemp = (tempType, tempNum) => {
     return (tempNum *  1.8) + 32;
   }
 
-} // end convertToTemp()
+ // end convertTemp()
+}
 
+// create arrays containing current and forecast weather for requested locations
+// add to locals
 const createLoctions = locationName  => {
   let locationTemp = 0;
   // doing this here means only a valid query will set forecast flag true
@@ -61,8 +65,15 @@ const createLoctions = locationName  => {
           }
     }
   ); // end mainViewArray.push
+
+// end createLoctions()
 }
-// home page, renders index, or initialView
+
+const removeLocation = indexNo => {
+  locals.searchResults.locationBarArray.splice(indexNo, 1);
+  locals.searchResults.mainViewArray.splice(indexNo, 1);
+}
+// renders index, home page or initialView
 main.get('/', (req, res, next) => {
   // renders the a title bar  and navbar with tempType controls
   // locationBar only renders as response from /weatherCurren
@@ -70,7 +81,9 @@ main.get('/', (req, res, next) => {
 
 });
 
-// now which routes to use routers with
+// current weather route gecodes and gets weather data for each location
+// calls createLoctions(), storing data in locals.searchResults
+// redirects back to home route
 main.get('/weatherCurrent', (req, res, next) => {
   // gecodes req.query.searchInput, uses result to get forecast data
   // send data back to home page usign a redirect
@@ -80,6 +93,8 @@ main.get('/weatherCurrent', (req, res, next) => {
   res.redirect('/')
 });
 
+// selected location calls weatherForecast route
+// renders main view or detail of weather forecast for that location
 main.get('/weatherForecast/:indexNo', (req, res, next) => {
   // requires already gecoded location and forecast data
   // otherwise redirect to home page
@@ -92,4 +107,12 @@ main.get('/weatherForecast/:indexNo', (req, res, next) => {
   }
 });
 
+// removes the correspondong forecast data object from location and mainView arrays
+// redirect to home page,
+// which renders the existing locationBars minus removed location
+main.get('/removeLocation/:indexNo', (req, res, next) => {
+  if (req.params.indexNo && !isNaN(parseInt(req.params.indexNo))){
+  removeLocation(req.params.indexNo);}
+  res.redirect('/')
+});
 module.exports = main;
