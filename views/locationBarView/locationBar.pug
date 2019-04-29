@@ -11,7 +11,7 @@ if forecast
         div(id="cityTime-div")
           p(id="locationTime")=`${location.liveFormattedTime}`
           p(indexno=`${indexno}` id="locationName")=`${location.locationName}`
-        a(title="currentConditions" id="locationCondition" href="/weatherForecast:indexNo")
+        a(title="currentConditions" id="locationCondition" href=`/weatherForecast/${indexNo}`)
           i(title=`${currentConditions}` style="font-size:1.2em;" id="conditionIcon" class=`${location.wiClass}`)
         div(id=`temp-div${indexNo}`)
             p(class="currentTemp" id=`tempF${indexNo}` title=`${locationBar.tempFahrenheit}`)=`${location.tempFahrenheit}`

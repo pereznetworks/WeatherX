@@ -2,13 +2,14 @@ extends ../layout
 block content
   div(class="backHome-div")
     a(type="button" class="geo-button" id="backHome-button" title="backHome" href="/")
-  div(style="padding-top:28px" class="mainView" title='mainView' id=`${${mainViewArray[arrayIndexNo].currentConditions.mainViewbackground}`)
-    //-include ./mainViewHdr.pug
+  div(style="padding-top:28px;" class="mainView" title='mainView' id=`${mainViewArray[arrayIndexNo].currentConditions.mainViewBackGround}`)
+//- include ./mainViewHdr.pug
     h3(id="cityName")= `${mainViewArray[arrayIndexNo].location.name}`
-    p(style="display:block;width:auto;height:200px") placeholder for current conditions data
-    //-include ./tableHdr.pug
+    p(style="display:block;width:auto;height:200px;")= placeholder for current conditions data
+//- include ./tableHdr.pug
     div(class="scrollingEnabled")
-      //-include ./tableDay.pug
-      p(style=""display:block;width:auto;height:200px") placeholder for hourly data
-    //-include ./tableWeek.pug
-      p(style=""display:block;width:auto;height:600px") placeholder for daily data
+//- include ./tableDay.pug
+      p(style="display:block;width:auto;height:200px;")= placeholder for hourly data
+//- include ./tableWeek.pug
+      p(style="display:block;width:auto;height:600px;")= placeholder for daily data
+//- end of detail.pug

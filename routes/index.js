@@ -80,7 +80,7 @@ main.get('/weatherCurrent', (req, res, next) => {
   res.redirect('/')
 });
 
-main.get('/weatherForecast:indexNo', (req, res, next) => {
+main.get('/weatherForecast/:indexNo', (req, res, next) => {
   // requires already gecoded location and forecast data
   // otherwise redirect to home page
   // else renders mainView
