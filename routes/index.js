@@ -16,15 +16,28 @@ const locals = {
   }
 }
 
+
+const convertTemp = (tempType, tempNum) => {
+  if (tempType  == "Celsius"){
+    // so converting from Fahrenheit to Celsius
+    return ((tempNum - 32 ) / 1.8).toPrecision(4);
+  } else {
+    // else converting to Fahrenheit from Celsius
+    return (tempNum *  1.8) + 32;
+  }
+
+} // end convertToTemp()
+
 const createLoctions = locationName  => {
+  let locationTemp = 0;
   // doing this here means only a valid query will set forecast flag true
   locals.searchResults.forecast = true;
   // locationBars
   locals.searchResults.locationBarArray.push(
     {
       locationName: locationName,
-      tempFahrenheit:0,
-      tempCelsius:-34,
+      tempFahrenheit:locationTemp,
+      tempCelsius: convertTemp("Celsius", locationTemp),
       locationBarBackGround:'locationBar-clearDay',
       liveFormattedTime:`12:00 PM`, currentCondition:'clearDay',
       wiClass:"wi wi-day-sunny"

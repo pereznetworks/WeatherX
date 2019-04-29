@@ -254,7 +254,7 @@
    text-align: center;
  }
 
- #tempC, #tempF{
+ #tempCbutton, #tempFbutton{
    width: 30px;
    height: 30px;
    margin: 0 0 4px 0;

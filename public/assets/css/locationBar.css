@@ -10,6 +10,7 @@
 .hideLocationBarDiv{
   display:none;
 }
+
 #cityTime-div{
   display: inline;
   float: left;
@@ -50,25 +51,32 @@
  color:#4B4AA7;
 }
 
-#temp-div{
+#temp-div0, #temp-div1, #temp-div2, #temp-div3, #temp-div4, #temp-div5, #temp-div6, #temp-div7, #temp-div8, #temp-div9, #temp-div10{
   display: inline;
   float: left;
   height: 100%;
   width: 25%;
   margin: 0;
-  padding: 2% 1% 0 2%;
+  padding: 1% 1% 0 2%;
 }
 
-  #currentTemp {
+  .currentTemp {
     float: right;
     font-size: 2.8em;
     display: block;
     line-height: 22px;
-    margin: 7% 0% 3% 0;
+    margin: 0% 0% 3% 0;
     padding: 0% 0 2% 0;
   }
 
-  .tempType{
+  .hideTemp {
+    float: left;
+    font-size: 0;
+    display: none;
+    line-height: 0;
+    }
+
+  .tempTypeC, .tempTypeF{
     float: right;
     font-size: 1.2em;
     display: block;

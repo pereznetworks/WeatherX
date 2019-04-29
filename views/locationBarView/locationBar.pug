@@ -1,43 +1,22 @@
-script.
-  function handleNavClick(event){
-  var currentTemp = document.getElementById("currentTemp");
-      if (event.target.title ==  "Fahrenheit"){
-        document.getElementById("tempF").className = "wi wi-fahrenheit tempActive";
-        document.getElementById("tempC").className = "wi wi-celsius temp";
-        document.getElementById("tempType").innerHTML = `°F`;
-        var arrayOfLB = document.getElementsByClassName("locationBar-div");
-        arrayOfLB.forEach(function(item, index){
-         document.getElementById("tempType").title = `Fahrenheit`;
-         document.getElementById("currentTempF").innerHTML = `${currentTemp}`;
-        })
-      } else {
-        document.getElementById("tempF").className = "wi wi-fahrenheit temp";
-        document.getElementById("tempC").className = "wi wi-celsius tempActive";
-        document.getElementById("tempType").innerHTML = `°C`;
-        var arrayOfLB = document.getElementsByClassName("locationBar-div");
-        arrayOfLB.forEach(function(item, index){
-         document.getElementById("tempType").title = `Celsius`
-         document.getElementById("currentTempF").innerHTML = `${currentTemp - 34}`;
-        })
-      }
-  }
 if forecast
   - var indexNo = 0
   div(class="controlsDiv")
     span(id="tempSpacer")
-    i(class="wi wi-celsius temp" id="tempC" title="Celsius" onClick="handleNavClick(event)")
+    i(class="wi wi-celsius temp" id="tempCbutton" title="Celsius" onClick="handleTempClick(event)")
     span(id="tempSpacer")
-    i(class="wi wi-fahrenheit tempActive" id="tempF" title="Fahrenheit" onClick="handleNavClick(event)")
+    i(class="wi wi-fahrenheit tempActive" id="tempFbutton" title="Fahrenheit" onClick="handleTempClick(event)")
   each location in locationBarArray
-    div(id=`locationBar-div${indexNo}` index=`${indexNo}` class=`middle-grid-item-${indexNo}`)
+    div(id=`locationBar-div${indexNo}` index=`${indexNo}` class=`middle-grid-item-${indexNo + 2}`)
       div(title="locationBar" class='locationBar-div' id=`${location.locationBarBackGround}`)
         div(id="cityTime-div")
           p(id="locationTime")=`${location.liveFormattedTime}`
           p(indexno=`${indexno}` id="locationName")=`${location.locationName}`
         a(title="currentConditions" id="locationCondition" href="/weatherForecast:indexNo")
           i(title=`${currentConditions}` style="font-size:1.2em;" id="conditionIcon" class=`${location.wiClass}`)
-        div(id="temp-div")
-            p(class="tempType" id="tempType" title="Fahrenheit")=`${locationBar.fahrenheitFont}`
-            p(id="currentTemp" title=`${locationBar.tempFahrenheit}`)=`${location.tempFahrenheit}`
+        div(id=`temp-div${indexNo}`)
+            p(class="currentTemp" id=`tempF${indexNo}` title=`${locationBar.tempFahrenheit}`)=`${location.tempFahrenheit}`
+              span(class="tempType" id="tempTypeF" title="Fahrenheit")=`${locationBar.fahrenheitFont}`
+            p(class="hideTemp" id=`tempC${indexNo}` title=`${locationBar.tempCelsius}`)=`${location.tempCelsius}`
+              span(class="tempType" id="tempTypeC" title="Celsius")=`${locationBar.celsiusFont}`
         div(indexno=`${indexNo}` title="remove" class="removeLocation")
     - indexNo += 1

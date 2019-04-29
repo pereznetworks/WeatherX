@@ -5,10 +5,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-
 // creating the express app
 const app = express();
-
 
 // basic secruity measures
 const helmet = require('helmet')
@@ -24,7 +22,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 // importing routes
 const routes = require('./routes/index.js');
