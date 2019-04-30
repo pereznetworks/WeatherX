@@ -54,7 +54,8 @@ const createLoctions = locationName  => {
       locationBarBackGround:'locationBar-clearDay',
       liveFormattedTime: `${realTimeClock.time}`,
       currentCondition:'clearDay',
-      wiClass:"wi wi-day-sunny"
+      wiClass:"wi wi-day-sunny",
+      timezone: locationName === 'San Francisco, CA' ? -8 : -5
     }
   ); // end locationBarArray.push
   // mainViews

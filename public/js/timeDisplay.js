@@ -106,9 +106,11 @@ const realTimeClock = {
   }
 }; // the clock
 
-function setTime(){
+function setTime(locationArray){
+
   var arrayOfLB = Array.from(document.getElementsByClassName("locationBar-div"));
   arrayOfLB.forEach(function(item, index){
-    document.getElementById(`locationTime${index}`).innerHTML = realTimeClock.getLiveFormatedTime(new Date(), realTimeClock.tz);
+    const tz = document.getElementById(`locationTime${index}`).attributes.tz.value;
+    document.getElementById(`locationTime${index}`).innerHTML = realTimeClock.getLiveFormatedTime(new Date(), tz);
   });
 };

@@ -13,7 +13,7 @@ if forecast
     div(id=`locationBar-div${indexNo}` index=`${indexNo}` class=`middle-grid-item-${indexNo + 2}`)
       div(title="locationBar" class='locationBar-div' id=`${location.locationBarBackGround}`)
         div(id="cityTime-div")
-          p(id=`locationTime${indexNo}`)= `${location.liveFormattedTime}`
+          p(id=`locationTime${indexNo}` tz=`${location.timezone}`)= `${location.liveFormattedTime}`
           p(id="locationName")=`${location.locationName}`
         a(title="currentConditions" id="locationCondition" href=`/weatherForecast/${indexNo}`)
           i(title=`${location.currentCondition}` style="font-size:1.2em;" id="conditionIcon" class=`${location.wiClass}`)
