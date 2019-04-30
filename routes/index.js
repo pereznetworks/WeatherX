@@ -1,7 +1,16 @@
 const express = require('express');
 const main = express.Router();
 
+const realTimeClock = require(`../views/utils`).realTimeClock;
 // importing static variables to pass to rendered view
+
+const startClock = function(){
+  realTimeClock.getLiveFormatedTime(new Date(), realTimeClock.tz)
+};
+
+let rtcInterval = setInterval(startClock, 1000);
+// clearInterval(rtcInterval); - when to do this...
+
 const locals = {
   searchResults: {
     forecast: false,
@@ -31,7 +40,7 @@ const convertTemp = (tempType, tempNum) => {
 }
 
 // create arrays containing current and forecast weather for requested locations
-// add to locals
+// each array is created as part of the locals.searchResults object
 const createLoctions = locationName  => {
   let locationTemp = 0;
   // doing this here means only a valid query will set forecast flag true
@@ -43,7 +52,8 @@ const createLoctions = locationName  => {
       tempFahrenheit:locationTemp,
       tempCelsius: convertTemp("Celsius", locationTemp),
       locationBarBackGround:'locationBar-clearDay',
-      liveFormattedTime:`12:00 PM`, currentCondition:'clearDay',
+      liveFormattedTime: `${realTimeClock.time}`,
+      currentCondition:'clearDay',
       wiClass:"wi wi-day-sunny"
     }
   ); // end locationBarArray.push
@@ -59,7 +69,7 @@ const createLoctions = locationName  => {
             tempFahrenheit:0,
             tempCelsius:-34,
             mainViewBackGround:'locationBar-clearDay',
-            liveFormattedTime:`12:00 PM`,
+            liveFormattedTime:`${realTimeClock.time}`,
             currentCondition:'clearDay',
             wiClass:"wi wi-day-sunny"
           }
@@ -69,11 +79,13 @@ const createLoctions = locationName  => {
 // end createLoctions()
 }
 
+// using an indexNo, splices out the corresponding data object from locationBarArray and mainViewArray
 const removeLocation = indexNo => {
   locals.searchResults.locationBarArray.splice(indexNo, 1);
   locals.searchResults.mainViewArray.splice(indexNo, 1);
 }
-// renders index, home page or initialView
+
+// renders home page, initial view
 main.get('/', (req, res, next) => {
   // renders the a title bar  and navbar with tempType controls
   // locationBar only renders as response from /weatherCurren
@@ -115,4 +127,5 @@ main.get('/removeLocation/:indexNo', (req, res, next) => {
   removeLocation(req.params.indexNo);}
   res.redirect('/')
 });
+
 module.exports = main;

@@ -1,5 +1,9 @@
 if forecast
+  script.
+    setInterval(setTime, 1000);
+    window.onunload = function(){clearInterval()};
   - var indexNo = 0
+  - var clocks = []
   div(class="controlsDiv")
     span(id="tempSpacer")
     i(class="wi wi-celsius temp" id="tempCbutton" title="Celsius" onClick="handleTempClick(event)")
@@ -9,8 +13,8 @@ if forecast
     div(id=`locationBar-div${indexNo}` index=`${indexNo}` class=`middle-grid-item-${indexNo + 2}`)
       div(title="locationBar" class='locationBar-div' id=`${location.locationBarBackGround}`)
         div(id="cityTime-div")
-          p(id="locationTime")=`${location.liveFormattedTime}`
-          p(indexno=`${indexno}` id="locationName")=`${location.locationName}`
+          p(id=`locationTime${indexNo}`)= `${location.liveFormattedTime}`
+          p(id="locationName")=`${location.locationName}`
         a(title="currentConditions" id="locationCondition" href=`/weatherForecast/${indexNo}`)
           i(title=`${location.currentCondition}` style="font-size:1.2em;" id="conditionIcon" class=`${location.wiClass}`)
         div(id=`temp-div${indexNo}`)

@@ -21,8 +21,9 @@
   font-size: 16px;
 }
 
-  #locationTime, #locationName {
+  #cityTime-div p {
     margin:1% 10%;
+    padding: 1% 0;
     display: block;
     line-height:13px;
     font-size: .8em;
