@@ -104,13 +104,16 @@ const realTimeClock = {
       }
     }
   }
-}; // the clock
+};
 
-function setTime(locationArray){
+// for each div of class 'locationBar-div',
+// adjust the realTimeClock.time using that locations timezone offset
+const setTime = locationArray => {
 
   var arrayOfLB = Array.from(document.getElementsByClassName("locationBar-div"));
   arrayOfLB.forEach(function(item, index){
     const tz = document.getElementById(`locationTime${index}`).attributes.tz.value;
     document.getElementById(`locationTime${index}`).innerHTML = realTimeClock.getLiveFormatedTime(new Date(), tz);
   });
+  
 };

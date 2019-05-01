@@ -1,16 +1,7 @@
 const express = require('express');
 const main = express.Router();
 
-const realTimeClock = require(`../views/utils`).realTimeClock;
-// importing static variables to pass to rendered view
-
-const startClock = function(){
-  realTimeClock.getLiveFormatedTime(new Date(), realTimeClock.tz)
-};
-
-let rtcInterval = setInterval(startClock, 1000);
-// clearInterval(rtcInterval); - when to do this...
-
+// locals to pass to pug templates to be rendered with the view
 const locals = {
   searchResults: {
     forecast: false,
@@ -24,6 +15,17 @@ const locals = {
     mainViewArray:[], // store and track data for mainViews, index and length should match locationBarArray
   }
 }
+
+// object containing methods and vars for are realTimeClock
+const realTimeClock = require(`../views/utils`).realTimeClock;
+
+// run a server-side realTimeClock
+const startClock = function(){
+  realTimeClock.getLiveFormatedTime(new Date(), realTimeClock.tz)
+};
+
+let rtcInterval = setInterval(startClock, 1000);
+// clearInterval(rtcInterval); - when to do this...??
 
 // convert Fahrenheit to Celsius and Celsius to Fahrenheit
 const convertTemp = (tempType, tempNum) => {

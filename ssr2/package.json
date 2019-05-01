@@ -22,7 +22,7 @@
     "ignore-styles": "5.0.1",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
-    "sequelize": "4.42.1",
+    "sequelize": "^5.7.0",
     "sequelize-cli": "5.4.0",
     "sqlite3": "^4.0.6",
     "throng": "4.0.0"
