@@ -9,7 +9,7 @@ if forecast
     i(class="wi wi-celsius temp" id="tempCbutton" title="Celsius" onClick="handleTempClick(event)")
     span(id="tempSpacer")
     i(class="wi wi-fahrenheit tempActive" id="tempFbutton" title="Fahrenheit" onClick="handleTempClick(event)")
-  each location in locationBarArray
+  each location in availLocationsArray
     div(id=`locationBar-div${indexNo}` index=`${indexNo}` class=`middle-grid-item-${indexNo + 2}`)
       div(title="locationBar" class='locationBar-div' id=`${location.locationBarBackGround}`)
         div(id="cityTime-div")

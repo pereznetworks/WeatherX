@@ -1,6 +1,7 @@
 //require modules setup by express-generator
-const createError = require('http-errors');
+require('dotenv').config();
 const express = require('express');
+const createError = require('http-errors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');

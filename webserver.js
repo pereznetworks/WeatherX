@@ -5,14 +5,15 @@
  */
 
 var app = require('./app.js');
-var debug = require('debug')('simpleapp:server');
+var debug = require('debug')('weatherx:server');
 var http = require('http');
+var process = require('process');
 
 // using sequelize for data ...
 // importing from models/index.js
 // .. which sets config, checks for or creates a db, imports models into sequelize
 // .... then imported here
-// const sequelize = require('../data/models').sequelize;
+const sequelize = require('./data/models').sequelize;
 
 /**
  * Get port from environment and store in Express.
@@ -31,19 +32,17 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port, () => {
-  console.log('Express server listening on port', port);
-});
+
 
 
 // sync the sequelize database, then start the server
-// sequelize
-//   .sync()
-//   .then(() => {
-//     server.listen(port, () => {
-//       console.log('Express server listening on port', 3000);
-//     });
-//   });
+sequelize
+  .sync()
+  .then(() => {
+    server.listen(port, () => {
+      console.log('Express server listening on port', port);
+    });
+  });
 
 
 server.on('error', onError);
