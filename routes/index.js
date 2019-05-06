@@ -3,12 +3,6 @@ const axios = require('axios');
 const main = express.Router();
 
 
-// api keys
-const apiKeys = {
-  forecastKey:  process.env.FORECAST_KEY,
-  geoCodeKey: process.env.GEOCODE_KEY
-}
-
 // importing sequelize, db and models
 const sequelizeDb = require('../data/models');
 
@@ -27,6 +21,8 @@ const newLocationData = require('../dataSource').newLocationData;
 const locals = {
   searchResults: {
     forecast: false,
+    notADuplicateLocation: true,
+    geoCodeThis: '', // raw input from navbar view,
     initialView: require('../views/initialView/locals.js').homePg,
     locationBar: require(`../views/locationBarView/locals.js`).locationBar,
     mainView: require('../views/mainView/locals.js').mainView,
@@ -37,7 +33,7 @@ const locals = {
     mainViewArray:[], // store and track data for mainViews, index and length should match locationBarArray
     forecastData: [],
     locationData: [],
-    locationName: [],
+    locationName: [], // corrected geocoded city, province name of requested navbar input
     locationCount: 0,
     currentLocationData: {},
     availLocationsArray: [],
@@ -46,15 +42,44 @@ const locals = {
   }
 }
 
+// check for dups, if input is a dup, set notADuplicateLocation to false
+const compareLocationName = (item, index) => {
+
+  // first isolate city, province and the make Upper Case
+  const findEachWord = /[\sA-Za-z]+/g;
+
+  const locationCity = item.match(findEachWord)[0].toUpperCase();
+  const locationProvice = item.match(findEachWord)[1].toUpperCase();
+  const compareLocationName = `${locationCity}, ${locationProvice}`;
+
+  const city = locals.searchResults.geoCodeThis.match(findEachWord)[0].toUpperCase();
+  const province = locals.searchResults.geoCodeThis.match(findEachWord)[1].toUpperCase();
+  const compareInput = `${city}, ${province}`;
+
+  // then compare
+  if (compareLocationName === compareInput){
+    locals.searchResults.notADuplicateLocation = false;
+  } else {
+    locals.searchResults.notADuplicateLocation = true;
+  }
+};
+
 // create arrays containing current and forecast weather for requested locations
 // each array is created as part of the locals.searchResults object
 
 // make api calls and process geocoded location and weather data
-const getForecast = async function(input, apiKeys){
+const getForecast = function(req, res, next){
   // resetting forecast flag just in case this is not the first forecast retreived
   locals.searchResults.forecast = false;
 
+  // api keys
+  const apiKeys = {
+    forecastKey:  process.env.FORECAST_KEY,
+    geoCodeKey: process.env.GEOCODE_KEY
+  }
+
   // importing utils for time and temp
+  const input = req.query.geoCodeThis;
   const timeDate = require('../dataSource/utils').timeDate;
   const convertTemp = require('../dataSource/utils').convertTemp;
   const setBackground = require('../dataSource/utils').setBackground;
@@ -149,6 +174,8 @@ const getForecast = async function(input, apiKeys){
                     // doing this here means only a valid query will set forecast flag true
                     locals.searchResults.forecast = true;
 
+                    res.render('index', locals.searchResults);
+
                     console.log(`response sent, deleting data.., should get 2 "found:" folloewd by nothing`);
                     db.splice(0, db.length)
 
@@ -169,29 +196,29 @@ const getForecast = async function(input, apiKeys){
 
                     }).catch( err => {
                       console.log('Error getting forecast data... ', err);
-                      return err;
+                      next(err);
                    });
 
                  }).catch(err => {
                   console.log('Error getting location data... ', err);
-                    return err;
+                  next(err);
               });
 
             }).catch(function(error){
               console.log(`error: ${error}`);
+              next(err);
             });
 
          }).catch(err => {
           console.log('Error geocding that location ... ', err);
-          return err;
+          next(err);
         });
-      return locals.searchResults.forecast = true;
     }
   } else {
 
-    let errorMsg = `Opps, it seems we did not receive a valid location: place type a city, state or zipcode, then a ',' followed by a country abbreviation`;
-    next(new Error(`${errorMsg}`));
-    return locals.searchResults.forecast;
+    // let errorMsg = `Opps, it seems we did not receive a valid location: place type a city, state or zipcode, then a ',' followed by a country abbreviation`;
+    // next(new Error(`${errorMsg}`));
+    res.render('index', locals.searchResults);
   }
 };
 
@@ -219,16 +246,42 @@ main.get('/', (req, res, next) => {
 // calls createLoctions(), storing data in locals.searchResults
 // redirects back to home route
 main.get('/weatherCurrent', (req, res, next) => {
-  // gecodes req.query.searchInput, uses result to get forecast data
-  // send data back to home page usign a redirect
-  if (req.query.geoCodeThis){
-    locals.searchResults.arrayLength = locals.searchResults.locationBarArray.length;
-    locals.searchResults.currentIndex = locals.searchResults.arrayLength - 1;
+  // gecodes req.query.searchInput, uses result to get forecast.io data
+  // render home page view after data processing done
 
-    // async axios api calls mean that cant return anything
-    // so when data retrieved saved to locals.searchResults
-    getForecast(req.query.geoCodeThis, apiKeys);
-    res.redirect('/', locals.searchResults);
+  // regexps for basic input validation
+  // for now just checking for comma delimited location like...city, state
+  const lookForCommaBetween = /,(?=[\sA-Za-z])/g;
+  // for any input that start with a comma
+  const lookForCommaAtBeginning = /^,(?=[\sA-Za-z])/g;
+  // and for numbers anywhere in the input
+  const findNumbers = /[0-9]+/g;
+
+  if (req.query.geoCodeThis !== ''){ //if not blank
+
+    locals.searchResults.geoCodeThis = req.query.geoCodeThis;
+    
+    // if there are other names in the locationData array, compare each of these for dulicates
+    if (locals.searchResults.locationName.length > 0){
+      locals.searchResults.locationName.forEach(compareLocationName);
+    }
+
+    // if not a duplicate, if there is at least 1 comma between words, if no comma at beginning and if no numbers,
+    if (locals.searchResults.notADuplicateLocation && req.query.geoCodeThis.match(lookForCommaBetween) !== null || req.query.geoCodeThis.match(lookForCommaAtBeginning) === null || req.query.geoCodeThis.match(findNumbers) == null ){
+
+      // the increase indexs, save input to geoCodeThis array
+      locals.searchResults.arrayLength = locals.searchResults.locationBarArray.length;
+      locals.searchResults.currentIndex = locals.searchResults.arrayLength - 1;
+
+      // make async axios api calls to get and process data
+      getForecast(req, res, next);
+    }
+
+  } else {
+
+    // just in case req.query.geoCodeThis is blank, just render the home page with no changes
+    // may want to change navBar input so users is prompted for valid input
+    res.render('index', locals.searchResults);
   }
 
 });
