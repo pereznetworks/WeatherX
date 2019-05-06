@@ -48,7 +48,8 @@ module.exports.timeDate = {
 
   getTZhours: function(dateInt, tz){ // get the UTChour() of a dateInt, then account for timezone offset
 
-    let utc = dateInt.getUTCHours();
+
+    let utc = (this.getUpToSecDateOfLocation(dateInt)).getUTCHours();
     let hrs;
 
     if (tz < 0){
@@ -124,7 +125,7 @@ module.exports.timeDate = {
   },
 
   getLiveFormatedTime: function(dateInt, tz){ // get the time, given utc hr, min and secs and the timezone, for given location
-    let date = dateInt;
+    let date = this.getUpToSecDateOfLocation(dateInt);
     let hrs, mins, secs;
 
     hrs = this.getTZhours(date, tz);
@@ -144,7 +145,7 @@ module.exports.timeDate = {
   },
 
   getCurrentTimeAtLocation: function(locationTime, tz){ // get the time, given utc hr, min and the timezone, for given location
-    let date = locationTime;  // this.appData.date
+    let date = this.getUpToSecDateOfLocation(locationTime);
     let hrs, mins;
 
     hrs = this.getTZhours(date, tz);
@@ -423,7 +424,7 @@ module.exports.setBackground = {
   }
   }
 
-module.exports.getWiClass = function(icon){
+module.exports.getWiClass = function(icon, day){
   // for mapping locationData, inserts currentConditions into a LocationBar Div, inserted into grid
 
     let wiClass;

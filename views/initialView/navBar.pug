@@ -1,4 +1,4 @@
 div(id="navBar" class="middle-grid-item-1")
-  form( id="inputControls" action="\weatherCurrent" method="get")
+  form( id="inputControls" action="/weatherCurrent" method="get")
     input(type="text" name="geoCodeThis" id="geoCoding-TextInput" placeholder=`${initialView.defaultMsg}` required onChange=handleInputChange)
     input(type="submit" defaultValue=" " id="geoCoding-TextSubmit" title="Submit Search" onClick=handleNavSubmit onSubmit=handleNavSubmit)
