@@ -260,14 +260,14 @@ main.get('/weatherCurrent', (req, res, next) => {
   if (req.query.geoCodeThis !== ''){ //if not blank
 
     locals.searchResults.geoCodeThis = req.query.geoCodeThis;
-    
+
     // if there are other names in the locationData array, compare each of these for dulicates
     if (locals.searchResults.locationName.length > 0){
       locals.searchResults.locationName.forEach(compareLocationName);
     }
 
     // if not a duplicate, if there is at least 1 comma between words, if no comma at beginning and if no numbers,
-    if (locals.searchResults.notADuplicateLocation && req.query.geoCodeThis.match(lookForCommaBetween) !== null || req.query.geoCodeThis.match(lookForCommaAtBeginning) === null || req.query.geoCodeThis.match(findNumbers) == null ){
+    if (locals.searchResults.notADuplicateLocation && (req.query.geoCodeThis.match(lookForCommaBetween) !== null || req.query.geoCodeThis.match(lookForCommaAtBeginning) == null || req.query.geoCodeThis.match(findNumbers) == null) ){
 
       // the increase indexs, save input to geoCodeThis array
       locals.searchResults.arrayLength = locals.searchResults.locationBarArray.length;
@@ -275,7 +275,12 @@ main.get('/weatherCurrent', (req, res, next) => {
 
       // make async axios api calls to get and process data
       getForecast(req, res, next);
+    } else {
+      // just in case req.query.geoCodeThis is a duplicate, just render the home page with no changes
+      // may want to change navBar input so users is prompted for valid input
+      res.render('index', locals.searchResults);
     }
+
 
   } else {
 
