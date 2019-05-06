@@ -222,7 +222,7 @@ const getForecast = function(req, res, next){
   }
 };
 
-// using an indexNo, splices out the corresponding data object from locationBarArray and mainViewArray
+// using an indexNo, splices out the corresponding data object from arrays in locals.searchResults
 const removeLocation = indexNo => {
   // using a given index, splice all arrays with the effect of removing that location
   locals.searchResults.locationData.splice(indexNo, 1);
