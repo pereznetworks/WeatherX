@@ -35,9 +35,9 @@ module.exports.timeDate = {
      }
     };
 
-    let tzHrs = correct24hour(this.getTZhours(this.getUpToSecDateOfLocation(dateInt), tz));
-    let tzSunset = correct24hour(this.getTZhours(this.getUpToSecDateOfLocation(sunset), tz));
-    let tzSunrise = correct24hour(this.getTZhours(this.getUpToSecDateOfLocation(sunrise), tz));
+    let tzHrs = correct24hour(this.getTZhours(dateInt, tz));
+    let tzSunset = correct24hour(this.getTZhours(sunset, tz));
+    let tzSunrise = correct24hour(this.getTZhours(sunrise, tz));
 
     if(tzHrs > tzSunset || tzHrs <= tzSunrise ){
       return false;  // so it's night time in this timezone
