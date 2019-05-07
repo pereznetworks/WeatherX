@@ -159,7 +159,7 @@ module.exports.timeDate = {
 
   },
 
-  getHourOfDay: function(dateInt, tz, currentDay){ // return the hours of the day, for 00 hours, return day of week
+  getHourOfDay: function(dateInt, tz){ // return the hours of the day, for 00 hours, return day of week
     // get hour of day, given utc hour and timezone offset for a given location
     // if it's 12 AM, or midnight, return the day of week instead
 
@@ -170,16 +170,14 @@ module.exports.timeDate = {
     let hourOfDay = this.formatTime(hrs);
     let nextDay;
 
-    const currentDayArray = currentDay;
-    const currentDayArray = [...currentDayArray, this.whatDayIsIt(dateInt, tz)];
-    const currentDayIndex = currentDay.length - 1;
+    const currentDayIndex = this.whatDayIsIt(dateInt, tz);
     let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
     if (hourOfDay === '0 AM' || hourOfDay === '12 AM'){
         nextDay = currentDay[currentDayIndex];
-        return { hourofDay: daysOfWeek[nextDay], currentDay: currentDayArray};
+        return daysOfWeek[nextDay];
     } else {
-        return { hourOfDay: hourOfDay, currentDay: currentDayArray};
+        return hourOfDay
     }
   },
 
@@ -317,6 +315,7 @@ module.exports.timeDate = {
           return "locationBar-windyNight";
         }
   }
+
 };
 
 /* changes to convertTemp methods : are now object methods

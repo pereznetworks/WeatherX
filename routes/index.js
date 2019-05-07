@@ -17,6 +17,18 @@ const manageLocData = require('../dataSource').manageLocData;
 const newForecastData = require('../dataSource').newForecastData;
 const newLocationData = require('../dataSource').newLocationData;
 
+// api keys
+const apiKeys = {
+  forecastKey:  process.env.FORECAST_KEY,
+  geoCodeKey: process.env.GEOCODE_KEY
+}
+
+// importing utils for time and temp
+const timeDate = require('../dataSource/utils').timeDate;
+const convertTemp = require('../dataSource/utils').convertTemp;
+const setBackground = require('../dataSource/utils').setBackground;
+const getWiClass = require('../dataSource/utils').getWiClass;
+
 // locals to pass to pug templates to be rendered with the view
 const locals = {
   searchResults: {
@@ -72,18 +84,7 @@ const getForecast = function(req, res, next){
   // resetting forecast flag just in case this is not the first forecast retreived
   locals.searchResults.forecast = false;
 
-  // api keys
-  const apiKeys = {
-    forecastKey:  process.env.FORECAST_KEY,
-    geoCodeKey: process.env.GEOCODE_KEY
-  }
-
-  // importing utils for time and temp
   const input = req.query.geoCodeThis;
-  const timeDate = require('../dataSource/utils').timeDate;
-  const convertTemp = require('../dataSource/utils').convertTemp;
-  const setBackground = require('../dataSource/utils').setBackground;
-  const getWiClass = require('../dataSource/utils').getWiClass;
 
   if (input ){
 
@@ -222,6 +223,78 @@ const getForecast = function(req, res, next){
   }
 };
 
+const showForecastDetail = function(index){
+
+  // have forecastData ready ... now set mainView to true
+  locals.searchResults.currentLocationData = {
+      index: index,
+      name: `${locals.searchResults.locationData[index].data.city}, ${locals.searchResults.locationData[index].data.province}`,
+      sunsetTime: locals.searchResults.forecastData[index].data.daily.data[0].sunsetTime,
+      sunriseTime: locals.searchResults.forecastData[index].data.daily.data[0].sunriseTime,
+      utcOffSet: locals.searchResults.forecastData[index].data.offset,
+      time: timeDate.getCurrentTimeAtLocation(locals.searchResults.forecastData[index].data.currently.time, locals.searchResults.forecastData[index].data.offset),
+      tempFahrenheit: Math.floor(locals.searchResults.forecastData[index].data.currently.temperature),
+      tempCelsius: convertTemp.toCelsius(Math.floor(locals.searchResults.forecastData[index].data.currently.temperature)),
+      day: timeDate.checkDay(locals.searchResults.forecastData[index].data.currently.time, locals.searchResults.forecastData[index].data.offset, locals.searchResults.forecastData[index].data.daily.data[0].sunsetTime, locals.searchResults.forecastData[index].data.daily.data[0].sunriseTime),
+      icon: locals.searchResults.forecastData[index].data.currently.icon
+    };
+
+   locals.searchResults.currentForecast = locals.searchResults.forecastData[index].data;
+   locals.searchResults.hourlyConditions = getHourlyConditions(locals.searchResults.forecastData[index].data.hourly.data);
+   locals.searchResults.dailyConditions = getDailyConditions(locals.searchResults.forecastData[index].data.daily.data);
+
+};
+
+const pickOutDataPoints = (dataObject, index) => {  // callback function for getHourlyConditions
+
+  let day = timeDate.checkDay(dataObject.time, locals.searchResults.currentLocationData.utcOffSet, locals.searchResults.currentLocationData.sunsetTime, locals.searchResults.currentLocationData.sunriseTime);
+  let hour =  timeDate.getHourOfDay(dataObject.time, locals.searchResults.currentLocationData.utcOffSet);
+  let icon = dataObject.icon;
+  let tempFahrenheit = locals.searchResults.currentLocationData.tempFahrenheit;
+  let tempCelsius = locals.searchResults.currentLocationData.tempCelsius;
+
+  if (index === 0 ){
+    return {
+      day: day,     // datatype boolean
+      hour: 'Now',  // datatype string
+      icon: icon,   // datatype string
+      tempF: tempFahrenheit,   // datatype int
+      tempC: tempCelsius
+    };
+  } else {
+    return {
+      day: day,    // datatype boolean
+      hour: hour,  // datatype string
+      icon: icon,  // datatype string
+      tempF: tempFahrenheit,   // datatype int
+      tempC: tempCelsius
+    };
+  }
+};
+
+const pickOutDailyDataPoints = (dataObject, index) => { // calback function for getDailyConditions
+
+    // let today = new Date();
+    let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    return {
+      day: daysOfWeek[timeDate.whatDayIsIt(dataObject.time, locals.searchResults.currentLocationData.utcOffSet)],  // datatype string
+      icon: dataObject.icon,            // datatype string
+      tempLowF: Math.floor(dataObject.temperatureLow),   // datatype int
+      tempHighF: Math.floor(dataObject.temperatureHigh),  // datatype int
+      tempLowC: convertTemp.toCelsius( Math.floor(dataObject.temperatureLow)),   // datatype int
+      tempHighC: convertTemp.toCelsius( Math.floor(dataObject.temperatureHigh)),   // datatype int
+    };
+};
+
+const getHourlyConditions = (dataArray) => { // for each hour in a locations forecast, return an object of datapoints
+   return dataArray.map(pickOutDataPoints);
+}
+
+const getDailyConditions = (dataArray) => { // for each day in a locations forecast, return an object of datapoints
+   return dataArray.map(pickOutDailyDataPoints);
+}
+
 // using an indexNo, splices out the corresponding data object from arrays in locals.searchResults
 const removeLocation = indexNo => {
   // using a given index, splice all arrays with the effect of removing that location
@@ -299,7 +372,9 @@ main.get('/weatherForecast/:indexNo', (req, res, next) => {
   // else renders mainView
   if (locals.searchResults.forecast){
     locals.searchResults.arrayIndexNo = req.params.indexNo;
+    showForecastDetail(locals.searchResults.arrayIndexNo);
     res.render('mainView/detail.pug', locals.searchResults)
+    console.dir(locals.searchResults.currentLocationData);
   } else {
     res.redirect('/')
   }
