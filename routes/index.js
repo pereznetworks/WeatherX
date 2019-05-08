@@ -250,8 +250,10 @@ const showForecastDetail = function(index){
 
    locals.searchResults.tableHeader = {
      dayOfWeek: daysOfWeek[timeDate.whatDayIsIt(locals.searchResults.currentForecast.currently.time, locals.searchResults.currentForecast.offset)],
-     tempHigh: Math.floor(locals.searchResults.currentForecast.daily.data[0].temperatureHigh),
-     tempLow: Math.floor(locals.searchResults.currentForecast.daily.data[0].temperatureLow),
+     tempHighF: Math.floor(locals.searchResults.currentForecast.daily.data[0].temperatureHigh),
+     tempLowF: Math.floor(locals.searchResults.currentForecast.daily.data[0].temperatureLow),
+     tempHighC: convertTemp.toCelsius(Math.floor(locals.searchResults.currentForecast.daily.data[0].temperatureHigh)),
+     tempLowC: convertTemp.toCelsius(Math.floor(locals.searchResults.currentForecast.daily.data[0].temperatureLow)),
    }
 
 };
