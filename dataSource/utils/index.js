@@ -182,8 +182,7 @@ module.exports.timeDate = {
     let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
     if (hourOfDay === '0 AM' || hourOfDay === '12 AM'){
-        nextDay = currentDay[currentDayIndex];
-        return daysOfWeek[nextDay];
+        return daysOfWeek[currentDayIndex];
     } else {
         return hourOfDay
     }
