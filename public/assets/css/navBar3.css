@@ -115,10 +115,10 @@
   background-color: transparent;
   background-size: 120%;
   text-decoration: none;
-  font-size: .8em;
+  font-size: .6em;
   color: #fff;
   border: none;
-  vertical-align:middle;
+  vertical-align:super;
   padding: 0;
   text-align: center;
   align-content: center;

@@ -2,10 +2,8 @@ extends ../layout
 block content
   div(class="backHome-div")
     a(type="button" class="geo-button" id="backHome-button" title="backHome" href="/")
-  div(style="padding-top:28px;" class="mainView" title='mainView' id=`${locationBarBackGround[arrayIndexNo]}`)
-//- include ./mainViewHdr.pug
-    h3(id="cityName")= `${availLocationsArray[arrayIndexNo].locationName}`
-    p(style="display:block;width:auto;height:200px;")= placeholder for current conditions data
+  div(style="padding-top:28px;" class="mainView" title='mainView' id=`${mainViewBackGround[arrayIndexNo]}`)
+    include ./mainViewHeader/index.pug
 //- include ./tableHdr.pug
     div(class="scrollingEnabled")
 //- include ./tableDay.pug

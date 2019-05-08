@@ -32,6 +32,8 @@ const getWiClass = require('../dataSource/utils').getWiClass;
 // locals to pass to pug templates to be rendered with the view
 const locals = {
   searchResults: {
+    fahrenheitFont:"°F",
+    celsiusFont:"°C",
     forecast: false,
     tempTypeFahrenheit: true,
     notADuplicateLocation: true,
@@ -389,7 +391,7 @@ main.get('/weatherForecast/:indexNo', (req, res, next) => {
     locals.searchResults.arrayIndexNo = req.params.indexNo;
     showForecastDetail(locals.searchResults.arrayIndexNo);
     res.render('mainView/detail.pug', locals.searchResults)
-    console.dir(locals.searchResults.currentLocationData);
+    // console.dir(locals.searchResults.currentLocationData);
   } else {
     res.redirect('/')
   }
