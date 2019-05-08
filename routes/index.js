@@ -246,6 +246,14 @@ const showForecastDetail = function(index){
    locals.searchResults.hourlyConditions = getHourlyConditions(locals.searchResults.forecastData[index].data.hourly.data);
    locals.searchResults.dailyConditions = getDailyConditions(locals.searchResults.forecastData[index].data.daily.data);
 
+    let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+   locals.searchResults.tableHeader = {
+     dayOfWeek: daysOfWeek[timeDate.whatDayIsIt(locals.searchResults.currentForecast.currently.time, locals.searchResults.currentForecast.offset)],
+     tempHigh: Math.floor(locals.searchResults.currentForecast.daily.data[0].temperatureHigh),
+     tempLow: Math.floor(locals.searchResults.currentForecast.daily.data[0].temperatureLow),
+   }
+
 };
 
 const pickOutDataPoints = (dataObject, index) => {  // callback function for getHourlyConditions
@@ -391,7 +399,6 @@ main.get('/weatherForecast/:indexNo', (req, res, next) => {
     locals.searchResults.arrayIndexNo = req.params.indexNo;
     showForecastDetail(locals.searchResults.arrayIndexNo);
     res.render('mainView/detail.pug', locals.searchResults)
-    // console.dir(locals.searchResults.currentLocationData);
   } else {
     res.redirect('/')
   }
