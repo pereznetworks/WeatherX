@@ -1,7 +1,7 @@
-let currentTempF = 0;
-let currentTempC = 0;
-let locationTemps = [];
-let locationBarDivs = [];
+// let currentTempF = 0;
+// let currentTempC = 0;
+// let locationTemps = [];
+// let locationBarDivs = [];
 
 function handleTempClick(event){
 

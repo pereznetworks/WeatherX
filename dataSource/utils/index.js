@@ -11,7 +11,9 @@ module.exports.timeDate = {
   // For now, using my own custom code to adjust from UTC to timezone offset of location
 
   getUpToSecDateOfLocation: function(dateInt){
-    // for whatever reason, the hourly timestamps need extra 000's to be a full timestamp
+    // returns a timeStamp using the dateInt * 1000
+    // the forecast.io timestamps needs to be * 1000 to be converted into a Date timeStamp
+    // this.getUpToSecDateOfLocation(1550674812) -> 1550674812000
    return new Date(dateInt * 1000);
  },
 
@@ -25,6 +27,11 @@ module.exports.timeDate = {
     // getTZhours usess getUTCHours, which returns a 36 hr/day hour
     // but here I am correting for a 24 hour/day hour
     // so 24 hundred hours becomes, 0 hours, etc...
+
+    let timeStamp = this.getUpToSecDateOfLocation(dateInt);
+    let sunSet = this.getUpToSecDateOfLocation(sunset);
+    let sunRise = this.getUpToSecDateOfLocation(sunrise);
+
     const correct24hour = hrX => {
       if (hrX === 24){
        return 0;
@@ -35,9 +42,9 @@ module.exports.timeDate = {
      }
     };
 
-    let tzHrs = correct24hour(this.getTZhours(dateInt, tz));
-    let tzSunset = correct24hour(this.getTZhours(sunset, tz));
-    let tzSunrise = correct24hour(this.getTZhours(sunrise, tz));
+    let tzHrs = correct24hour(this.getTZhours(timeStamp, tz));
+    let tzSunset = correct24hour(this.getTZhours(sunSet, tz));
+    let tzSunrise = correct24hour(this.getTZhours(sunRise, tz));
 
     if(tzHrs > tzSunset || tzHrs <= tzSunrise ){
       return false;  // so it's night time in this timezone
@@ -48,8 +55,7 @@ module.exports.timeDate = {
 
   getTZhours: function(dateInt, tz){ // get the UTChour() of a dateInt, then account for timezone offset
 
-
-    let utc = (this.getUpToSecDateOfLocation(dateInt)).getUTCHours();
+    let utc = dateInt.getUTCHours();
     let hrs;
 
     if (tz < 0){
@@ -125,7 +131,9 @@ module.exports.timeDate = {
   },
 
   getLiveFormatedTime: function(dateInt, tz){ // get the time, given utc hr, min and secs and the timezone, for given location
+
     let date = this.getUpToSecDateOfLocation(dateInt);
+
     let hrs, mins, secs;
 
     hrs = this.getTZhours(date, tz);
@@ -183,9 +191,6 @@ module.exports.timeDate = {
 
   whatDayIsIt: function(dateInt, utcOffSet){ // what day is it for a given timezone, based on UTC time
 
-    // returns a timeStamp using the dateInt * 1000
-    // the forecast.io timestamps needs to be * 1000 to be converted into a Date timeStamp
-    // this.getUpToSecDateOfLocation(1550674800)
     const timeStamp = this.getUpToSecDateOfLocation(dateInt);
 
     let dayOfWeek;

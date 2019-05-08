@@ -33,6 +33,7 @@ const getWiClass = require('../dataSource/utils').getWiClass;
 const locals = {
   searchResults: {
     forecast: false,
+    tempTypeFahrenheit: true,
     notADuplicateLocation: true,
     geoCodeThis: '', // raw input from navbar view,
     initialView: require('../views/initialView/locals.js').homePg,
@@ -310,7 +311,7 @@ const removeLocation = indexNo => {
 // renders home page, initial view
 main.get('/', (req, res, next) => {
   // renders the a title bar  and navbar with tempType controls
-  // locationBar only renders as response from /weatherCurren
+  // locationBar only renders as response from /weatherCurrent
     res.render('index', locals.searchResults);
 
 });
@@ -363,6 +364,20 @@ main.get('/weatherCurrent', (req, res, next) => {
   }
 
 });
+
+main.get('/tempType/:type', (req, res, next) => {
+
+    // this simply sets a tempType flag to be used by both locationBar and mainView templates...
+    // to show tempaerture in Celsius or Fahrenheit degrees
+
+    if (req.params.type && req.params.type == "Fahrenheit"){
+      locals.searchResults.tempTypeFahrenheit = true;
+    } else if (req.params.type && req.params.type == "Celsius"){
+      locals.searchResults.tempTypeFahrenheit = false;
+    } // other wise make no changes
+
+    res.redirect('/');
+})
 
 // selected location calls weatherForecast route
 // renders main view or detail of weather forecast for that location

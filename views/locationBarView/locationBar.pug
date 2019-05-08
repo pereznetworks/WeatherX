@@ -5,10 +5,20 @@ if forecast
   - var indexNo = 0
   - var clocks = []
   div(class="controlsDiv")
-    span(id="tempSpacer")
-    i(class="wi wi-celsius temp" id="tempCbutton" title="Celsius" onClick="handleTempClick(event)")
-    span(id="tempSpacer")
-    i(class="wi wi-fahrenheit tempActive" id="tempFbutton" title="Fahrenheit" onClick="handleTempClick(event)")
+    if tempTypeFahrenheit
+      span(id="tempSpacer")
+      a(href=`/tempType/Celsius`)
+        i(class="wi wi-celsius temp" id="tempCbutton" title="Celsius" )
+      span(id="tempSpacer")
+      a(href=`/tempType/Fahrenheit`)
+        i(class="wi wi-fahrenheit tempActive" id="tempFbutton" title="Fahrenheit")
+    else
+      span(id="tempSpacer")
+      a(href=`/tempType/Celsius`)
+        i(class="wi wi-celsius tempActive" id="tempCbutton" title="Celsius")
+      span(id="tempSpacer")
+      a(href=`/tempType/Fahrenheit`)
+        i(class="wi wi-fahrenheit temp" id="tempFbutton" title="Fahrenheit")
   each location in availLocationsArray
     div(id=`locationBar-div${indexNo}` index=`${indexNo}` class=`middle-grid-item-${indexNo + 2}`)
       div(title="locationBar" class='locationBar-div' id=`${locationBarBackGround[indexNo]}`)
@@ -18,9 +28,15 @@ if forecast
         a(title="currentConditions" id="locationCondition" href=`/weatherForecast/${indexNo}`)
           i(title=`${location.currentCondition}` style="font-size:1.2em;" id="conditionIcon" class=`${location.wiClass}`)
         div(id=`temp-div${indexNo}`)
+          if tempTypeFahrenheit
             p(class="currentTemp" id=`tempF${indexNo}` title=`${location.tempFahrenheit}`)=`${location.tempFahrenheit}`
               span(class="tempType" id="tempTypeF" title="Fahrenheit")=`${locationBar.fahrenheitFont}`
             p(class="hideTemp" id=`tempC${indexNo}` title=`${location.tempCelsius}`)=`${location.tempCelsius}`
+              span(class="tempType" id="tempTypeC" title="Celsius")=`${locationBar.celsiusFont}`
+          else
+            p(class="hideTemp" id=`tempF${indexNo}` title=`${location.tempFahrenheit}`)=`${location.tempFahrenheit}`
+              span(class="tempType" id="tempTypeF" title="Fahrenheit")=`${locationBar.fahrenheitFont}`
+            p(class="currentTemp" id=`tempC${indexNo}` title=`${location.tempCelsius}`)=`${location.tempCelsius}`
               span(class="tempType" id="tempTypeC" title="Celsius")=`${locationBar.celsiusFont}`
         a(indexno=`${indexNo}` title="remove" class="removeLocation" href=`/removeLocation/${indexNo}`)
     - indexNo += 1
