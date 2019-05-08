@@ -153,17 +153,25 @@ module.exports.timeDate = {
   },
 
   getCurrentTimeAtLocation: function(locationTime, tz){ // get the time, given utc hr, min and the timezone, for given location
-    let date = this.getUpToSecDateOfLocation(locationTime);
-    let hrs, mins;
+    let initialDate = this.getUpToSecDateOfLocation(locationTime);
+    let nowDate = new Date();
 
-    hrs = this.getTZhours(date, tz);
 
-    mins = date.getUTCMinutes();
+    let hrs, mins, secs;
+
+    hrs = this.getTZhours(nowDate, tz);
+
+    mins = nowDate.getUTCMinutes();
     if (mins < 10) {
       mins = "0" + mins;
     }
 
-    return this.formatTime(hrs, mins);
+    secs = nowDate.getUTCSeconds();
+    if (secs < 10) {
+      secs = "0" + secs;
+    }
+
+    return this.formatTime(hrs, mins, secs);
 
   },
 
