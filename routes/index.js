@@ -88,8 +88,9 @@ const getForecast = function(req, res, next){
   locals.searchResults.forecast = false;
 
   const input = req.query.geoCodeThis;
+  const lookForCommaBetween = /,(?=[\sA-Za-z])/g;
 
-  if (input ){
+  if (input && input.match(lookForCommaBetween)){
 
     console.log(`\n...processing new GET request...\nusing async functions, some of the following logs may seem to be out of order\n`);
 
@@ -208,8 +209,8 @@ const getForecast = function(req, res, next){
                   next(err);
               });
 
-            }).catch(function(error){
-              console.log(`error: ${error}`);
+            }).catch(function(err){
+              console.log(`error: ${err}`);
               next(err);
             });
 
@@ -228,7 +229,7 @@ const getForecast = function(req, res, next){
 
 const showForecastDetail = function(index){
 
-  // have forecastData ready ... now set mainView to true
+  // get current data for selected location, using index for that location's data object
   locals.searchResults.currentLocationData = {
       index: index,
       name: `${locals.searchResults.locationData[index].data.city}, ${locals.searchResults.locationData[index].data.province}`,
@@ -246,7 +247,7 @@ const showForecastDetail = function(index){
    locals.searchResults.hourlyConditions = getHourlyConditions(locals.searchResults.forecastData[index].data.hourly.data);
    locals.searchResults.dailyConditions = getDailyConditions(locals.searchResults.forecastData[index].data.daily.data);
 
-    let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
    locals.searchResults.tableHeader = {
      dayOfWeek: daysOfWeek[timeDate.whatDayIsIt(locals.searchResults.currentForecast.currently.time, locals.searchResults.currentForecast.offset)],
@@ -254,6 +255,13 @@ const showForecastDetail = function(index){
      tempLowF: Math.floor(locals.searchResults.currentForecast.daily.data[0].temperatureLow),
      tempHighC: convertTemp.toCelsius(Math.floor(locals.searchResults.currentForecast.daily.data[0].temperatureHigh)),
      tempLowC: convertTemp.toCelsius(Math.floor(locals.searchResults.currentForecast.daily.data[0].temperatureLow)),
+   };
+
+   const initialTime = new Date(locals.searchResults.forecastData[index].data.hourly.data[0].time * 1000);
+   const timeNow = new Date();
+
+   if (initialTime.getUTCHours() <  timeNow.getUTCHours() ){
+     locals.searchResults.forecastData[index].data.hourly.splice(0,1);
    }
 
 };
@@ -347,20 +355,25 @@ main.get('/weatherCurrent', (req, res, next) => {
 
     locals.searchResults.geoCodeThis = req.query.geoCodeThis;
 
-    // if there are other names in the locationData array, compare each of these for dulicates
-    if (locals.searchResults.locationName.length > 0){
-      locals.searchResults.locationName.forEach(compareLocationName);
-    }
+
 
     // if not a duplicate, if there is at least 1 comma between words, if no comma at beginning and if no numbers,
-    if (locals.searchResults.notADuplicateLocation && (req.query.geoCodeThis.match(lookForCommaBetween) !== null || req.query.geoCodeThis.match(lookForCommaAtBeginning) == null || req.query.geoCodeThis.match(findNumbers) == null) ){
+    if (req.query.geoCodeThis.match(lookForCommaBetween) !== null && req.query.geoCodeThis.match(lookForCommaAtBeginning) == null && req.query.geoCodeThis.match(findNumbers) == null ){
 
-      // the increase indexs, save input to geoCodeThis array
-      locals.searchResults.arrayLength = locals.searchResults.locationBarArray.length;
-      locals.searchResults.currentIndex = locals.searchResults.arrayLength - 1;
+      // if there are other names in the locationData array, compare each of these for dulicates
+      if (locals.searchResults.locationName.length > 0){
+        locals.searchResults.locationName.forEach(compareLocationName);
+      }
 
-      // make async axios api calls to get and process data
-      getForecast(req, res, next);
+      if (locals.searchResults.notADuplicateLocation){
+        // make async axios api calls to get and process data
+        getForecast(req, res, next);
+        // the increase indexs, save input to geoCodeThis array
+        locals.searchResults.arrayLength = locals.searchResults.locationBarArray.length;
+        locals.searchResults.currentIndex = locals.searchResults.arrayLength - 1;
+      }
+
+
     } else {
       // just in case req.query.geoCodeThis is a duplicate, just render the home page with no changes
       // may want to change navBar input so users is prompted for valid input

@@ -1,3 +1,7 @@
+script.
+  window.onload = function(){
+    document.getElementById("geoCoding-TextInput").focus();
+  }
 div(id="navBar" class="middle-grid-item-1")
   form( id="inputControls" action="/weatherCurrent" method="get")
     input(type="text" name="geoCodeThis" id="geoCoding-TextInput" placeholder=`${initialView.defaultMsg}` required onChange=handleInputChange)

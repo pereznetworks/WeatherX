@@ -187,6 +187,9 @@
   margin: 0;
 }
 
+#geoCoding-TextInput:focus{
+  background-color: #800080;
+}
 #geoCoding-TextInput::placeholder{
   color:#000;
 }
