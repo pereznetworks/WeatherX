@@ -32,7 +32,7 @@
 }
 
 #title {
-  font-size: 1.5em;
+  font-size: 3em;
   width: auto;
   height: 60%;
   margin: 0 0;
@@ -45,7 +45,7 @@
 }
 
 #titleText {
-  font-size: .8em;
+  font-size: 2em;
   width: 100%;
   height: 60%;
   display: block;
@@ -66,9 +66,21 @@
   margin: auto;
 }
 
-.attribLink {
+.attribLink{
   display: inline;
-  font-size: .8em;
+  font-size: 2em;
+  width: auto;
+  height: 1%;
+  text-align: center;
+  margin: 0 0;
+  padding: 1% 1% 0 0;
+  border: 0;
+  text-decoration: none;
+}
+
+.attribLinkspacer{
+  display: inline;
+  font-size: 2em;
   width: auto;
   height: 1%;
   text-align: center;
@@ -177,10 +189,10 @@
   border-radius: 6px;
   color: #000;
   background-color: #bbb;
-  width: 215px;
-  height: 26px;
+  width: 60%;
+  height: 60px;
   display: inline;
-  font-size: .8em;
+  font-size: 2.6em;
   vertical-align: middle;
   margin-right: 1%;
   padding: 0;
@@ -198,8 +210,8 @@
   background-size: 120%;
   text-decoration: none;
   background-color: transparent;
-  width: 30px;
-  height: 30px;
+  width: 80px;
+  height: 80px;
   display: inline;
   border: none;
   vertical-align: middle;
@@ -325,74 +337,28 @@
    and a few actual Apple Android devices, Macs and Windows 10 PC's
 */
 
-@media only screen and (min-width: 360px){
+@media (min-width: 560px) and (orientation: landscape) {
+
+  #title{
+    font-size: 1.6em
+  }
+  #titleText{
+    font-size: 1.2em;
+  }
+  .attribLink, .attribLinkspacer{
+    font-size: 1em;
+  }
   #geoCoding-TextInput{
-    width:250px;
-  }
-}
-
-@media only screen and (min-width: 420px){
-  #navBar3{
-    width:100%;
-    margin: auto;
+    width: 60%;
+    height: 20px;
+    font-size: 1em;
   }
 
-  /* .geocoding-div {
-    width:88%;
-  } */
-
-  #geoCoding-TextInput{
-    width:300px;
-  }
-
-}
-
-@media only screen and (min-width: 720px){
-
-  #navBar3{
-    width:95%;
-    margin: auto;
-  }
-
-  #backHome-button{
-      background-image:url('../imgs/Menu-48-offW.png');
-  }
-
-
-  /* .geocoding-div {
-    width:85%;
-  } */
-
-  #geoCoding-TextInput{
-    width:320px;
-  }
-
-  #temp-div{
-    padding: 0 2% 0 2%;
-  }
-
-  #currentTemp{
-    line-height: 20px;
-  }
-}
-
-@media only screen and (min-width: 1020px){
-  #tempC{
-      font-size: 1.4em;
-  }
-  #tempF{
-     font-size: 1.4em;
-  }
-
-  #addLocation{
-    height: 30px;
+  #geoCoding-TextSubmit {
     width: 30px;
-    margin: 0 4px 8px 0px;
-    padding-bottom: 0px;
-    vertical-align: top;
+    height: 30px;
   }
 }
-
 /* media query templates
 
   @media only screen and (min-width: 360px) {
@@ -433,6 +399,60 @@
 
   @media only screen and (min-width: 1600px){
 
+  }
+
+
+  @media only screen and (min-width: 420px){
+    #navBar3{
+      width:100%;
+      margin: auto;
+    }
+
+    #geoCoding-TextInput{
+      width:300px;
+    }
+
+  }
+
+  @media only screen and (min-width: 720px){
+
+    #navBar3{
+      width:95%;
+      margin: auto;
+    }
+
+    #backHome-button{
+        background-image:url('../imgs/Menu-48-offW.png');
+    }
+
+    #geoCoding-TextInput{
+      width:320px;
+    }
+
+    #temp-div{
+      padding: 0 2% 0 2%;
+    }
+
+    #currentTemp{
+      line-height: 20px;
+    }
+  }
+
+  @media only screen and (min-width: 1020px){
+    #tempC{
+        font-size: 1.4em;
+    }
+    #tempF{
+       font-size: 1.4em;
+    }
+
+    #addLocation{
+      height: 30px;
+      width: 30px;
+      margin: 0 4px 8px 0px;
+      padding-bottom: 0px;
+      vertical-align: top;
+    }
   }
 */
 
