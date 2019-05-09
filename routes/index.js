@@ -382,11 +382,20 @@ main.get('/tempType/:type', (req, res, next) => {
     // this simply sets a tempType flag to be used by both locationBar and mainView templates...
     // to show tempaerture in Celsius or Fahrenheit degrees
 
-    if (req.params.type && req.params.type == "Fahrenheit"){
+    const updateTime = (object, index) => {
+      object.liveFormattedTime = timeDate.getCurrentTimeAtLocation(new Date(), locals.searchResults.forecastData[index].data.offset);
+      return object;
+    };
+    if (req.params.type) {
+      if ( req.params.type == "Fahrenheit"){
       locals.searchResults.tempTypeFahrenheit = true;
-    } else if (req.params.type && req.params.type == "Celsius"){
+      } else if (req.params.type == "Celsius"){
       locals.searchResults.tempTypeFahrenheit = false;
+      }
+    locals.searchResults.availLocationsArray = locals.searchResults.availLocationsArray.map(updateTime);
     } // other wise make no changes
+
+
 
     res.redirect('/');
 })
