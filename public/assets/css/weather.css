@@ -28,7 +28,7 @@
 #clearDay, #clearNight, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
   float:left;
   width: 100%;
-  height: max-content;
+  height: -webkit-fill-available;
   padding: 0 0 4% 0;
   margin: 0 0 0 0;
   z-index: -1;
