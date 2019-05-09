@@ -267,11 +267,11 @@
  }
 
  #tempCbutton, #tempFbutton{
-   width: 30px;
-   height: 30px;
-   margin: 0 0 4px 0;
+   width: 60px;
+   height: 60px;
+   margin: 0 20px 4px 0;
    padding: 6px 0 1px 0;
-   font-size: 32px;
+   font-size: 6em;
    font-weight:bolder;
    vertical-align: middle;
  }
@@ -357,6 +357,13 @@
   #geoCoding-TextSubmit {
     width: 30px;
     height: 30px;
+  }
+
+  #tempCbutton, #tempFbutton{
+    height: 30px;
+    width: 30px;
+    margin: 0 0 4px 0;
+    font-size: 3em;
   }
 }
 /* media query templates

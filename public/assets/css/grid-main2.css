@@ -63,7 +63,7 @@ body {
 .middle-grid-item-0, .middle-grid-item-1, .middle-grid-item-2, .middle-grid-item-3, .middle-grid-item-4,
 .middle-grid-item-5, .middle-grid-item-6, .middle-grid-item-7, .middle-grid-item-8, .middle-grid-item-9 {
   /* background-color: #000; */
-  height:80px;
+  height:160px;
   padding:2%;
 }
 
@@ -94,6 +94,11 @@ body {
 
   .middle{
     width:100%;
+  }
+
+  .middle-grid-item-0, .middle-grid-item-1, .middle-grid-item-2, .middle-grid-item-3, .middle-grid-item-4,
+  .middle-grid-item-5, .middle-grid-item-6, .middle-grid-item-7, .middle-grid-item-8, .middle-grid-item-9 {
+      height:80px;
   }
 }
 
