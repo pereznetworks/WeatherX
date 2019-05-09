@@ -260,10 +260,12 @@ const showForecastDetail = function(index){
    const initialTime = new Date(locals.searchResults.forecastData[index].data.hourly.data[0].time * 1000);
    const timeNow = new Date();
 
-   if (initialTime.getUTCHours() <  timeNow.getUTCHours() ){
-     locals.searchResults.forecastData[index].data.hourly.splice(0,1);
-   }
+   let removed;
 
+   if (initialTime.getUTCHours() <  timeNow.getUTCHours() ){
+     removed = locals.searchResults.forecastData[index].data.hourly.data.splice(0,1);
+   }
+   remove = '';
 };
 
 const pickOutDataPoints = (dataObject, index) => {  // callback function for getHourlyConditions
