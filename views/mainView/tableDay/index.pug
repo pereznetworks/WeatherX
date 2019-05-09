@@ -1,0 +1,78 @@
+table(id="tableDays")
+  tbody
+    tr
+      each object in hourlyConditions
+        th(key=`${index}` class="hourOfDay")= `${object.hour}`
+    tr
+      each condition in hourlyConditions
+        if condition.icon == 'cloudy' && condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-day-cloudy")
+        else if condition.icon == 'cloudy' && !condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-night-alt-cloudy")
+        else if condition.icon == 'fog' && condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-day-fog")
+        else if condition.icon == 'fog' && !condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-night-fog")
+        else if condition.icon == 'partly-cloudy-day' && condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-day-sunny-overcast")
+        else if condition.icon == 'partly-cloudy-night' && !condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-night-alt-cloudy")
+        else if condition.icon == 'rain' && condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-day-rain")
+        else if condition.icon == 'rain' && !condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-night-alt-rain")
+        else if condition.icon == 'clear' && condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-day-sunny")
+        else if condition.icon == 'clear-day' && condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-day-sunny")
+        else if condition.icon == 'clear-night' && !condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-night-clear")
+        else if condition.icon == 'snow' && condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-day-snow")
+        else if condition.icon == 'snow' && !condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-night-alt-snow")
+        else if condition.icon == 'scattered-showers' && condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-day-showers")
+        else if condition.icon == 'scattered-showers' && !condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-night-alt-showers")
+        else if condition.icon == 'thunder' && condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-day-thunderstorm")
+        else if condition.icon == 'thunder' && !condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-night-alt-thunderstorm")
+        else if condition.icon == 'wind' && condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-day-windy")
+        else if condition.icon == 'wind' && !condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-night-alt-cloudy-gusts")
+        else if condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-day-sunny")
+        else if !condition.day
+          td(key=`${index}` class="weatherSummary")
+            i(title=`${condition.icon}` class="wi wi-night-clear")
+    tr
+      each object in hourlyConditions
+        if tempTypeFahrenheit
+          td(key=`${index}` class="hourOfDay")= `${object.tempF}`
+            span(id="todayTempType")= `${fahrenheitFont}`
+        else
+          td(key=`${index}` class="hourOfDay")= `${object.tempC}`
+            span(id="todayTempType")= `${celsiusFont}`

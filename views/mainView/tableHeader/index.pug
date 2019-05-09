@@ -14,9 +14,9 @@ else
     tbody
       tr
         th(id="dayOfWeek")=`${tableHeader.dayOfWeek}`
-        th(id="today")=TODAY
+        th(id="today")= "TODAY"
         th(id="blank")
-        th(id="tempHigh")=`${tableHeader.tempHighC}`
+        th(id="tempHigh")=`High: ${tableHeader.tempHighC}`
           span(id="todayTempType")=`${celsiusFont}`
-        th(id="tempLow")= `${tableHeader.tempLowC}`
+        th(id="tempLow")= `Low: ${tableHeader.tempLowC}`
           span(id="todayTempType")=`${celsiusFont}`

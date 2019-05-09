@@ -6,8 +6,5 @@ block content
     include ./mainViewHeader/index.pug
     include ./tableHeader/index.pug
     div(class="scrollingEnabled")
-//- include ./tableDay.pug
-      p(style="display:block;width:auto;height:200px;")= placeholder for hourly data
-//- include ./tableWeek.pug
-      p(style="display:block;width:auto;height:600px;")= placeholder for daily data
-//- end of detail.pug
+      include ./tableDay/index.pug
+    include ./tableWeek/index.pug
