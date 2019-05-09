@@ -1,6 +1,7 @@
 
 *{
   color: #E0E0E0;
+  font-size: 24px;
 }
 
 .mainView{
@@ -18,10 +19,10 @@
 
 #mainViewHeader{
   width:100%;
-  height:fit-content;
+  height:10%;
   display:block;
   margin:8% 0 0 0;
-  padding:0;
+  padding:3% 0 0 0;
 }
 
 #mainViewHeader h3, #mainViewHeader h1, #mainViewHeader p{
@@ -58,6 +59,13 @@
   font-size: .6em;
   vertical-align: super;
 }
+
+#tableHdr{
+  height: 5%;
+}
+#tableWeek{
+  height: 30%;
+}
 #tableHdr, #tableWeek{
   width: 100%;
 }
@@ -83,11 +91,12 @@
 
 .scrollingEnabled{
   overflow: scroll;
+  height: 30%;
 }
 
 #tableDays {
-  font-size: .8em;
   width: 100%;
+  height: 100%;
   border-top: 1px solid #f9f9f9a8;
   border-bottom: 1px solid #f9f9f9a8;
 }
@@ -98,25 +107,32 @@
   padding: 0 18px 18px 18px;
   background: transparent;
   font-weight: lighter;
+  font-size: 1.4em;
 }
 
 #tableWeek tbody{
   margin-top: 20px 0;
 }
 
-#tableWeek th, #tableWeek td {
+#tableWeek th{
   margin: 10px 0;
+  height: 5px;
+  font-size: 28px;
+}
+#tableWeek td {
+  margin: 10px 0;
+  height: 30px;
+  font-size: 1.4em;
 }
 
 #tableWeek td {
   text-align: center;
   margin: 0 0 0 10%;
-  height: 30px;
 }
 
 #tableWeek #dayOfWeek{
   text-align: left;
-  padding: 0 0 0 5%;
+  padding: 5% 0 0 5%;
 }
 
 @media only screen and (min-width: 720px) and (min-height:300px){
@@ -147,9 +163,6 @@
     left: 14%;
   }
 
-  #mainViewHeader{
-    margin: 5% 0 0 0;
-  }
 }
 
 @media only screen and (min-width: 1100px){
