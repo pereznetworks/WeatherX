@@ -25,13 +25,25 @@
   line-height: 1em;
 }
 
-#clearDay, #clearNight, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
-  float:left;
-  width: 100%;
-  height: max-content;
-  padding: 0 0 4% 0;
-  margin: 0 0 0 0;
-  z-index: -1;
+#clearNight, #partlyCloudyDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
+ float:left;
+ width: 100%;
+ height: max-content;
+ margin: 0 0 0 0;
+ z-index: -1;
+ background-color: #484848;
+ background-image: linear-gradient(to bottom left, #484848,#48c4e0); /* Standard syntax (must be last) */
+
+}
+
+#clearNight, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
+ float:left;
+ width: 100%;
+ height: max-content;
+ margin: 0 0 0 0;
+ z-index: -1;
+ background-color: #757575;
+ background-image: linear-gradient(to bottom left, #757575,#040429); /* Standard syntax (must be last) */
 }
 
 #locationBar-clearDay, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay  {
@@ -56,6 +68,20 @@
 
   #locationBar-clearNight, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #flocationBar-foggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
     height:80px;
+  }
+
+   #clearNight, #partlyCloudyDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
+    width: 100%;
+    height: max-content;
+    padding: 0 0 4% 0;
+    margin: 0 0 0 0;
+  }
+
+  #clearNight, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
+    width: 100%;
+    height: max-content;
+    padding: 0 0 4% 0;
+    margin: 0 0 0 0;
   }
 }
 
