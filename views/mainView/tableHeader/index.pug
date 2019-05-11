@@ -2,8 +2,8 @@ if tempTypeFahrenheit
   table(id="tableHdr")
     tbody
       tr
-        th(id="dayOfWeek")=`${tableHeader.dayOfWeek}`
         th(id="today")= "TODAY"
+        th(id="dayOfWeek")=`${tableHeader.dayOfWeek}`
         th(id="blank")
         th(id="tempHigh")= `High: ${tableHeader.tempHighF}`
           span(id="todayTempType")= `${fahrenheitFont}`
@@ -13,8 +13,8 @@ else
   table(id="tableHdr")
     tbody
       tr
-        th(id="dayOfWeek")=`${tableHeader.dayOfWeek}`
         th(id="today")= "TODAY"
+        th(id="dayOfWeek")=`${tableHeader.dayOfWeek}`
         th(id="blank")
         th(id="tempHigh")=`High: ${tableHeader.tempHighC}`
           span(id="todayTempType")=`${celsiusFont}`
