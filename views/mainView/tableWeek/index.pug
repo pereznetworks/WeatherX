@@ -28,12 +28,12 @@ table(id="tableWeek")
           else if day.icon === 'wind'
             i(title=`${day.icon}` key=`${index}` class="wi wi-day-windy")
         if tempTypeFahrenheit
-          td(id="tempHigh")=`${day.tempHighF}`
+          td(id="twTempHigh")=`${day.tempHighF}`
             span(id="todayTempType")=`${fahrenheitFont}`
-          td(id="tempLow")=`${day.tempLowF}`
+          td(id="twTempLow")=`${day.tempLowF}`
             span(id="todayTempType")=`${fahrenheitFont}`
         else
-          td(id="tempHigh")=`${day.tempHighC}`
+          td(id="twTempHigh")=`${day.tempHighC}`
             span(id="todayTempType")=`${celsiusFont}`
-          td(id="tempLow")=`${day.tempLowC}`
+          td(id="twTempLow")=`${day.tempLowC}`
             span(id="todayTempType")=`${celsiusFont}`

@@ -8,7 +8,7 @@
     background-position: center;
     background-size: 60%;
     text-decoration: none;
-    font-size: 1em;
+    font-size: 2em;
     border: none;
     vertical-align:middle;
     padding: 0;
@@ -19,16 +19,23 @@
     border-radius: 6px;
 }
 
-#forecastCondition{
+#forecastCondition .wi{
+    width: 35%;
+    font-size: 2.6em;
+    line-height: 1em;
+    padding: 0 0 0 120px;
+}
+
+.weatherSummary .wi{
   width:35%;
-  font-size: 1.6em;
+  font-size: 2em;
   line-height: 1em;
 }
 
 #clearNight, #partlyCloudyDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
  float:left;
  width: 100%;
- height: max-content;
+ height: 100%;
  margin: 0 0 0 0;
  z-index: -1;
  background-color: #484848;
@@ -39,7 +46,7 @@
 #clearNight, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
  float:left;
  width: 100%;
- height: max-content;
+ height: 100%;
  margin: 0 0 0 0;
  z-index: -1;
  background-color: #757575;
@@ -72,14 +79,14 @@
 
    #clearNight, #partlyCloudyDay, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
     width: 100%;
-    height: max-content;
+    height: 100%;
     padding: 0 0 4% 0;
     margin: 0 0 0 0;
   }
 
   #clearNight, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
     width: 100%;
-    height: max-content;
+    height: 100%;
     padding: 0 0 4% 0;
     margin: 0 0 0 0;
   }

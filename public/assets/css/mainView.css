@@ -1,12 +1,13 @@
 
 *{
   color: #E0E0E0;
+  font-size: 16px;
 }
 
 .mainView{
   scroll-behavior: auto;
   width: 100%;
-  height: max-content;
+  height: 100%;
   margin: 0 0 0 0;
   padding: 4em 0 0 0;
   background: transparent;
@@ -16,121 +17,113 @@
   z-index: -1;
 }
 
-#mainViewHeader{
-  width:100%;
-  height:fit-content;
-  display:block;
-  margin:8% 0 0 0;
-  padding:0;
-}
+  #mainViewHeader{
+    width:100%;
+    height:15%;
+    display:block;
+    margin:8% 0 0 0;
+    padding:10% 0 0 0;
+  }
 
-#mainViewHeader h3, #mainViewHeader h1, #mainViewHeader p{
-  margin: 1% 0 0 0;
-  font-size: 1.8em;
-  padding:0;
-}
+    #mainViewHeader h3, #mainViewHeader h1, #mainViewHeader p{
+      margin: 1% 0 0 0;
+      font-size: 1.8em;
+      padding:0;
+    }
 
-#mainView h1 {
-  line-height:25%;
-  font-size:4em;
-  text-align: center;
-  background: transparent;
-}
+    #cityName, #currentConditions, #todayTemp, #AboutHeader{
+      display:block;
+      text-align:center;
+      font-size: 1.6em;
+    }
 
-#mainView h3, #mainView p {
-  text-align: center;
-  background: transparent;
-}
+    #cityName {
+      padding-top: 10px;
 
-#mainView h3 {
-  font-size: 1.5em;
-}
+    }
 
-#cityName, #currentConditions, #todayTemp, #AboutHeader{
-  display:block;
-  text-align:center;
-}
+  #tableHdr{
+    width: 100%;
+    height:10%;
+  }
 
-#cityName {
-  padding-top: 10px;
-}
-#todayTempType{
-  font-size: .6em;
-  vertical-align: super;
-}
-#tableHdr, #tableWeek{
-  width: 100%;
-}
+    #tableHdr #dayOfWeek{
+      width:21%;
+      text-align: left;
+      padding: 0 0 0 5%;
+      font-size: 1.8em;
+    }
 
-#dayOfWeek{
-  width:21%;
-  text-align: left;
-  padding: 0 0 0 5%;
-}
+    #today{
+      font-size: 1.8em;
+      width:21%;
+      text-align:left;
+    }
+    #blank{
+      width:14%;
+    }
 
-#today{
-  font-size: .8em;
-  width:21%;
-  text-align:left;
-}
-#blank{
-  width:14%;
-}
+    #tempHigh, #tempLow{
+      width:14%;
+      font-size: 1.8em;
+    }
 
-#tempHigh, #tempLow{
-  width:14%
-}
+  .scrollingEnabled{
+    overflow: scroll;
+    height: 30%;
+  }
 
-.scrollingEnabled{
-  overflow: scroll;
-  height: 400px;
-}
+    #tableDays {
+      font-size: 1.6em;
+      width: 100%;
+      height: 100%;
+      border-top: 1px solid #f9f9f9a8;
+      border-bottom: 1px solid #f9f9f9a8;
+    }
 
-#tableDays {
-  font-size: .8em;
-  width: 100%;
-  height: 100%;
-  border-top: 1px solid #f9f9f9a8;
-  border-bottom: 1px solid #f9f9f9a8;
-}
+      #tableDays th, #tableDays td{
+        text-align: center;
+        margin: 0 0 0 10%;
+        padding: 0 30px;
+        background: transparent;
+        font-weight: lighter;
+      }
 
-#tableDays th, #tableDays td{
-  text-align: center;
-  margin: 0 0 0 10%;
-  padding: 0 18px 18px 18px;
-  background: transparent;
-  font-weight: lighter;
-}
+      #tableDays .hourOfDay{
+        font-size: 38px;
+      }
 
-#tableWeek{
-  height:-webkit-fill-available;
-}
+      #todayTempType{
+        font-size: .6em;
+        vertical-align: super;
+      }
 
-#dayOfWeek{
-}
+  #tableWeek{
+    height:40%;
+  }
 
-#tableWeek tbody{
-  margin: 0;
-}
+    #tableWeek tbody{
+      margin: 0;
+    }
 
+    #tableWeek tr, #tableWeek th{
+      margin: 0;
+      height: 0;
+      padding: 0;
+      width:20%;
+      font-size: 1.8em;
+    }
 
-#tableWeek tr, #tableWeek th{
-  margin: 0;
-  height: 0;
-  padding: 0;
-}
+    #tableWeek #dayOfWeek{
+      font-size: 1.6em;
+      text-align: center;
+    }
 
-#tableWeek td {
-  margin: 0;
-  height: 10px
-}
-
-#tableWeek td {
-  text-align: left;
-  margin: 0;
-  padding: 0;
-  height: 30px;
-}
+    #twTempHigh, #twTempLow {
+    text-align: center;
+    font-size: 1.6em;
+    padding: 0 0 0 20px;
+    }
 
 @media (min-width: 560px) and (orientation: landscape){
   #mainView{
@@ -142,7 +135,7 @@
   }
   .scrollingEnabled{
     overflow: scroll;
-    height: 120px;
+    height: 25%;
   }
 
   #tableDays {

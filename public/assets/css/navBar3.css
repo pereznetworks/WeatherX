@@ -50,7 +50,7 @@
   height: 60%;
   display: block;
   text-align: center;
-  margin: 0 0;
+  margin: 0 0 12px 0;
   border: 0;
   text-decoration: none;
 }
@@ -151,7 +151,7 @@
 .backHome-div{
   width:30px;
   position: absolute;
-  top:5%;
+  top:2%;
   left:5%;
   background-color: transparent;
 }
@@ -166,15 +166,15 @@
     background-position: center;
     background-size: 120%;
     text-decoration: none;
-    font-size: .8em;
+    font-size: 1.8em;
     color: #fff;
     border: none;
     vertical-align:middle;
     padding: 0;
     text-align: center;
     align-content: center;
-    height: 30px;
-    width: 30px;
+    height: 60px;
+    width: 60px;
     border-radius: 6px;
 }
 
