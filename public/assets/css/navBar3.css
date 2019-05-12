@@ -362,8 +362,9 @@
   #tempCbutton, #tempFbutton{
     height: 30px;
     width: 30px;
-    margin: 0 0 4px 0;
-    font-size: 3em;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    font-size: 2em;
   }
 }
 /* media query templates

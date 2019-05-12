@@ -107,7 +107,7 @@
 
 @media (min-width: 560px) and (orientation: landscape) {
   .locationBar-div{
-    height: 80px;
+    height: 100px;
     margin: 0 0 0 0;
   }
 
@@ -116,15 +116,91 @@
     font-size: .8em;
   }
 
+    #cityTime-div p {
+      margin:8% 10%;
+      padding: 3% 0 0 0;
+      display: block;
+      line-height:13px;
+      font-size: 1.2em;
+    }
+
+    #locationTime{
+      padding: 2% 0 2% 0;
+    }
+
+    #locationName{
+     padding: 0 0 3% 0;
+    }
+
   #locationCondition{
     font-size: 3em;
-    padding: 4px 20px;
+    padding: 20px 20px;
   }
 
-  .currentTemp{
-    font-size: 2.6em;
-    padding: 0% 0 2% 0;
+  #locationCondition{
+    height:100%;
+    width: 30%;
+    display: inline;
+    float: left;
+    color:#fff;
+    padding: 4% 4%;
+    font-size: 2em;
+    text-align: center;
   }
+
+  #temp-div0, #temp-div1, #temp-div2, #temp-div3, #temp-div4, #temp-div5, #temp-div6, #temp-div7, #temp-div8, #temp-div9, #temp-div10{
+    display: inline;
+    float: left;
+    height: 100%;
+    width: 25%;
+    margin: 0;
+    padding: 2% 1% 0 2%;
+  }
+
+    .currentTemp {
+      float: right;
+      display: block;
+      line-height: 22px;
+      margin: 0% 0% 3% 0;
+      padding: 14% 0;
+      font-size: 2em;
+    }
+
+    .hideTemp {
+      float: left;
+      font-size: 0;
+      display: none;
+      line-height: 0;
+      }
+
+    .tempTypeC, .tempTypeF{
+      float: right;
+      font-size: .6em;
+      display: block;
+      line-height: 22px;
+      margin: 4% 0% 0 0;
+      padding: 0% 0 0% 0;
+    }
+
+    .removeLocation{
+      background-image:url('../imgs/Garbage-Open-48-W-T.png');
+      float:left;
+      background-color: transparent;
+      background-repeat: no-repeat;
+      background-position: bottom;
+      background-size: 200%;
+      text-decoration: none;
+      vertical-align:middle;
+      width:5%;
+      height:100%;
+      margin: 0 2%;
+      padding: 0;
+    }
+
+    .removeLocation:hover{
+      background-image:url('../imgs/Garbage-Open-48-4B4AA7-T.png');
+    }
+
 
 }
 
