@@ -27,9 +27,9 @@
 }
 
 .weatherSummary .wi{
-  width:35%;
-  font-size: 2em;
-  line-height: 1em;
+    width: 35%;
+    font-size: 1.4em;
+    line-height: 1em;
 }
 
 #clearDay, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay  {
@@ -86,34 +86,34 @@
 
   #clearNight, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight{
     width: 100%;
-    height: fit-content;
+    height: 150%;
     padding: 0 0 4% 0;
     margin: 0 0 0 0;
   }
 
   #clearDay, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay  {
     width: 100%;
-    height: fit-content;
+    height: 150%;
     padding: 0 0 4% 0;
     margin: 0 0 0 0;
   }
 
   .weatherSummary .wi{
     width:35%;
-    font-size: 1em;
+    font-size: .8em;
     line-height: 1em;
   }
 
   #forecastCondition .wi{
       width: 35%;
-      font-size: 2em;
+      font-size: 1em;
       line-height: 1em;
       padding: 0 0 0 120px;
   }
 
 }
 
-@media (min-width: 720px) and (orientation: portrait){
+@media (min-width: 1020px) and (orientation: landscape){
 
   .weatherSummary, .hourOfDay, .hourlyTemp{
       text-align: left;
@@ -136,14 +136,14 @@
 
   #forecastCondition .wi{
       width: 35%;
-      font-size: 2.6em;
+      font-size: 1.2em;
       line-height: 1em;
       padding: 0 0 0 120px;
   }
 
   .weatherSummary .wi{
     width:35%;
-    font-size: 2em;
+    font-size: 1.2em;
     line-height: 1em;
   }
 
@@ -161,7 +161,7 @@
   #clearNight, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
    float:left;
    width: 100%;
-   height: 130%;
+   height: 140%;
    margin: 0 0 0 0;
    z-index: -1;
    background-color: #757575;
