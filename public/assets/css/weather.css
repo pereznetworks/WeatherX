@@ -73,14 +73,14 @@
   #locationBar-clearDay, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay{
     width: 70%;
     height: 100px;
-    padding: 0 0 4% 0;
+    padding: 0 0 0 0;
     margin: 0% 0 0 15%;
   }
 
   #locationBar-clearNight, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #flocationBar-foggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
     width: 70%;
     height: 100px;
-    padding: 0 0 4% 0;
+    padding: 0 0 0% 0;
     margin: 0% 0 0 15%;
   }
 
@@ -217,7 +217,7 @@
     margin-left: 98px;
     width: 70%;
     height:100px;
-    padding: 0 0 2% 0;
+    padding: 0 0 0 0;
     background-color: #484848;
     background-image: linear-gradient(to bottom left, #484848,#48c4e0); /* Standard syntax (must be last) */
   }
@@ -226,7 +226,7 @@
     margin-left: 15%;
     width: 70%;
     height:100px;
-    padding: 0 0 2% 0;
+    padding: 0 0 0 0;
     background-color: #757575;
     background-image: linear-gradient(to bottom left, #757575,#040429); /* Standard syntax (must be last) */
   }
@@ -292,7 +292,7 @@
     margin-left: 98px;
     width: 70%;
     height:100px;
-    padding: 0 0 2% 0;
+    padding: 0 0 0 0;
     background-color: #484848;
     background-image: linear-gradient(to bottom left, #484848,#48c4e0); /* Standard syntax (must be last) */
   }
@@ -301,45 +301,9 @@
     margin-left: 15%;
     width: 70%;
     height:100px;
-    padding: 0 0 2% 0;
+    padding: 0 0 0 0;
     background-color: #757575;
     background-image: linear-gradient(to bottom left, #757575,#040429); /* Standard syntax (must be last) */
   }
 
 }
-
-/* #cloud{
-  background-image:url('../imgs/weather/Cloud-48.png');
-}
-
-#fog{
-  background-image:url('../imgs/weather/Cloud-48.png');
-}
-
-#rain{
-  background-image:url('../imgs/weather/Rain-48.png');
-}
-
-#snow{
-  background-image:url('../imgs/weather/Snow-48.png');
-}
-
-#thunder{
-  background-image:url('../imgs/weather/Thunder-48.png');
-}
-
-#snow{
-  background-image:url('../imgs/weather/Sun-48.png');
-}
-
-#scatteredShowers{
-  background-image:url('../imgs/weather/ScatteredShowers-48.png');
-}
-
-#partly-cloudy{
-  background-image:url('../imgs/weather/PartlyCloudy-48.png');
-}
-
-#wind{
-  background-image:url('../imgs/weather/Wind-48.png');
-} */

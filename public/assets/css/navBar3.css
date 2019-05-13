@@ -355,100 +355,33 @@
   .attribLink, .attribLinkspacer{
     font-size: 1em;
   }
+
   #geoCoding-TextInput{
     width: 60%;
     height: 20px;
     font-size: 1em;
   }
-
   #geoCoding-TextSubmit {
     width: 30px;
     height: 30px;
   }
-
-  #tempCbutton, #tempFbutton{
-    height: 30px;
-    width: 30px;
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    font-size: 2em;
-  }
-
-  .locationBar-div{
-    height: 100px;
-    margin: 0 0 0 0;
-  }
-
-  #cityTime-div{
-    margin: 0 0;
-  }
-
-    #cityTime-div p {
-      margin:8% 10%;
-      padding: 3% 0 0 0;
-      display: block;
-      line-height:13px;
-      font-size: 1.2em;
+    #tempCbutton, #tempFbutton{
+      height: 30px;
+      width: 30px;
+      margin: 0 0 0 0;
+      padding: 0 0 0 0;
+      font-size: 2em;
     }
-
-    #locationTime{
-      padding: 2% 0 2% 0;
-    }
-
-    #locationName{
-     padding: 0 0 3% 0;
-    }
-
-  #locationCondition{
-    font-size: 3em;
-    padding: 20px 20px;
-  }
-
-  #locationCondition{
-    height:100%;
-    width: 30%;
-    display: inline;
-    float: left;
-    color:#fff;
-    padding: 4% 4%;
-    font-size: 2em;
-    text-align: center;
-  }
-
-  #temp-div0, #temp-div1, #temp-div2, #temp-div3, #temp-div4, #temp-div5, #temp-div6, #temp-div7, #temp-div8, #temp-div9, #temp-div10{
-    display: inline;
-    float: left;
-    height: 100%;
-    width: 25%;
-    margin: 0;
-    padding: 2% 1% 0 2%;
-  }
-
-    .currentTemp {
-      float: right;
-      display: block;
-      line-height: 22px;
-      margin: 9% 0% 0% 0;
-      padding: 0;
-      font-size: 3.4em;
-    }
-
-    .hideTemp {
-      float: left;
-      font-size: 0;
-      display: none;
-      line-height: 0;
+      .tempTypeC, .tempTypeF{
+        float: right;
+        font-size: .6em;
+        display: block;
+        line-height: 22px;
+        margin: 4% 0% 0 0;
+        padding: 0% 0 0% 0;
       }
 
-    .tempTypeC, .tempTypeF{
-      float: right;
-      font-size: .6em;
-      display: block;
-      line-height: 22px;
-      margin: 4% 0% 0 0;
-      padding: 0% 0 0% 0;
-    }
-
+    /* this is not in navbar, but is a 'control' */
     .removeLocation{
       background-image:url('../imgs/Garbage-Open-48-W-T.png');
       float:left;
@@ -580,115 +513,3 @@
     font-size: 2em;
   }
 }
-
-/* media query templates
-
-  @media only screen and (min-width: 360px) {
-
-  }
-
-  @media only screen and (min-width: 560px) and (min-height: 320px) {
-
-  }
-
-  @media only screen and (min-width: 410px) and (min-height:660px){
-
-  }
-
-  @media only screen and (min-width: 720px) and (min-height:300px){
-
-  }
-
-  @media only screen and (min-width: 800px) and (min-height:375px){
-
-  }
-
-  @media only screen and (min-width: 720px) and (min-height:1024px){
-
-  }
-
-  @media only screen and (min-width: 900px){
-
-  }
-
-  @media only screen and (min-width: 1100px){
-
-  }
-
-  @media only screen and (min-width: 1300px){
-
-  }
-
-  @media only screen and (min-width: 1600px){
-
-  }
-
-
-  @media only screen and (min-width: 420px){
-    #navBar3{
-      width:100%;
-      margin: auto;
-    }
-
-    #geoCoding-TextInput{
-      width:300px;
-    }
-
-  }
-
-  @media only screen and (min-width: 720px){
-
-    #navBar3{
-      width:95%;
-      margin: auto;
-    }
-
-    #backHome-button{
-        background-image:url('../imgs/Menu-48-offW.png');
-    }
-
-    #geoCoding-TextInput{
-      width:320px;
-    }
-
-    #temp-div{
-      padding: 0 2% 0 2%;
-    }
-
-    #currentTemp{
-      line-height: 20px;
-    }
-  }
-
-  @media only screen and (min-width: 1020px){
-    #tempC{
-        font-size: 1.4em;
-    }
-    #tempF{
-       font-size: 1.4em;
-    }
-
-    #addLocation{
-      height: 30px;
-      width: 30px;
-      margin: 0 4px 8px 0px;
-      padding-bottom: 0px;
-      vertical-align: top;
-    }
-  }
-*/
-
-/* uneeded styles
-
-  #mainView div {
-   width:300px;
-   height:600px;
-   text-align: center;
-   background-color:#000;
-  }
-
-  #backHome-button:hover{
-    background-image:url('../imgs/Menu-48-4B4AA7-B.png');
-  }
-
-*/
