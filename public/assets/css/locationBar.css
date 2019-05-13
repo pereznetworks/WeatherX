@@ -18,7 +18,7 @@
   width: 35%;
   margin: 0;
   padding: 0 0 0 2%;
-  font-size: 16px;
+  font-size: 20px;
 }
 
   #cityTime-div p {
@@ -67,7 +67,7 @@
     line-height: 22px;
     margin: 0% 0% 3% 0;
     padding: 14% 0;
-    font-size: 5em;
+    font-size: 4.2em;
   }
 
   .hideTemp {
@@ -92,7 +92,7 @@
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: bottom;
-    background-size: 200%;
+    background-size: 140%;
     text-decoration: none;
     vertical-align:middle;
     width:5%;
@@ -107,13 +107,15 @@
 
 @media (min-width: 560px) and (orientation: landscape) {
   .locationBar-div{
+    width: 70%;
     height: 100px;
-    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    margin: 0 0 0 15%;
   }
 
-  #cityTime-div p{
-    margin: 0 10%;
-    font-size: .8em;
+  #cityTime-div{
+    font-size: 12px;
+    margin: 3% 0;
   }
 
     #cityTime-div p {
@@ -143,6 +145,7 @@
     display: inline;
     float: left;
     color:#fff;
+    margin: 4% 0;
     padding: 4% 4%;
     font-size: 2em;
     text-align: center;
@@ -161,9 +164,9 @@
       float: right;
       display: block;
       line-height: 22px;
-      margin: 0% 0% 3% 0;
+      margin: 12% 0% 3% 0;
       padding: 14% 0;
-      font-size: 2em;
+      font-size: 2.8em;
     }
 
     .hideTemp {
@@ -188,7 +191,7 @@
       background-color: transparent;
       background-repeat: no-repeat;
       background-position: bottom;
-      background-size: 200%;
+      background-size: 140%;
       text-decoration: none;
       vertical-align:middle;
       width:5%;
@@ -210,6 +213,9 @@
     margin: 0 0 0 0;
   }
 
+  #cityTime-div{
+    margin: 0 0;
+  }
   #cityTime-div p{
     margin: 0 10%;
     font-size: .8em;
@@ -242,7 +248,7 @@
     display: inline;
     float: left;
     color:#fff;
-    padding: 4% 4%;
+    padding: 0% 4%;
     font-size: 2em;
     text-align: center;
   }
@@ -260,9 +266,9 @@
       float: right;
       display: block;
       line-height: 22px;
-      margin: 0% 0% 3% 0;
-      padding: 14% 0;
-      font-size: 2em;
+      margin: 9% 0% 0% 0;
+      padding: 0;
+      font-size: 3.4em;
     }
 
     .hideTemp {
@@ -287,7 +293,7 @@
       background-color: transparent;
       background-repeat: no-repeat;
       background-position: bottom;
-      background-size: 200%;
+      background-size: 120%;
       text-decoration: none;
       vertical-align:middle;
       width:5%;
