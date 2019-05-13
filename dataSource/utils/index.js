@@ -435,6 +435,7 @@ module.exports.setBackground = {
   }
   }
 
+// select the appropriate weather-icon, based on forecast condition key-
 module.exports.getWiClass = function(icon, day){
   // for mapping locationData, inserts currentConditions into a LocationBar Div, inserted into grid
 
@@ -508,9 +509,40 @@ module.exports.getWiClass = function(icon, day){
       return wiClass;
   };
 
+// reverse an array so new elements appear first
 module.exports.displayNewLocFirst = function(){
-  // reverse the array of locationBar grid items, so new locations appear at the top
 
       arrayOfElements.reverse();
       return arrayOfElements;
   };
+
+// generate and return a random alphanumeric string using basic Math methods
+module.exports.getUuid = function(){
+  const getRandomNum = (max) => {
+    return Math.floor((Math.random() * max) + 1);
+  };
+
+  const getRandomLtr = () => {
+    // array of letter arrays
+    const letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+    // console.log(letters.length)
+    // randomly select letter from randonly selected upper or lowercase letter array
+    return letters[getRandomNum(51) - 1 ];
+  };
+
+  const ltrNum = ['A', 0, 'B', 1, 'C', 3];
+
+  let alphaNumrc = '';
+
+  for (let i = 0; i <= 12; i++ ){
+    if (isNaN(parseInt(ltrNum[getRandomNum(6) - 1]))){
+      // console.log(`index:${i}\nletter: ${alphaNumrc}`);
+      alphaNumrc = `${alphaNumrc}${getRandomLtr()}`;
+    } else {
+      // console.log(`index:${i}\nnumber: ${alphaNumrc}`);
+      alphaNumrc = `${alphaNumrc}` + `${getRandomNum(100)}`;
+    }
+  }
+
+  return alphaNumrc;
+};

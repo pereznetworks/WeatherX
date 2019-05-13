@@ -5,6 +5,9 @@ const createError = require('http-errors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+var session = require('express-session');
+
+const getUuid = require('./dataSource').getUuid;
 
 // creating the express app
 const app = express();
@@ -23,6 +26,29 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+const expiryDate = new Date(Date.now() + 60 * 60 * 1000) // 1 hour
+
+app.use(session({
+  secret: function(req) {
+    return `${getUuid()}`// a random alphaNumeric string as tbe 'secret' for the session
+  },
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true },
+  name: function(req) {
+    return `session${getUuid()}`// session + a random alphaNumeric string as session name
+  },
+  genid: function(req) {
+    return getUuid() // use UUIDs for session IDs
+  },
+  secure: true,
+  httpOnly: true,
+  domain: 'localhost',
+  path: '/',
+  expires: expiryDate,
+  unset: 'destroy'
+}));
 
 // importing routes
 const routes = require('./routes/index.js');

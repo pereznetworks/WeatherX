@@ -14,6 +14,9 @@ const convertTemp = require ('./utils').convertTemp;
 const setBackground = require ('./utils').setBackground;
 const getWiClass = require ('./utils').getWiClass;
 
+// generate a random alphanumeric string to use as a uuid
+const getUuid = require('./utils').getUuid;
+
 // exporting methods that access forecast.io and mapbox geocoding api
 module.exports.getForecastApiCall= getForecastApiCall;
 module.exports.getGeoCodeApiCall = getGeoCodeApiCall;
@@ -22,3 +25,4 @@ module.exports.manageForecastData = manageForecastData;
 module.exports.timedate = timeDate;
 module.exports.setBackground = setBackground;
 module.exports.getWiClass = getWiClass;
+module.exports.getUuid = getUuid;
