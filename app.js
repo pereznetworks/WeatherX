@@ -29,26 +29,26 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const expiryDate = new Date(Date.now() + 60 * 60 * 1000) // 1 hour
 
-app.use(session({
-  secret: function(req) {
-    return `${getUuid()}`// a random alphaNumeric string as tbe 'secret' for the session
-  },
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true },
-  name: function(req) {
-    return `session${getUuid()}`// session + a random alphaNumeric string as session name
-  },
-  genid: function(req) {
-    return getUuid() // use UUIDs for session IDs
-  },
-  secure: true,
-  httpOnly: true,
-  domain: 'localhost',
-  path: '/',
-  expires: expiryDate,
-  unset: 'destroy'
-}));
+app.use(session({ secret: 'donkey golf',
+                  resave: false,
+                  saveUninitialized: true,
+                  cookie: { secure: true },
+                  name: function(req) {
+                    // session + a random alphaNumeric string as session name
+                    return `session${getUuid()}`
+                  },
+                  genid: function(req) {
+                     // use UUIDs for session IDs
+                    return getUuid()
+                  },
+                  secure: true,
+                  httpOnly: true,
+                  domain: 'localhost',
+                  path: '/',
+                  expires: expiryDate,
+                  unset: 'destroy',
+                  store: new SequelizeStore({db: require('../data/models')})
+               }));
 
 // importing routes
 const routes = require('./routes/index.js');

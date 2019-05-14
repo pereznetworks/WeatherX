@@ -2,11 +2,6 @@ const express = require('express');
 const axios = require('axios');
 const main = express.Router();
 
-
-// importing sequelize, db and models
-const sequelizeDb = require('../data/models');
-
-
 // importing methods that access forecast.io and mapbox geocoding api
 const getForecastApiCall = require('../dataSource').getForecastApiCall;
 const getGeoCodeApiCall = require('../dataSource').getGeoCodeApiCall;
@@ -135,6 +130,9 @@ const getForecast = function(req, res, next){
 
                     // currentLocation will always be the latest one entered, so new locationBar will be rendered for it
                     // index of locationName array should always match index of forecastData array
+                    // the increase indexs, save input to geoCodeThis array
+                    locals.searchResults.arrayLength = locals.searchResults.locationBarArray.length;
+                    locals.searchResults.currentIndex = locals.searchResults.arrayLength - 1;
 
                     locals.searchResults.forecastData = [...locals.searchResults.forecastData, newForecast.data[1]];
                     locals.searchResults.locationData =  [...locals.searchResults.locationData, newForecast.data[0]];
@@ -179,7 +177,7 @@ const getForecast = function(req, res, next){
                     // doing this here means only a valid query will set forecast flag true
                     locals.searchResults.forecast = true;
 
-                    res.render('index', locals.searchResults);
+                    return locals.searchResults;
 
                     console.log(`response sent, deleting data.., should get 2 "found:" folloewd by nothing`);
                     db.splice(0, db.length)
@@ -223,11 +221,11 @@ const getForecast = function(req, res, next){
 
     // let errorMsg = `Opps, it seems we did not receive a valid location: place type a city, state or zipcode, then a ',' followed by a country abbreviation`;
     // next(new Error(`${errorMsg}`));
-    res.render('index', locals.searchResults);
+    return locals.searchResults;
   }
 };
 
-const showForecastDetail = function(index){
+const showForecastDetail = function(index, locals){
 
   // get current data for selected location, using index for that location's data object
   locals.searchResults.currentLocationData = {
@@ -266,6 +264,8 @@ const showForecastDetail = function(index){
      removed = locals.searchResults.forecastData[index].data.hourly.data.splice(0,1);
    }
    remove = '';
+
+   return locals.searchResults;
 };
 
 const pickOutDataPoints = (dataObject, index) => {  // callback function for getHourlyConditions
@@ -319,7 +319,7 @@ const getDailyConditions = (dataArray) => { // for each day in a locations forec
 }
 
 // using an indexNo, splices out the corresponding data object from arrays in locals.searchResults
-const removeLocation = indexNo => {
+const removeLocation = (indexNo, locals) => {
   // using a given index, splice all arrays with the effect of removing that location
   locals.searchResults.locationData.splice(indexNo, 1);
   locals.searchResults.locationName.splice(indexNo, 1);
@@ -328,13 +328,15 @@ const removeLocation = indexNo => {
   locals.searchResults.locationBarBackGround.splice(indexNo, 1);
   locals.searchResults.mainViewBackGround.splice(indexNo, 1);
   locals.searchResults.locationCount = locals.searchResults.locationData.length;
+
+  return locals;
 }
 
 // renders home page, initial view
 main.get('/', (req, res, next) => {
   // renders the a title bar  and navbar with tempType controls
   // locationBar only renders as response from /weatherCurrent
-    res.render('index', locals.searchResults);
+    res.render('index', req.session.locals = locals.searchResults);
 
 });
 
@@ -355,31 +357,25 @@ main.get('/weatherCurrent', (req, res, next) => {
 
   if (req.query.geoCodeThis !== ''){ //if not blank
 
-    locals.searchResults.geoCodeThis = req.query.geoCodeThis;
-
-
+    req.session.locals.geoCodeThis = req.query.geoCodeThis;
 
     // if not a duplicate, if there is at least 1 comma between words, if no comma at beginning and if no numbers,
     if (req.query.geoCodeThis.match(lookForCommaBetween) !== null && req.query.geoCodeThis.match(lookForCommaAtBeginning) == null && req.query.geoCodeThis.match(findNumbers) == null ){
 
       // if there are other names in the locationData array, compare each of these for dulicates
-      if (locals.searchResults.locationName.length > 0){
-        locals.searchResults.locationName.forEach(compareLocationName);
+      if (req.session.locals.locationName.length > 0){
+        req.session.locals.locationName.forEach(compareLocationName);
       }
 
       if (locals.searchResults.notADuplicateLocation){
         // make async axios api calls to get and process data
-        getForecast(req, res, next);
-        // the increase indexs, save input to geoCodeThis array
-        locals.searchResults.arrayLength = locals.searchResults.locationBarArray.length;
-        locals.searchResults.currentIndex = locals.searchResults.arrayLength - 1;
+        req.sessions.locals = getForecast(req.session.locals.searchResults);
       }
-
 
     } else {
       // just in case req.query.geoCodeThis is a duplicate, just render the home page with no changes
       // may want to change navBar input so users is prompted for valid input
-      res.render('index', locals.searchResults);
+      res.render('index', req.session.locals.searchResults);
     }
 
 
@@ -387,7 +383,7 @@ main.get('/weatherCurrent', (req, res, next) => {
 
     // just in case req.query.geoCodeThis is blank, just render the home page with no changes
     // may want to change navBar input so users is prompted for valid input
-    res.render('index', locals.searchResults);
+    res.render('index', req.session.locals.searchResults);
   }
 
 });
@@ -398,19 +394,17 @@ main.get('/tempType/:type', (req, res, next) => {
     // to show tempaerture in Celsius or Fahrenheit degrees
 
     const updateTime = (object, index) => {
-      object.liveFormattedTime = timeDate.getCurrentTimeAtLocation(new Date(), locals.searchResults.forecastData[index].data.offset);
+      object.liveFormattedTime = timeDate.getCurrentTimeAtLocation(new Date(), req.session.locals.forecastData[index].data.offset);
       return object;
     };
     if (req.params.type) {
       if ( req.params.type == "Fahrenheit"){
-      locals.searchResults.tempTypeFahrenheit = true;
+      req.sessions.locals.searchResults.tempTypeFahrenheit = true;
       } else if (req.params.type == "Celsius"){
-      locals.searchResults.tempTypeFahrenheit = false;
+      req.sessions.locals.searchResults.tempTypeFahrenheit = false;
       }
-    locals.searchResults.availLocationsArray = locals.searchResults.availLocationsArray.map(updateTime);
+    req.sessions.locals.searchResults.availLocationsArray = req.sessions.locals.searchResults.availLocationsArray.map(updateTime);
     } // other wise make no changes
-
-
 
     res.redirect('/');
 })
@@ -421,10 +415,10 @@ main.get('/weatherForecast/:indexNo', (req, res, next) => {
   // requires already gecoded location and forecast data
   // otherwise redirect to home page
   // else renders mainView
-  if (locals.searchResults.forecast){
-    locals.searchResults.arrayIndexNo = req.params.indexNo;
-    showForecastDetail(locals.searchResults.arrayIndexNo);
-    res.render('mainView/detail.pug', locals.searchResults)
+  if (req.sessions.locals.searchResults.forecast){
+    req.session.locals.arrayIndexNo = req.params.indexNo;
+    req.session.locals = showForecastDetail(req.session.locals);
+    res.render('mainView/detail.pug', req.sessions.locals.searchResults)
   } else {
     res.redirect('/')
   }
@@ -435,7 +429,7 @@ main.get('/weatherForecast/:indexNo', (req, res, next) => {
 // which renders the existing locationBars minus removed location
 main.get('/removeLocation/:indexNo', (req, res, next) => {
   if (req.params.indexNo && !isNaN(parseInt(req.params.indexNo))){
-  removeLocation(req.params.indexNo);}
+  req.session.locals = removeLocation(req.params.indexNo, req.session.locals);}
   res.redirect('/')
 });
 
