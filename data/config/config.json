@@ -1,15 +1,15 @@
 {
   "development": {
-    "host": "localhost",
-    "dialect": "postgres"
+    "storage": "./data/library.db",
+    "dialect": "sqlite"
   },
   "test": {
-    "host": "localhost",
-    "dialect": "postgres"
+    "storage": "./testdata/library.db",
+    "dialect": "sqlite"
   },
   "production": {
-    "host": "localhost",
-    "dialect": "postgres",
+    "storage": "./prod/library.db",
+    "dialect": "sqlite",
     "logging": false
   }
 }

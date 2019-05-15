@@ -5,18 +5,29 @@ const createError = require('http-errors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const helmet = require('helmet');
-const session = require('express-session');
+var session = require('express-session');
+
+const getUuid = require('./dataSource').getUuid;
 
 // creating the express app
 const app = express();
 
-// initalize sequelize and a session store using seqeulize
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const Sequelize = require('./data/models');
+// basic secruity measures
+const helmet = require('helmet')
+app.use(helmet());
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
+// telling express app which modules and settings to use
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 const expiryDate = new Date(Date.now() + 60 * 60 * 1000) // 1 hour
-const getUuid = require('./dataSource').getUuid; // randomized alphaNumeric uuid
 
 app.use(session({ secret: 'donkey golf',
                   resave: false,
@@ -24,7 +35,7 @@ app.use(session({ secret: 'donkey golf',
                   cookie: { secure: true },
                   name: function(req) {
                     // session + a random alphaNumeric string as session name
-                    return `sessionId`
+                    return `session${getUuid()}`
                   },
                   genid: function(req) {
                      // use UUIDs for session IDs
@@ -36,23 +47,8 @@ app.use(session({ secret: 'donkey golf',
                   path: '/',
                   expires: expiryDate,
                   unset: 'destroy',
-                  store: new SequelizeStore({db: Sequelize})
+                  store: new SequelizeStore({db: require('../data/models')})
                }));
-
-
-// telling express app which modules and settings to use
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-// basic secruity measures
-app.use(helmet());
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
 
 // importing routes
 const routes = require('./routes/index.js');
