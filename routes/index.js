@@ -78,7 +78,7 @@ const compareLocationName = (item, index) => {
 // each array is created as part of the locals.searchResults object
 
 // make api calls and process geocoded location and weather data
-const getForecast = function(req, res, next){
+const getForecast = function(locals){
   // resetting forecast flag just in case this is not the first forecast retreived
   locals.searchResults.forecast = false;
 
@@ -369,7 +369,7 @@ main.get('/weatherCurrent', (req, res, next) => {
 
       if (locals.searchResults.notADuplicateLocation){
         // make async axios api calls to get and process data
-        req.sessions.locals = getForecast(req.session.locals.searchResults);
+        req.sessions.locals = getForecast(req.session.locals);
       }
 
     } else {
