@@ -16,7 +16,7 @@ const config = require('../config/' + 'config.json')[env];
 let sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 // create a db object that matches the tables created from model definitions
-const db = {}; 
+const db = {};
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
@@ -31,10 +31,16 @@ db.Sequelize = Sequelize;
 // assigning these as part of db object
 db.Forecasts = require('./forecastModel.js')(sequelize, Sequelize)
 db.Locations = require('./locationModel.js')(sequelize, Sequelize);
+db.AppSessions = require('./sessionModel.js')(sequelize, Sequelize);
+db.SearchResults= require('./searchResultModel.js')(sequelize, Sequelize);
 
 // model associatons - table joins
 db.Locations.hasOne(db.Forecasts);
 db.Forecasts.belongsTo(db.Locations);
+db.SearchResults.belongsTo(db.AppSessions);
+db.AppSessions.hasMany(db.Locations);
+db.AppSessions.hasMany(db.SearchResults);
+
 
 // export the db
 module.exports = db;
