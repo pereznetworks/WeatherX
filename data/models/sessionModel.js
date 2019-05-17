@@ -4,55 +4,17 @@ module.exports = (sequelize, DataTypes) => {
   const AppSession = sequelize.define('AppSession',
       {
                id: {
+                             type: DataTypes.INTEGER,
                         allowNull: false,
                     autoIncrement: true,
-                       primaryKey: true,
-                             type: DataTypes.INTEGER
+                       primaryKey: true
                    },
-            req_id: {
+   app_session_id: {
                              type: DataTypes.STRING,
                         allowNull: false,
                            unique: true
                    },
-          forecast: {
-                             type: DataTypes.BOOLEAN,
-                        allowNull: false,
-                        defaultValue: false,
-                             init: {
-                                      function(){
-                                         const db = require("./models/index.js");
-                                         sequelizeDb.Locations.count()
-                                          .then(count, err => {
-                                            if (err){
-                                              return next(err)
-                                            }
-                                            if (count > 0){
-                                              return true;
-                                            } else {
-                                              return false;
-                                            }
-                                          })
-                                       }
-                                    }
-                   },
-    location_count: {
-                             type: DataTypes.INTEGER,
-                        allowNull: false,
-                        defaultValue: 0,
-                             init: {
-                                       function(){
-                                               const db = require("./models/index.js");
-                                               sequelizeDb.Locations.count()
-                                                .then(count, err => {
-                                                  if (err){
-                                                    return next(err)
-                                                  } else {
-                                                    return count;
-                                                  }
-                                                })
-                                              }
-                                   }
-                     }
+
 
       },{
              timestamps: true,

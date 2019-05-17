@@ -268,8 +268,19 @@ const makeApiCalls = function(id, input){
       axios.get(geoCodeApiCallUrl)
         .then(response => {
 
-          sequelizeDb.Locations.create(response)
+          const loc = {
+            data: {
+              results: response.data.results,
+              summary: response.data.summary,
+              location_session_id: id,
+            }
+          };
+
+
+          sequelizeDb.Locations.create(loc)
             .then(Location => {
+
+              // sequelizeDb.Locations.findAll().then((location)=>{console.log(location)})
 
               let longLat = Location.dataValues.data.results[0].position;
               let cityName =  Location.dataValues.data.results[0].address.municipality;
@@ -284,8 +295,16 @@ const makeApiCalls = function(id, input){
               axios.get(forecastApiCallUrl)
                    .then(response => {
 
-                    sequelizeDb.Forecasts.create(response)
+                     response.data.forecast_session_id= id;
+
+                     const forecast = {
+                       data: response.data
+                     };
+
+                    sequelizeDb.Forecasts.create(forecast)
                      .then( Forecast => {
+
+                       // sequelizeDb.Forecasts.findAll().then((forecast)=>{console.log(forecast)})
 
                         db.push(manageForecastData(Forecast.dataValues.data));
                         let newForecast = {
@@ -298,39 +317,41 @@ const makeApiCalls = function(id, input){
                         // index of locationName array should always match index of forecastData array
 
                         const searchResults = {
+                          data: {
+                                search_result_session_id: id,
+                                forecastData: newForecast.data[1],
+                                locationData: newForecast.data[0],
+                                locationName: [`${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`],
+                                currentLocationData: {
+                                    // index: this.forecastData.length,
+                                    locationName: `${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`,
+                                    sunsetTime: newForecast.data[1].data.daily.data[0].sunsetTime,
+                                    sunriseTime: newForecast.data[1].data.daily.data[0].sunriseTime,
+                                    utcOffSet: newForecast.data[1].data.offset,
+                                    liveFormattedTime: timeDate.getCurrentTimeAtLocation(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset),
+                                    timezone: newForecast.data[1].data.offset,
+                                    day: timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime),
+                                    tempFahrenheit: Math.floor(newForecast.data[1].data.currently.temperature),
+                                    tempCelsius: convertTemp.toCelsius(Math.floor(newForecast.data[1].data.currently.temperature)),
+                                    icon:`${newForecast.data[1].data.currently.icon}`,
+                                    summary:`${newForecast.data[1].data.currently.summary}`,
+                                    wiClass: getWiClass(newForecast.data[1].data.currently.icon, timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime)),
+                                    currentCondition:`${newForecast.data[1].data.currently.summary}`
+                                  },
+                                mainViewBackGround: [timeDate.mainView(newForecast.data[1].data)],
+                                locationBarBackGround: [timeDate.locationBar(newForecast.data[1].data)]
+                              }
+                          }
 
-                            forecastData: newForecast.data[1],
-                            locationData: newForecast.data[0],
-                            locationName: [`${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`],
-                            currentLocationData: {
-                                // index: this.forecastData.length,
-                                locationName: `${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`,
-                                sunsetTime: newForecast.data[1].data.daily.data[0].sunsetTime,
-                                sunriseTime: newForecast.data[1].data.daily.data[0].sunriseTime,
-                                utcOffSet: newForecast.data[1].data.offset,
-                                liveFormattedTime: timeDate.getCurrentTimeAtLocation(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset),
-                                timezone: newForecast.data[1].data.offset,
-                                day: timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime),
-                                tempFahrenheit: Math.floor(newForecast.data[1].data.currently.temperature),
-                                tempCelsius: convertTemp.toCelsius(Math.floor(newForecast.data[1].data.currently.temperature)),
-                                icon:`${newForecast.data[1].data.currently.icon}`,
-                                summary:`${newForecast.data[1].data.currently.summary}`,
-                                wiClass: getWiClass(newForecast.data[1].data.currently.icon, timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime)),
-                                currentCondition:`${newForecast.data[1].data.currently.summary}`
-                              },
-                            mainViewBackGround: [timeDate.mainView(newForecast.data[1].data)],
-                            locationBarBackGround: [timeDate.locationBar(newForecast.data[1].data)]
-                        }
 
                         sequelizeDb.SearchResults.create(searchResults)
-                          .then(() => {
-                          // doing this here means only a valid query will set forecast flag true
+                        .then( SearchResults => {
 
-                          // sequelizeDb.Locations.count()
-                          //   .then(count => {
-                                  const session = {req_id: id};
+                                  const session = {app_session_id: id};
                                   sequelizeDb.AppSessions.create(session)
-                                     .then(() => {
+                                     .then( AppSession => {
+                                       // sequelizeDb.AppSessions.findAll().then((session)=>{console.log(session)})
+
                                        console.log(`results saved to session store, emptying temp db object`);
                                        db.splice(0, db.length)
                                        return true;
@@ -338,12 +359,6 @@ const makeApiCalls = function(id, input){
                                          console.log('Error saving Session data... ', err);
                                          return err;
                                      })
-
-                            // }).catch(err => {
-                            //         console.log('Error getting Location count... ', err);
-                            //         return err;
-                            //
-                            // });
 
                           }).catch(err => {
                                 console.log('Error saving SearchResults... ', err);
@@ -360,7 +375,7 @@ const makeApiCalls = function(id, input){
                       return err;
                    });
 
-                 }).catch(function(err){
+            }).catch(function(err){
               console.log(`Error saving that Location ${err}`);
               return err;
             });
@@ -522,7 +537,9 @@ main.get('/weatherCurrent', (req, res, next) => {
             // make async axios api calls to get and process data
             locals.searchResults = getForecast(req.session.id, req.query.geoCodeThis);
             res.render('index', locals.searchResults);
-          }
+         } else {
+            next (new Error('Oops, error getting getting forecast data'))
+         }
        }
 
 

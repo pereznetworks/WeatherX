@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
                        primaryKey: true,
                              type: DataTypes.INTEGER
                    },
-                data: {
-                            type: DataTypes.JSON
-                }
+              data: {
+                             type: DataTypes.JSON
+                   }
 
       },{
              timestamps: true,
