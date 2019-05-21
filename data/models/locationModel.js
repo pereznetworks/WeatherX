@@ -19,12 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Location.associate = function(models) {
-    // association defined in models/index.js, but not working ??? associated_table_id is always null ??
-    // Location.hasOne(model.AppSession, {
-    //       as:'app_session_id',
-    //       foreignKey: 'id',
-	  //       onDelete: 'CASCADE'
-    //     })
+    // association defined in models/index.js
   };
 
   return Location;

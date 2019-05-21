@@ -20,12 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   AppSession.associate = function(models) {
-    // association defined in models/index.js, but not working ??? associated_table_id is always null ??
-    // AppSession.hasMany(model.SearchResults, {
-    //       as:'search_results_id',
-    //       foreignKey: 'id',
-	  //       onDelete: 'CASCADE'
-    //     });
+    // association defined in models/index.js
   };
 
   return AppSession;
