@@ -35,12 +35,27 @@ db.AppSessions = require('./sessionModel.js')(sequelize, Sequelize);
 db.SearchResults= require('./searchResultModel.js')(sequelize, Sequelize);
 
 // model associatons - table joins
-db.Locations.hasOne(db.Forecasts);
-db.Forecasts.belongsTo(db.Locations);
-db.SearchResults.belongsTo(db.AppSessions);
-db.AppSessions.hasMany(db.Locations);
-db.AppSessions.hasMany(db.SearchResults);
+
+// moved these into the model definitions, becuase associated_table_id's were not being set, but are always null
+
+// building table SearchResults so these first 2 associatons not needed
+// db.AppSessions.hasMany(db.Locations);
+// db.Locations.belongsTo(db.AppSessions);
+
+db.Forecasts.belongsTo(db.Locations, {
+      foreignKey: 'Locations_id',
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE'
+    });
+
+db.SearchResults.belongsTo(db.AppSessions, {
+      foreignKey: 'AppSessions_id',
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE'
+    });
+
 
 
 // export the db
-module.exports = db;
+module.exports.Sequelize = Sequelize;
+module.exports.db = db;

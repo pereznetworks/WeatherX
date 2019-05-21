@@ -13,7 +13,7 @@ var process = require('process');
 // importing from models/index.js
 // .. which sets config, checks for or creates a db, imports models into sequelize
 // .... then imported here
-const sequelize = require('./data/models').sequelize;
+const db = require('./data/models').db;
 
 /**
  * Get port from environment and store in Express.
@@ -36,7 +36,7 @@ var server = http.createServer(app);
 
 
 // sync the sequelize database, then start the server
-sequelize
+db.sequelize
   .sync()
   .then(() => {
     server.listen(port, () => {

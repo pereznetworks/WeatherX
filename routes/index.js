@@ -3,8 +3,9 @@ const axios = require('axios');
 const main = express.Router();
 
 
-// importing sequelize, db and models
-const sequelizeDb = require('../data/models');
+// importing Sequelize, and sequelizeDb and models
+const Sequelize = require('../data/models').Sequelize;
+const sequelizeDb = require('../data/models').db;
 
 
 // importing methods that access forecast.io and mapbox geocoding api
@@ -229,16 +230,19 @@ const getForecastOriginal = function(req, res, next){
 };
 
 // get search results by session id and index from seqeulize db
-const getForecast = (sessionId, location) => {
+const getForecast = function(sessionId, location){
 
    if (sessionId){
-     sequelizeDb.Session.findOne({where: {reqId: sessionId}})
-       .then(response => {
-         console.log(`${response}\n, ${location}`);
-         return response;
-       });
-   } else {
-     return false;
+
+       sequelizeDb.AppSessions.findOne({where: {app_session_id: sessionId}})
+         .then(response => {
+           console.log(`${response}\n, ${location}`);
+           locals.searchResults = response;
+           locals.searchResults.forecast = true;
+         }).catch((err) =>{
+           console.log(`Oops, we had problems finding a forecast for "${sessionId}":\n ${err}`);
+           locals.searchResults.forecast = false;
+         });
    }
 
    // // the increase indexs, save input to geoCodeThis array
@@ -247,10 +251,12 @@ const getForecast = (sessionId, location) => {
 };
 
 // makes api calls, processes geocoded location and weather data, and saves to seqeulize data and session db
-// return true if successful, false if not
-const makeApiCalls = function(id, input){
+// render forecast if successful, if not render page unchanged with navbar input prompt
+const makeApiCalls = function(req, res, next){
 
   const lookForCommaBetween = /,(?=[\sA-Za-z])/g;
+
+  const input = req.query.geoCodeThis;
 
   if (input && input.match(lookForCommaBetween)){
 
@@ -265,131 +271,142 @@ const makeApiCalls = function(id, input){
       let errorMsg = `Opps, it seems we did not receive a valid location: place type a city, state or zipcode, then a ',' followed by a country abbreviation`;
       next(new Error(`${errorMsg}`));
     } else {
-      axios.get(geoCodeApiCallUrl)
-        .then(response => {
+            axios.get(geoCodeApiCallUrl)
+              .then(response => {
 
-          const loc = {
-            data: {
-              results: response.data.results,
-              summary: response.data.summary,
-              location_session_id: id,
-            }
-          };
+                const loc = {
+                  data: {
+                    results: response.data.results,
+                    summary: response.data.summary
+                  }
+                };
+
+                sequelizeDb.Locations.create(loc)
+                  .then(Location => {
+
+                    // sequelizeDb.Locations.findAll().then((location)=>{console.log(location)})
+                    let location_id = Location.id;
+
+                    let longLat = Location.dataValues.data.results[0].position;
+                    let cityName =  Location.dataValues.data.results[0].address.municipality;
+                    let province =  Location.dataValues.data.results[0].address.countrySubdivision;
+                    let loc = {location_id:location_id,latitude:longLat.lat,longitude:longLat.lon, city: cityName, province: province };
+
+                    const db = [];
+                    db.push(manageLocData(loc));
+                    let forecastApiCallUrl = getForecastApiCall(db[0].data, apiKeys.forecastKey);
+
+                    axios.get(forecastApiCallUrl)
+                         .then(response => {
+
+                           const forecast = {
+                             Locations_id: db[0].data.location_id,
+                             data: response.data
+                           };
+
+                          sequelizeDb.Forecasts.create(forecast)
+                           .then( Forecast => {
+
+                             // sequelizeDb.Forecasts.findAll().then((forecast)=>{console.log(forecast)})
+
+                              db.push(manageForecastData(Forecast.dataValues.data));
+                              let newForecast = {
+                                // save new current foreeast
+                                timeStamp: Date.now(),
+                                data: db
+                                }
+
+                              // currentLocation will always be the latest one entered, so new locationBar will be rendered for it
+                              // index of locationName array should always match index of forecastData array
+
+                              const session = {app_session_id: req.sessionID};
+                              sequelizeDb.AppSessions.create(session)
+                               .then((AppSession) => {
+                                 const searchResults = {
+                                   AppSessions_id: AppSession.id,
+                                   data: {
+                                         forecastData: newForecast.data[1],
+                                         locationData: newForecast.data[0],
+                                         locationName: [`${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`],
+                                         currentLocationData: {
+                                             // index: this.forecastData.length,
+                                             locationName: `${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`,
+                                             sunsetTime: newForecast.data[1].data.daily.data[0].sunsetTime,
+                                             sunriseTime: newForecast.data[1].data.daily.data[0].sunriseTime,
+                                             utcOffSet: newForecast.data[1].data.offset,
+                                             liveFormattedTime: timeDate.getCurrentTimeAtLocation(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset),
+                                             timezone: newForecast.data[1].data.offset,
+                                             day: timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime),
+                                             tempFahrenheit: Math.floor(newForecast.data[1].data.currently.temperature),
+                                             tempCelsius: convertTemp.toCelsius(Math.floor(newForecast.data[1].data.currently.temperature)),
+                                             icon:`${newForecast.data[1].data.currently.icon}`,
+                                             summary:`${newForecast.data[1].data.currently.summary}`,
+                                             wiClass: getWiClass(newForecast.data[1].data.currently.icon, timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime)),
+                                             currentCondition:`${newForecast.data[1].data.currently.summary}`
+                                           },
+                                         mainViewBackGround: [timeDate.mainView(newForecast.data[1].data)],
+                                         locationBarBackGround: [timeDate.locationBar(newForecast.data[1].data)]
+                                       }
+                                   }
+
+                                 sequelizeDb.SearchResults.create(searchResults)
+                                 .then( SearchResults => {
+
+                                                sequelizeDb.Forecasts.findAll(
+                                                  // {
+                                                  //   where: {id: AppSession.id},
+                                                  //   include: [{
+                                                  //     model: sequelizeDb.Locations,
+                                                  //     where: {app_session_id: Sequelize.col(`AppSession.id`)},
+                                                  //     include: [{
+                                                  //       model: sequelizeDb.Forecasts,
+                                                  //       where: {location_id: Sequelize.col(`Locations.id`)}
+                                                  //     }]
+                                                  //   }]
+                                                  // }
+                                                ).then(locationForecast =>{
+                                                  res.status(200).json(locationForecast);
+                                                  console.log(locationForecast);
+                                                }).catch(err => {
+                                                  console.log(`Oops, something went wrong\n ${err}`)
+                                                  res.render("index", locals.searchResults);
+                                                })
 
 
-          sequelizeDb.Locations.create(loc)
-            .then(Location => {
+                                                console.log(`results saved to session store, emptying temp db object`);
+                                                db.splice(0, db.length)
 
-              // sequelizeDb.Locations.findAll().then((location)=>{console.log(location)})
-
-              let longLat = Location.dataValues.data.results[0].position;
-              let cityName =  Location.dataValues.data.results[0].address.municipality;
-              let province =  Location.dataValues.data.results[0].address.countrySubdivision;
-              let loc = {latitude:longLat.lat,longitude:longLat.lon, city: cityName, province: province };
-
-              // going through this process to send 1 response with 1 set of json data
-              const db = [];
-              db.push(manageLocData(loc));
-              let forecastApiCallUrl = getForecastApiCall(db[0].data, apiKeys.forecastKey);
-
-              axios.get(forecastApiCallUrl)
-                   .then(response => {
-
-                     response.data.forecast_session_id= id;
-
-                     const forecast = {
-                       data: response.data
-                     };
-
-                    sequelizeDb.Forecasts.create(forecast)
-                     .then( Forecast => {
-
-                       // sequelizeDb.Forecasts.findAll().then((forecast)=>{console.log(forecast)})
-
-                        db.push(manageForecastData(Forecast.dataValues.data));
-                        let newForecast = {
-                          // save new current foreeast
-                          timeStamp: Date.now(),
-                          data: db
-                          }
-
-                        // currentLocation will always be the latest one entered, so new locationBar will be rendered for it
-                        // index of locationName array should always match index of forecastData array
-
-                        const searchResults = {
-                          data: {
-                                search_result_session_id: id,
-                                forecastData: newForecast.data[1],
-                                locationData: newForecast.data[0],
-                                locationName: [`${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`],
-                                currentLocationData: {
-                                    // index: this.forecastData.length,
-                                    locationName: `${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`,
-                                    sunsetTime: newForecast.data[1].data.daily.data[0].sunsetTime,
-                                    sunriseTime: newForecast.data[1].data.daily.data[0].sunriseTime,
-                                    utcOffSet: newForecast.data[1].data.offset,
-                                    liveFormattedTime: timeDate.getCurrentTimeAtLocation(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset),
-                                    timezone: newForecast.data[1].data.offset,
-                                    day: timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime),
-                                    tempFahrenheit: Math.floor(newForecast.data[1].data.currently.temperature),
-                                    tempCelsius: convertTemp.toCelsius(Math.floor(newForecast.data[1].data.currently.temperature)),
-                                    icon:`${newForecast.data[1].data.currently.icon}`,
-                                    summary:`${newForecast.data[1].data.currently.summary}`,
-                                    wiClass: getWiClass(newForecast.data[1].data.currently.icon, timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime)),
-                                    currentCondition:`${newForecast.data[1].data.currently.summary}`
-                                  },
-                                mainViewBackGround: [timeDate.mainView(newForecast.data[1].data)],
-                                locationBarBackGround: [timeDate.locationBar(newForecast.data[1].data)]
-                              }
-                          }
-
-
-                        sequelizeDb.SearchResults.create(searchResults)
-                        .then( SearchResults => {
-
-                                  const session = {app_session_id: id};
-                                  sequelizeDb.AppSessions.create(session)
-                                     .then( AppSession => {
-                                       // sequelizeDb.AppSessions.findAll().then((session)=>{console.log(session)})
-
-                                       console.log(`results saved to session store, emptying temp db object`);
-                                       db.splice(0, db.length)
-                                       return true;
-                                     }).catch(err => {
-                                         console.log('Error saving Session data... ', err);
+                                   }).catch(err => {
+                                         console.log('Error saving SearchResults... ', err);
                                          return err;
-                                     })
+                                   });
+                               }).catch(err => {
+                                   console.log('Error saving Session data... ', err);
+                                   return err;
+                               })
 
-                          }).catch(err => {
-                                console.log('Error saving SearchResults... ', err);
-                                return err;
-                          });
+                            }).catch( err => {
+                               console.log('Error saving Forecast data... ', err);
+                               return err;
+                            });
 
-                      }).catch( err => {
-                         console.log('Error saving Forecast data... ', err);
-                         return err;
-                      });
+                         }).catch( err => {
+                            console.log('Error getting forecast data... ', err);
+                            return err;
+                         });
 
-                   }).catch( err => {
-                      console.log('Error getting forecast data... ', err);
-                      return err;
-                   });
+                  }).catch(function(err){
+                    console.log(`Error saving that Location: \n${err}`);
+                    return err;
+                  });
 
-            }).catch(function(err){
-              console.log(`Error saving that Location ${err}`);
-              return err;
-            });
+               }).catch(err => {
+                console.log('Error geocding that location\n ${err}',);
+                return err;
+              });
 
-         }).catch(err => {
-          console.log('Error geocding that location ... ', err);
-          return err;
-        });
     }
-  } else {
 
-    // let errorMsg = `Opps, it seems we did not receive a valid location: place type a city, state or zipcode, then a ',' followed by a country abbreviation`;
-    // next(new Error(`${errorMsg}`));
-    return false;
   }
 };
 
@@ -533,13 +550,13 @@ main.get('/weatherCurrent', (req, res, next) => {
 
       if (locals.searchResults.notADuplicateLocation){
 
-        if (makeApiCalls(req.session.id, req.query.geoCodeThis)){
-            // make async axios api calls to get and process data
-            locals.searchResults = getForecast(req.session.id, req.query.geoCodeThis);
-            res.render('index', locals.searchResults);
-         } else {
-            next (new Error('Oops, error getting getting forecast data'))
-         }
+          // make async axios api calls to get and process data
+          makeApiCalls(req, res, next);
+
+       } else {
+
+          // no valid input, render pg no changes, except will be displaying helpgul msg in navBar input
+          res.render('index', locals.searchResults);
        }
 
 

@@ -19,7 +19,12 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Forecast.associate = function(models) {
-    // association defined in models/index.js
+    // association defined in models/index.js, but not working ??? associated_table_id is always null ??
+    // Forecast.hasOne(model.Locations, {
+    //       as:'location_id',
+    //       foreignKey: 'id',
+	  //       onDelete: 'CASCADE'
+    //     })
   };
 
   return Forecast;
