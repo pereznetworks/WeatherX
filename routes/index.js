@@ -73,10 +73,10 @@ const compareLocationName = (item, index) => {
   const compareInput = `${city}, ${province}`;
 
   // then compare
-  if (compareLocationName === compareInput){
-    locals.searchResults.notADuplicateLocation = false;
-  } else {
+  if (compareLocationName != compareInput && locals.searchResults.notADuplicateLocation != false){
     locals.searchResults.notADuplicateLocation = true;
+  } else {
+    locals.searchResults.notADuplicateLocation = false;
   }
 };
 
@@ -581,7 +581,7 @@ main.get('/weatherCurrent', (req, res, next) => {
          } else {
 
             // no valid input, render pg no changes, except will be displaying helpgul msg in navBar input
-            res.render('index', locals.searchResults.searchResults);
+            res.render('index', locals.searchResults);
          }
 
 
@@ -596,7 +596,7 @@ main.get('/weatherCurrent', (req, res, next) => {
     } else {
       // just in case req.query.geoCodeThis is blank, just render the home page with no changes
       // may want to change navBar input so users is prompted for valid input
-      res.render('index', locals.searchResults.searchResults);
+      res.render('index', locals.searchResults);
     }
 
 });
