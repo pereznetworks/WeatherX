@@ -29,6 +29,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const expiryDate = new Date(Date.now() + 60 * 60 * 1000) // 1 hour
 
+// // initalize sequelize with session store
+// var SequelizeStore = require('connect-session-sequelize')(session.Store);
+//
+// const config = require('./data/config/config.json').sessionStore;
+//
+// // create database, ensure 'postgres' in your package.json
+// var sessionStore = new SequelizeStore(config.database, {"host":config.host, "dialect": config.dialect});
+
 app.use(session({
   secret: function(req) {
     return `${getUuid()}`// a random alphaNumeric string as tbe 'secret' for the session
@@ -36,18 +44,15 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: { secure: true },
-  name: function(req) {
-    return `session${getUuid()}`// session + a random alphaNumeric string as session name
-  },
-  genid: function(req) {
-    return getUuid() // use UUIDs for session IDs
-  },
+  name: 'appSessionId',
+  genid: function(req) {return getUuid() },// use UUIDs for session IDs,
   secure: true,
-  httpOnly: true,
   domain: 'localhost',
   path: '/',
   expires: expiryDate,
-  unset: 'destroy'
+  unset: 'destroy',
+  // store: new SequelizeStore({db: sessionStore}),
+  httpOnly: true
 }));
 
 // importing routes

@@ -1,4 +1,9 @@
 {
+  "sessionStore": {
+    "host": "localhost",
+    "database": "sessionStore",
+    "dialect": "postgres"
+  },
   "development": {
     "host": "localhost",
     "database": "development",
