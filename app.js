@@ -38,12 +38,10 @@ const expiryDate = new Date(Date.now() + 60 * 60 * 1000) // 1 hour
 // var sessionStore = new SequelizeStore(config.database, {"host":config.host, "dialect": config.dialect});
 
 app.use(session({
-  secret: function(req) {
-    return `${getUuid()}`// a random alphaNumeric string as tbe 'secret' for the session
-  },
+  secret: 'Goat soccer',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true },
+  // cookie: { secure: true },
   name: 'appSessionId',
   genid: function(req) {return getUuid() },// use UUIDs for session IDs,
   secure: true,
