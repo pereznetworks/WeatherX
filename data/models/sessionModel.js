@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
                     autoIncrement: true,
                        primaryKey: true
                    },
-   app_session_id: {
+            app_id: {
                              type: DataTypes.STRING,
                         allowNull: false,
                            unique: true

@@ -9,6 +9,12 @@ module.exports = (sequelize, DataTypes) => {
                                            primaryKey: true,
                                                  type: DataTypes.INTEGER
                                        },
+                               app_id: {
+                                                 type: DataTypes.STRING,
+                                               unique: true,
+                                            allowNull: false
+
+                                       },
                                 data: {
                                             type: DataTypes.JSON
                                        }

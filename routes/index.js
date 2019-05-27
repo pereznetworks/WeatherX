@@ -176,10 +176,10 @@ const makeApiCalls = function(update, req, res, next){
                                 if (update) {
                                   // then we're adding to the SearchResults.data column
                                   sequelizeDb.SearchResults.findOne({
-                                    where: {app_session_id:req.session.id}
+                                    where: {app_id:req.session.id}
                                   }).then( SearchResults => {
                                        const searchResults = {
-                                            app_session_id: req.session.id,
+                                            app_id: req.session.id,
                                             data: {
                                                   forecastData: newForecast.data[1],
                                                   locationData: newForecast.data[0],
@@ -205,7 +205,7 @@ const makeApiCalls = function(update, req, res, next){
                                                 }
                                               };
 
-                                       SearchResults.update(searchResults)
+                                       SearchResults.update(searchResults.data)
                                           .then(SearchResults => {
 
                                              // res.status(200).json(searchResults.data);
@@ -214,7 +214,7 @@ const makeApiCalls = function(update, req, res, next){
                                              res.locals.searchResults.locationData =  [...res.locals.searchResults.locationData, SearchResults.data.locationData];
                                              res.locals.searchResults.locationName = [...res.locals.searchResults.locationName, SearchResults.data.locationName];
                                              res.locals.searchResults.currentLocationData = {
-                                               index: res.locals.searchResults.forecastData.length,
+                                               index: res.locals.searchResults.locationName.length,
                                                locationName: SearchResults.data.currentLocationData.locationName,
                                                sunsetTime: SearchResults.data.currentLocationData.sunsetTime,
                                                sunriseTime: SearchResults.data.currentLocationData.sunriseTime,
@@ -230,7 +230,7 @@ const makeApiCalls = function(update, req, res, next){
                                                currentCondition:`${SearchResults.data.forecastData.data.currently.summary}`
                                              };
                                              res.locals.searchResults.availLocationsArray = [...res.locals.searchResults.availLocationsArray, {
-                                                 index: res.locals.searchResults.forecastData.length,
+                                                 index: res.locals.searchResults.locationName.length,
                                                  locationName: SearchResults.data.currentLocationData.locationName,
                                                  sunsetTime: SearchResults.data.currentLocationData.sunsetTime,
                                                  sunriseTime: SearchResults.data.currentLocationData.sunriseTime,
@@ -249,11 +249,22 @@ const makeApiCalls = function(update, req, res, next){
                                              res.locals.searchResults.locationBarBackGround =  [...res.locals.searchResults.locationBarBackGround, timeDate.locationBar(SearchResults.data.forecastData.data)];
                                              res.locals.searchResults.forecast = true;
 
+                                             sequelizeDb.AppSessions.findOne({
+                                               where: {app_id: req.session.id}
+                                             }).then(AppSession => {
+                                               const currentCount = AppSession.locationCount + 1;
+                                               AppSession.update({location_count: currentCount
+                                               }).catch(err => {
+                                               next(new Error(`Oops, problem incrementing locationCount`, err));
+                                               });
+                                             }).catch(err => {
+                                               next(new Error(`Oops, problem finding AppSession by that session.id`, err));
+                                             });
+
                                              res.render('index', res.locals.searchResults)
 
                                              console.log(`results saved to session store, emptying temp db object`);
                                              db.splice(0, db.length)
-
 
                                           }).catch(err => next(new Error('Error updating SearchResults... ', err)))
                                       }).catch(err => {
@@ -263,7 +274,7 @@ const makeApiCalls = function(update, req, res, next){
                                 } else {
                                   // then we're creating a new SearchResults table
                                   const searchResults = {
-                                       app_session_id: req.session.id,
+                                       app_id: req.session.id,
                                        data: {
                                              forecastData: newForecast.data[1],
                                              locationData: newForecast.data[0],
@@ -298,7 +309,7 @@ const makeApiCalls = function(update, req, res, next){
                                        res.locals.searchResults.locationData =  [...res.locals.searchResults.locationData, SearchResults.data.locationData];
                                        res.locals.searchResults.locationName = [...res.locals.searchResults.locationName, SearchResults.data.locationName];
                                        res.locals.searchResults.currentLocationData = {
-                                         index: res.locals.searchResults.forecastData.length,
+                                         index: res.locals.searchResults.locationName.length,
                                          locationName: SearchResults.data.currentLocationData.locationName,
                                          sunsetTime: SearchResults.data.currentLocationData.sunsetTime,
                                          sunriseTime: SearchResults.data.currentLocationData.sunriseTime,
@@ -314,7 +325,7 @@ const makeApiCalls = function(update, req, res, next){
                                          currentCondition:`${SearchResults.data.forecastData.data.currently.summary}`
                                        };
                                        res.locals.searchResults.availLocationsArray = [...res.locals.searchResults.availLocationsArray, {
-                                           index: res.locals.searchResults.forecastData.length,
+                                           index: res.locals.searchResults.locationName.length,
                                            locationName: SearchResults.data.currentLocationData.locationName,
                                            sunsetTime: SearchResults.data.currentLocationData.sunsetTime,
                                            sunriseTime: SearchResults.data.currentLocationData.sunriseTime,
@@ -333,11 +344,23 @@ const makeApiCalls = function(update, req, res, next){
                                        res.locals.searchResults.locationBarBackGround =  [...res.locals.searchResults.locationBarBackGround, timeDate.locationBar(SearchResults.data.forecastData.data)];
                                        res.locals.searchResults.forecast = true;
 
+                                       sequelizeDb.AppSessions.findOne({
+                                         where: {app_id: req.session.id}
+                                       }).then(AppSession => {
+                                         const currentCount = AppSession.locationCount + 1;
+                                         AppSession.update({location_count: currentCount
+                                         }).catch(err => {
+                                         next(new Error(`Oops, problem incrementing locationCount`, err));
+                                         });
+                                       }).catch(err => {
+                                         next(new Error(`Oops, problem finding AppSession by that session.id`, err));
+                                       });
+
+
                                        res.render('index', res.locals.searchResults)
 
                                        console.log(`results saved to session store, emptying temp db object`);
                                        db.splice(0, db.length)
-
 
                                     }).catch(err => {
                                           console.log('Error saving SearchResults... ', err);
@@ -507,10 +530,10 @@ main.get('/', (req, res, next) => {
     // user decides to browse back to home page or '/'
     // from any of the other routes
 
-      const session = {app_session_id: req.session.id};
+      const session = {app_id: req.session.id};
 
       sequelizeDb.AppSessions.findOne({
-        where: {app_session_id: req.session.id}
+        where: {app_id: req.session.id}
       }).then(AppSession =>{
 
         if (AppSession){
@@ -518,7 +541,7 @@ main.get('/', (req, res, next) => {
           if (AppSession.locationCount > 0){
 
               sequelizeDb.SearchResults.findOne({
-                where: {app_session_id: req.session.id}
+                where: {app_id: req.session.id}
               }).then(SearchResults => {
 
 
@@ -552,7 +575,7 @@ main.get('/', (req, res, next) => {
            .then((AppSession) => {
 
                res.locals.searchResults = {};
-               res.locals.searchResults = resetTemplateData();;
+               res.locals.searchResults = resetTemplateData();
 
                res.render('index', res.locals.searchResults);
 
@@ -577,7 +600,7 @@ main.get('/weatherCurrent', (req, res, next) => {
   res.locals.searchResults = resetTemplateData();;
 
   sequelizeDb.AppSessions.findOne({
-    where: {app_session_id: req.session.id}
+    where: {app_id: req.session.id}
   }).then(AppSession =>{
 
     if (AppSession) {
@@ -585,7 +608,7 @@ main.get('/weatherCurrent', (req, res, next) => {
       if (AppSession.locationCount > 0){
 
         sequelizeDb.SearchResults.findOne({
-          where: {app_session_id: req.session.id}
+          where: {app_id: req.session.id}
         }).then(SearchResults => {
 
           // make async axios api calls to get and process location and forecast data
@@ -612,7 +635,7 @@ main.get('/weatherCurrent', (req, res, next) => {
 
       // so some might try to browse directly to the /weatherCurrent first
       // in that case, just create a new session with the new req.session.id and continue
-      const session = {app_session_id: req.session.id};
+      const session = {app_id: req.session.id};
       sequelizeDb.AppSessions.create(session)
 
        .then((AppSession) => {
@@ -647,14 +670,37 @@ main.get('/tempType/:type', (req, res, next) => {
     res.locals.searchResults = resetTemplateData();;
 
     sequelizeDb.SearchResults.findOne({
-      where: {app_session_id: req.session.id}
+      where: {app_id: req.session.id}
     }).then(SearchResults => {
 
-      res.locals.searchResults = SearchResults.data;
+      res.locals.searchResults = resetTemplateData();
+      res.locals.searchResults.currentLocationData = SearchResults.data.currentLocationData;
+      res.locals.searchResults.forecastData = SearchResults.data.forecastData;
+      res.locals.searchResults.locationData = SearchResults.data.locationData;
+      res.locals.searchResults.locationName = SearchResults.data.locationName;
+      res.locals.searchResults.locationBarBackGround = SearchResults.data.locationBarBackGround;
+      res.locals.searchResults.mainViewBackGround = SearchResults.data.mainViewBackGround;
+      res.locals.searchResults.forecast = true;
+
+      res.locals.searchResults.availLocationsArray.push({
+            index: SearchResults.data.locationName.length - 1,
+            locationName: SearchResults.data.currentLocationData.locationName,
+            sunsetTime: SearchResults.data.currentLocationData.sunsetTime,
+            sunriseTime: SearchResults.data.currentLocationData.sunriseTime,
+            utcOffSet: SearchResults.data.currentLocationData.utcOffSet,
+            liveFormattedTime: timeDate.getCurrentTimeAtLocation(SearchResults.data.forecastData.data.currently.time, SearchResults.data.forecastData.data.offset),
+            timezone: SearchResults.data.forecastData.data.offset,
+            day: timeDate.checkDay(SearchResults.data.forecastData.data.currently.time, SearchResults.data.forecastData.data.offset, SearchResults.data.forecastData.data.daily.data[0].sunsetTime, SearchResults.data.forecastData.data.daily.data[0].sunriseTime),
+            tempFahrenheit: Math.floor(SearchResults.data.forecastData.data.currently.temperature),
+            tempCelsius: convertTemp.toCelsius(Math.floor(SearchResults.data.forecastData.data.currently.temperature)),
+            icon:`${SearchResults.data.forecastData.data.currently.icon}`,
+            wiClass: getWiClass(SearchResults.data.forecastData.data.currently.icon, timeDate.checkDay(SearchResults.data.forecastData.data.currently.time, SearchResults.data.forecastData.data.offset, SearchResults.data.forecastData.data.daily.data[0].sunsetTime, SearchResults.data.forecastData.data.daily.data[0].sunriseTime)),
+            currentCondition:`${SearchResults.data.forecastData.data.currently.summary}`
+          });
 
       const updateTime = (object, index) => {
         // call back to map availLocationsArray with updated time
-        object.liveFormattedTime = timeDate.getCurrentTimeAtLocation(new Date(), res.locals.searchResults.forecastData[index].data.offset);
+        object.liveFormattedTime = timeDate.getCurrentTimeAtLocation(new Date(), res.locals.searchResults.forecastData.data.offset);
         return object;
       };
 
@@ -670,7 +716,7 @@ main.get('/tempType/:type', (req, res, next) => {
       res.render('index', res.locals.searchResults);
 
     }).catch(err => {
-      next(new Error(`finding SearchResults`, err))
+      next(err)
     });
 
 
@@ -685,7 +731,7 @@ main.get('/weatherForecast/:indexNo', (req, res, next) => {
   // else renders mainView
   res.locals.searchResults = resetTemplateData();;
   sequelizeDb.SearchResults.findOne({
-    where: {app_session_id: req.session.id}
+    where: {app_id: req.session.id}
   }).then(SearchResults => {
 
     // if there are SearchResults... continue
@@ -708,7 +754,7 @@ main.get('/weatherForecast/:indexNo', (req, res, next) => {
     } else {
       // so might try to goto /weatherForecast route first...
       // in that case, just create a new session with the new req.session.id and continue
-      const session = {app_session_id: req.session.id};
+      const session = {app_id: req.session.id};
       sequelizeDb.AppSessions.create(session)
 
        .then((AppSession) => {
@@ -739,7 +785,7 @@ main.get('/weatherForecast/:indexNo', (req, res, next) => {
 main.get('/removeLocation/:indexNo', (req, res, next) => {
 
   sequelizeDb.SearchResults.findOne({
-    where: {app_session_id: req.session.id}
+    where: {app_id: req.session.id}
   }).then(SearchResults => {
 
     if (SearchResults){
