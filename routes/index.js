@@ -637,7 +637,6 @@ main.get('/weatherCurrent', (req, res, next) => {
           where: {app_id: req.session.id}
         }).then(SearchResults => {
 
-
           res.locals.searchResults = resetTemplateData();
           res.locals.searchResults.currentLocationData = SearchResults.data.currentLocationData;
           res.locals.searchResults.forecastData = SearchResults.data.forecastData;
