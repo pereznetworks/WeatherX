@@ -28,6 +28,12 @@ const convertTemp = require('../dataSource/utils').convertTemp;
 const setBackground = require('../dataSource/utils').setBackground;
 const getWiClass = require('../dataSource/utils').getWiClass;
 
+const importedTemplateData = {
+  initialView: require('../views/initialView/locals.js').homePg,
+  locationBar: require(`../views/locationBarView/locals.js`).locationBar,
+  mainView: require('../views/mainView/locals.js').mainView
+}
+
 // locals to pass to pug templates to be rendered with the view
 const resetTemplateData = () => {
   const data = {
@@ -37,9 +43,9 @@ const resetTemplateData = () => {
     tempTypeFahrenheit: true,
     notADuplicateLocation: true,
     geoCodeThis: '', // raw input from navbar view,
-    initialView: require('../views/initialView/locals.js').homePg,
-    locationBar: require(`../views/locationBarView/locals.js`).locationBar,
-    mainView: require('../views/mainView/locals.js').mainView,
+    initialView: importedTemplateData.initialView,
+    locationBar: importedTemplateData.locationBar,
+    mainView: importedTemplateData.mainView,
     arrayLength: 0,  // how many locationBars are there
     currentIndex: 0, // for use when creating another locationBar and mainView
     arrayIndexNo: 0, // for use when views rendered, which location is selected
@@ -57,7 +63,6 @@ const resetTemplateData = () => {
 
   return data;
 };
-
 
 // makes api calls, processes geocoded location and weather data, and saves to seqeulize data and session db
 // render forecast if successful, if not render page unchanged with navbar input prompt
@@ -508,7 +513,9 @@ const removeLocation = (indexNo, searchResults) => {
   searchResults.locationData.splice(indexNo, 1);
   searchResults.locationName.splice(indexNo, 1);
   searchResults.forecastData.splice(indexNo, 1);
-  searchResults.availLocationsArray.splice(indexNo, 1);
+  // searchResults.availLocationsArray.splice(indexNo, 1);
+     // this array is not rebuilt each time locationBar are rendered
+     // may try to find a different to handle this but for now.. commented out
   searchResults.locationBarBackGround.splice(indexNo, 1);
   searchResults.mainViewBackGround.splice(indexNo, 1);
   searchResults.locationCount = searchResults.locationData.length;
@@ -810,7 +817,7 @@ main.get('/weatherForecast/:indexNo', (req, res, next) => {
        .then((AppSession) => {
 
          res.locals.searchResults = {};
-         res.locals.searchResults = resetTemplateData();;
+         res.locals.searchResults = resetTemplateData();
          // make async axios api calls to get and process location and forecast data
          // in this content we have a searchResults table...
          // so we'll be adding to the data column of gthe searchResults table
@@ -838,17 +845,27 @@ main.get('/removeLocation/:indexNo', (req, res, next) => {
     where: {app_id: req.session.id}
   }).then(SearchResults => {
 
-    if (SearchResults){
+    if (SearchResults != null){
 
-        if (req.params.indexNo && !isNaN(parseInt(req.params.indexNo))){
+        if (req.params.indexNo != null && !isNaN(parseInt(req.params.indexNo))){
 
-        removeLocation(req.params.indexNo, SearchResults.data);
+        const updateSearchResults = removeLocation(req.params.indexNo, SearchResults.data);
 
-        SearchResults.update(res.locals.searchResults)
-          .then(UpdatedSearchResults => {
+        SearchResults.update(updateSearchResults)
+          .then(SearchResults => {
 
-            res.locals.searchResults = resetTemplateData();;
-            res.locals.searchResults = UpdatedSearchResults;
+            res.locals.searchResults = resetTemplateData();
+            res.locals.searchResults.currentLocationData = SearchResults.data.currentLocationData;
+            res.locals.searchResults.forecastData = SearchResults.data.forecastData;
+            res.locals.searchResults.locationData = SearchResults.data.locationData;
+            res.locals.searchResults.locationName = SearchResults.data.locationName;
+            res.locals.searchResults.locationBarBackGround = SearchResults.data.locationBarBackGround;
+            res.locals.searchResults.mainViewBackGround = SearchResults.data.mainViewBackGround;
+            if (res.locals.searchResults.forecastData.length > 0){
+            res.locals.searchResults.forecast = true;
+          } else {
+            res.locals.searchResults.forecast = false;
+          }
 
             res.render('index', res.locals.searchResults);
 
