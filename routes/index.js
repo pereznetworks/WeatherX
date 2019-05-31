@@ -70,37 +70,64 @@ const makeApiCalls = function(update, req, res, next){
 
   // regexps and a callback function for basic input validation and duplicate checking
 
+  // find each word
+  const findEachWord = /([\sA-Za-z])\w+/g;
   // for any input that start with a comma
   const lookForCommaAtBeginning = /^,(?=[\sA-Za-z])/g;
   // for any input that has a comma between words
   const lookForCommaBetween = /,(?=[\sA-Za-z])/g;
+  // look for pattern: ', word'
+  const lookForCommaFollowedByAWord = /,([\sA-Za-z])\w+/g;
+  // remove leading spaces
+  let removeLeading = /([\sA-Z-a-z])+/g;
   // any numbers anywhere in the input
   const findNumbers = /[0-9]+/g;
 
+
+  // match everything but the comma
+  const matchOnlyCommas = /([^,])\w+/g
+
+  // this makes sure to separate the location's city name from the provice name and toUpperCase
+  // to that it can be compared to the locationNames there is already forecast data for
+  const stringParse = (parseThis, beforeComma) => {
+    // matches any phrase followed by a comma
+    const cityName = /(.+),/g
+    // matches any phrase followed by a comma
+    const provinceName = /,(.+)/g
+
+    if (beforeComma){
+      let parsed = parseThis.match(cityName).toString().toUpperCase();
+      return parsed.slice(0, parsed.length - 1 )
+
+    } else {
+      let parsed = parseThis.match(provinceName).toString().toUpperCase();
+      return parsed.slice(1, parsed.length)
+    }
+
+
+  }
   // check for dups, if input is a dup, set notADuplicateLocation to false
   const compareLocationName = (item, index) => {
 
     // first isolate city, province and the make Upper Case
-    // const findEachWord = /[\sA-Za-z]+/g;
-    const findEachWord = /[A-Za-z]\w+/g;
+    const locationCity = stringParse(item, true);
+    const locationProvince = stringParse(item, false);
+    const compareLocation= `${locationCity}, ${locationProvince}`;
 
-    const locationCity = item.match(findEachWord)[0].toUpperCase();
-    const locationProvice = item.match(findEachWord)[1].toUpperCase();
-    const compareLocationName = `${locationCity}, ${locationProvice}`;
-
-    const city = res.locals.searchResults.geoCodeThis.match(findEachWord)[0].toUpperCase();
-    const province = res.locals.searchResults.geoCodeThis.match(findEachWord)[1].toUpperCase();
+    const city = stringParse(req.query.geoCodeThis, true);
+    const province = stringParse(req.query.geoCodeThis, false);
     const compareInput = `${city}, ${province}`;
 
     // then compare
-    if (compareLocationName != compareInput && res.locals.searchResults.notADuplicateLocation != false){
+    // if notADuplicateLocation is true for any previous item.. then keep it true
+    if (compareLocation != compareInput && res.locals.searchResults.notADuplicateLocation != false){
       res.locals.searchResults.notADuplicateLocation = true;
     } else {
       res.locals.searchResults.notADuplicateLocation = false;
     }
   };
 
-  let input = res.locals.searchResults.geoCodeThis;
+  let input = req.query.geoCodeThis;
 
   // if not a duplicate, if there is at least 1 comma between words, if no comma at beginning and if no numbers,
   if (input.match(lookForCommaBetween) !== null && input.match(lookForCommaAtBeginning) == null && input.match(findNumbers) == null ){
@@ -116,7 +143,6 @@ const makeApiCalls = function(update, req, res, next){
 
         console.log(`\n...processing new GET request...\nusing async functions, some of the following logs may seem to be out of order\n`);
 
-        let removeLeading = /([\sA-Z-a-z])+/g;
         let locationArray = input.match(removeLeading);
         let locationString = locationArray.toString();
         let geoCodeApiCallUrl = getGeoCodeApiCall(locationString, apiKeys.geoCodeKey);
@@ -623,7 +649,6 @@ main.get('/weatherCurrent', (req, res, next) => {
   // render home page view after data processing done
 
   res.locals.searchResults = resetTemplateData();
-  res.locals.searchResults.geoCodeThis = req.query.geoCodeThis;
 
   sequelizeDb.AppSessions.findOne({
     where: {app_id: req.session.id}
