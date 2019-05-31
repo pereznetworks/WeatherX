@@ -106,6 +106,7 @@ const makeApiCalls = function(update, req, res, next){
 
 
   }
+
   // check for dups, if input is a dup, set notADuplicateLocation to false
   const compareLocationName = (item, index) => {
 
