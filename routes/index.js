@@ -187,7 +187,7 @@ const makeApiCalls = function(update, req, res, next){
                          };
 
                         sequelizeDb.Forecasts.create(forecast)
-                         .then( Forecast => {
+                        .then( Forecast => {
 
                            // sequelizeDb.Forecasts.findAll().then((forecast)=>{console.log(forecast)})
 
@@ -202,17 +202,18 @@ const makeApiCalls = function(update, req, res, next){
                             // index of locationName array should always match index of forecastData array
                               if (update) {
                                 // then we're adding to the SearchResults.data column
-                                sequelizeDb.SearchResults.findOne({
-                                  where: {app_id:req.session.id}
+                                sequelizeDb.SearchResults.findOne({where: {app_id:req.session.id}
                                 }).then( SearchResults => {
+
+                                     // build searchResults with new forecast and location data
                                      const searchResults = {
                                           app_id: req.session.id,
                                           data: {
-                                                forecastData: [newForecast.data[1]],
-                                                locationData: [newForecast.data[0]],
-                                                locationName: [`${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`],
+                                                forecastData: [...SearchResults.data.forecastData, newForecast.data[1]],
+                                                locationData: [...SearchResults.data.locationData, newForecast.data[0]],
+                                                locationName: [...SearchResults.data.locationName, `${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`],
                                                 currentLocationData: {
-                                                    // index: this.forecastData.length,
+                                                    index: SearchResults.data.forecastData.length + 1,
                                                     locationName: `${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`,
                                                     sunsetTime: newForecast.data[1].data.daily.data[0].sunsetTime,
                                                     sunriseTime: newForecast.data[1].data.daily.data[0].sunriseTime,
@@ -227,78 +228,67 @@ const makeApiCalls = function(update, req, res, next){
                                                     wiClass: getWiClass(newForecast.data[1].data.currently.icon, timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime)),
                                                     currentCondition:`${newForecast.data[1].data.currently.summary}`
                                                   },
-                                                mainViewBackGround: [timeDate.mainView(newForecast.data[1].data)],
-                                                locationBarBackGround: [timeDate.locationBar(newForecast.data[1].data)]
+                                                availLocationsArray: [...SearchResults.data.availLocationsArray, {
+                                                    index: SearchResults.data.forecastData.length + 1,
+                                                    locationName: `${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`,
+                                                    sunsetTime: newForecast.data[1].data.daily.data[0].sunsetTime,
+                                                    sunriseTime: newForecast.data[1].data.daily.data[0].sunriseTime,
+                                                    utcOffSet: newForecast.data[1].data.offset,
+                                                    liveFormattedTime: timeDate.getCurrentTimeAtLocation(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset),
+                                                    timezone: newForecast.data[1].data.offset,
+                                                    day: timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime),
+                                                    tempFahrenheit: Math.floor(newForecast.data[1].data.currently.temperature),
+                                                    tempCelsius: convertTemp.toCelsius(Math.floor(newForecast.data[1].data.currently.temperature)),
+                                                    icon:`${newForecast.data[1].data.currently.icon}`,
+                                                    summary:`${newForecast.data[1].data.currently.summary}`,
+                                                    wiClass: getWiClass(newForecast.data[1].data.currently.icon, timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime)),
+                                                    currentCondition:`${newForecast.data[1].data.currently.summary}`
+                                                  }],
+                                                mainViewBackGround: [...SearchResults.data.mainViewBackGround, timeDate.mainView(newForecast.data[1].data)],
+                                                locationBarBackGround: [...SearchResults.data.locationBarBackGround,timeDate.locationBar(newForecast.data[1].data)]
                                               }
                                             };
 
-                                     SearchResults.update(searchResults.data)
-                                        .then(SearchResults => {
+                                     const index = searchResults.data.locationName.length - 1;
+                                     // add it to res.locals.searchResults while we're at it
+                                     res.locals.searchResults.forecastData = searchResults.data.forecastData;
+                                     res.locals.searchResults.locationData = searchResults.data.locationData;
+                                     res.locals.searchResults.locationName = searchResults.data.locationData;
+                                     res.locals.searchResults.currentLocationData = searchResults.data.currentLocationData;
+                                     res.locals.searchResults.availLocationsArray = searchResults.data.availLocationsArray;
+                                     res.locals.searchResults.locationCount = searchResults.data.locationName.length;
+                                     res.locals.searchResults.mainViewBackGround = searchResults.data.mainViewBackGround;
+                                     res.locals.searchResults.locationBarBackGround =  searchResults.data.locationBarBackGround;
+                                     res.locals.searchResults.forecast = true;
 
-                                           // res.status(200).json(searchResults.data);
-
-                                           res.locals.searchResults.forecastData = [...res.locals.searchResults.forecastData, SearchResults.data.forecastData[0]];
-                                           res.locals.searchResults.locationData =  [...res.locals.searchResults.locationData, SearchResults.data.locationData[0]];
-                                           res.locals.searchResults.locationName = [...res.locals.searchResults.locationName, SearchResults.data.locationName[0]];
-                                           res.locals.searchResults.currentLocationData = {
-                                             index: res.locals.searchResults.locationName.length,
-                                             locationName: SearchResults.data.currentLocationData.locationName,
-                                             sunsetTime: SearchResults.data.currentLocationData.sunsetTime,
-                                             sunriseTime: SearchResults.data.currentLocationData.sunriseTime,
-                                             utcOffSet: SearchResults.data.currentLocationData.offset,
-                                             liveFormattedTime: timeDate.getCurrentTimeAtLocation(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset),
-                                             timezone: SearchResults.data.forecastData[0].data.offset,
-                                             day: timeDate.checkDay(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset, SearchResults.data.forecastData[0].data.daily.data[0].sunsetTime, SearchResults.data.forecastData[0].data.daily.data[0].sunriseTime),
-                                             tempFahrenheit: Math.floor(SearchResults.data.forecastData[0].data.currently.temperature),
-                                             tempCelsius: convertTemp.toCelsius(Math.floor(SearchResults.data.forecastData[0].data.currently.temperature)),
-                                             icon:`${SearchResults.data.forecastData[0].data.currently.icon}`,
-                                             summary:`${SearchResults.data.forecastData[0].data.currently.summary}`,
-                                             wiClass: getWiClass(SearchResults.data.forecastData[0].data.currently.icon, timeDate.checkDay(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset, SearchResults.data.forecastData[0].data.daily.data[0].sunsetTime, SearchResults.data.forecastData[0].data.daily.data[0].sunriseTime)),
-                                             currentCondition:`${SearchResults.data.forecastData[0].data.currently.summary}`
-                                           };
-                                           res.locals.searchResults.availLocationsArray = [...res.locals.searchResults.availLocationsArray, {
-                                               index: res.locals.searchResults.locationName.length,
-                                               locationName: SearchResults.data.currentLocationData.locationName,
-                                               sunsetTime: SearchResults.data.currentLocationData.sunsetTime,
-                                               sunriseTime: SearchResults.data.currentLocationData.sunriseTime,
-                                               utcOffSet: SearchResults.data.currentLocationData.offset,
-                                               liveFormattedTime: timeDate.getCurrentTimeAtLocation(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset),
-                                               timezone: SearchResults.data.forecastData[0].data.offset,
-                                               day: timeDate.checkDay(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset, SearchResults.data.forecastData[0].data.daily.data[0].sunsetTime, SearchResults.data.forecastData[0].data.daily.data[0].sunriseTime),
-                                               tempFahrenheit: Math.floor(SearchResults.data.forecastData[0].data.currently.temperature),
-                                               tempCelsius: convertTemp.toCelsius(Math.floor(SearchResults.data.forecastData[0].data.currently.temperature)),
-                                               icon:`${SearchResults.data.forecastData[0].data.currently.icon}`,
-                                               wiClass: getWiClass(SearchResults.data.forecastData[0].data.currently.icon, timeDate.checkDay(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset, SearchResults.data.forecastData[0].data.daily.data[0].sunsetTime, SearchResults.data.forecastData[0].data.daily.data[0].sunriseTime)),
-                                               currentCondition:`${SearchResults.data.forecastData[0].data.currently.summary}`
-                                             }];
-                                           res.locals.searchResults.locationCount = res.locals.searchResults.locationData.length;
-                                           res.locals.searchResults.mainViewBackGround = [...res.locals.searchResults.mainViewBackGround, timeDate.mainView(SearchResults.data.forecastData[0].data)];
-                                           res.locals.searchResults.locationBarBackGround =  [...res.locals.searchResults.locationBarBackGround, timeDate.locationBar(SearchResults.data.forecastData[0].data)];
-                                           res.locals.searchResults.forecast = true;
-
-                                           sequelizeDb.AppSessions.findOne({
-                                             where: {app_id: req.session.id}
-                                           }).then(AppSession => {
+                                     // find and update SearchResults with matching req.session.id with new forecast and location data
+                                     sequelizeDb.SearchResults.update({
+                                       data: searchResults.data
+                                     },{
+                                       where: {app_id: req.session.id}
+                                     }).then(() => {
+                                         // find and update the locationCount in the AppSession with same id
+                                         sequelizeDb.AppSessions.findOne({
+                                           where: {app_id: req.session.id}
+                                         }).then(AppSession => {
                                              const currentCount = AppSession.locationCount + 1;
                                              AppSession.update({locationCount: currentCount
                                              }).then(() => {
-                                               res.render('index', res.locals.searchResults);
-                                               console.log(`results saved to session store, emptying temp db object`);
-                                               db.splice(0, db.length)
-                                             }).catch(err => {
-                                             next(new Error(`Oops, problem incrementing locationCount`, err));
-                                             });
-                                           }).catch(err => {
-                                             next(new Error(`Oops, problem finding AppSession by that session.id`, err));
-                                           });
+                                                // if nothing goes wrong... render home pg with new data
+                                                res.render('index', res.locals.searchResults);
+                                                // clean up temp working object, just in case
+                                                console.log(`res sent, results saved to db, emptying temp db object`);
+                                                db.splice(0, db.length)
+                                             }).catch(err => next(err)); // end AppSession update
 
-                                        }).catch(err => next(new Error('Error updating SearchResults... ', err)))
-                                    }).catch(err => {
-                                      next(new Error('Error finding SearchResults... ', err))
-                                    })
+                                         }).catch(err => next(err)); // end find AppSession
+
+                                      }).catch(err => next(err)); // end SearchResults update
+
+                                  }).catch(err => next(err)) // end SearchResults find
 
                               } else {
-                                // then we're creating a new SearchResults table
+                                // then we're creating a new SearchResults row
                                 const searchResults = {
                                      app_id: req.session.id,
                                      data: {
@@ -321,101 +311,68 @@ const makeApiCalls = function(update, req, res, next){
                                                wiClass: getWiClass(newForecast.data[1].data.currently.icon, timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime)),
                                                currentCondition:`${newForecast.data[1].data.currently.summary}`
                                              },
+                                           availLocationsArray: [],
                                            mainViewBackGround: [timeDate.mainView(newForecast.data[1].data)],
                                            locationBarBackGround: [timeDate.locationBar(newForecast.data[1].data)]
                                          }
                                        };
-                                // then we're creating a new SearchResults table
-                                sequelizeDb.SearchResults.create(searchResults)
-                                .then( SearchResults => {
+                                    searchResults.data.availLocationsArray.push({
+                                        index: searchResults.data.locationName.length + 1,
+                                        locationName: `${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`,
+                                        sunsetTime: newForecast.data[1].data.daily.data[0].sunsetTime,
+                                        sunriseTime: newForecast.data[1].data.daily.data[0].sunriseTime,
+                                        utcOffSet: newForecast.data[1].data.offset,
+                                        liveFormattedTime: timeDate.getCurrentTimeAtLocation(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset),
+                                        timezone: newForecast.data[1].data.offset,
+                                        day: timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime),
+                                        tempFahrenheit: Math.floor(newForecast.data[1].data.currently.temperature),
+                                        tempCelsius: convertTemp.toCelsius(Math.floor(newForecast.data[1].data.currently.temperature)),
+                                        icon:`${newForecast.data[1].data.currently.icon}`,
+                                        summary:`${newForecast.data[1].data.currently.summary}`,
+                                        wiClass: getWiClass(newForecast.data[1].data.currently.icon, timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime)),
+                                        currentCondition:`${newForecast.data[1].data.currently.summary}`
+                                      });
+                                    // then we're creating a new SearchResults table
+                                    sequelizeDb.SearchResults.create(searchResults)
+                                    .then( SearchResults => {
 
-                                     // res.status(200).json(searchResults.data);
+                                         // res.status(200).json(searchResults.data);
 
-                                     const index = res.locals.searchResults.locationName.length;
+                                         const index = SearchResults.data.locationName.length;
 
-                                     res.locals.searchResults.forecastData = [...res.locals.searchResults.forecastData, SearchResults.data.forecastData[0]];
-                                     res.locals.searchResults.locationData =  [...res.locals.searchResults.locationData, SearchResults.data.locationData[0]];
-                                     res.locals.searchResults.locationName = [...res.locals.searchResults.locationName, SearchResults.data.locationName[0]];
-                                     res.locals.searchResults.currentLocationData = {
-                                       index: res.locals.searchResults.locationName.length,
-                                       locationName: SearchResults.data.currentLocationData.locationName,
-                                       sunsetTime: SearchResults.data.currentLocationData.sunsetTime,
-                                       sunriseTime: SearchResults.data.currentLocationData.sunriseTime,
-                                       utcOffSet: SearchResults.data.currentLocationData.offset,
-                                       liveFormattedTime: timeDate.getCurrentTimeAtLocation(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset),
-                                       timezone: SearchResults.data.forecastData[0].data.offset,
-                                       day: timeDate.checkDay(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset, SearchResults.data.forecastData[0].data.daily.data[0].sunsetTime, SearchResults.data.forecastData[0].data.daily.data[0].sunriseTime),
-                                       tempFahrenheit: Math.floor(SearchResults.data.forecastData[0].data.currently.temperature),
-                                       tempCelsius: convertTemp.toCelsius(Math.floor(SearchResults.data.forecastData[0].data.currently.temperature)),
-                                       icon:`${SearchResults.data.forecastData[0].data.currently.icon}`,
-                                       summary:`${SearchResults.data.forecastData[0].data.currently.summary}`,
-                                       wiClass: getWiClass(SearchResults.data.forecastData[0].data.currently.icon, timeDate.checkDay(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset, SearchResults.data.forecastData[0].data.daily.data[0].sunsetTime, SearchResults.data.forecastData[0].data.daily.data[0].sunriseTime)),
-                                       currentCondition:`${SearchResults.data.forecastData[0].data.currently.summary}`
-                                     };
-                                     res.locals.searchResults.availLocationsArray = [...res.locals.searchResults.availLocationsArray, {
-                                         index: res.locals.searchResults.locationName.length,
-                                         locationName: SearchResults.data.currentLocationData.locationName,
-                                         sunsetTime: SearchResults.data.currentLocationData.sunsetTime,
-                                         sunriseTime: SearchResults.data.currentLocationData.sunriseTime,
-                                         utcOffSet: SearchResults.data.currentLocationData.offset,
-                                         liveFormattedTime: timeDate.getCurrentTimeAtLocation(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset),
-                                         timezone: SearchResults.data.forecastData[0].data.offset,
-                                         day: timeDate.checkDay(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset, SearchResults.data.forecastData[0].data.daily.data[0].sunsetTime, SearchResults.data.forecastData[0].data.daily.data[0].sunriseTime),
-                                         tempFahrenheit: Math.floor(SearchResults.data.forecastData[0].data.currently.temperature),
-                                         tempCelsius: convertTemp.toCelsius(Math.floor(SearchResults.data.forecastData[0].data.currently.temperature)),
-                                         icon:`${SearchResults.data.forecastData[0].data.currently.icon}`,
-                                         wiClass: getWiClass(SearchResults.data.forecastData[0].data.currently.icon, timeDate.checkDay(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset, SearchResults.data.forecastData[0].data.daily.data[0].sunsetTime, SearchResults.data.forecastData[0].data.daily.data[0].sunriseTime)),
-                                         currentCondition:`${SearchResults.data.forecastData[0].data.currently.summary}`
-                                       }];
-                                     res.locals.searchResults.locationCount = res.locals.searchResults.locationData.length;
-                                     res.locals.searchResults.mainViewBackGround = [...res.locals.searchResults.mainViewBackGround, timeDate.mainView(SearchResults.data.forecastData[0].data)];
-                                     res.locals.searchResults.locationBarBackGround =  [...res.locals.searchResults.locationBarBackGround, timeDate.locationBar(SearchResults.data.forecastData[0].data)];
-                                     res.locals.searchResults.forecast = true;
+                                         res.locals.searchResults.forecastData = SearchResults.data.forecastData[0];
+                                         res.locals.searchResults.locationData =  SearchResults.data.locationData[0];
+                                         res.locals.searchResults.locationName = SearchResults.data.locationName[0];
+                                         res.locals.searchResults.currentLocationData = SearchResults.data.currentLocationData;
+                                         res.locals.searchResults.availLocationsArray = SearchResults.data.availLocationsArray;
+                                         res.locals.searchResults.locationCount = index;
+                                         res.locals.searchResults.mainViewBackGround = SearchResults.data.mainViewBackGround;
+                                         res.locals.searchResults.locationBarBackGround = SearchResults.data.locationBarBackGround;
+                                         res.locals.searchResults.forecast = true;
 
-                                     sequelizeDb.AppSessions.findOne({
-                                       where: {app_id: req.session.id}
-                                     }).then(AppSession => {
-                                       const currentCount = AppSession.locationCount + 1;
-                                       AppSession.update({locationCount: currentCount
-                                       }).then(() => {
+                                         sequelizeDb.AppSessions.findOne({
+                                           where: {app_id: req.session.id}
+                                         }).then(AppSession => {
+                                           const currentCount = AppSession.locationCount + 1;
+                                           AppSession.update({locationCount: currentCount
+                                           }).then(() => {
 
-                                         res.render('index', res.locals.searchResults);
-                                         console.log(`results saved to session store, emptying temp db object`);
-                                         db.splice(0, db.length);
+                                             res.render('index', res.locals.searchResults);
+                                             console.log(`results saved to session store, emptying temp db object`);
+                                             db.splice(0, db.length);
 
-                                       })
-                                       .catch(err => {
-                                       next(new Error(`Oops, problem incrementing locationCount`, err));
-                                       });
-                                     }).catch(err => {
-                                       next(new Error(`Oops, problem finding AppSession by that session.id`, err));
-                                     });
+                                           }).catch(err => next(err)); // end update AppSession
+                                         }).catch(err => next(err)); // end find AppSession
+                                      }).catch(err => next(err)); // end SearchResults.create()
+                               } // end if (update)
 
-                                  }).catch(err => {
-                                        console.log('Error saving SearchResults... ', err);
-                                        return err;
-                                  });
-                              }
+                        }).catch( err => next(err));
 
-                          }).catch( err => {
-                             console.log('Error saving Forecast data... ', err);
-                             return err;
-                          });
+                     }).catch( err => next(err));
 
-                       }).catch( err => {
-                          console.log('Error getting forecast data... ', err);
-                          return err;
-                       });
+              }).catch(err => next(err));
 
-                }).catch(function(err){
-                  console.log(`Error saving that Location: \n${err}`);
-                  return err;
-                });
-
-             }).catch(err => {
-              console.log('Error geocding that location\n ${err}',);
-              return err;
-            });
+           }).catch(err => next(err));
 
         }
 
@@ -536,13 +493,12 @@ const getDailyConditions = (dataArray, searchResults) => { // for each day in a 
 
 // using an indexNo, splices out the corresponding data object from arrays in searchResults
 const removeLocation = (indexNo, searchResults) => {
+
   // using a given index, splice all arrays with the effect of removing that location
   searchResults.locationData.splice(indexNo, 1);
   searchResults.locationName.splice(indexNo, 1);
   searchResults.forecastData.splice(indexNo, 1);
-  // searchResults.availLocationsArray.splice(indexNo, 1);
-     // this array is not rebuilt each time locationBar are rendered
-     // may try to find a different to handle this but for now.. commented out
+  searchResults.availLocationsArray.splice(indexNo, 1);
   searchResults.locationBarBackGround.splice(indexNo, 1);
   searchResults.mainViewBackGround.splice(indexNo, 1);
   searchResults.locationCount = searchResults.locationData.length;
@@ -574,31 +530,15 @@ main.get('/', (req, res, next) => {
                 where: {app_id: req.session.id}
               }).then(SearchResults => {
 
-
                 res.locals.searchResults = resetTemplateData();
                 res.locals.searchResults.currentLocationData = SearchResults.data.currentLocationData;
+                res.locals.searchResults.availLocationsArray = SearchResults.data.availLocationsArray;
                 res.locals.searchResults.forecastData = SearchResults.data.forecastData;
                 res.locals.searchResults.locationData = SearchResults.data.locationData;
                 res.locals.searchResults.locationName = SearchResults.data.locationName;
                 res.locals.searchResults.locationBarBackGround = SearchResults.data.locationBarBackGround;
                 res.locals.searchResults.mainViewBackGround = SearchResults.data.mainViewBackGround;
                 res.locals.searchResults.forecast = true;
-
-                res.locals.searchResults.availLocationsArray.push({
-                      index: SearchResults.data.locationName.length - 1,
-                      locationName: SearchResults.data.currentLocationData.locationName,
-                      sunsetTime: SearchResults.data.currentLocationData.sunsetTime,
-                      sunriseTime: SearchResults.data.currentLocationData.sunriseTime,
-                      utcOffSet: SearchResults.data.currentLocationData.utcOffSet,
-                      liveFormattedTime: timeDate.getCurrentTimeAtLocation(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset),
-                      timezone: SearchResults.data.forecastData[0].data.offset,
-                      day: timeDate.checkDay(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset, SearchResults.data.forecastData[0].data.daily.data[0].sunsetTime, SearchResults.data.forecastData[0].data.daily.data[0].sunriseTime),
-                      tempFahrenheit: Math.floor(SearchResults.data.forecastData[0].data.currently.temperature),
-                      tempCelsius: convertTemp.toCelsius(Math.floor(SearchResults.data.forecastData[0].data.currently.temperature)),
-                      icon:`${SearchResults.data.forecastData[0].data.currently.icon}`,
-                      wiClass: getWiClass(SearchResults.data.forecastData[0].data.currently.icon, timeDate.checkDay(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset, SearchResults.data.forecastData[0].data.daily.data[0].sunsetTime, SearchResults.data.forecastData[0].data.daily.data[0].sunriseTime)),
-                      currentCondition:`${SearchResults.data.forecastData[0].data.currently.summary}`
-                    });
 
                 res.render('index', res.locals.searchResults);
 
@@ -665,6 +605,7 @@ main.get('/weatherCurrent', (req, res, next) => {
 
           res.locals.searchResults = resetTemplateData();
           res.locals.searchResults.currentLocationData = SearchResults.data.currentLocationData;
+          res.locals.searchResults.availLocationsArray = SearchResults.data.availLocationsArray;
           res.locals.searchResults.forecastData = SearchResults.data.forecastData;
           res.locals.searchResults.locationData = SearchResults.data.locationData;
           res.locals.searchResults.locationName = SearchResults.data.locationName;
@@ -672,21 +613,6 @@ main.get('/weatherCurrent', (req, res, next) => {
           res.locals.searchResults.mainViewBackGround = SearchResults.data.mainViewBackGround;
           res.locals.searchResults.forecast = true;
 
-          res.locals.searchResults.availLocationsArray.push({
-                index: SearchResults.data.locationName.length - 1,
-                locationName: SearchResults.data.currentLocationData.locationName,
-                sunsetTime: SearchResults.data.currentLocationData.sunsetTime,
-                sunriseTime: SearchResults.data.currentLocationData.sunriseTime,
-                utcOffSet: SearchResults.data.currentLocationData.utcOffSet,
-                liveFormattedTime: timeDate.getCurrentTimeAtLocation(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset),
-                timezone: SearchResults.data.forecastData[0].data.offset,
-                day: timeDate.checkDay(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset, SearchResults.data.forecastData[0].data.daily.data[0].sunsetTime, SearchResults.data.forecastData[0].data.daily.data[0].sunriseTime),
-                tempFahrenheit: Math.floor(SearchResults.data.forecastData[0].data.currently.temperature),
-                tempCelsius: convertTemp.toCelsius(Math.floor(SearchResults.data.forecastData[0].data.currently.temperature)),
-                icon:`${SearchResults.data.forecastData[0].data.currently.icon}`,
-                wiClass: getWiClass(SearchResults.data.forecastData[0].data.currently.icon, timeDate.checkDay(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset, SearchResults.data.forecastData[0].data.daily.data[0].sunsetTime, SearchResults.data.forecastData[0].data.daily.data[0].sunriseTime)),
-                currentCondition:`${SearchResults.data.forecastData[0].data.currently.summary}`
-              });
           // make async axios api calls to get and process location and forecast data
           // in this content we have a searchResults table...
           // so we'll be adding to the data column of gthe searchResults table
@@ -739,6 +665,8 @@ main.get('/tempType/:type', (req, res, next) => {
 
     // this simply sets a tempType flag to be used by both locationBar and mainView templates...
     // to show tempaerture in Celsius or Fahrenheit degrees
+    // but we do have to retrieve the data using the req.session.id...
+    // and build a new working res.locals.searchResults dataset
 
     res.locals.searchResults = resetTemplateData();;
 
@@ -748,28 +676,13 @@ main.get('/tempType/:type', (req, res, next) => {
 
       res.locals.searchResults = resetTemplateData();
       res.locals.searchResults.currentLocationData = SearchResults.data.currentLocationData;
+      res.locals.searchResults.availLocationsArray = SearchResults.data.availLocationsArray;
       res.locals.searchResults.forecastData = SearchResults.data.forecastData;
       res.locals.searchResults.locationData = SearchResults.data.locationData;
       res.locals.searchResults.locationName = SearchResults.data.locationName;
       res.locals.searchResults.locationBarBackGround = SearchResults.data.locationBarBackGround;
       res.locals.searchResults.mainViewBackGround = SearchResults.data.mainViewBackGround;
       res.locals.searchResults.forecast = true;
-
-      res.locals.searchResults.availLocationsArray.push({
-            index: SearchResults.data.locationName.length - 1,
-            locationName: SearchResults.data.currentLocationData.locationName,
-            sunsetTime: SearchResults.data.currentLocationData.sunsetTime,
-            sunriseTime: SearchResults.data.currentLocationData.sunriseTime,
-            utcOffSet: SearchResults.data.currentLocationData.utcOffSet,
-            liveFormattedTime: timeDate.getCurrentTimeAtLocation(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset),
-            timezone: SearchResults.data.forecastData[0].data.offset,
-            day: timeDate.checkDay(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset, SearchResults.data.forecastData[0].data.daily.data[0].sunsetTime, SearchResults.data.forecastData[0].data.daily.data[0].sunriseTime),
-            tempFahrenheit: Math.floor(SearchResults.data.forecastData[0].data.currently.temperature),
-            tempCelsius: convertTemp.toCelsius(Math.floor(SearchResults.data.forecastData[0].data.currently.temperature)),
-            icon:`${SearchResults.data.forecastData[0].data.currently.icon}`,
-            wiClass: getWiClass(SearchResults.data.forecastData[0].data.currently.icon, timeDate.checkDay(SearchResults.data.forecastData[0].data.currently.time, SearchResults.data.forecastData[0].data.offset, SearchResults.data.forecastData[0].data.daily.data[0].sunsetTime, SearchResults.data.forecastData[0].data.daily.data[0].sunriseTime)),
-            currentCondition:`${SearchResults.data.forecastData[0].data.currently.summary}`
-          });
 
       const updateTime = (object, index) => {
         // call back to map availLocationsArray with updated time
@@ -812,14 +725,15 @@ main.get('/weatherForecast/:indexNo', (req, res, next) => {
     // if there are SearchResults... continue
     if (SearchResults){
 
-        res.locals.searchResults = resetTemplateData();
-        res.locals.searchResults.currentLocationData = SearchResults.data.currentLocationData;
-        res.locals.searchResults.forecastData = SearchResults.data.forecastData;
-        res.locals.searchResults.locationData = SearchResults.data.locationData;
-        res.locals.searchResults.locationName = SearchResults.data.locationName;
-        res.locals.searchResults.locationBarBackGround = SearchResults.data.locationBarBackGround;
-        res.locals.searchResults.mainViewBackGround = SearchResults.data.mainViewBackGround;
-        res.locals.searchResults.forecast = true;
+      res.locals.searchResults = resetTemplateData();
+      res.locals.searchResults.currentLocationData = SearchResults.data.currentLocationData;
+      res.locals.searchResults.availLocationsArray = SearchResults.data.availLocationsArray;
+      res.locals.searchResults.forecastData = SearchResults.data.forecastData;
+      res.locals.searchResults.locationData = SearchResults.data.locationData;
+      res.locals.searchResults.locationName = SearchResults.data.locationName;
+      res.locals.searchResults.locationBarBackGround = SearchResults.data.locationBarBackGround;
+      res.locals.searchResults.mainViewBackGround = SearchResults.data.mainViewBackGround;
+      res.locals.searchResults.forecast = true;
 
         if (res.locals.searchResults.forecast){
 
@@ -876,39 +790,54 @@ main.get('/removeLocation/:indexNo', (req, res, next) => {
 
         const updateSearchResults = removeLocation(req.params.indexNo, SearchResults.data);
 
-        SearchResults.update(updateSearchResults)
-          .then(SearchResults => {
+          sequelizeDb.SearchResults.update({
+             data: updateSearchResults
+           },{
+             where: {app_id: req.session.id}
+           }).then(() => {
 
-            res.locals.searchResults = resetTemplateData();
-            res.locals.searchResults.currentLocationData = SearchResults.data.currentLocationData;
-            res.locals.searchResults.forecastData = SearchResults.data.forecastData;
-            res.locals.searchResults.locationData = SearchResults.data.locationData;
-            res.locals.searchResults.locationName = SearchResults.data.locationName;
-            res.locals.searchResults.locationBarBackGround = SearchResults.data.locationBarBackGround;
-            res.locals.searchResults.mainViewBackGround = SearchResults.data.mainViewBackGround;
-            if (res.locals.searchResults.forecastData.length > 0){
-            res.locals.searchResults.forecast = true;
-          } else {
-            res.locals.searchResults.forecast = false;
-          }
+             sequelizeDb.SearchResults.findOne({
+               where: {app_id: req.session.id}
+             }).then(SearchResults  => {
 
-            res.render('index', res.locals.searchResults);
+                res.locals.searchResults = resetTemplateData();
+                res.locals.searchResults.currentLocationData = SearchResults.data.currentLocationData;
+                res.locals.searchResults.availLocationsArray = SearchResults.data.availLocationsArray;
+                res.locals.searchResults.forecastData = SearchResults.data.forecastData;
+                res.locals.searchResults.locationData = SearchResults.data.locationData;
+                res.locals.searchResults.locationName = SearchResults.data.locationName;
+                res.locals.searchResults.locationBarBackGround = SearchResults.data.locationBarBackGround;
+                res.locals.searchResults.mainViewBackGround = SearchResults.data.mainViewBackGround;
 
-          }).catch(err => {
-            next(Error(`error removing locationdata fron and updated SearchResults`, err));
-          });
+                res.locals.searchResults.forecast = true;
 
-        }
-    } else {
-      // just in case someone tries this route first...
-      res.render('index', res.locals.searchResults);
 
-    }
+                // need to check this, since this is removoing locations, at some point there may 0 locations
+                if (res.locals.searchResults.forecastData.length > 0){
 
-  }).catch(err => {
-    next(Error(`error finding SearchResults with that session id`, err));
-  })
+                  res.locals.searchResults.forecast = true;
 
+                } else {
+
+                  res.locals.searchResults.forecast = false;
+
+                }
+
+                res.render('index', res.locals.searchResults);
+
+             }).catch(err => next(err));
+
+           }).catch(err => next(err));
+
+         }
+
+     } else {
+       // just in case someone tries this route first...or somethng else unpredicted happens... =)
+       res.render('index', res.locals.searchResults);
+
+     }
+
+  }).catch(err => next(err));
 
 });
 
