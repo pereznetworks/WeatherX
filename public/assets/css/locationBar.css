@@ -22,7 +22,7 @@
 }
 
   #cityTime-div p {
-    margin:8% 10%;
+    margin:8% 8%;
     padding: 1% 0;
     display: block;
     line-height:13px;
@@ -105,7 +105,8 @@
     background-image:url('../imgs/Garbage-Open-48-4B4AA7-T.png');
   }
 
-@media (min-width: 560px) and (orientation: landscape) {
+
+@media screen and (min-width: 768px) and (orientation: landscape){
   .locationBar-div{
     width: 70%;
     height: 100px;
@@ -115,7 +116,7 @@
 
   #cityTime-div{
     font-size: 12px;
-    margin: 3% 0;
+    margin: 0 0;
   }
 
     #cityTime-div p {
@@ -145,7 +146,7 @@
     display: inline;
     float: left;
     color:#fff;
-    margin: 4% 0;
+    margin: 0 0;
     padding: 4% 4%;
     font-size: 2em;
     text-align: center;
@@ -157,14 +158,14 @@
     height: 100%;
     width: 25%;
     margin: 0;
-    padding: 2% 1% 0 2%;
+    padding: 0 3% 0 0;
   }
 
     .currentTemp {
       float: right;
       display: block;
       line-height: 22px;
-      margin: 15% 0% 3% 0;
+      margin: 8% 0% 3% 0;
       padding: 10% 0;
       font-size: 2.8em;
     }
@@ -203,11 +204,9 @@
     .removeLocation:hover{
       background-image:url('../imgs/Garbage-Open-48-4B4AA7-T.png');
     }
+} */
 
-
-}
-
-@media (min-width: 760px) and (min-height: 1020px) and (orientation: portrait){
+/* @media  screen and (min-height: 375px) and (orientation: portrait){
 
   .locationBar-div{
     height: 100px;
@@ -307,9 +306,9 @@
     .removeLocation:hover{
       background-image:url('../imgs/Garbage-Open-48-4B4AA7-T.png');
     }
-}
+} */
 
-@media (min-width: 1000px) and (orientation: landscape) {
+@media screen and (min-width: 1020px) and (orientation: landscape) {
   .locationBar-div{
     height: 100px;
     margin: 0 0 0 0;
@@ -324,7 +323,7 @@
   }
 
     #cityTime-div p {
-      margin:8% 10%;
+      margin:8% 8%;
       padding: 3% 0 0 0;
       display: block;
       line-height:13px;
@@ -409,7 +408,7 @@
     }
 }
 
-@media (min-width: 1200px) and (orientation: landscape) {
+@media screen and (min-width: 1200px) and (orientation: landscape) {
   .locationBar-div{
     height: 100px;
     margin: 0 0 0 0;
@@ -424,7 +423,7 @@
   }
 
     #cityTime-div p {
-      margin:8% 10%;
+      margin:5% 10%;
       padding: 3% 0 0 0;
       display: block;
       line-height:13px;
@@ -450,7 +449,7 @@
     display: inline;
     float: left;
     color:#fff;
-    padding: 0% 4%;
+    padding: 3% 4%;
     font-size: 2em;
     text-align: center;
   }
@@ -468,7 +467,7 @@
       float: right;
       display: block;
       line-height: 22px;
-      margin: 9% 0% 0% 0;
+      margin: 3% 0% 0% 0;
       padding: 0;
       font-size: 3.4em;
     }

@@ -35,8 +35,9 @@
 #clearDay, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay  {
  float:left;
  width: 100%;
- height: 100%;
+ height: 120%;
  margin: 0 0 0 0;
+ padding: 0 2%;
  z-index: -1;
  background-color: #484848;
  background-image: linear-gradient(to bottom left, #484848,#48c4e0); /* Standard syntax (must be last) */
@@ -46,29 +47,32 @@
 #clearNight, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
  float:left;
  width: 100%;
- height: 100%;
+ height: 120%;
  margin: 0 0 0 0;
+ padding: 2% 0;
  z-index: -1;
  background-color: #757575;
  background-image: linear-gradient(to bottom left, #757575,#040429); /* Standard syntax (must be last) */
 }
 
 #locationBar-clearDay, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay  {
-  height:160px;
+  height:200px;
+  width: 100%;
   padding-top:12px;
   background-color: #484848;
   background-image: linear-gradient(to bottom left, #484848,#48c4e0); /* Standard syntax (must be last) */
 }
 
 #locationBar-clearNight, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #flocationBar-foggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
-  height:160px;
+  height:200px;
+  width: 100%;
   padding-top:12px;
   background-color: #757575;
   background-image: linear-gradient(to bottom left, #757575,#040429); /* Standard syntax (must be last) */
 }
 
 
-@media (min-width: 560px) and (orientation: landscape){
+/* @media  screen and (min-width: 768px) {
 
   #locationBar-clearDay, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay{
     width: 70%;
@@ -111,22 +115,22 @@
       padding: 0 0 0 120px;
   }
 
-}
+} */
 
-@media (min-width: 760px) and (min-height: 1020px) and (orientation: portrait){
+/* @media  screen and (min-height: 800px) and (orientation: portrait){
 
     #locationBar-clearDay, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay{
-      width: 70%;
+      width: 100%;
       height: 100px;
       padding: 0 0 0 0;
-      margin: 0% 0 0 15%;
+      margin: 0 0 0 0;
     }
 
     #locationBar-clearNight, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #flocationBar-foggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
-      width: 70%;
+      width: 100%;
       height: 100px;
       padding: 0 0 0 0;
-      margin: 0% 0 0 15%;
+      margin: 0 0 0 0;
     }
 
     #clearNight, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight{
@@ -156,9 +160,54 @@
         padding: 0 0 0 120px;
     }
 
-}
+} */
 
-@media (min-width: 1000px) and (orientation: landscape){
+/* @media  screen and (min-width: 800px) and (min-height: 1024px) {
+
+    #locationBar-clearDay, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay{
+      width: 100%;
+      height: 100px;
+      padding: 0 0 0 0;
+      margin: 0 0 0 0;
+    }
+
+    #locationBar-clearNight, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #flocationBar-foggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
+      width: 100%;
+      height: 100px;
+      padding: 0 0 0 0;
+      margin: 0 0 0 0;
+    }
+
+    #clearNight, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight{
+      width: 100%;
+      height: 150%;
+      padding: 0 0 4% 0;
+      margin: 0 0 0 0;
+    }
+
+    #clearDay, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay  {
+      width: 100%;
+      height: 150%;
+      padding: 0 0 4% 0;
+      margin: 0 0 0 0;
+    }
+
+    .weatherSummary .wi{
+      width:35%;
+      font-size: .8em;
+      line-height: 1em;
+    }
+
+    #forecastCondition .wi{
+        width: 35%;
+        font-size: 1em;
+        line-height: 1em;
+        padding: 0 0 0 120px;
+    }
+
+} */
+
+@media screen and (min-width: 768px) and (orientation: landscape){
 
   .weatherSummary, .hourOfDay, .hourlyTemp{
       text-align: left;
@@ -199,8 +248,7 @@
    margin: 0 0 0 0;
    z-index: -1;
    background-color: #484848;
-   background-image: linear-gradient(to bottom left, #484848,#48c4e0); /* Standard syntax (must be last) */
-
+   background-image: linear-gradient(to bottom left, #484848,#48c4e0);
   }
 
   #clearNight, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
@@ -210,7 +258,7 @@
    margin: 0 0 0 0;
    z-index: -1;
    background-color: #757575;
-   background-image: linear-gradient(to bottom left, #757575,#040429); /* Standard syntax (must be last) */
+   background-image: linear-gradient(to bottom left, #757575,#040429);
   }
 
   #locationBar-clearDay, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay  {
@@ -219,7 +267,7 @@
     height:100px;
     padding: 0 0 0 0;
     background-color: #484848;
-    background-image: linear-gradient(to bottom left, #484848,#48c4e0); /* Standard syntax (must be last) */
+    background-image: linear-gradient(to bottom left, #484848,#48c4e0);
   }
 
   #locationBar-clearNight, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #flocationBar-foggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
@@ -228,12 +276,12 @@
     height:100px;
     padding: 0 0 0 0;
     background-color: #757575;
-    background-image: linear-gradient(to bottom left, #757575,#040429); /* Standard syntax (must be last) */
+    background-image: linear-gradient(to bottom left, #757575,#040429);
   }
 
 }
 
-@media (min-width: 1200px) and (orientation: landscape){
+@media screen and (min-width: 1000px) and (orientation: landscape){
 
   .weatherSummary, .hourOfDay, .hourlyTemp{
       text-align: left;
@@ -274,7 +322,81 @@
    margin: 0 0 0 0;
    z-index: -1;
    background-color: #484848;
-   background-image: linear-gradient(to bottom left, #484848,#48c4e0); /* Standard syntax (must be last) */
+   background-image: linear-gradient(to bottom left, #484848,#48c4e0);
+  }
+
+  #clearNight, #cloudyNight, #partlyCloudyNight, #foggyNight, #windyNight, #snowyNight, #rainyNight, #thunderNight {
+   float:left;
+   width: 100%;
+   height: 140%;
+   margin: 0 0 0 0;
+   z-index: -1;
+   background-color: #757575;
+   background-image: linear-gradient(to bottom left, #757575,#040429);
+  }
+
+  #locationBar-clearDay, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay  {
+    margin-left: 98px;
+    width: 70%;
+    height:100px;
+    padding: 0 0 0 0;
+    background-color: #484848;
+    background-image: linear-gradient(to bottom left, #484848,#48c4e0);
+  }
+
+  #locationBar-clearNight, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #flocationBar-foggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
+    margin-left: 15%;
+    width: 70%;
+    height:100px;
+    padding: 0 0 0 0;
+    background-color: #757575;
+    background-image: linear-gradient(to bottom left, #757575,#040429);
+  }
+
+}
+
+@media screen and (min-width: 1200px) and (orientation: landscape){
+
+  .weatherSummary, .hourOfDay, .hourlyTemp{
+      text-align: left;
+      align-content: left;
+      background-color: transparent;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 60%;
+      text-decoration: none;
+      font-size: 2em;
+      border: none;
+      vertical-align:middle;
+      padding: 0;
+      text-align: center;
+      align-content: center;
+      height: 30px;
+      width: 30px;
+      border-radius: 6px;
+  }
+
+  #forecastCondition .wi{
+      width: 35%;
+      font-size: 1.2em;
+      line-height: 1em;
+      padding: 0 0 0 120px;
+  }
+
+  .weatherSummary .wi{
+    width:35%;
+    font-size: 1.2em;
+    line-height: 1em;
+  }
+
+  #clearDay, #cloudyDay, #partlyCloudyDay, #foggyDay, #windyDay, #snowyDay, #rainyDay, #thunderDay  {
+   float:left;
+   width: 100%;
+   height: 130%;
+   margin: 0 0 0 0;
+   z-index: -1;
+   background-color: #484848;
+   background-image: linear-gradient(to bottom left, #484848,#48c4e0);
 
   }
 
@@ -285,7 +407,7 @@
    margin: 0 0 0 0;
    z-index: -1;
    background-color: #757575;
-   background-image: linear-gradient(to bottom left, #757575,#040429); /* Standard syntax (must be last) */
+   background-image: linear-gradient(to bottom left, #757575,#040429);
   }
 
   #locationBar-clearDay, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay  {
@@ -294,7 +416,7 @@
     height:100px;
     padding: 0 0 0 0;
     background-color: #484848;
-    background-image: linear-gradient(to bottom left, #484848,#48c4e0); /* Standard syntax (must be last) */
+    background-image: linear-gradient(to bottom left, #484848,#48c4e0);
   }
 
   #locationBar-clearNight, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #flocationBar-foggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
@@ -303,7 +425,7 @@
     height:100px;
     padding: 0 0 0 0;
     background-color: #757575;
-    background-image: linear-gradient(to bottom left, #757575,#040429); /* Standard syntax (must be last) */
+    background-image: linear-gradient(to bottom left, #757575,#040429);
   }
 
 }

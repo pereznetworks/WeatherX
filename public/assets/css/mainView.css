@@ -26,7 +26,7 @@
   }
 
     #mainViewHeader h3, #mainViewHeader h1, #mainViewHeader p{
-      margin: 1% 0 0 0;
+      margin: 3% 0 0 0;
       font-size: 2.4em;
       padding:0;
     }
@@ -127,7 +127,7 @@
     padding: 0 0 0 20px;
     }
 
-@media (min-width: 560px) and (orientation: landscape){
+@media  screen and (min-width: 768px) and (orientation: landscape) {
 
   *{
     font-size: 16px;
@@ -237,7 +237,7 @@
     }
 }
 
-@media (min-width: 760px) and (min-height: 1020px) and (orientation: portrait){
+/* @media  screen and (min-height: 375px) and (orientation: portrait){
 
 
     #backHome-button{
@@ -273,9 +273,9 @@
       font-size: 2em;
     }
 
-}
+} */
 
-@media (min-width: 1020px) and (orientation: landscape){
+@media  screen and (min-width: 1020px) and (orientation: landscape){
 
   *{
     font-size: 16px;
@@ -286,7 +286,7 @@
 
   #mainViewHeader{
     margin: 0;
-    padding:10% 0 0 0;
+    padding:8% 0 0 0;
   }
 
   #mainViewHeader h3, #mainViewHeader h1, #mainViewHeader p{
@@ -385,7 +385,7 @@
     }
 }
 
-@media (min-width: 1200px) and (orientation: landscape){
+@media  screen and (min-width: 1200px) and (orientation: landscape){
 
   *{
     font-size: 16px;
@@ -396,7 +396,7 @@
 
   #mainViewHeader{
     margin: 0;
-    padding:10% 0 0 0;
+    padding:8% 0 0 0;
   }
 
   #mainViewHeader h3, #mainViewHeader h1, #mainViewHeader p{
