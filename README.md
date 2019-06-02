@@ -1,9 +1,43 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
-# GO-LIVE Date: May 1, 2019:  
+# GO-LIVE Date: June 10th, 2019:  
 [Project Site](./)
 
-# PROJECT UPDATE:
+# PROJECT UPDATE: JUNE 2, 2019
+- Development front-end, db and backend-server complete and working:
+ - Session and Sequelize PostgreSQL Data Models, Methods and DB
+ - Routes for home, weatherCurrent, tempType, weatherForecast and removeLocation
+ - Pug Views and integration of data
+ - Front-end javascript working
+ - HTML/CSS layout for basic device screen sizes working
+
+- DONE
+  - verified project Expectations
+    - use frameworks covered in the FSJS Techdegree Units  
+    - Connect to at least two APIs
+    - Display data from at least two other web sites by connecting to their API
+    - Front end design and layout
+      - not using Bootstrap, (Extra credit #2)
+      - using custom responsive CSS layout
+    - using database
+    - PostgreSQL for data and session-store
+    - using a GitHub repository
+    - local clone runs using npm i and npm start
+  - verified EXTRA CREDIT features match speqs
+    - Use more than two APIs in your app - DONE
+    - Write custom CSS to layout and style your app - DONE
+
+- TODO
+  - Check for issues with your JavaScript code using JSHint
+  - Check EXTRA CREDIT features match speqs
+    - Use HTML5 validation
+    - Write unit tests for your code using Mocha.js
+      - and an assertion library like Chai
+  - Re-check that code fits 'DRY' and is a modular a possible
+  - Deploy project to Heroku and use a public URL, and submit the URL for review
+
+
+# PROJECT UPDATE: May 1, 2019
   - Well after much consternation it looks like I will be dropping REACT... :disappointed_relieved:
     - then main issue is deploying a REACT app that accesses data using a server-side database
       - with only REACT, either WEBPACK/BABEL or CREATE-REACT-APP, and REACT-ROUTER on NODE.JS/EXPRESS using MONGOD or PostgreSQL or  MYSQL
@@ -12,7 +46,7 @@
       - there may be solutions
         - which unfortunately are outside the scope of this project
 
-# PROJECT 12 v.0.2.0
+# PROJECT 12 v.0.2.0 Strategy
   - So I will be implementing the views of my Weather App using PUG….
     - on the bright-side I will finally be deploying my app and submitting... :laughing:
   - so on my express server
@@ -33,7 +67,7 @@
     - but I now see light at the end of my tunnel…. :joy:
 
 
-# GITHUB PROJECT DECISIONS:
+# GITHUB PROJECT DECISIONS FOR REACT-VERSION:
   - I will be preserving the current master branch as a branch or even a fork on another project github repo.
   - I will be implementing the same overall UI, css-grid, html, ui-color design and weather-icons, but using PUG templates
 
