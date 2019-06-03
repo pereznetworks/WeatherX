@@ -21,7 +21,7 @@
     width: 100%;
     height: 10%;
     display: block;
-    margin: 6% 0 6% 0;
+    margin: 12% 0 6% 0;
     padding: 6% 0 0 0;
   }
 
@@ -291,13 +291,13 @@
 
   #mainViewHeader h3, #mainViewHeader h1, #mainViewHeader p{
     font-size: 1.2em;
-    margin:0 0 0 0;
+    margin:2% 0 0 0;
   }
 
   #tableHdr{
     width: 100%;
     height:9%;
-    padding: 4% 0 0 0;
+    padding: 14% 0 0 0;
   }
 
     #tableHdr #dayOfWeek{
@@ -324,7 +324,7 @@
 
   .scrollingEnabled{
     overflow: scroll;
-    height: 16%;
+    height: 18%;
   }
 
   #tableDays {

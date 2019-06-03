@@ -1,4 +1,3 @@
-'use strict';
 
 // code courtesy Team Treehouse, from FSJS Project 10
 // removed fs, path and process.env
@@ -29,7 +28,7 @@ db.Sequelize = Sequelize;
 
 // importing models
 // assigning these as part of db object
-db.Forecasts = require('./forecastModel.js')(sequelize, Sequelize)
+db.Forecasts = require('./forecastModel.js')(sequelize, Sequelize);
 db.Locations = require('./locationModel.js')(sequelize, Sequelize);
 db.AppSessions = require('./sessionModel.js')(sequelize, Sequelize);
 db.SearchResults= require('./searchResultModel.js')(sequelize, Sequelize);

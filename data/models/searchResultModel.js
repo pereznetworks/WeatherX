@@ -1,4 +1,3 @@
-'use strict';
 
 module.exports = (sequelize, DataTypes) => {
   const SearchResult = sequelize.define('SearchResult',

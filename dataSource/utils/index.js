@@ -153,7 +153,7 @@ module.exports.timeDate = {
   },
 
   getCurrentTimeAtLocation: function(locationTime, tz){ // get the time, given utc hr, min and the timezone, for given location
-    let initialDate = this.getUpToSecDateOfLocation(locationTime);
+    // let initialDate = this.getUpToSecDateOfLocation(locationTime);
     let nowDate = new Date();
 
 
@@ -184,7 +184,7 @@ module.exports.timeDate = {
 
     let hrs = this.getTZhours(today, tz);
     let hourOfDay = this.formatTime(hrs);
-    let nextDay;
+    // let nextDay;
 
     const currentDayIndex = this.whatDayIsIt(dateInt, tz);
     let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -192,7 +192,7 @@ module.exports.timeDate = {
     if (hourOfDay === '0 AM' || hourOfDay === '12 AM'){
         return daysOfWeek[currentDayIndex];
     } else {
-        return hourOfDay
+        return hourOfDay;
     }
   },
 
@@ -342,98 +342,99 @@ module.exports.convertTemp = {
   toFahrenheit: function(tempNum){
       return Math.round((tempNum *  1.8) + 32);
   }
-}
+};
 
 // set background for locationBar and mainView
+// this is now done server-side
 
-module.exports.setBackground = {
-  mainView: function(data){ // set appropriate background based on current weather condition
-
-    let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime, data.daily.data[0].sunriseTime );
-    let icon = data.currently.icon;
-
-       if ( icon === 'cloudy' && day){
-          return "cloudyDay";
-        } else if ( icon === 'cloudy' && !day){
-           return "cloudyNight";
-        } else if ( icon === 'fog' && day){
-          return "foggyDay";
-        } else if ( icon === 'fog' && !day){
-          return "foggyNight";
-        } else if ( icon === 'partly-cloudy-day'){
-          return "partlyCloudyDay";
-        } else if ( icon === 'partly-cloudy-night'){
-          return "partlyCloudyNight";
-        } else if ( icon === 'rain' && day){
-          return "rainyDay";
-        } else if ( icon === 'rain' && !day){
-          return "rainyNight";
-        } else if ( icon === 'clear-day' && day){
-          return "clearDay";
-        } else if ( icon === 'clear-night' && !day){
-          return "clearNight";
-        } else if ( icon === 'snow' && day){
-          return "snowyDay";
-        } else if ( icon === 'snow' && !day){
-          return "snowyNight";
-        } else if ( icon === 'scattered-showers' && day ){
-          return "rainyDay";
-        } else if ( icon === 'scattered-showers' && !day ){
-          return "rainyNight";
-        } else if ( icon === 'thunder' && day ){
-          return "thunderDay";
-        } else if ( icon === 'thunder' && !day ){
-          return "thunderNight";
-        } else if ( icon === 'wind' && day ){
-          return "windyDay";
-        } else if ( icon === 'wind' && !day ){
-          return "windyNight";
-        }
-  },
-  locationBar: function(data){ // set appropriate background based on current weather condition
-
-    let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime, data.daily.data[0].sunriseTime);
-    let icon = data.currently.icon;
-
-       if ( icon === 'cloudy' && day){
-          return "locationBar-cloudyDay";
-        } else if ( icon === 'cloudy' && !day){
-           return "locationBar-cloudyNight";
-        } else if ( icon === 'fog' && day){
-          return "locationBar-foggyDay";
-        } else if ( icon === 'fog' && !day){
-          return "locationBar-foggyNight";
-        } else if ( icon === 'partly-cloudy-day'){
-          return "locationBar-partlyCloudyDay";
-        } else if ( icon === 'partly-cloudy-night'){
-          return "locationBar-partlyCloudyNight";
-        } else if ( icon === 'rain' && day){
-          return "locationBar-rainyDay";
-        } else if ( icon === 'rain' && !day){
-          return "locationBar-rainyNight";
-        } else if ( icon === 'clear-day' && day){
-          return "locationBar-clearDay";
-        } else if ( icon === 'clear-night' && !day){
-          return "locationBar-clearNight";
-        } else if ( icon === 'snow' && day){
-          return "locationBar-snowyDay";
-        } else if ( icon === 'snow' && !day){
-          return "locationBar-snowyNight";
-        } else if ( icon === 'scattered-showers' && day ){
-          return "locationBar-rainyDay";
-        } else if ( icon === 'scattered-showers' && !day ){
-          return "locationBar-rainyNight";
-        } else if ( icon === 'thunder' && day ){
-          return "locationBar-thunderDay";
-        } else if ( icon === 'thunder' && !day ){
-          return "locationBar-thunderNight";
-        } else if ( icon === 'wind' && day ){
-          return "locationBar-windyDay";
-        } else if ( icon === 'wind' && !day ){
-          return "locationBar-windyNight";
-        }
-  }
-  }
+// module.exports.setBackground = {
+//   mainView: function(data){ // set appropriate background based on current weather condition
+//
+//     let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime, data.daily.data[0].sunriseTime );
+//     let icon = data.currently.icon;
+//
+//        if ( icon === 'cloudy' && day){
+//           return "cloudyDay";
+//         } else if ( icon === 'cloudy' && !day){
+//            return "cloudyNight";
+//         } else if ( icon === 'fog' && day){
+//           return "foggyDay";
+//         } else if ( icon === 'fog' && !day){
+//           return "foggyNight";
+//         } else if ( icon === 'partly-cloudy-day'){
+//           return "partlyCloudyDay";
+//         } else if ( icon === 'partly-cloudy-night'){
+//           return "partlyCloudyNight";
+//         } else if ( icon === 'rain' && day){
+//           return "rainyDay";
+//         } else if ( icon === 'rain' && !day){
+//           return "rainyNight";
+//         } else if ( icon === 'clear-day' && day){
+//           return "clearDay";
+//         } else if ( icon === 'clear-night' && !day){
+//           return "clearNight";
+//         } else if ( icon === 'snow' && day){
+//           return "snowyDay";
+//         } else if ( icon === 'snow' && !day){
+//           return "snowyNight";
+//         } else if ( icon === 'scattered-showers' && day ){
+//           return "rainyDay";
+//         } else if ( icon === 'scattered-showers' && !day ){
+//           return "rainyNight";
+//         } else if ( icon === 'thunder' && day ){
+//           return "thunderDay";
+//         } else if ( icon === 'thunder' && !day ){
+//           return "thunderNight";
+//         } else if ( icon === 'wind' && day ){
+//           return "windyDay";
+//         } else if ( icon === 'wind' && !day ){
+//           return "windyNight";
+//         }
+//   },
+//   locationBar: function(data){ // set appropriate background based on current weather condition
+//
+//     let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime, data.daily.data[0].sunriseTime);
+//     let icon = data.currently.icon;
+//
+//        if ( icon === 'cloudy' && day){
+//           return "locationBar-cloudyDay";
+//         } else if ( icon === 'cloudy' && !day){
+//            return "locationBar-cloudyNight";
+//         } else if ( icon === 'fog' && day){
+//           return "locationBar-foggyDay";
+//         } else if ( icon === 'fog' && !day){
+//           return "locationBar-foggyNight";
+//         } else if ( icon === 'partly-cloudy-day'){
+//           return "locationBar-partlyCloudyDay";
+//         } else if ( icon === 'partly-cloudy-night'){
+//           return "locationBar-partlyCloudyNight";
+//         } else if ( icon === 'rain' && day){
+//           return "locationBar-rainyDay";
+//         } else if ( icon === 'rain' && !day){
+//           return "locationBar-rainyNight";
+//         } else if ( icon === 'clear-day' && day){
+//           return "locationBar-clearDay";
+//         } else if ( icon === 'clear-night' && !day){
+//           return "locationBar-clearNight";
+//         } else if ( icon === 'snow' && day){
+//           return "locationBar-snowyDay";
+//         } else if ( icon === 'snow' && !day){
+//           return "locationBar-snowyNight";
+//         } else if ( icon === 'scattered-showers' && day ){
+//           return "locationBar-rainyDay";
+//         } else if ( icon === 'scattered-showers' && !day ){
+//           return "locationBar-rainyNight";
+//         } else if ( icon === 'thunder' && day ){
+//           return "locationBar-thunderDay";
+//         } else if ( icon === 'thunder' && !day ){
+//           return "locationBar-thunderNight";
+//         } else if ( icon === 'wind' && day ){
+//           return "locationBar-windyDay";
+//         } else if ( icon === 'wind' && !day ){
+//           return "locationBar-windyNight";
+//         }
+//   }
+//   }
 
 // select the appropriate weather-icon, based on forecast condition key-
 module.exports.getWiClass = function(icon, day){
@@ -510,7 +511,7 @@ module.exports.getWiClass = function(icon, day){
   };
 
 // reverse an array so new elements appear first
-module.exports.displayNewLocFirst = function(){
+module.exports.displayNewLocFirst = function(arrayOfElements){
 
       arrayOfElements.reverse();
       return arrayOfElements;

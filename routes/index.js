@@ -3,7 +3,7 @@ const axios = require('axios');
 const main = express.Router();
 
 // importing Sequelize, and sequelizeDb and models
-const Sequelize = require('../data/models').Sequelize;
+// const Sequelize = require('../data/models').Sequelize;
 const sequelizeDb = require('../data/models').db;
 
 // importing methods that access forecast.io and mapbox geocoding api
@@ -12,27 +12,23 @@ const getGeoCodeApiCall = require('../dataSource').getGeoCodeApiCall;
 const manageForecastData = require('../dataSource').manageForecastData;
 const manageLocData = require('../dataSource').manageLocData;
 
-// importing newForecastData document based on mongoose model
-const newForecastData = require('../dataSource').newForecastData;
-const newLocationData = require('../dataSource').newLocationData;
-
 // api keys
 const apiKeys = {
   forecastKey:  process.env.FORECAST_KEY,
-  geoCodeKey: process.env.GEOCODE_KEY
-}
+  geoCodeKey: process.env.GEOCODE_KEY,
+};
 
 // importing utils for time and temp
 const timeDate = require('../dataSource/utils').timeDate;
 const convertTemp = require('../dataSource/utils').convertTemp;
-const setBackground = require('../dataSource/utils').setBackground;
+// const setBackground = require('../dataSource/utils').setBackground;
 const getWiClass = require('../dataSource/utils').getWiClass;
 
 const importedTemplateData = {
   initialView: require('../views/initialView/locals.js').homePg,
   locationBar: require(`../views/locationBarView/locals.js`).locationBar,
-  mainView: require('../views/mainView/locals.js').mainView
-}
+  mainView: require('../views/mainView/locals.js').mainView,
+};
 
 // locals to pass to pug templates to be rendered with the view
 const resetTemplateData = () => {
@@ -58,7 +54,7 @@ const resetTemplateData = () => {
     currentLocationData: {},
     availLocationsArray: [],
     mainViewBackGround: [],
-    locationBarBackGround: []
+    locationBarBackGround: [],
   };
 
   return data;
@@ -70,14 +66,10 @@ const makeApiCalls = function(update, req, res, next){
 
   // regexps and a callback function for basic input validation and duplicate checking
 
-  // find each word
-  const findEachWord = /([\sA-Za-z])\w+/g;
   // for any input that start with a comma
   const lookForCommaAtBeginning = /^,(?=[\sA-Za-z])/g;
   // for any input that has a comma between words
   const lookForCommaBetween = /,(?=[\sA-Za-z])/g;
-  // look for pattern: ', word'
-  const lookForCommaFollowedByAWord = /,([\sA-Za-z])\w+/g;
   // remove leading spaces
   let removeLeading = /([\sA-Z-a-z])+/g;
   // any numbers anywhere in the input
@@ -85,27 +77,33 @@ const makeApiCalls = function(update, req, res, next){
 
 
   // match everything but the comma
-  const matchOnlyCommas = /([^,])\w+/g
+  // const matchOnlyCommas = /([^,])\w+/g;
+
+  // look for pattern: ', word'
+  // const lookForCommaFollowedByAWord = /,([\sA-Za-z])\w+/g;
+
+  // find each word
+  // const findEachWord = /([\sA-Za-z])\w+/g;
 
   // this makes sure to separate the location's city name from the provice name and toUpperCase
   // to that it can be compared to the locationNames there is already forecast data for
   const stringParse = (parseThis, beforeComma) => {
     // matches any phrase followed by a comma
-    const cityName = /(.+),/g
+    const cityName = /(.+),/g;
     // matches any phrase followed by a comma
-    const provinceName = /,(.+)/g
+    const provinceName = /,(.+)/g;
 
     if (beforeComma){
       let parsed = parseThis.match(cityName).toString().toUpperCase();
-      return parsed.slice(0, parsed.length - 1 )
+      return parsed.slice(0, parsed.length - 1 );
 
     } else {
       let parsed = parseThis.match(provinceName).toString().toUpperCase();
-      return parsed.slice(1, parsed.length)
+      return parsed.slice(1, parsed.length);
     }
 
 
-  }
+  };
 
   // check for dups, if input is a dup, set notADuplicateLocation to false
   const compareLocationName = (item, index) => {
@@ -142,8 +140,6 @@ const makeApiCalls = function(update, req, res, next){
 
       if (input && input.match(lookForCommaBetween)){
 
-        console.log(`\n...processing new GET request...\nusing async functions, some of the following logs may seem to be out of order\n`);
-
         let locationArray = input.match(removeLeading);
         let locationString = locationArray.toString();
         let geoCodeApiCallUrl = getGeoCodeApiCall(locationString, apiKeys.geoCodeKey);
@@ -159,8 +155,8 @@ const makeApiCalls = function(update, req, res, next){
               const loc = {
                 data: {
                   results: response.data.results,
-                  summary: response.data.summary
-                }
+                  summary: response.data.summary,
+                },
               };
 
               sequelizeDb.Locations.create(loc)
@@ -193,16 +189,16 @@ const makeApiCalls = function(update, req, res, next){
 
                             db.push(manageForecastData(Forecast.dataValues.data));
                             let newForecast = {
-                              // save new current foreeast
-                              timeStamp: Date.now(),
-                              data: db
-                              }
+                                // save new current foreeast
+                                timeStamp: Date.now(),
+                                data: db,
+                              };
 
                             // currentLocation will always be the latest one entered, so new locationBar will be rendered for it
                             // index of locationName array should always match index of forecastData array
                               if (update) {
                                 // then we're adding to the SearchResults.data column
-                                sequelizeDb.SearchResults.findOne({where: {app_id:req.session.id}
+                                sequelizeDb.SearchResults.findOne({where: {app_id:req.session.id,},
                                 }).then( SearchResults => {
 
                                      // build searchResults with new forecast and location data
@@ -226,7 +222,7 @@ const makeApiCalls = function(update, req, res, next){
                                                     icon:`${newForecast.data[1].data.currently.icon}`,
                                                     summary:`${newForecast.data[1].data.currently.summary}`,
                                                     wiClass: getWiClass(newForecast.data[1].data.currently.icon, timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime)),
-                                                    currentCondition:`${newForecast.data[1].data.currently.summary}`
+                                                    currentCondition:`${newForecast.data[1].data.currently.summary}`,
                                                   },
                                                 availLocationsArray: [...SearchResults.data.availLocationsArray, {
                                                     index: SearchResults.data.forecastData.length + 1,
@@ -242,10 +238,10 @@ const makeApiCalls = function(update, req, res, next){
                                                     icon:`${newForecast.data[1].data.currently.icon}`,
                                                     summary:`${newForecast.data[1].data.currently.summary}`,
                                                     wiClass: getWiClass(newForecast.data[1].data.currently.icon, timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime)),
-                                                    currentCondition:`${newForecast.data[1].data.currently.summary}`
+                                                    currentCondition:`${newForecast.data[1].data.currently.summary}`,
                                                   }],
                                                 mainViewBackGround: [...SearchResults.data.mainViewBackGround, timeDate.mainView(newForecast.data[1].data)],
-                                                locationBarBackGround: [...SearchResults.data.locationBarBackGround,timeDate.locationBar(newForecast.data[1].data)]
+                                                locationBarBackGround: [...SearchResults.data.locationBarBackGround,timeDate.locationBar(newForecast.data[1].data)],
                                               }
                                             };
 
@@ -263,29 +259,28 @@ const makeApiCalls = function(update, req, res, next){
 
                                      // find and update SearchResults with matching req.session.id with new forecast and location data
                                      sequelizeDb.SearchResults.update({
-                                       data: searchResults.data
+                                       data: searchResults.data,
                                      },{
-                                       where: {app_id: req.session.id}
+                                       where: {app_id: req.session.id,},
                                      }).then(() => {
                                          // find and update the locationCount in the AppSession with same id
                                          sequelizeDb.AppSessions.findOne({
-                                           where: {app_id: req.session.id}
+                                           where: {app_id: req.session.id,},
                                          }).then(AppSession => {
                                              const currentCount = AppSession.locationCount + 1;
-                                             AppSession.update({locationCount: currentCount
+                                             AppSession.update({locationCount: currentCount,
                                              }).then(() => {
                                                 // if nothing goes wrong... render home pg with new data
                                                 res.render('index', res.locals.searchResults);
                                                 // clean up temp working object, just in case
-                                                console.log(`res sent, results saved to db, emptying temp db object`);
-                                                db.splice(0, db.length)
+                                                db.splice(0, db.length);
                                              }).catch(err => next(err)); // end AppSession update
 
                                          }).catch(err => next(err)); // end find AppSession
 
                                       }).catch(err => next(err)); // end SearchResults update
 
-                                  }).catch(err => next(err)) // end SearchResults find
+                                  }).catch(err => next(err)); // end SearchResults find
 
                               } else {
                                 // then we're creating a new SearchResults row
@@ -309,12 +304,12 @@ const makeApiCalls = function(update, req, res, next){
                                                icon:`${newForecast.data[1].data.currently.icon}`,
                                                summary:`${newForecast.data[1].data.currently.summary}`,
                                                wiClass: getWiClass(newForecast.data[1].data.currently.icon, timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime)),
-                                               currentCondition:`${newForecast.data[1].data.currently.summary}`
+                                               currentCondition:`${newForecast.data[1].data.currently.summary}`,
                                              },
                                            availLocationsArray: [],
                                            mainViewBackGround: [timeDate.mainView(newForecast.data[1].data)],
-                                           locationBarBackGround: [timeDate.locationBar(newForecast.data[1].data)]
-                                         }
+                                           locationBarBackGround: [timeDate.locationBar(newForecast.data[1].data)],
+                                         },
                                        };
                                     searchResults.data.availLocationsArray.push({
                                         index: searchResults.data.locationName.length + 1,
@@ -330,7 +325,7 @@ const makeApiCalls = function(update, req, res, next){
                                         icon:`${newForecast.data[1].data.currently.icon}`,
                                         summary:`${newForecast.data[1].data.currently.summary}`,
                                         wiClass: getWiClass(newForecast.data[1].data.currently.icon, timeDate.checkDay(newForecast.data[1].data.currently.time, newForecast.data[1].data.offset, newForecast.data[1].data.daily.data[0].sunsetTime, newForecast.data[1].data.daily.data[0].sunriseTime)),
-                                        currentCondition:`${newForecast.data[1].data.currently.summary}`
+                                        currentCondition:`${newForecast.data[1].data.currently.summary}`,
                                       });
                                     // then we're creating a new SearchResults table
                                     sequelizeDb.SearchResults.create(searchResults)
@@ -351,14 +346,14 @@ const makeApiCalls = function(update, req, res, next){
                                          res.locals.searchResults.forecast = true;
 
                                          sequelizeDb.AppSessions.findOne({
-                                           where: {app_id: req.session.id}
+                                           where: {app_id: req.session.id,},
                                          }).then(AppSession => {
                                            const currentCount = AppSession.locationCount + 1;
-                                           AppSession.update({locationCount: currentCount
+                                           AppSession.update({locationCount: currentCount,
                                            }).then(() => {
 
                                              res.render('index', res.locals.searchResults);
-                                             console.log(`results saved to session store, emptying temp db object`);
+                                             // clean up temp working object, just in case
                                              db.splice(0, db.length);
 
                                            }).catch(err => next(err)); // end update AppSession
@@ -407,7 +402,7 @@ const showForecastDetail = function(index, searchResults){
       tempFahrenheit: Math.floor(searchResults.forecastData[index].data.currently.temperature),
       tempCelsius: convertTemp.toCelsius(Math.floor(searchResults.forecastData[index].data.currently.temperature)),
       day: timeDate.checkDay(searchResults.forecastData[index].data.currently.time, searchResults.forecastData[index].data.offset, searchResults.forecastData[index].data.daily.data[0].sunsetTime, searchResults.forecastData[index].data.daily.data[0].sunriseTime),
-      icon: searchResults.forecastData[index].data.currently.icon
+      icon: searchResults.forecastData[index].data.currently.icon,
     };
 
    searchResults.currentForecast = searchResults.forecastData[index].data;
@@ -432,7 +427,7 @@ const showForecastDetail = function(index, searchResults){
    if (initialTime.getUTCHours() <  timeNow.getUTCHours() ){
      removed = searchResults.forecastData[index].data.hourly.data.splice(0,1);
    }
-   remove = '';
+   removed = '';
 
    return searchResults;
 };
@@ -453,7 +448,7 @@ const getHourlyConditions = (dataArray, searchResults) => { // for each hour in 
         hour: 'Now',  // datatype string
         icon: icon,   // datatype string
         tempF: tempFahrenheit,   // datatype int
-        tempC: tempCelsius
+        tempC: tempCelsius,
       };
     } else {
       return {
@@ -461,14 +456,14 @@ const getHourlyConditions = (dataArray, searchResults) => { // for each hour in 
         hour: hour,  // datatype string
         icon: icon,  // datatype string
         tempF: tempFahrenheit,   // datatype int
-        tempC: tempCelsius
+        tempC: tempCelsius,
       };
     }
   };
 
 
    return dataArray.map(pickOutDataPoints);
-}
+};
 
 const getDailyConditions = (dataArray, searchResults) => { // for each day in a locations forecast, return an object of datapoints
 
@@ -489,7 +484,7 @@ const getDailyConditions = (dataArray, searchResults) => { // for each day in a 
 
 
    return dataArray.map(pickOutDailyDataPoints);
-}
+};
 
 // using an indexNo, splices out the corresponding data object from arrays in searchResults
 const removeLocation = (indexNo, searchResults) => {
@@ -503,8 +498,8 @@ const removeLocation = (indexNo, searchResults) => {
   searchResults.mainViewBackGround.splice(indexNo, 1);
   searchResults.locationCount = searchResults.locationData.length;
 
-  return searchResults
-}
+  return searchResults;
+};
 
 // renders home page, initial view
 // renders subviews, title bar, navbar and tempType controls
@@ -527,7 +522,7 @@ main.get('/', (req, res, next) => {
           if (AppSession.locationCount > 0){
 
               sequelizeDb.SearchResults.findOne({
-                where: {app_id: req.session.id}
+                where: {app_id: req.session.id,},
               }).then(SearchResults => {
 
                 res.locals.searchResults = resetTemplateData();
@@ -545,7 +540,7 @@ main.get('/', (req, res, next) => {
               }).catch(err => {
 
                 // console.log('Error find that Session... ', err);
-                next(new Error('Error finding that Session... ', err));
+                next(err);
 
               });
 
@@ -554,7 +549,7 @@ main.get('/', (req, res, next) => {
 
               // so AppSession using req.session.id exists, but no SearchResults
               res.locals.searchResults = {};
-              res.locals.searchResults = resetTemplateData();;
+              res.locals.searchResults = resetTemplateData();
               res.render('index', res.locals.searchResults);
 
            }
@@ -563,7 +558,6 @@ main.get('/', (req, res, next) => {
 
           // verified there is NO AppSessions matching req.session.id
           sequelizeDb.AppSessions.create(session)
-
            .then((AppSession) => {
 
                res.locals.searchResults = {};
@@ -573,8 +567,7 @@ main.get('/', (req, res, next) => {
 
            }).catch(err => {
 
-               // console.log('Error setting up Session... ', err);
-               next(new Error('Error setting up Session... ', err));
+               next(err);
 
            });
         }
@@ -600,7 +593,7 @@ main.get('/weatherCurrent', (req, res, next) => {
       if (AppSession.locationCount > 0){
 
         sequelizeDb.SearchResults.findOne({
-          where: {app_id: req.session.id}
+          where: {app_id: req.session.id,},
         }).then(SearchResults => {
 
           res.locals.searchResults = resetTemplateData();
@@ -620,7 +613,7 @@ main.get('/weatherCurrent', (req, res, next) => {
           makeApiCalls(true, req, res, next);
 
         }).catch(err => {
-          next(new Error(`finding SearchResults`, err))
+          next(err);
         });
 
 
@@ -636,9 +629,8 @@ main.get('/weatherCurrent', (req, res, next) => {
 
       // so some might try to browse directly to the /weatherCurrent first
       // in that case, just create a new session with the new req.session.id and continue
-      const session = {app_id: req.session.id};
+      const session = {app_id: req.session.id,};
       sequelizeDb.AppSessions.create(session)
-
        .then((AppSession) => {
 
          // make async axios api calls to get and process location and forecast data
@@ -649,8 +641,7 @@ main.get('/weatherCurrent', (req, res, next) => {
 
        }).catch(err => {
 
-           // console.log('Error setting up Session... ', err);
-           next(new Error('Error setting up Session... ', err));
+           next(err);
 
        });
     }
@@ -668,10 +659,10 @@ main.get('/tempType/:type', (req, res, next) => {
     // but we do have to retrieve the data using the req.session.id...
     // and build a new working res.locals.searchResults dataset
 
-    res.locals.searchResults = resetTemplateData();;
+    res.locals.searchResults = resetTemplateData();
 
     sequelizeDb.SearchResults.findOne({
-      where: {app_id: req.session.id}
+      where: {app_id: req.session.id,},
     }).then(SearchResults => {
 
       res.locals.searchResults = resetTemplateData();
@@ -702,12 +693,12 @@ main.get('/tempType/:type', (req, res, next) => {
       res.render('index', res.locals.searchResults);
 
     }).catch(err => {
-      next(err)
+      next(err);
     });
 
 
 
-})
+});
 
 // selected location calls weatherForecast route
 // renders main view or detail of weather forecast for that location
@@ -717,9 +708,9 @@ main.get('/weatherForecast/:indexNo', (req, res, next) => {
   // else renders mainView
 
   // resetting res.locals so cant access data without a session.id
-  res.locals.searchResults = resetTemplateData();;
+  res.locals.searchResults = resetTemplateData();
   sequelizeDb.SearchResults.findOne({
-    where: {app_id: req.session.id}
+    where: {app_id: req.session.id,},
   }).then(SearchResults => {
 
     // if there are SearchResults... continue
@@ -750,7 +741,7 @@ main.get('/weatherForecast/:indexNo', (req, res, next) => {
     } else {
       // so might try to goto /weatherForecast route first...
       // in that case, just create a new session with the new req.session.id and continue
-      const session = {app_id: req.session.id};
+      const session = {app_id: req.session.id,};
       sequelizeDb.AppSessions.create(session)
 
        .then((AppSession) => {
@@ -765,12 +756,11 @@ main.get('/weatherForecast/:indexNo', (req, res, next) => {
 
        }).catch(err => {
 
-           // console.log('Error setting up Session... ', err);
-           next(new Error('Error setting up Session... ', err));
+           next(err);
 
        });
     }
-  })
+  });
 
 
 });
@@ -793,7 +783,7 @@ main.get('/removeLocation/:indexNo', (req, res, next) => {
           sequelizeDb.SearchResults.update({
              data: updateSearchResults
            },{
-             where: {app_id: req.session.id}
+             where: {app_id: req.session.id,},
            }).then(() => {
 
              sequelizeDb.SearchResults.findOne({

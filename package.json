@@ -3,6 +3,14 @@
   "version": "0.2.0",
   "description": "weatherx weather forecast for a given location",
   "main": "index.js",
+  "jshintConfig": {
+    "node": true,
+    "unused": true,
+    "varstmt": true,
+    "eqnull": true,
+    "esversion": 6,
+    "strict": "implied"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "constantinople": "^3.1.2",

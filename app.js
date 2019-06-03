@@ -5,7 +5,7 @@ const createError = require('http-errors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-var session = require('express-session');
+const session = require('express-session');
 
 const getUuid = require('./dataSource').getUuid;
 
@@ -13,7 +13,7 @@ const getUuid = require('./dataSource').getUuid;
 const app = express();
 
 // basic secruity measures
-const helmet = require('helmet')
+const helmet = require('helmet');
 app.use(helmet());
 
 // view engine setup
@@ -23,11 +23,11 @@ app.set('view engine', 'pug');
 // telling express app which modules and settings to use
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false,}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const expiryDate = new Date(Date.now() + 60 * 60 * 1000) // 1 hour
+const expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 
 // // initalize sequelize with session store
 // var SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -43,14 +43,14 @@ app.use(session({
   saveUninitialized: true,
   // cookie: { secure: true },
   name: 'appSessionId',
-  genid: function(req) {return getUuid() },// use UUIDs for session IDs,
+  genid: function() {return getUuid(); },// use UUIDs for session IDs,
   secure: true,
   domain: 'localhost',
   path: '/',
   expires: expiryDate,
   unset: 'destroy',
   // store: new SequelizeStore({db: sessionStore}),
-  httpOnly: true
+  httpOnly: true,
 }));
 
 // importing routes

@@ -34,7 +34,7 @@ const reduceForecastDataSet = (forecast) => {
        summary:item.summary,
        icon:item.icon,
        temperature:item.temperature
-     }
+     };
   });
 
   console.log(`reducing, second stage complete... `);
@@ -51,7 +51,7 @@ const reduceForecastDataSet = (forecast) => {
        temperatureHighTime: item.temperatureHighTime,
        temperatureLow:item.temperatureLow,
        temperatureLowTime: item.temperatureLowTime
-     }
+     };
   });
 
   console.log(`reducing, third stage complete... `);

@@ -1,0 +1,31 @@
+app.js: line 64, col 15, 'res' is defined but never used.
+app.js: line 64, col 10, 'req' is defined but never used.
+app.js: line 65, col 3, 'next' is not defined.
+  3 errors
+
+./routes/index.js: line 109, col 38, 'index' is defined but never used.
+./routes/index.js: line 248, col 44, 'index' is defined but never used.
+./routes/index.js: line 470, col 47, 'index' is defined but never used.
+./routes/index.js: line 561, col 19, 'AppSession' is defined but never used.
+./routes/index.js: line 634, col 15, 'AppSession' is defined but never used.
+./routes/index.js: line 678, col 35, 'index' is defined but never used.
+./routes/index.js: line 747, col 15, 'AppSession' is defined but never used.
+  7 errors
+
+dataSource/forecast/index.js: line 11, col 6, Missing semicolon.
+dataSource/forecast/index.js: line 25, col 6, Missing semicolon.
+dataSource/forecast/index.js: line 73, col 98, Missing semicolon.
+  3 errors
+
+dataSource/forecast/reduceDataSet.js: line 31, col 64, 'index' is defined but never used.
+dataSource/forecast/reduceDataSet.js: line 42, col 62, 'index' is defined but never used.
+  2 errors
+
+data/models/forecastModel.js: line 20, col 33, 'models' is defined but never used.
+
+data/models/locationModel.js: line 20, col 33, 'models' is defined but never used.
+
+data/models/searchResultModel.js: line 26, col 37, 'models' is defined but never used.
+
+data/models/sessionModel.js: line 26, col 35, 'models' is defined but never used.
+  4 errors

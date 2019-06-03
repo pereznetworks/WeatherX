@@ -18,7 +18,7 @@
     - Display data from at least two other web sites by connecting to their API
     - Front end design and layout
       - not using Bootstrap, (Extra credit #2)
-      - using custom responsive CSS layout
+      - instead using custom responsive CSS layout
     - using database
     - PostgreSQL for data and session-store
     - using a GitHub repository

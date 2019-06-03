@@ -1,0 +1,8 @@
+{
+  "node": true,
+  "unused": true,
+  "varstmt": true,
+  "eqnull": true,
+  "esversion": 6,
+  "strict": "implied"
+}

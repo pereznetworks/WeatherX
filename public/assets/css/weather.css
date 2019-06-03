@@ -336,7 +336,7 @@
   }
 
   #locationBar-clearDay, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay  {
-    margin-left: 98px;
+    margin-left: 158px;
     width: 70%;
     height:100px;
     padding: 0 0 0 0;
@@ -345,7 +345,7 @@
   }
 
   #locationBar-clearNight, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #flocationBar-foggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
-    margin-left: 15%;
+    margin-left: 158px;
     width: 70%;
     height:100px;
     padding: 0 0 0 0;
@@ -411,7 +411,7 @@
   }
 
   #locationBar-clearDay, #locationBar-cloudyDay, #locationBar-partlyCloudyDay, #locationBar-foggyDay, #locationBar-windyDay, #locationBar-snowyDay, #locationBar-rainyDay, #locationBar-thunderDay  {
-    margin-left: 98px;
+    margin-left: 203px;
     width: 70%;
     height:100px;
     padding: 0 0 0 0;
@@ -420,7 +420,7 @@
   }
 
   #locationBar-clearNight, #locationBar-cloudyNight, #locationBar-partlyCloudyNight, #flocationBar-foggyNight, #locationBar-windyNight, #locationBar-snowyNight, #locationBar-rainyNight, #locationBar-thunderNight {
-    margin-left: 15%;
+    margin-left: 203px;
     width: 70%;
     height:100px;
     padding: 0 0 0 0;
