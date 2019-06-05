@@ -4,33 +4,39 @@
 [Project Site](./)
 
 # PROJECT UPDATE: JUNE 2, 2019
-- Development front-end, db and backend-server complete and working:
- - Session and Sequelize PostgreSQL Data Models, Methods and DB
- - Routes for home, weatherCurrent, tempType, weatherForecast and removeLocation
- - Pug Views and integration of data
- - Front-end javascript working
- - HTML/CSS layout for basic device screen sizes working
+- Development status for v.0.2.0: Complete
+  - Session and Sequelize PostgreSQL Data Models, Methods and DB
+  - Routes for home, weatherCurrent, tempType, weatherForecast and removeLocation
+  - Pug Views and integration of data
+  - Front-end javascript working
+  - HTML/CSS RWD layout for all basic device screen sizes working
 
 - DONE
   - verified project Expectations
     - use frameworks covered in the FSJS Techdegree Units  
     - Connect to at least two APIs
     - Display data from at least two other web sites by connecting to their API
-    - Front end design and layout
+    - Response Front-End design and layout
       - not using Bootstrap, (Extra credit #2)
       - instead using custom responsive CSS layout
     - using database
-    - PostgreSQL for data and session-store
+      - Sequelize, PostgreSQL for data-management and session-store
+    - Check for using JSHint and fixed issues
     - using a GitHub repository
     - local clone runs using npm i and npm start
   - verified EXTRA CREDIT features match speqs
-    - Use more than two APIs in your app - DONE
-    - Write custom CSS to layout and style your app - DONE
+    - Use more than two APIs in your app
+      - using axios to make secure api calls to ...
+        - forecast.io, tomtom
+    - Write custom CSS to layout and style your app
+      - all css and html is custom
+    - Use HTML5 validation
+      - only have 1 input field, using required field for HTML validation
 
 - TODO
-  - Check for issues with your JavaScript code using JSHint
+
   - Check EXTRA CREDIT features match speqs
-    - Use HTML5 validation
+
     - Write unit tests for your code using Mocha.js
       - and an assertion library like Chai
   - Re-check that code fits 'DRY' and is a modular a possible

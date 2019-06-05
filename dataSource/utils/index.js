@@ -245,41 +245,41 @@ module.exports.timeDate = {
     let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime, data.daily.data[0].sunriseTime );
     let icon = data.currently.icon;
 
-       if ( icon === 'cloudy' && day){
+       if ( icon === 'cloudy' ){
           return "cloudyDay";
-        } else if ( icon === 'cloudy' && !day){
+        } else if ( icon === 'cloudy' ){
            return "cloudyNight";
-        } else if ( icon === 'fog' && day){
+        } else if ( icon === 'fog' ){
           return "foggyDay";
-        } else if ( icon === 'fog' && !day){
+        } else if ( icon === 'fog' ){
           return "foggyNight";
         } else if ( icon === 'partly-cloudy-day'){
           return "partlyCloudyDay";
         } else if ( icon === 'partly-cloudy-night'){
           return "partlyCloudyNight";
-        } else if ( icon === 'rain' && day){
+        } else if ( icon === 'rain' ){
           return "rainyDay";
-        } else if ( icon === 'rain' && !day){
+        } else if ( icon === 'rain' ){
           return "rainyNight";
-        } else if ( icon === 'clear-day' && day){
+        } else if ( icon === 'clear-day' ){
           return "clearDay";
-        } else if ( icon === 'clear-night' && !day){
+        } else if ( icon === 'clear-night' ){
           return "clearNight";
-        } else if ( icon === 'snow' && day){
+        } else if ( icon === 'snow' ){
           return "snowyDay";
-        } else if ( icon === 'snow' && !day){
+        } else if ( icon === 'snow' ){
           return "snowyNight";
-        } else if ( icon === 'scattered-showers' && day ){
+        } else if ( icon === 'scattered-showers'  ){
           return "rainyDay";
-        } else if ( icon === 'scattered-showers' && !day ){
+        } else if ( icon === 'scattered-showers'  ){
           return "rainyNight";
-        } else if ( icon === 'thunder' && day ){
+        } else if ( icon === 'thunder'  ){
           return "thunderDay";
-        } else if ( icon === 'thunder' && !day ){
+        } else if ( icon === 'thunder'  ){
           return "thunderNight";
-        } else if ( icon === 'wind' && day ){
+        } else if ( icon === 'wind'  ){
           return "windyDay";
-        } else if ( icon === 'wind' && !day ){
+        } else if ( icon === 'wind'  ){
           return "windyNight";
         }
   },
@@ -289,41 +289,41 @@ module.exports.timeDate = {
     let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime, data.daily.data[0].sunriseTime);
     let icon = data.currently.icon;
 
-       if ( icon === 'cloudy' && day){
+       if ( icon === 'cloudy' ){
           return "locationBar-cloudyDay";
-        } else if ( icon === 'cloudy' && !day){
+        } else if ( icon === 'cloudy' ){
            return "locationBar-cloudyNight";
-        } else if ( icon === 'fog' && day){
+        } else if ( icon === 'fog' ){
           return "locationBar-foggyDay";
-        } else if ( icon === 'fog' && !day){
+        } else if ( icon === 'fog' ){
           return "locationBar-foggyNight";
         } else if ( icon === 'partly-cloudy-day'){
           return "locationBar-partlyCloudyDay";
         } else if ( icon === 'partly-cloudy-night'){
           return "locationBar-partlyCloudyNight";
-        } else if ( icon === 'rain' && day){
+        } else if ( icon === 'rain' ){
           return "locationBar-rainyDay";
-        } else if ( icon === 'rain' && !day){
+        } else if ( icon === 'rain' ){
           return "locationBar-rainyNight";
-        } else if ( icon === 'clear-day' && day){
+        } else if ( icon === 'clear-day' ){
           return "locationBar-clearDay";
-        } else if ( icon === 'clear-night' && !day){
+        } else if ( icon === 'clear-night' ){
           return "locationBar-clearNight";
-        } else if ( icon === 'snow' && day){
+        } else if ( icon === 'snow' ){
           return "locationBar-snowyDay";
-        } else if ( icon === 'snow' && !day){
+        } else if ( icon === 'snow' ){
           return "locationBar-snowyNight";
-        } else if ( icon === 'scattered-showers' && day ){
+        } else if ( icon === 'scattered-showers'  ){
           return "locationBar-rainyDay";
-        } else if ( icon === 'scattered-showers' && !day ){
+        } else if ( icon === 'scattered-showers'  ){
           return "locationBar-rainyNight";
-        } else if ( icon === 'thunder' && day ){
+        } else if ( icon === 'thunder'  ){
           return "locationBar-thunderDay";
-        } else if ( icon === 'thunder' && !day ){
+        } else if ( icon === 'thunder'  ){
           return "locationBar-thunderNight";
-        } else if ( icon === 'wind' && day ){
+        } else if ( icon === 'wind'  ){
           return "locationBar-windyDay";
-        } else if ( icon === 'wind' && !day ){
+        } else if ( icon === 'wind'  ){
           return "locationBar-windyNight";
         }
   }
@@ -353,41 +353,41 @@ module.exports.convertTemp = {
 //     let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime, data.daily.data[0].sunriseTime );
 //     let icon = data.currently.icon;
 //
-//        if ( icon === 'cloudy' && day){
+//        if ( icon === 'cloudy' ){
 //           return "cloudyDay";
-//         } else if ( icon === 'cloudy' && !day){
+//         } else if ( icon === 'cloudy' ){
 //            return "cloudyNight";
-//         } else if ( icon === 'fog' && day){
+//         } else if ( icon === 'fog' ){
 //           return "foggyDay";
-//         } else if ( icon === 'fog' && !day){
+//         } else if ( icon === 'fog' ){
 //           return "foggyNight";
 //         } else if ( icon === 'partly-cloudy-day'){
 //           return "partlyCloudyDay";
 //         } else if ( icon === 'partly-cloudy-night'){
 //           return "partlyCloudyNight";
-//         } else if ( icon === 'rain' && day){
+//         } else if ( icon === 'rain' ){
 //           return "rainyDay";
-//         } else if ( icon === 'rain' && !day){
+//         } else if ( icon === 'rain' ){
 //           return "rainyNight";
-//         } else if ( icon === 'clear-day' && day){
+//         } else if ( icon === 'clear-day' ){
 //           return "clearDay";
-//         } else if ( icon === 'clear-night' && !day){
+//         } else if ( icon === 'clear-night' ){
 //           return "clearNight";
-//         } else if ( icon === 'snow' && day){
+//         } else if ( icon === 'snow' ){
 //           return "snowyDay";
-//         } else if ( icon === 'snow' && !day){
+//         } else if ( icon === 'snow' ){
 //           return "snowyNight";
-//         } else if ( icon === 'scattered-showers' && day ){
+//         } else if ( icon === 'scattered-showers'  ){
 //           return "rainyDay";
-//         } else if ( icon === 'scattered-showers' && !day ){
+//         } else if ( icon === 'scattered-showers'  ){
 //           return "rainyNight";
-//         } else if ( icon === 'thunder' && day ){
+//         } else if ( icon === 'thunder'  ){
 //           return "thunderDay";
-//         } else if ( icon === 'thunder' && !day ){
+//         } else if ( icon === 'thunder'  ){
 //           return "thunderNight";
-//         } else if ( icon === 'wind' && day ){
+//         } else if ( icon === 'wind'  ){
 //           return "windyDay";
-//         } else if ( icon === 'wind' && !day ){
+//         } else if ( icon === 'wind'  ){
 //           return "windyNight";
 //         }
 //   },
@@ -396,41 +396,41 @@ module.exports.convertTemp = {
 //     let day = this.checkDay(data.currently.time, data.offset, data.daily.data[0].sunsetTime, data.daily.data[0].sunriseTime);
 //     let icon = data.currently.icon;
 //
-//        if ( icon === 'cloudy' && day){
+//        if ( icon === 'cloudy' ){
 //           return "locationBar-cloudyDay";
-//         } else if ( icon === 'cloudy' && !day){
+//         } else if ( icon === 'cloudy' ){
 //            return "locationBar-cloudyNight";
-//         } else if ( icon === 'fog' && day){
+//         } else if ( icon === 'fog' ){
 //           return "locationBar-foggyDay";
-//         } else if ( icon === 'fog' && !day){
+//         } else if ( icon === 'fog' ){
 //           return "locationBar-foggyNight";
 //         } else if ( icon === 'partly-cloudy-day'){
 //           return "locationBar-partlyCloudyDay";
 //         } else if ( icon === 'partly-cloudy-night'){
 //           return "locationBar-partlyCloudyNight";
-//         } else if ( icon === 'rain' && day){
+//         } else if ( icon === 'rain' ){
 //           return "locationBar-rainyDay";
-//         } else if ( icon === 'rain' && !day){
+//         } else if ( icon === 'rain' ){
 //           return "locationBar-rainyNight";
-//         } else if ( icon === 'clear-day' && day){
+//         } else if ( icon === 'clear-day' ){
 //           return "locationBar-clearDay";
-//         } else if ( icon === 'clear-night' && !day){
+//         } else if ( icon === 'clear-night' ){
 //           return "locationBar-clearNight";
-//         } else if ( icon === 'snow' && day){
+//         } else if ( icon === 'snow' ){
 //           return "locationBar-snowyDay";
-//         } else if ( icon === 'snow' && !day){
+//         } else if ( icon === 'snow' ){
 //           return "locationBar-snowyNight";
-//         } else if ( icon === 'scattered-showers' && day ){
+//         } else if ( icon === 'scattered-showers'  ){
 //           return "locationBar-rainyDay";
-//         } else if ( icon === 'scattered-showers' && !day ){
+//         } else if ( icon === 'scattered-showers'  ){
 //           return "locationBar-rainyNight";
-//         } else if ( icon === 'thunder' && day ){
+//         } else if ( icon === 'thunder'  ){
 //           return "locationBar-thunderDay";
-//         } else if ( icon === 'thunder' && !day ){
+//         } else if ( icon === 'thunder'  ){
 //           return "locationBar-thunderNight";
-//         } else if ( icon === 'wind' && day ){
+//         } else if ( icon === 'wind'  ){
 //           return "locationBar-windyDay";
-//         } else if ( icon === 'wind' && !day ){
+//         } else if ( icon === 'wind'  ){
 //           return "locationBar-windyNight";
 //         }
 //   }
@@ -441,16 +441,16 @@ module.exports.getWiClass = function(icon, day){
   // for mapping locationData, inserts currentConditions into a LocationBar Div, inserted into grid
 
     let wiClass;
-      if ( icon === 'cloudy'  && day){
+      if ( icon === 'cloudy'  ){
         wiClass = "wi wi-day-cloudy";
 
-      } else if ( icon === 'cloudy'  && !day){
+      } else if ( icon === 'cloudy'  ){
         wiClass = "wi wi-night-alt-cloudy";
 
-      } else if ( icon === 'fog' && day){
+      } else if ( icon === 'fog' ){
         wiClass = "wi wi-day-fog";
 
-      } else if ( icon === 'fog' && !day){
+      } else if ( icon === 'fog' ){
         wiClass = "wi wi-night-fog";
 
       } else if ( icon === 'partly-cloudy-day'){
@@ -459,49 +459,49 @@ module.exports.getWiClass = function(icon, day){
       } else if (icon === 'partly-cloudy-night'  ){
         wiClass = "wi wi-night-alt-cloudy";
 
-      } else if ( icon === 'rain' && day){
+      } else if ( icon === 'rain' ){
         wiClass = "wi wi-day-rain";
 
-      } else if ( icon === 'rain' && !day){
+      } else if ( icon === 'rain' ){
         wiClass = "wi wi-night-alt-rain";
 
-      } else if ( icon === 'clear-day' && day ){
+      } else if ( icon === 'clear-day'  ){
         wiClass = "wi wi-day-sunny";
 
-      } else if ( icon === 'clear' && day ){
+      } else if ( icon === 'clear'  ){
         wiClass = "wi wi-day-sunny";
 
-      } else if ( icon === 'clear-day' && !day ){
+      } else if ( icon === 'clear-day'  ){
         wiClass = "wi wi-night-clear";
 
-      } else if ( icon === 'clear' && !day ){
+      } else if ( icon === 'clear'  ){
         wiClass = "wi wi-night-clear";
 
       } else if (icon === 'clear-night'){
         wiClass = "wi wi-night-clear";
 
-      } else if ( icon === 'snow' && day ){
+      } else if ( icon === 'snow'  ){
         wiClass = "wi wi-day-snow";
 
-      }  else if ( icon === 'snow' && !day ){
+      }  else if ( icon === 'snow'  ){
         wiClass = "wi wi-night-alt-snow";
 
-      } else if ( icon === 'scattered-showers' && day){
+      } else if ( icon === 'scattered-showers' ){
         wiClass = "wi wi-day-showers";
 
-      }else if ( icon === 'scattered-showers' && !day){
+      }else if ( icon === 'scattered-showers' ){
         wiClass = "wi wi-night-alt-showers";
 
-      } else if ( icon === 'thunder' && day){
+      } else if ( icon === 'thunder' ){
         wiClass = "wi wi-day-thunderstorm";
 
-      }  else if ( icon === 'thunder' && !day){
+      }  else if ( icon === 'thunder' ){
         wiClass = "wi wi-night-alt-thunderstorm";
 
-      } else if ( icon === 'wind' && day){
+      } else if ( icon === 'wind' ){
         wiClass = "wi wi-day-windy";
 
-      } else if ( icon === 'wind' && !day){
+      } else if ( icon === 'wind' ){
         wiClass = "wi wi-night-alt-cloudy-gusts";
       } else {
         wiClass = "wi wi-day-sunny";

@@ -29,12 +29,17 @@ const realTimeClock = {
    return this.formatTime(hrs, mins, secs);
 
  },
-  getTZhours: function(dateInt, tz){
+  getTZhours: function(dateInt, tzoffset){
     // get the UTChour() of a dateInt, then account for timezone offset
     let utc = dateInt.getUTCHours();
+    // the tzoffset is a string, so need to convert to a number
+    // short version: doing math with strings can lead unexpected results
+    let tz = parseInt(tzoffset);
     let hrs;
 
     if (tz < 0){
+      // Math.abs returns absolute value of tz
+      // so then can subtract not a negitive number but an absolute number
       tz = Math.abs(tz);
       if (utc < 12 ){
         utc = utc + 24;
@@ -115,5 +120,5 @@ const setTime = locationArray => {
     const tz = document.getElementById(`locationTime${index}`).attributes.tz.value;
     document.getElementById(`locationTime${index}`).innerHTML = realTimeClock.getLiveFormatedTime(new Date(), tz);
   });
-  
+
 };
