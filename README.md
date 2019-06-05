@@ -36,10 +36,14 @@
 - TODO
 
   - Check EXTRA CREDIT features match speqs
-
     - Write unit tests for your code using Mocha.js
       - and an assertion library like Chai
-  - Re-check that code fits 'DRY' and is a modular a possible
+  - LAST code-review
+    - add DESTROY method so Forecast and Location table are deleted ...
+      - each time SearchResults.data row is updated with new forecast and location data
+    - add DESTROY method so SearchResults table is deleted when session.id is expired
+      - then need remove that AppSession.id row 
+    - Re-check that code fits 'DRY' and is a modular a possible
   - Deploy project to Heroku and use a public URL, and submit the URL for review
 
 
