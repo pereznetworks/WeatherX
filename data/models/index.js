@@ -1,17 +1,32 @@
 
 // code courtesy Team Treehouse, from FSJS Project 10
-// removed fs, path and process.env
-// dont need a db file, wont be storing data long term
+// removed fs, path - since will be using PostgreSQL, instead of sqlite3
+// added custom code to build model assoications
 
 // get sequelize environment variables
 const Sequelize = require('sequelize');
 
-// will have to figure out how to pass production environment variables ...
-// const env = process.env.NODE_ENV || 'development';
-const env = 'development';
-const config = require('../config/' + 'config.json')[env];
+// set NODE_ENV to 'production' and place DB_NAME, USER_NAME and PASSWORD in a .gitignored env
+  // HINT: when running this code ...
+    // it's best, even for development and test puroses, to...
+      // NEVER STORE THE DB_NAME, USER_NAME AND PASSWORD in this code
+        // place the DB_NAME, USER_NAME AND PASSWORD in .gitignored env
 
-// set seqeulize so it can accesss the db using settings from config.json
+const env = process.env.NODE_ENV || 'development';
+
+// set a config object to pass to seqeulize
+let config = {};
+
+if (env === 'development'){
+  config = require('../config/' + 'config.json')[env];
+} else {
+  config = require('../config/' + 'config.json')[env];
+  config.database = process.env.DB_NAME;
+  config.username = process.env.USER_NAME;
+  config.password = process.env.PASSWORD;
+}
+
+// set seqeulize so it can accesss the db using settings from config
 let sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 // create a db object that matches the tables created from model definitions
@@ -35,10 +50,14 @@ db.SearchResults= require('./searchResultModel.js')(sequelize, Sequelize);
 
 // model associatons - table joins
 
-// building table SearchResults from location and forecast table ..
-// so these first 2 associatons not needed
-// db.AppSessions.hasMany(db.Locations);
-// db.Locations.belongsTo(db.AppSessions);
+// associating SearchResults belong to AppSessions
+// Forecasts belongTo Locations
+// the 'CASCADE' setting allows foreignKey fields to be auto-updated when...
+    // there is an onUpdate and onDelete event...
+    // when fields from associated tables are changed
+
+// data from TomTom and Forecast.io does not need to validated
+// so data retrieved from these sources is being stored in a JSON blob data-type field
 
 db.Forecasts.belongsTo(db.Locations, {
       foreignKey: 'Locations_id',

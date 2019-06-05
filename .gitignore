@@ -151,4 +151,9 @@ data/config/SampleData.json
 dist
 dist/*
 
-project12-insrtructions.md
+# some markdown files
+project12-instructions.md
+
+
+# NPM AUDIT FILES
+.npm-audit.txt
