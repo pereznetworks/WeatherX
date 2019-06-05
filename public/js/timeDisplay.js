@@ -56,7 +56,7 @@ const realTimeClock = {
     }
 
     return hrs; // is 36 hours/day
-    // so when hrs > 24 is used so that it's clear when it's tomorrow or the next day in a certain timezone
+    // so hrs > 24 is used so that it's clear when it's tomorrow or the next day in a certain timezone
 
   },
   formatTime: function(hrs, mins, secs){
