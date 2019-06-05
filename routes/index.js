@@ -275,13 +275,33 @@ const makeApiCalls = function(update, req, res, next){
                                                   res.render('index', res.locals.searchResults);
                                                   // clean up temp working object, just in case
                                                   db.splice(0, db.length);
+                                                  // not keeping data, part of Forecast.io (DarkSky's) usage terms
+                                                  sequelizeDb.Forecasts.destroy({
+                                                     force:true,truncate:true
+                                                   },{
+                                                     where: {app_id: req.session.id,},
+                                                   }).then(()=>{
+                                                      sequelizeDb.Forecasts.findOne({
+                                                        where: {app_id: req.session.id,},
+                                                      }).then(found => {
+                                                         console.dir(`found: ${found}`)
+                                                         // not keeping data, part of TomTom's API usage terms
+                                                         sequelizeDb.Locations.destroy({
+                                                           force:true,truncate:true
+                                                           },{
+                                                             where: {app_id: req.session.id,},
+                                                         }).then(()=> {
+                                                             sequelizeDb.Locations.findOne({
+                                                                where: {app_id: req.session.id,},
+                                                             }).then(found => console.dir(`found: ${found}`))
+                                                             .catch(err => next(err));
+                                                         }).catch(err => next(err));
+                                                      }).catch(err => next(err));
+                                                  }).catch(err => next(err));
                                                }).catch(err => next(err)); // end AppSession update
-
                                            }).catch(err => next(err)); // end find AppSession
-
-                                        }).catch(err => next(err)); // end SearchResults update
-
-                                    }).catch(err => next(err)); // end SearchResults find
+                                       }).catch(err => next(err)); // end SearchResults update
+                                  }).catch(err => next(err)); // end SearchResults find
 
                                 } else {
                                   // then we're creating a new SearchResults row
@@ -357,10 +377,34 @@ const makeApiCalls = function(update, req, res, next){
                                                // clean up temp working object, just in case
                                                db.splice(0, db.length);
 
+                                               // not keeping data, part of Forecast.io (DarkSky's) usage terms
+                                               sequelizeDb.Forecasts.destroy({
+                                                  force:true,truncate:true
+                                                },{
+                                                  where: {app_id: req.session.id,},
+                                                }).then(()=>{
+                                                   sequelizeDb.Forecasts.findOne({
+                                                     where: {app_id: req.session.id,},
+                                                   }).then(found => {
+                                                      console.dir(`found: ${found}`)
+                                                      // not keeping data, part of TomTom's API usage terms
+                                                      sequelizeDb.Locations.destroy({
+                                                        force:true,truncate:true
+                                                        },{
+                                                          where: {app_id: req.session.id,},
+                                                      }).then(()=> {
+                                                          sequelizeDb.Locations.findOne({
+                                                             where: {app_id: req.session.id,},
+                                                          }).then(found => console.dir(`found: ${found}`))
+                                                          .catch(err => next(err));
+                                                      }).catch(err => next(err));
+                                                   }).catch(err => next(err));
+                                               }).catch(err => next(err));
+
                                              }).catch(err => next(err)); // end update AppSession
                                            }).catch(err => next(err)); // end find AppSession
                                         }).catch(err => next(err)); // end SearchResults.create()
-                                 } // end if (update)
+                                } // end if (update)
 
                           }).catch( err => next(err));
 
