@@ -11,6 +11,8 @@ const Sequelize = require('sequelize');
     // it's best, even for development and test puroses, to...
       // NEVER STORE THE DB_NAME, USER_NAME AND PASSWORD in this code
         // place the DB_NAME, USER_NAME AND PASSWORD in .gitignored env
+           // then when running npm start or npm run dev
+              // it'll pick-up, login and access the PostgreSQL database
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -52,11 +54,12 @@ db.SearchResults= require('./searchResultModel.js')(sequelize, Sequelize);
 
 // associating SearchResults belong to AppSessions
 // Forecasts belongTo Locations
+
 // the 'CASCADE' setting allows foreignKey fields to be auto-updated when...
     // there is an onUpdate and onDelete event...
     // when fields from associated tables are changed
 
-// data from TomTom and Forecast.io does not need to validated
+// data from TomTom and Forecast.io does not need to be validated
 // so data retrieved from these sources is being stored in a JSON blob data-type field
 
 db.Forecasts.belongsTo(db.Locations, {
@@ -70,8 +73,6 @@ db.SearchResults.belongsTo(db.AppSessions, {
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE'
     });
-
-
 
 // export the db
 module.exports.Sequelize = Sequelize;
