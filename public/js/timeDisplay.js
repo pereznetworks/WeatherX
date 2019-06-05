@@ -55,7 +55,9 @@ const realTimeClock = {
         hrs = utc + tz;
     }
 
-    return hrs; // is a 36 hours/day hour
+    return hrs; // is 36 hours/day
+    // so when hrs > 24 is used so that it's clear when it's tomorrow or the next day in a certain timezone
+
   },
   formatTime: function(hrs, mins, secs){
     // format the time so it can be displayed as hh:mm:ss AM/PM
