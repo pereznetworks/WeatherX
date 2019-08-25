@@ -156,4 +156,4 @@ project12-instructions.md
 
 
 # NPM AUDIT FILES
-.npm-audit.txt
+.npm-audit*.txt
