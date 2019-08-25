@@ -1,5 +1,7 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
+[Project Site](./)
+
 # Project Status: 8/15/2019: Currently doing a complete review
 - Review includes:
   - project instructions and scope,
@@ -9,8 +11,6 @@
   - database requirement
   - unit tests
   - hosting requirements
-
-[Project Site](./)
 
 # PROJECT UPDATE: JUNE 2, 2019
 - Development status for v.0.2.0: Complete
