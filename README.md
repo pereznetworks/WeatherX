@@ -1,6 +1,15 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
-# GO-LIVE Date: June 10th, 2019:  
+# Project Status: 8/15/2019: Currently doing a complete review
+- Review includes:
+  - project instructions and scope,
+  - npm packages,
+  - my code base,
+  - rest-api,
+  - database requirement
+  - unit tests
+  - hosting requirements
+
 [Project Site](./)
 
 # PROJECT UPDATE: JUNE 2, 2019
@@ -42,7 +51,7 @@
     - add DESTROY method so Forecast and Location table are deleted ...
       - each time SearchResults.data row is updated with new forecast and location data
     - add DESTROY method so SearchResults table is deleted when session.id is expired
-      - then need remove that AppSession.id row 
+      - then need remove that AppSession.id row
     - Re-check that code fits 'DRY' and is a modular a possible
   - Deploy project to Heroku and use a public URL, and submit the URL for review
 
