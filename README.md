@@ -1,5 +1,7 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
+# After a couple of months, I am back to finally finish this project.
+
 [Project Site](./)
 
 # Project Status: 8/15/2019: Currently doing a complete review
