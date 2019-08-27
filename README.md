@@ -5,22 +5,27 @@
 [Project Site](./)
 
 # Project Status: 8/15/2019: Currently doing a complete review
-- Review includes:
-  - project instructions and scope
+  - I will still only use geo-coding but I am not using geo-location
+  - I would like to apply more of an object-oriented approach
+  - checking that app matches project instructions and scope
     - using 2 public api
     - using a rest-api
     - using a RWD front-end
     - using a secure session store to create an individualized app experience
+    - html5 form input validation
   - npm packages
     - mainly need to watch for any vulnerabilities
   - security and best practices
     - using Express.js and Heroku recommendations
   - my code base
+    - built custom method around Axios for server-side secure async external api calls
     - rest-api
       - routes for each view of the app
+      - accessing any route first directs to home route to make sure users get a secure session id
     - database
       - fixed some minor differences between PostgreSQL and SQ-Lite
       - secure sessions and internal data
+        - need to abide by DarkSky and TomTom api usage rules
         - have ditched SQL-Lite and now using PostgreSQL
           - Heroku has PostgreSQL as their free built-in db offering
     - front-End
