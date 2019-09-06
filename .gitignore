@@ -154,6 +154,7 @@ dist/*
 # some markdown files
 project12-instructions.md
 
-
 # NPM AUDIT FILES
 .npm-audit.txt
+
+*.xcworkspace

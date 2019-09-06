@@ -27,7 +27,7 @@
     "morgan": "~1.9.1",
     "pg": "7.11.0",
     "pug": "^2.0.3",
-    "sequelize": "^5.8.7",
+    "sequelize": "^5.16.0",
     "supertest": "4.0.2",
     "throng": "4.0.0"
   },
@@ -36,8 +36,8 @@
   },
   "scripts": {
     "test": "node_modules/.bin/mocha --exit --no-warnings",
-    "start": "nodemon --inspect=localhost:9230 index.js",
-    "dev": "nodemon --inspect=localhost:9230 webserver.js"
+    "start": "NODE_ENV='development' DB_NAME='development' nodemon --inspect=localhost:9230 index.js",
+    "dev": "NODE_ENV='development' DB_NAME='development' nodemon --inspect=localhost:9230 webserver.js"
   },
   "repository": {
     "type": "git",

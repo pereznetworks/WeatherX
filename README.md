@@ -1,15 +1,47 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
-# GO-LIVE Date: June 10th, 2019:  
+# After a couple of months, I am back to finally finish this project.
+
 [Project Site](./)
+
+# Project Status: 8/15/2019: Currently doing a complete review
+  - I will still only use geo-coding but I am not using geo-location
+  - I would like to apply more of an object-oriented approach
+  - checking that app matches project instructions and scope
+    - using 2 public api
+    - using a rest-api
+    - using a RWD front-end
+    - using a secure session store to create an individualized app experience
+    - html5 form input validation
+  - npm packages
+    - mainly need to watch for any vulnerabilities
+  - security and best practices
+    - using Express.js and Heroku recommendations
+  - my code base
+    - built custom method around Axios for server-side secure async external api calls
+    - rest-api
+      - routes for each view of the app
+      - accessing any route first directs to home route to make sure users get a secure session id
+    - database
+      - fixed some minor differences between PostgreSQL and SQ-Lite
+      - secure sessions and internal data
+        - need to abide by DarkSky and TomTom api usage rules
+        - have ditched SQL-Lite and now using PostgreSQL
+          - Heroku has PostgreSQL as their free built-in db offering
+    - front-End
+      - dropped React.js, now PUG for rendering
+  - unit tests
+    - have to make sure the development unit tests I have been using can be used with project submission
+  - hosting requirements
+    - will be using Heroku
 
 # PROJECT UPDATE: JUNE 2, 2019
 - Development status for v.0.2.0: Complete
-  - Session and Sequelize PostgreSQL Data Models, Methods and DB
-  - Routes for home, weatherCurrent, tempType, weatherForecast and removeLocation
-  - Pug Views and integration of data
-  - Front-end javascript working
-  - HTML/CSS RWD layout for all basic device screen sizes working
+  - Session and Internal database using Sequelize, PostgreSQL Data Models, Methods
+  - Web App and Routes enabled using Express.js for home, weatherCurrent, tempType, weatherForecast and removeLocation
+  - Rendering using Pug, for Views and integration of data
+  - some Front-end javascript for switching between Celsius and Fahrenheit, and a real-time clock display
+  - HTML/CSS RWD layout for all basic device screen sizes
 
 - DONE
   - verified project Expectations
@@ -42,7 +74,7 @@
     - add DESTROY method so Forecast and Location table are deleted ...
       - each time SearchResults.data row is updated with new forecast and location data
     - add DESTROY method so SearchResults table is deleted when session.id is expired
-      - then need remove that AppSession.id row 
+      - then need remove that AppSession.id row
     - Re-check that code fits 'DRY' and is a modular a possible
   - Deploy project to Heroku and use a public URL, and submit the URL for review
 
