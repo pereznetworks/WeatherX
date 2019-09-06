@@ -191,7 +191,7 @@ const makeApiCalls = function(update, req, res, next){
                                     // save new current foreeast
                                     timeStamp: Date.now(),
                                     data: db,
-                                    locations_id: Forecast.locations_id,
+                                    locations_id:  Forecast.dataValues.Locations_id,
                                   };
 
                                 // currentLocation will always be the latest one entered, so new locationBar will be rendered for it
@@ -202,7 +202,7 @@ const makeApiCalls = function(update, req, res, next){
                                        sequelizeDb.SearchResults.findOne({where: {app_id:req.session.id,},
                                        }).then( SearchResults => {
 
-                                       // build searchResults with new forecast and location data
+                                       // update searchResults data object with new forecast and location data
                                        const searchResults = {
                                             app_id: req.session.id,
                                             data: {
@@ -252,85 +252,88 @@ const makeApiCalls = function(update, req, res, next){
                                        return searchResults;
 
                                        }).then(searchResults => {
-                                         // find and update SearchResults with matching req.session.id with new forecast and location data
-                                         sequelizeDb.SearchResults.update({
-                                           data: searchResults.data,
-                                         },{
-                                           where: {app_id: req.session.id,},
-                                         }).then(updatedSearchResults => {
-
-                                             // add it to res.locals.searchResults while we're at it
-                                             res.locals.searchResults.forecastData = updateSearchResults.data.forecastData;
-                                             res.locals.searchResults.locationData = updateSearchResults.data.locationData;
-                                             res.locals.searchResults.locationName = updateSearchResults.data.locationData;
-                                             res.locals.searchResults.currentLocationData = updateSearchResults.data.currentLocationData;
-                                             res.locals.searchResults.availLocationsArray = updateSearchResults.data.availLocationsArray;
-                                             res.locals.searchResults.locationCount = updateSearchResults.data.locationName.length;
-                                             res.locals.searchResults.mainViewBackGround = updateSearchResults.data.mainViewBackGround;
-                                             res.locals.searchResults.locationBarBackGround =  updateSearchResults.data.locationBarBackGround;
-                                             res.locals.searchResults.forecast = true;
-
-
-                                             // not keeping data, part of TomTom's API usage terms
-                                             const indexOfLocationId = updatedSearchResults.data.locationIds[updateSearchResults.data.forecastData.length - 1];
-                                             seqeulizedb.Locations.findOne({where: {id: updatedSearchResults.locationIds[indexOfLocationId]}})
-                                             .then(Location => {
-                                               Location.destroy()
-                                               .then((destroyed)=> {
-
-                                                   if (destroyed = 1 ){
-                                                     console.log(`location deleted`)
-
-                                                     // not keeping data, part of DarkSky's API usage terms
-                                                     const indexOfLocationId = updatedSearchResults.data.locationIds[updateSearchResults.data.forecastData.length - 1];
-                                                     seqeulizedb.Forecasts.findOne({where: {locations_id: updatedSearchResults.locationIds[indexOfLocationId]}}).
-                                                     then(Forecast => {
-                                                       Forecast.destroy()
-                                                       .then((destroyed)=> {
-                                                           destroyed = 1
-                                                            ? console.log(`forecast deleted`)
-
-                                                            : console.log(`oops forecast not deleted`);
-                                                           return null;
-
-                                                       }).catch(err => console.log(err));
-                                                     }).catch(err => console.log(err));
-
-                                                     return null;
-
-                                                   } else {
-                                                     console.log(`oops location not deleted`);
-                                                     return null;
-                                                   }
-
-                                               }).catch(err => console.log(err));
-
-                                              return null;
-
-                                             }).catch(err => console.log(err));
-
-                                             // find and update the locationCount in the AppSession with same id
-                                             sequelizeDb.AppSessions.findOne({
-                                               where: {app_id: req.session.id,},
-                                             }).then(AppSession => {
-                                                 const currentCount = AppSession.locationCount + 1;
-                                                 AppSession.update({locationCount: currentCount,})
-                                                 .then(updatedAppSession => {
-
-                                                   // if nothing goes wrong... render home pg with new data
-                                                   res.render('index', res.locals.searchResults);
-                                                   // clean up temp working object, just in case
-                                                   db.splice(0, db.length);
-
-                                                   return null;
-
-                                                 }).catch(err => next(err)); // end AppSession update
+                                         // update data in SearchResults thats matching req.session.id with new forecast and location data
+                                         sequelizeDb.SearchResults.update({data: searchResults.data,},
+                                           {where: {app_id: searchResults.app_id,},
+                                            }).then(() => {
+                                              // now find searchResults matching the app_id
+                                              sequelizeDb.SearchResults.findOne({where: {app_id: searchResults.app_id,},
+                                               }).then(updated => {
+                                                 // add it to res.locals.searchResults
+                                                 res.locals.searchResults.forecastData = updated.data.forecastData;
+                                                 res.locals.searchResults.locationData = updated.data.locationData;
+                                                 res.locals.searchResults.locationName = updated.data.locationData;
+                                                 res.locals.searchResults.currentLocationData = updated.data.currentLocationData;
+                                                 res.locals.searchResults.availLocationsArray = updated.data.availLocationsArray;
+                                                 res.locals.searchResults.locationCount = updated.data.locationName.length;
+                                                 res.locals.searchResults.mainViewBackGround = updated.data.mainViewBackGround;
+                                                 res.locals.searchResults.locationBarBackGround =  updated.data.locationBarBackGround;
+                                                 res.locals.searchResults.forecast = true;
 
 
-                                              return null;
-                                             }).catch(err => next(err)); // end find AppSession
+                                                 // not keeping data, part of TomTom's API usage terms
+                                                 const indexOfLocationId = updated.data.forecastData.length - 1;
+                                                 sequelizeDb.Locations.findOne({where: {id: updated.data.locationIds[indexOfLocationId]}})
+                                                 .then(Location => {
+                                                   Location.destroy()
+                                                   .then((destroyed)=> {
 
-                                          return null;
+                                                       if (destroyed = 1 ){
+                                                         console.log(`location deleted`)
+
+                                                         // not keeping data, part of DarkSky's API usage terms
+                                                         const indexOfLocationId = updated.data.locationIds[updateSearchResults.data.forecastData.length - 1];
+                                                         seqeulizedb.Forecasts.findOne({where: {locations_id: updated.locationIds[indexOfLocationId]}}).
+                                                         then(Forecast => {
+                                                           Forecast.destroy()
+                                                           .then((destroyed)=> {
+                                                               destroyed = 1
+                                                                ? console.log(`forecast deleted`)
+
+                                                                : console.log(`oops forecast not deleted`);
+                                                               return null;
+
+                                                           }).catch(err => console.log(err));
+                                                         }).catch(err => console.log(err));
+
+                                                         return null;
+
+                                                       } else {
+                                                         console.log(`oops location not deleted`);
+                                                         return null;
+                                                       }
+
+                                                   }).catch(err => console.log(err));
+
+                                                  return null;
+
+                                                 }).catch(err => console.log(err));
+
+                                                 // find and update the locationCount in the AppSession with same id
+                                                 sequelizeDb.AppSessions.findOne({
+                                                   where: {app_id: req.session.id,},
+                                                 }).then(AppSession => {
+                                                     const currentCount = AppSession.locationCount + 1;
+                                                     AppSession.update({locationCount: currentCount,})
+                                                     .then(updatedAppSession => {
+
+                                                       // if nothing goes wrong... render home pg with new data
+                                                       res.render('index', res.locals.searchResults);
+                                                       // clean up temp working object, just in case
+                                                       db.splice(0, db.length);
+
+                                                       return null;
+
+                                                     }).catch(err => next(err)); // end AppSession update
+
+
+                                                  return null;
+                                                 }).catch(err => next(err)); // end find AppSession
+
+                                                return null;
+                                               })
+
+                                          return null
                                          }).catch(err => next(err)); // end SearchResults update
                                        return null;
                                        }).catch(err => next(err)); // end SearchResults find
@@ -343,7 +346,7 @@ const makeApiCalls = function(update, req, res, next){
                                                forecastData: [newForecast.data[1]],
                                                locationData: [newForecast.data[0]],
                                                locationName: [`${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`],
-                                               locationIds: [newForecast.locations_id],
+                                               locationIds: [newForecast.data[0].locations_id],
                                                currentLocationData: {
                                                    // index: this.forecastData.length,
                                                    locationName: `${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`,
@@ -723,7 +726,7 @@ main.get('/weatherCurrent', (req, res, next) => {
 
           // make async axios api calls to get and process location and forecast data
           // in this content we have a searchResults table...
-          // so we'll be adding to the data column of gthe searchResults table
+          // so we'll be adding to the data column of the searchResults table
           // so we're setting the first argument, update, to true
           makeApiCalls(true, req, res, next);
 
