@@ -143,6 +143,8 @@ build
 
 # sequelize config and data
 dataSource/config/index.js
+data
+data/.DS_Store
 data/*.db
 data/config/fullSampleData.json
 data/config/SampleData.json
