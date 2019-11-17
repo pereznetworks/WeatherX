@@ -148,6 +148,7 @@ data/.DS_Store
 data/*.db
 data/config/fullSampleData.json
 data/config/SampleData.json
+data/config/config.json
 
 # dist
 dist
