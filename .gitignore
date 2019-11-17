@@ -147,6 +147,9 @@ backendServer/data/config/sampleData.json
 backendServer/data/config/fullSampleData.json
 backendServer/data/*.db
 
+# data PostgreSQL
+data/*
+
 # dist
 dist
 dist/*
