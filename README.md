@@ -4,8 +4,13 @@
 
 [Project Site](./)
 
+# Project Status: 12/15/2019
+  - Reviewing project again
+  - Reviewing deployment to Heroku
+  - Once done, will see about submitting and finishing Tech Degree
+
 # Project Status: 8/15/2019: Currently doing a complete review
-  - I will still only use geo-coding but I am not using geo-location
+  - I will still only use geo-coding, no geo-location.
   - I would like to apply more of an object-oriented approach
   - checking that app matches project instructions and scope
     - using 2 public api
