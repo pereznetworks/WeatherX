@@ -5,8 +5,8 @@
 [Project Site](./)
 
 # Project Status: 12/15/2019
-  - Reviewing project again
-  - Reviewing deployment to Heroku
+  - Reviewing items from last project update
+  - Planning deployment to Heroku
   - Once done, will see about submitting and finishing Tech Degree
 
 # Project Status: 8/15/2019: Currently doing a complete review
@@ -31,10 +31,11 @@
       - fixed some minor differences between PostgreSQL and SQ-Lite
       - secure sessions and internal data
         - need to abide by DarkSky and TomTom api usage rules
-        - have ditched SQL-Lite and now using PostgreSQL
+        - have ditched SQL-Lite - now using PostgreSQL
           - Heroku has PostgreSQL as their free built-in db offering
     - front-End
-      - dropped React.js, now PUG for rendering
+      - dropped React.js,
+      - REST API renders UI using PUG
   - unit tests
     - have to make sure the development unit tests I have been using can be used with project submission
   - hosting requirements
