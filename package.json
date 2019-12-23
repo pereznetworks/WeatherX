@@ -14,25 +14,25 @@
   "dependencies": {
     "axios": "^0.19.0",
     "chai": "4.2.0",
-    "constantinople": "^3.1.2",
+    "constantinople": "^4.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~4.1.1",
-    "dotenv": "^8.0.0",
+    "dotenv": "^8.2.0",
     "express": "~4.17.1",
-    "express-session": "1.16.1",
-    "helmet": "^3.18.0",
-    "http-errors": "~1.7.2",
+    "express-session": "1.17.0",
+    "helmet": "^3.21.2",
+    "http-errors": "~1.7.3",
     "jstransformer": "^1.0.0",
-    "mocha": "6.1.4",
+    "mocha": "6.2.2",
     "morgan": "~1.9.1",
-    "pg": "7.11.0",
-    "pug": "^2.0.3",
-    "sequelize": "^5.16.0",
+    "pg": "7.15.1",
+    "pug": "^2.0.4",
+    "sequelize": "^5.21.3",
     "supertest": "4.0.2",
     "throng": "4.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "nodemon": "^2.0.2"
   },
   "scripts": {
     "test": "node_modules/.bin/mocha --exit --no-warnings",
