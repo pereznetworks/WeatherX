@@ -1,6 +1,6 @@
 # TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
-# After a couple of months, I am back to finally finish this project.
+# After awhile, I am back to finally finish this project.
 
 [Project Site](./)
 
@@ -9,7 +9,7 @@
     - will have to port to a different rendering engine for Front-End UI
   - May need to switch from SuperTest to another package for testing modules
   - Due to issues securing communications from Front-end with Back-end db
-    - once again, will to go back to drawing board 
+    - once again, will to go back to drawing board
 
 # Project Status: 12/15/2019
   - Reviewing items from last project update
