@@ -5,16 +5,12 @@
 [Project Site](./)
 
 # Current Bug Fixes in the works
-  - 1: Make sure new session id created when:
-    - browser tab with prev app session closed and new app session opened in new tab
-      - App opened in New Tab may not get new session id, since it's same browser session
-    - Now works
-      - browser window with prev app session closed and new app session opened in new window
-      - app session created on separate device or computer
-  - 2: Verify Location input parsing
+- Cleaned off the cobwebs and gave WeatherX App, in development mode, a spin....
+  - 1: Verify Location input parsing
     - NY, NY works but new york, ny or New York, NY does not ??
     - others do... Dallas, TX, Chicago, IL or Cincinnati, OH
-  - 3: Make sure Sequelize destroy method works
+  - 2: Make sure Sequelize destroy method works
+- Will fix these and go ahead and begin porting Front-end from Pug to something else
 
 # Project Status: 12/23/2019
   - 1: Due to issues securing communications from Front-end with Back-end db
