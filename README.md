@@ -12,7 +12,7 @@
       - browser window with prev app session closed and new app session opened in new window
       - app session created on separate device or computer
   - 2: Verify Location input parsing
-    - NY, NY works new york, ny or New York, NY does not ??
+    - NY, NY works but new york, ny or New York, NY does not ??
     - others do... Dallas, TX, Chicago, IL or Cincinnati, OH
   - 3: Make sure Sequelize destroy method works
 
