@@ -52,9 +52,11 @@ const getGeoCodeApiCall = (searchTerm, apikey) => {
   let coordinates = {};
 
   // input validation done as processing seqeulizeDB method in .then() functions
-  // due to cost may want to not use up apicalls to sources for every invalid respsonse
+  // due to cost may want to use up apicalls to sources for every invalid respsonse
   // need to parse req.param.locaton for valid city, state, and or zip-codes
   // TomTom's STRUCTURED geocode search is an option
+
+  // unused regexps
   // const findEachWord = /[\sA-Za-z]+/g;
   // const lookForCommaAtBeginning = /^,(?=[\sA-Za-z])/g;
   // const lookForCommaBetween = /,(?=[\sA-Za-z])/g;
@@ -65,7 +67,7 @@ const getGeoCodeApiCall = (searchTerm, apikey) => {
   // const lookforZipCode = /^\d+$/g;
   // const lookForForeignPostalCode = /([A-Za-z0-9])\w+([\s])\w+/g;
   // const countryCode = `US`;  // setting default
-  //const cityName;
+  // const cityName;
 
   // using TomTom unstructed geocode search, just make sure searchTerm isn't blank
   if (!searchTerm){
