@@ -13,6 +13,9 @@ const manageForecastData = require('../dataSource').manageForecastData;
 const manageLocData = require('../dataSource').manageLocData;
 
 // api keys
+// in this implementation,
+// these api keys are used by and stay on server-side
+// never sent with rendered UI/data integrated components
 const apiKeys = {
   forecastKey:  process.env.FORECAST_KEY,
   geoCodeKey: process.env.GEOCODE_KEY,
@@ -22,6 +25,7 @@ const apiKeys = {
 const timeDate = require('../dataSource/utils').timeDate;
 const convertTemp = require('../dataSource/utils').convertTemp;
 // const setBackground = require('../dataSource/utils').setBackground;
+// setBackground moved an handled by function in pug rednered front-end
 const getWiClass = require('../dataSource/utils').getWiClass;
 
 const importedTemplateData = {
@@ -30,6 +34,7 @@ const importedTemplateData = {
   mainView: require('../views/mainView/locals.js').mainView,
 };
 
+// with new app Session
 // locals to pass to pug templates to be rendered with the view
 const resetTemplateData = () => {
   const data = {
@@ -43,7 +48,7 @@ const resetTemplateData = () => {
     locationBar: importedTemplateData.locationBar,
     mainView: importedTemplateData.mainView,
     arrayLength: 0,  // how many locationBars are there
-    currentIndex: 0, // for use when creating another locationBar and mainView
+    currentIndex: 0, // to track locationBars and assoociated mainViews
     arrayIndexNo: 0, // for use when views rendered, which location is selected
     locationBarArray: [], // store and track data for locationBars,
     mainViewArray:[], // store and track data for mainViews, index and length should match locationBarArray
@@ -85,14 +90,17 @@ const makeApiCalls = function(update, req, res, next){
   // find each word
   // const findEachWord = /([\sA-Za-z])\w+/g;
 
-  // this makes sure to separate the location's city name from the provice name and toUpperCase
-  // to that it can be compared to the locationNames there is already forecast data for
+  // takes 1 strng, that includes both city, provice, like New York, NY
+  // if getting city name, set beforeComma to true, otherwise returns (after comma) province name
+  // makes sure to separate the location's city name from the provice name and toUpperCase
+  // so that it can be compared to the locationNames there is already forecast data for
   const stringParse = (parseThis, beforeComma) => {
     // matches any phrase followed by a comma
     const cityName = /(.+),/g;
     // matches any phrase followed by a comma
     const provinceName = /,(.+[^\s])/g;
 
+    // parse city name (before comma), and match province name (after comma)
     if (beforeComma){
       let parsed = parseThis.match(cityName).toString().toUpperCase();
       return parsed.slice(0, parsed.length - 1 );
@@ -101,8 +109,6 @@ const makeApiCalls = function(update, req, res, next){
       let parsed = parseThis.match(provinceName).toString().toUpperCase();
       return parsed.slice(1, parsed.length);
     }
-
-
   };
 
   // check for dups, if input is a dup, set notADuplicateLocation to false
@@ -128,7 +134,10 @@ const makeApiCalls = function(update, req, res, next){
 
   let input = req.query.geoCodeThis;
 
-  // if not a duplicate, if there is at least 1 comma between words, if no comma at beginning and if no numbers,
+  // due dilgence, validate input
+  // if not a duplicate,
+  // if there is at least 1 comma between words,
+  // if no comma at beginning and if no numbers,
   if (input.match(lookForCommaBetween) !== null && input.match(lookForCommaAtBeginning) == null && input.match(findNumbers) == null ){
 
     // if there are other names in the locationData array, compare each of these for dulicates
@@ -143,6 +152,13 @@ const makeApiCalls = function(update, req, res, next){
         let locationArray = input.match(removeLeading);
         let locationString = locationArray.toString();
         let geoCodeApiCallUrl = getGeoCodeApiCall(locationString, apiKeys.geoCodeKey);
+
+        // if no Opps...
+        // we get data, validate response and parse data
+        // would be nice to do a lot or all of this data validation and data parsing....
+        // using function inside Sequelize modeling  ...
+        // or even do in postgreSQL Db
+        // for now, will keep this code as-is, since this is Db independant
 
         if (geoCodeApiCallUrl === 'Oops'){
           let errorMsg = `Opps, it seems we did not receive a valid location: place type a city, state or zipcode, then a ',' followed by a country abbreviation`;
@@ -247,6 +263,7 @@ const makeApiCalls = function(update, req, res, next){
                                                 }
                                               };
 
+                                       // making sure index is lasy locationName or matches locationName array length
                                        const index = searchResults.data.locationName.length - 1;
 
                                        return searchResults;
@@ -339,7 +356,9 @@ const makeApiCalls = function(update, req, res, next){
                                        }).catch(err => next(err)); // end SearchResults find
 
                                   } else {
-                                    // so if we get here, then we're creating a new SearchResult
+                                    // so if we get here, then we have a new app session and we're creating a new set of SearchResults
+
+                                    // so first we parse the forecastData into searchResults object
                                     const searchResults = {
                                          app_id: req.session.id,
                                          data: {
@@ -369,6 +388,7 @@ const makeApiCalls = function(update, req, res, next){
                                              },
                                            };
 
+                                    // pushing newForecast data onto searchResults array and doing some calculations
                                     searchResults.data.availLocationsArray.push({
                                         index: searchResults.data.locationName.length + 1,
                                         locationName: `${newForecast.data[0].data.city}, ${newForecast.data[0].data.province}`,
@@ -386,10 +406,10 @@ const makeApiCalls = function(update, req, res, next){
                                         currentCondition:`${newForecast.data[1].data.currently.summary}`,
                                      });
 
-                                    // then we're creating a new SearchResults table
+                                    // then we're creating a new SearchResults table, using our new searchResults object data
                                     sequelizeDb.SearchResults.create(searchResults)
                                     .then( SearchResults => {
-
+                                         // now we set up so we render the new forcast and location data
                                          const index = SearchResults.data.locationName.length;
 
                                          res.locals.searchResults.forecastData = SearchResults.data.forecastData[0];
@@ -618,6 +638,8 @@ const removeLocation = (indexNo, searchResults) => {
 
   return searchResults;
 };
+
+// ROUTES
 
 // renders home page, initial view
 // renders subviews, title bar, navbar and tempType controls
