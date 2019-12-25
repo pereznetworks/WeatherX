@@ -1,4 +1,4 @@
-# TD-Project12 : My Captsone Project for Team TreeHouse FSJS Tech Degree
+# TD-Project12 : WeatherX : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
 # After awhile, I am back to finally finish this project.
 
