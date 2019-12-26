@@ -295,11 +295,11 @@ const makeApiCalls = function(update, req, res, next){
                                                    Location.destroy()
                                                    .then((destroyed)=> {
 
-                                                       if (destroyed = 1 ){
+                                                       if (destroyed == 1 ){
                                                          console.log(`location deleted`)
 
                                                          // not keeping data, part of DarkSky's API usage terms
-                                                         const indexOfLocationId = updated.data.locationIds[updateSearchResults.data.forecastData.length - 1];
+                                                         const indexOfLocationId = updated.data.locationIds[indexOfLocationId];
                                                          seqeulizedb.Forecasts.findOne({where: {locations_id: updated.locationIds[indexOfLocationId]}}).
                                                          then(Forecast => {
                                                            Forecast.destroy()
@@ -423,8 +423,8 @@ const makeApiCalls = function(update, req, res, next){
                                          res.locals.searchResults.forecast = true;
 
                                          // not keeping data, part of TomTom's API usage terms
-                                         const indexOfLocationId = SearchResults.data.locationIds[0];
-                                         sequelizeDb.Locations.findOne({where: {id: SearchResults.data.locationIds[indexOfLocationId]}})
+                                         const indexOfLocationId = SearchResults.id;
+                                         sequelizeDb.Locations.findOne({where: {id: indexOfLocationId}})
                                          .then(Location => {
                                            Location.destroy()
                                            .then(destroyed => {
@@ -433,8 +433,8 @@ const makeApiCalls = function(update, req, res, next){
                                                  console.log(`location deleted`)
 
                                                  // not keeping data, part of DarkSky's API usage terms
-                                                 const indexOfLocationId = SearchResults.data.locationIds[0];
-                                                 seqeulizedb.Forecasts.findOne({where: {locations_id: SearchResults.data.locationIds[indexOfLocationId]}}).
+                                                 const indexOfLocationId = SearchResults.id;
+                                                 seqeulizedb.Forecasts.findOne({where: {locations_id: indexOfLocationId}}).
                                                  then(Forecast => {
                                                    Forecast.destroy()
                                                    .then((destroyed)=> {
