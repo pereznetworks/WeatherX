@@ -300,7 +300,7 @@ const makeApiCalls = function(update, req, res, next){
 
                                                          // not keeping data, part of DarkSky's API usage terms
                                                          const indexOfLocationId = updated.data.locationIds[indexOfLocationId];
-                                                         seqeulizedb.Forecasts.findOne({where: {locations_id: updated.locationIds[indexOfLocationId]}}).
+                                                         sequelizedb.Forecasts.findOne({where: {locations_id: updated.locationIds[indexOfLocationId]}}).
                                                          then(Forecast => {
                                                            Forecast.destroy()
                                                            .then((destroyed)=> {
@@ -434,7 +434,7 @@ const makeApiCalls = function(update, req, res, next){
 
                                                  // not keeping data, part of DarkSky's API usage terms
                                                  const indexOfLocationId = SearchResults.id;
-                                                 seqeulizedb.Forecasts.findOne({where: {locations_id: indexOfLocationId}}).
+                                                 sequelizedb.Forecasts.findOne({where: {locations_id: indexOfLocationId}}).
                                                  then(Forecast => {
                                                    Forecast.destroy()
                                                    .then((destroyed)=> {
