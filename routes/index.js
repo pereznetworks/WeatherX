@@ -434,7 +434,7 @@ const makeApiCalls = function(update, req, res, next){
 
                                                  // not keeping data, part of DarkSky's API usage terms
                                                  const indexOfLocationId = SearchResults.id;
-                                                 sequelizedb.Forecasts.findOne({where: {locations_id: indexOfLocationId}}).
+                                                 sequelizeDb.Forecasts.findOne({where: {locations_id: indexOfLocationId}}).
                                                  then(Forecast => {
                                                    Forecast.destroy()
                                                    .then((destroyed)=> {
