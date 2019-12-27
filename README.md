@@ -22,10 +22,10 @@
     - others do... Dallas, TX, Chicago, IL or Cincinnati, OH
 
 # Project Status: 12/23/2019 : Code Review and Module Dependency updates
-  - 1: Due to Pug no longer being actively maintained,
+  - 1: Due to Pug no longer being actively maintained
     - will have to port to a different rendering engine for Front-End UI
     - or port back to React or another FrontEnd UI framework
-  - 3: May need to switch from SuperTest for testing modules
+  - 2: May need to switch from SuperTest for testing modules
   - 3: Pug not actively maintained brings up another problem
     - Due to issues securing communications from Front-end with Back-end db
     - once again, will to go back to drawing board
