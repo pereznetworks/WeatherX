@@ -4,18 +4,22 @@
 
 [Project Site](./)
 
-# Current Bug Fixes in the works
-- Cleaned off the cobwebs and gave WeatherX App, in development mode, a spin....
+# Project Status: 12/26/2019 : Current Bug Fixes in the works
+- Cleaned off the cobwebs and gave WeatherX App, a spin in development mode
+  - I did find a few bugs
+  - Will fix these and go ahead
+  - begin porting Front-end from Pug to something else
 
-  - 1: Update of SearchResults table not working because data.locationIds is null
-    - DarkSky leaves that field null
-    - fixed: using instead the id field from the searchResults table
-      - which will be the same as the id from searchResults object
-  - 2: Make sure Sequelize destroy method works
-  - 3: Verify Location input parsing
-    - NY, NY works but new york, ny or New York, NY does not ??
-    - others do... Dallas, TX, Chicago, IL or Cincinnati, OH
-- Will fix these and go ahead and begin porting Front-end from Pug to something else
+- 1: Update of SearchResults table not working
+  - because data.locationIds is null, DarkSky leaves that field null
+  - fixed: using instead the id field from my searchResults table
+    - which will be the same as the id from searchResults object
+    - that is created when forecast data is being parsed
+- 2: Make sure Sequelize destroy method works
+  - first obvious issue is the object name, sequelizeDb, is misspelled
+- 3: Verify Location input parsing
+  - NY, NY works but new york, ny or New York, NY does not ??
+  - others do... Dallas, TX, Chicago, IL or Cincinnati, OH
 
 # Project Status: 12/23/2019
   - 1: Due to issues securing communications from Front-end with Back-end db
