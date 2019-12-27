@@ -7,8 +7,8 @@
 # Project Status: 12/26/2019 : Current Bug Fixes in the works
 - Cleaned off the cobwebs and gave WeatherX App, a spin in development mode
   - I did find a few bugs
-  - Will fix these and go ahead
-  - begin porting Front-end from Pug to something else
+  - Will fix these
+  - and go ahead begin porting Front-end from Pug to something else
 
 - 1: Update of SearchResults table not working
   - because data.locationIds is null, DarkSky leaves that field null
