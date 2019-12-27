@@ -21,7 +21,7 @@
   - NY, NY works but new york, ny or New York, NY does not ??
   - others do... Dallas, TX, Chicago, IL or Cincinnati, OH
 
-# Project Status: 12/23/2019
+# Project Status: 12/23/2019 : Code Review and Module Dependency updates
   - 1: Due to issues securing communications from Front-end with Back-end db
     - once again, will to go back to drawing board
   - 2: Due to Pug no longer being actively maintained,
