@@ -8,9 +8,9 @@
   - 1: Due to Pug no longer being actively maintained
     - will have to port to a different rendering engine for Front-End UI
     - or port back to React and...
-    - either force users to auth in order to use the app
-    - find a way to not have a backed-rest-api open to un-auth'ed on internet
-    or another FrontEnd UI framework
+      - either force users to auth in order to use the app
+      - find a way to not have a backed-rest-api open to un-auth'ed on internet
+    - or another FrontEnd UI framework
   - 2: May need to switch from SuperTest for testing modules
   - 3: Various other serious vulnerabilities in main modules and sub-modules
     - several npm packages use out-dated or deprecated packages :
