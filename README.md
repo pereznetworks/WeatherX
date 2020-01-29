@@ -9,7 +9,10 @@
     - will have to port to a different rendering engine for Front-End UI
     - or port back to React or another FrontEnd UI framework
   - 2: May need to switch from SuperTest for testing modules
-  - 3: Various other serious vulnerabilities in main modules and sub-modules 
+  - 3: Various other serious vulnerabilities in main modules and sub-modules
+    - serveral npm packages use out-dated or deprecated packages :
+      - have not updated to more newer releases, due to breaking changes
+      - are no longer maintained 
 
 # Project Status: 12/26/2019 : Current Bug Fixes in the works
   - Cleaned off the cobwebs and gave WeatherX App, a spin in development mode
