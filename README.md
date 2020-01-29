@@ -4,6 +4,15 @@
 
 [Project Site](./)
 
+# Project Status: 01/01/2020 : Code Review and Module Dependency updates
+  - 1: Due to Pug no longer being actively maintained
+    - will have to port to a different rendering engine for Front-End UI
+    - or port back to React or another FrontEnd UI framework
+  - 2: May need to switch from SuperTest for testing modules
+  - 3: Pug not actively maintained brings up another problem
+    - Due to issues securing communications from Front-end with Back-end db
+    - once again, will to go back to drawing board
+    
 # Project Status: 12/26/2019 : Current Bug Fixes in the works
   - Cleaned off the cobwebs and gave WeatherX App, a spin in development mode
     - I did find a few bugs
@@ -19,15 +28,6 @@
   - 3: Verify Location input parsing
     - NY, NY works but new york, ny or New York, NY does not ??
     - others do... Dallas, TX, Chicago, IL or Cincinnati, OH
-
-# Project Status: 12/23/2019 : Code Review and Module Dependency updates
-  - 1: Due to Pug no longer being actively maintained
-    - will have to port to a different rendering engine for Front-End UI
-    - or port back to React or another FrontEnd UI framework
-  - 2: May need to switch from SuperTest for testing modules
-  - 3: Pug not actively maintained brings up another problem
-    - Due to issues securing communications from Front-end with Back-end db
-    - once again, will to go back to drawing board
 
 # Project Status: 12/15/2019
   - Reviewing items from last project update
