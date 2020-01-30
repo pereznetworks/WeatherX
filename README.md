@@ -8,13 +8,13 @@
   - 1: Due to Pug no longer being actively maintained...
     - and using a deprecated package with vulnerabilities...
     - will have to port to a different rendering engine for Front-End UI
-  - 2 would love to use React which has a router but....
+  - 2: would love to use React which has a router but....
     - still loads and runs inside users browser
     - so will still need to have backend router
       - and force users to auth in order to use the app
     - or find another way to secure backend routes
-  - 2: May need to switch from SuperTest for testing modules
-  - 3: Various other serious vulnerabilities in main modules and sub-modules
+  - 3: May need to switch from SuperTest for testing modules
+  - 4: Various other serious vulnerabilities in main modules and sub-modules
     - several npm packages use out-dated or deprecated packages
       - and have not updated to more newer releases, due to breaking changes
       - or are no longer maintained
