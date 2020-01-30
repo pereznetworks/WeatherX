@@ -7,7 +7,9 @@
 # Project Status: 01/01/2020 : Code Review and Module Dependency updates
   - 1: Due to Pug no longer being actively maintained
     - will have to port to a different rendering engine for Front-End UI
-    - or port back to React
+  - 2 would love to use React which has a router but....
+    - still loads and runs inside users browser
+    - so will still need to have backend router
       - and force users to auth in order to use the app
     - or find another way to secure backend routes
   - 2: May need to switch from SuperTest for testing modules
