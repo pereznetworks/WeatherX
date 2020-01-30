@@ -5,7 +5,8 @@
 [Project Site](./)
 
 # Project Status: 01/01/2020 : Code Review and Module Dependency updates
-  - 1: Due to Pug no longer being actively maintained
+  - 1: Due to Pug no longer being actively maintained...
+    - and using a deprecated package with vulnerabilities...
     - will have to port to a different rendering engine for Front-End UI
   - 2 would love to use React which has a router but....
     - still loads and runs inside users browser
