@@ -7,8 +7,8 @@
 # Project Status: 01/01/2020 : Code Review and Module Dependency updates
   - 1: Due to Pug no longer being actively maintained
     - will have to port to a different rendering engine for Front-End UI
-    - port back to React and...
-    - force users to auth in order to use the app
+    - port back to React
+    - and force users to auth in order to use the app
     - or find another way to secure backend routes
   - 2: May need to switch from SuperTest for testing modules
   - 3: Various other serious vulnerabilities in main modules and sub-modules
