@@ -9,7 +9,7 @@
     - will have to port to a different rendering engine for Front-End UI
     - or port back to React and...
       - either force users to auth in order to use the app
-      - find another way so secure backend routes
+      - find another way to secure backend routes
     - or another FrontEnd UI framework
   - 2: May need to switch from SuperTest for testing modules
   - 3: Various other serious vulnerabilities in main modules and sub-modules
