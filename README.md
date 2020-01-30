@@ -9,8 +9,8 @@
     - and using a deprecated package with vulnerabilities...
     - will have to port to a different rendering engine for Front-End UI
   - 2: would love to use React which has a router but....
-    - still loads and runs inside users browser
-    - so will still need to have backend router
+    - still loads and runs inside users browser 
+    - need to have front-end to access backend router
       - and force users to auth in order to use the app
     - or find another way to secure backend routes
   - 3: May need to switch from SuperTest for testing modules
