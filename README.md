@@ -4,7 +4,8 @@
 
 [Project Site](./)
 
-# Project Status: 02/08/2020 : Created a Branch to save PUG Front-End implementation accessing REST API routes
+# Project Status: 02/08/2020 : Branch for PUG Front-End implementation 
+  - Created a Branch to save PUG Front-End implementation accessing REST API routes
 
 # Project Status: 01/01/2020 : Code Review and Module Dependency updates
   - 1: Due to Pug no longer being actively maintained...
