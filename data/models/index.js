@@ -7,12 +7,15 @@
 const Sequelize = require('sequelize');
 
 // set NODE_ENV to 'production' and place DB_NAME, USER_NAME and PASSWORD in a .gitignored env
-  // HINT: when running this code ...
+  // Production Deployment Note : when running this code ...
     // it's best, even for development and test puroses, to...
       // NEVER STORE THE DB_NAME, USER_NAME AND PASSWORD in this code
-        // place the DB_NAME, USER_NAME AND PASSWORD in .gitignored env
-           // then when running npm start or npm run dev
-              // it'll pick-up, login and access the PostgreSQL database
+       // the production server will be running on a completely different environment
+        // will need to deploy a build of this code on the prouduction server
+          // in that production server...that is has all the security implemented...
+            // place the DB_NAME, USER_NAME AND PASSWORD in .gitignored env
+              // then when running npm start or npm run dev
+                // it'll pick-up, login and access the PostgreSQL database
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -60,7 +63,10 @@ db.SearchResults= require('./searchResultModel.js')(sequelize, Sequelize);
     // when fields from associated tables are changed
 
 // data from TomTom and Forecast.io does not need to be validated
-// so data retrieved from these sources is being stored in a JSON blob data-type field
+  // if needed would need a very extensive model,
+    // would then still only model the specific data points I would need
+      // until then....
+        // data retrieved from these sources is being stored in a JSON blob data-type field
 
 db.Forecasts.belongsTo(db.Locations, {
       foreignKey: 'Locations_id',

@@ -18,7 +18,7 @@ import './assets/css/weather.css';
 import './assets/css/weather-icons.css';
 import './assets/css/weather-icons-wind.css';
 
-  /*   state boolean values control  which components are rendered and displayed
+  /*  using state; boolean values control which components are rendered and displayed
         home, about, mainView and locationBar
 
         home: initial view of app
