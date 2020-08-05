@@ -55,15 +55,19 @@
 
 - This project integrates data from several API sources:  
 
-- [TomTom](https://developer.tomtom.com/maps-sdk-web) - for geocoding/geolocation services
+- [TomTom](https://developer.tomtom.com/maps-sdk-web)
+  - for geocoding/geolocation services
 
-- [Forcast.io](https://darksky.net/dev/docs) - for weather forecast data
+- [Forcast.io](https://darksky.net/dev/docs)
+  - for weather forecast data
 
 ### Utility NPM packages to be used:
 
-- [Axios](https://www.npmjs.com/package/axios) - for making api calls
+- [Axios](https://www.npmjs.com/package/axios)
+  - for making api calls
 
-- [Weather-icons](https://www.npmjs.com/package/weather-icons) - for displaying icons to indicate forecasted weather conditions
+- [Weather-icons](https://www.npmjs.com/package/weather-icons)
+  - for displaying icons to indicate forecasted weather conditions
 
 - Lots and lots of other NPM packages...
 
