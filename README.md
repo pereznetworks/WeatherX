@@ -35,18 +35,6 @@
 
   - The code for the app, will be maintained here on this public repo, to the extent possible.  Some key components and key data will have to be kept private, to ensure the security of the release versions of the app.
 
-#### Front-end
-
-  - The Front-end components will be built using React, and React Native
-
-#### Server-side
-
-  - Server-side will be built using Node.js, NPM, Express and React
-
-#### Database
-
-  - Server-side database will be PostgreSQL
-
 ### Technologies to be used:
 
 - Thanks to [Team TreeHouse](https://teamtreehouse.com), a great place for makers, breakers, engineers. Really anyone to brush-up on, gain new, or even get started in Software Development.
