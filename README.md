@@ -43,7 +43,7 @@
 
 - For database using [PostgreSQL](https://www.postgresql.org/)
 
-#### UI
+#### User Interface
 
 - [React](https://reactjs.org/) for front-end UI
 
