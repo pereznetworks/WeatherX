@@ -1,218 +1,51 @@
-# TD-Project12 : WeatherX : My Captsone Project for Team TreeHouse FSJS Tech Degree
+# WeatherX : A Universal Multi-platform App
 
-# After a long break, I am back to finally finish this project.
-  - After studying this project....
-    - Would like the WeatherX React app to work as follows
+## Status:
 
-    - 1 server-side route 
-      - evaluates session ID and state of React app
-      - makes needed api calls
-      - processes data
-      - renders React UI server-side and send to Client Browser
+- Starting fresh
 
-    - Rendered Front-end React UI can ...
-      - with Default State of display locations
-        - allow a user to
-          - browse or scroll list of location summaries
-          - display forecast location details
-          - browse or scroll with-in location detail
-          - return from forecast locations details to list of location summaries
-          - timezone will be set be forecast.io and TomTom and be universally correct  
+  - I am making a clean break from my previous work on this project for at least 2 reasons:
 
-      - however, when User clicks UI Buttons either Add Location or Remove Location
-       - this changes the state of the Front-End React app
-       - when there is change in state, make request to Server-side route
+    - Problems with key dependencies.
 
-      - server-side route session ID and state of React UI app
-        - is session ID a proper active UUID ?
-          - if False
-            - don't display err,
-            - instead default new session started
-            - set state, display locations
-            - new session db, empty React UI rendered server-side and sent back to Client Browser
-          - if True
-            - is state, add location ?
-              - server-side route makes TomTom and Foreast.io external secure api calls
-              - new data received, processed and added to session matching UUID
-              - new processed data integrated into a WeatherX Forecast React UI
-              - set state to, display locations
-              - updated React UI rendered server-side and sent back to Client Browser
-            - is state, remove location ?
-              - no external secure api calls
-              - data removed from session matching UUID
-              - data removed and associated WeatherX Forecast React UI updated
-              - set state to, display locations
-              - updated React UI rendered server-side and sent back to Client Browser
+      - some of these NPM Packages had unresolved vulnerabilities or are no longer maintained
 
-[Project Site](./)
+    - A lot has changed in the last 2 years
 
-# Project Status: 02/08/2020 : Branch for PUG Front-End implementation
-  - Created a Branch to save PUG Front-End implementation accessing REST API routes
-
-# Project Status: 01/01/2020 : Code Review and Module Dependency updates
-  - 1: Due to Pug no longer being actively maintained...
-    - and using a deprecated package with vulnerabilities...
-    - will have to port to a different rendering engine for Front-End UI
-  - 2: would love to use React which has a router but....
-    - still loads and runs inside users browser
-    - need to have front-end to access backend routes
-      - and force users to auth in order to use the app
-    - or find another way to secure backend routes
-  - 3: May need to switch from SuperTest for testing modules
-  - 4: Various other serious vulnerabilities in main modules and sub-modules
-    - several npm packages use out-dated or deprecated packages
-      - and have not updated to more newer releases, due to breaking changes
-      - or are no longer maintained
-
-# Project Status: 12/26/2019 : Current Bug Fixes in the works
-  - Cleaned off the cobwebs and gave WeatherX App, a spin in development mode
-    - I did find a few bugs
-    - Will fix these
-    - and go ahead begin porting Front-end from Pug to something else
-  - 1: Update of SearchResults table not working
-    - because data.locationIds is null, DarkSky leaves that field null
-    - fixed: using instead the id field from my searchResults table
-      - which will be the same as the id from searchResults object
-      - that is created when forecast data is being parsed
-  - 2: Make sure Sequelize destroy method works
-    - first obvious issue is the object name, sequelizeDb, is misspelled
-  - 3: Verify Location input parsing
-    - NY, NY works but new york, ny or New York, NY does not ??
-    - others do... Dallas, TX, Chicago, IL or Cincinnati, OH
-
-# Project Status: 12/15/2019
-  - Reviewing items from last project update
-  - Planning deployment to Heroku
-  - Once done, will see about submitting and finishing Tech Degree
-
-# Project Status: 8/15/2019: Currently doing a complete review
-  - I will still only use geo-coding, no geo-location.
-  - I would like to apply more of an object-oriented approach
-  - checking that app matches project instructions and scope
-    - using 2 public api
-    - using a rest-api
-    - using a RWD front-end
-    - using a secure session store to create an individualized app experience
-    - html5 form input validation
-  - npm packages
-    - mainly need to watch for any vulnerabilities
-  - security and best practices
-    - using Express.js and Heroku recommendations
-  - my code base
-    - built custom method around Axios for server-side secure async external api calls
-    - rest-api
-      - routes for each view of the app
-      - accessing any route first directs to home route to make sure users get a secure session id
-    - database
-      - fixed some minor differences between PostgreSQL and SQ-Lite
-      - secure sessions and internal data
-        - need to abide by DarkSky and TomTom api usage rules
-        - have ditched SQL-Lite - now using PostgreSQL
-          - Heroku has PostgreSQL as their free built-in db offering
-    - front-End
-      - dropped React.js,
-      - REST API renders UI using PUG
-  - unit tests
-    - have to make sure the development unit tests I have been using can be used with project submission
-  - hosting requirements
-    - will be using Heroku
-
-# PROJECT UPDATE: JUNE 2, 2019
-- Development status for v.0.2.0: Complete
-  - Session and Internal database using Sequelize, PostgreSQL Data Models, Methods
-  - Web App and Routes enabled using Express.js for home, weatherCurrent, tempType, weatherForecast and removeLocation
-  - Rendering using Pug, for Views and integration of data
-  - some Front-end javascript for switching between Celsius and Fahrenheit, and a real-time clock display
-  - HTML/CSS RWD layout for all basic device screen sizes
-
-- DONE
-  - verified project Expectations
-    - use frameworks covered in the FSJS Techdegree Units  
-    - Connect to at least two APIs
-    - Display data from at least two other web sites by connecting to their API
-    - Response Front-End design and layout
-      - not using Bootstrap, (Extra credit #2)
-      - instead using custom responsive CSS layout
-    - using database
-      - Sequelize, PostgreSQL for data-management and session-store
-    - Check for using JSHint and fixed issues
-    - using a GitHub repository
-    - local clone runs using npm i and npm start
-  - verified EXTRA CREDIT features match speqs
-    - Use more than two APIs in your app
-      - using axios to make secure api calls to ...
-        - forecast.io, tomtom
-    - Write custom CSS to layout and style your app
-      - all css and html is custom
-    - Use HTML5 validation
-      - only have 1 input field, using required field for HTML validation
-
-- TODO
-
-  - Check EXTRA CREDIT features match speqs
-    - Write unit tests for your code using Mocha.js
-      - and an assertion library like Chai
-  - LAST code-review
-    - add DESTROY method so Forecast and Location table are deleted ...
-      - each time SearchResults.data row is updated with new forecast and location data
-    - add DESTROY method so SearchResults table is deleted when session.id is expired
-      - then need remove that AppSession.id row
-    - Re-check that code fits 'DRY' and is a modular a possible
-  - Deploy project to Heroku and use a public URL, and submit the URL for review
+- The original project code and documentation, will be moved to a private repo.
 
 
-# PROJECT UPDATE: May 1, 2019
-  - Well after much consternation it looks like I will be dropping REACT... :disappointed_relieved:
-    - then main issue is deploying a REACT app that accesses data using a server-side database
-      - with only REACT, either WEBPACK/BABEL or CREATE-REACT-APP, and REACT-ROUTER on NODE.JS/EXPRESS using MONGOD or PostgreSQL or  MYSQL
-        - main trouble is passing the data to the react components
-        - where the /api route is not accessible via the internet (fetch/axios)
-      - there may be solutions
-        - which unfortunately are outside the scope of this project
+### Project Summary
 
-# PROJECT 12 v.0.2.0 Strategy
-  - So I will be implementing the views of my Weather App using PUG….
-    - on the bright-side I will finally be deploying my app and submitting... :laughing:
-  - so on my express server
-    - the home page will be rendered with a simple app header and input form
-    - ….after….location input is submitted
-    - …the server receive the location input via get /:location route,  I think
-    - the server will make the api calls, response will be stored, indexing of data using PostgreSQL db,
-    - model validation and and data model methods will process the data
-    - then data points will be dropped into HTML using PUG templates
-    - the home view will re-rendered again, with a sub-view containing a location-Bar, for the weather forecast summary
-    - I will not have a backend server…
-    - just a front-end server with 2 routes:
-      - 1 for home, which have the input search form as a sub-view
-        - and also will also render the weather-summaries sub-view for each location…
-        - and then the full weather-details view that is rendered when a location-weather-summary is clicked-on…
-  - well that's it :sweat_smile:  
-    - of course many details to work out…
-    - but I now see light at the end of my tunnel…. :joy:
+#### The App
 
+  - A simple app that displays the current and forecasted weather conditions for a specific location.
 
-# GITHUB PROJECT DECISIONS FOR REACT-VERSION:
-  - I will be preserving the current master branch as a branch or even a fork on another project github repo.
-  - I will be implementing the same overall UI, css-grid, html, ui-color design and weather-icons, but using PUG templates
+#### Multiplatform and Universal
 
-# STEPS:
-  - I: review project standard and exceed requirements and re-design weather-app using EXPRESS, PUG and PostgreSQL
-  - II: plan modules and write unit-tests using Mocha-Chai
-  - III: add any custom code following the module-pattern and npm, so that these can be re-used, and as beginning of a code-base
-  - IV: Rewrite project to use pug-html rendering and associated routes
-  - V: use a Heroku supported PostgreSQL Implementation
-  - VI: implement Heroku best practice in process of doing steps I through IV
-  - VII: test and fix any UI and Server-side bugs
-  - VII: perform Heroku and Express pre-deployment steps
-  - IX: deploy to Heroku live - retest all modules and modiules of project
-  - X: Finish Documentation and Submit project
+  - The entire app will be built with both front-end and server-side re-usable components.
 
-# FINAL PUSH:
-  - now for the final push on this project…. on your mark, get set.. :runner:
+  - The server-side components will be built to at least be easily adapted or ported for any production environment.
 
-# PROJECT Documentation
+  - First, a web app version will be built.
 
-  I of course will be rewriting the project-documentation and the project-site for this project
+  - Then a front-end native app will be built for Google Android, Apple macOS and iOS, and Microsoft Windows 10.
+
+#### Open Source
+
+  - The code for the app, will be maintained here on this public repo, to the extent possible.  Some key components and key data will have to be kept private, to ensure the security of the release versions of the app.
+
+#### Front-end
+
+  - The Front-end components will be built using React, and React Native
+
+#### Server-side
+
+  - Server-side will be built using Node.js, NPM, Express and React
+
+#### Database
+
+  - Server-side database will be PostgreSQL
 
 # License:
 
