@@ -10,7 +10,7 @@
 
   - a lot has changed in the last 2 years
 
-- The original project code and documentation, will be moved to a private repo.
+- The original main branch code and documentation, will be moved to a private repo.
 
 
 ### Project Summary
