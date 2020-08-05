@@ -53,8 +53,6 @@
 
 #### Public API Sources
 
-- This project integrates data from several API sources:  
-
 - [TomTom](https://developer.tomtom.com/maps-sdk-web)
   - for geocoding/geolocation services
 
