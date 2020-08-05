@@ -62,7 +62,7 @@
 ### Utility NPM packages to be used:
 
 - [Axios](https://www.npmjs.com/package/axios)
-  - for making api calls
+  - for making external api calls securely 
 
 - [Weather-icons](https://www.npmjs.com/package/weather-icons)
   - for displaying icons to indicate forecasted weather conditions
