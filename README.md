@@ -1,10 +1,52 @@
 # TD-Project12 : WeatherX : My Captsone Project for Team TreeHouse FSJS Tech Degree
 
-# After awhile, I am back to finally finish this project.
+# After a long break, I am back to finally finish this project.
+  - After studying this project....
+    - Would like the WeatherX React app to work as follows
+
+    - 1 server-side route 
+      - evaluates session ID and state of React app
+      - makes needed api calls
+      - processes data
+      - renders React UI server-side and send to Client Browser
+
+    - Rendered Front-end React UI can ...
+      - with Default State of display locations
+        - allow a user to
+          - browse or scroll list of location summaries
+          - display forecast location details
+          - browse or scroll with-in location detail
+          - return from forecast locations details to list of location summaries
+          - timezone will be set be forecast.io and TomTom and be universally correct  
+
+      - however, when User clicks UI Buttons either Add Location or Remove Location
+       - this changes the state of the Front-End React app
+       - when there is change in state, make request to Server-side route
+
+      - server-side route session ID and state of React UI app
+        - is session ID a proper active UUID ?
+          - if False
+            - don't display err,
+            - instead default new session started
+            - set state, display locations
+            - new session db, empty React UI rendered server-side and sent back to Client Browser
+          - if True
+            - is state, add location ?
+              - server-side route makes TomTom and Foreast.io external secure api calls
+              - new data received, processed and added to session matching UUID
+              - new processed data integrated into a WeatherX Forecast React UI
+              - set state to, display locations
+              - updated React UI rendered server-side and sent back to Client Browser
+            - is state, remove location ?
+              - no external secure api calls
+              - data removed from session matching UUID
+              - data removed and associated WeatherX Forecast React UI updated
+              - set state to, display locations
+              - updated React UI rendered server-side and sent back to Client Browser
 
 [Project Site](./)
 
-# Project Status: 02/08/2020 : Branch for PUG Front-End implementation 
+# Project Status: 02/08/2020 : Branch for PUG Front-End implementation
   - Created a Branch to save PUG Front-End implementation accessing REST API routes
 
 # Project Status: 01/01/2020 : Code Review and Module Dependency updates

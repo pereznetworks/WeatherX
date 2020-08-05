@@ -1,5 +1,5 @@
 /* reduceDataSet module v.0.0.1
- * this reduces this extenisve dataset returned by darsky.net to just the data that WeatherX uses
+ * this reduces this extenisve dataset returned by darksky.net to just the data that WeatherX uses
 */
 
 const reduceForecastDataSet = (forecast) => {

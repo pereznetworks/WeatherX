@@ -7,12 +7,13 @@
 const Sequelize = require('sequelize');
 
 // set NODE_ENV to 'production' and place DB_NAME, USER_NAME and PASSWORD in a .gitignored env
-  // HINT: when running this code ...
-    // it's best, even for development and test puroses, to...
-      // NEVER STORE THE DB_NAME, USER_NAME AND PASSWORD in this code
-        // place the DB_NAME, USER_NAME AND PASSWORD in .gitignored env
-           // then when running npm start or npm run dev
-              // it'll pick-up, login and access the PostgreSQL database
+  // BE SAFE: when running this code ...
+    // it's best, even for development and test purposes, to...
+      // keep in a secured server-side app only
+          // NEVER STORE THE DB_NAME, USER_NAME AND PASSWORD in code
+            // place the DB_NAME, USER_NAME AND PASSWORD in .gitignored env
+               // then when running npm start or npm run dev
+                  // it'll pick-up, login and access the PostgreSQL database
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -61,6 +62,7 @@ db.SearchResults= require('./searchResultModel.js')(sequelize, Sequelize);
 
 // data from TomTom and Forecast.io does not need to be validated
 // so data retrieved from these sources is being stored in a JSON blob data-type field
+// ADD ITEM TO WISH LIST : model and validate TomTom and Forecast.io data
 
 db.Forecasts.belongsTo(db.Locations, {
       foreignKey: 'Locations_id',
