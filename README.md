@@ -4,7 +4,7 @@
 
 - I am making a clean break from my previous work on this project for at least 2 reasons:
 
-  - Problems with key dependencies.
+  - Problems with key dependencies, like deprecated packages not updated
 
   - some of these NPM Packages had unresolved vulnerabilities or are no longer maintained
 
