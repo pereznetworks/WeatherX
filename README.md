@@ -31,7 +31,7 @@
 
 #### Open Source
 
-  - The code for the app, will be maintained here on this public repo, to the extent possible.  Some key components and key data will have to be kept private, to ensure the security of the release versions of the app.
+  - The code for the app will be maintained here on this public repo, to the extent possible.  Some key components and key data will have to be kept private, to ensure the security of the release versions of the app.
 
 ### Technologies to be used:
 
@@ -62,7 +62,7 @@
 ### Utility NPM packages to be used:
 
 - [Axios](https://www.npmjs.com/package/axios)
-  - for making external api calls securely 
+  - for making external api calls securely
 
 - [Weather-icons](https://www.npmjs.com/package/weather-icons)
   - for displaying icons to indicate forecasted weather conditions
