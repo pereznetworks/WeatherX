@@ -69,7 +69,9 @@
 - [Weather-icons](https://www.npmjs.com/package/weather-icons)
   - for displaying icons to indicate forecasted weather conditions
 
+
 - Lots and lots of other NPM packages...
+
 
 - I wrote my own Date and Time conversion methods
 
