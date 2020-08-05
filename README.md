@@ -49,4 +49,4 @@
 
 # License:
 
-[MIT](https://github.com/pereznetworks/TD-Project12/blob/master/LICENSE)
+[MIT](LICENSE)
