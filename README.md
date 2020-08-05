@@ -4,7 +4,7 @@
 
 - I am making a clean break from my previous work on this project for at least 2 reasons:
 
-  - Problems with key dependencies, like deprecated packages not updated
+  - problems with key dependencies, like deprecated packages not updated
 
   - key dependencies have unresolved vulnerabilities or are no longer maintained
 
