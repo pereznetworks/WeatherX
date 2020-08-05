@@ -6,7 +6,7 @@
 
   - Problems with key dependencies, like deprecated packages not updated
 
-  - some of these NPM Packages had unresolved vulnerabilities or are no longer maintained
+  - key dependencies have unresolved vulnerabilities or are no longer maintained
 
   - A lot has changed in the last 2 years
 
