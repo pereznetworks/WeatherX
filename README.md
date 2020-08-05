@@ -1,4 +1,4 @@
-# WeatherX : A Universal Multi-platform App
+# WeatherX : A Universal, Multi-platform App
 
 ## Status:
 
@@ -37,11 +37,15 @@
 
 ### Technologies to be used:
 
-- Thanks to [Team TreeHouse](https://teamtreehouse.com), a great place for makers, breakers, engineers. Really anyone to brush-up on, gain new, or even get started in Software Development.
+#### Server-side
 
 - This project uses [Node.js](https://nodejs.org/) and [Express.Js](https://expressjs.com/) for https server and routing.
 
+#### Database
+
 - For database using [PostgreSQL](https://www.postgresql.org/)
+
+#### UI
 
 - [React](https://reactjs.org/) for front-end UI
 
@@ -49,7 +53,9 @@
 
 - [React Native](https://reactnative.dev/) for porting to Android, Apple and Microsoft Windows platforms
 
-### This project integrates data from several API sources:  
+#### Public API Sources
+
+- This project integrates data from several API sources:  
 
 - [TomTom](https://developer.tomtom.com/maps-sdk-web) - for geocoding/geolocation services
 
@@ -61,11 +67,19 @@
 
 - [Weather-icons](https://www.npmjs.com/package/weather-icons) - for displaying icons to indicate forecasted weather conditions
 
+- Lots and lots of other NPM packages...
+
 - I wrote my own Date and Time conversion methods
 
 ### Standards:
 
-- Trying to use javascript es6, web-apps best-practices, TLS2 security and the latest web-standards!
+- Trying to use all the latest web-standards!
+
+#### Thanks to [Team TreeHouse](https://teamtreehouse.com)
+
+- A great place for makers, breakers, engineers.
+
+- Really a great place for anyone to brush-up on, gain new, or even get started in Software Development and information technology.
 
 # License:
 
