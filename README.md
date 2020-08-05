@@ -47,6 +47,38 @@
 
   - Server-side database will be PostgreSQL
 
+### Technologies to be used:
+
+- Thanks to [Team TreeHouse](https://teamtreehouse.com), a great place for makers, breakers, engineers. Really anyone to brush-up on, gain new, or even get started in Software Development.
+
+- This project uses [Node.js](https://nodejs.org/) and [Express.Js](https://expressjs.com/) for https server and routing.
+
+- For database using [PostgreSQL](https://www.postgresql.org/)
+
+- [React](https://reactjs.org/) for front-end UI
+
+- May also use [Babel](https://babeljs.io/) and [WebPack](https://webpack.js.org/concepts) for compiling React Components
+
+- [React Native](https://reactnative.dev/) for porting to Android, Apple and Microsoft Windows platforms
+
+### This project integrates data from several API sources:  
+
+- [TomTom](https://developer.tomtom.com/maps-sdk-web) - for geocoding/geolocation services
+
+- [Forcast.io](https://darksky.net/dev/docs) - for weather forecast data
+
+### Utility NPM packages to be used:
+
+- [Axios](https://www.npmjs.com/package/axios) - for making api calls
+
+- [Weather-icons](https://www.npmjs.com/package/weather-icons) - for displaying icons to indicate forecasted weather conditions
+
+- I wrote my own Date and Time conversion methods
+
+### Standards:
+
+- Trying to use javascript es6, web-apps best-practices, TLS2 security and the latest web-standards!
+
 # License:
 
 [MIT](LICENSE)
