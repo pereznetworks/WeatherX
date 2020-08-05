@@ -8,7 +8,7 @@
 
   - key dependencies have unresolved vulnerabilities or are no longer maintained
 
-  - A lot has changed in the last 2 years
+  - a lot has changed in the last 2 years
 
 - The original project code and documentation, will be moved to a private repo.
 
