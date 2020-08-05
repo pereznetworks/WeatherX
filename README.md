@@ -1,16 +1,14 @@
 # WeatherX : A Universal, Multi-platform App
 
-## Status:
+## Status: Starting fresh
 
-- Starting fresh
+- I am making a clean break from my previous work on this project for at least 2 reasons:
 
-  - I am making a clean break from my previous work on this project for at least 2 reasons:
+  - Problems with key dependencies.
 
-    - Problems with key dependencies.
+  - some of these NPM Packages had unresolved vulnerabilities or are no longer maintained
 
-      - some of these NPM Packages had unresolved vulnerabilities or are no longer maintained
-
-    - A lot has changed in the last 2 years
+  - A lot has changed in the last 2 years
 
 - The original project code and documentation, will be moved to a private repo.
 
