@@ -4,7 +4,8 @@ backend server to provide front-end WeatherX app with data from several external
 
 ## TODO
 
- - re-build rest-api server-side components
+ - re-build rest-api
+ - rebuild server-side-react components
  - update sequelize code and model to v6
 
 ## Testing:
