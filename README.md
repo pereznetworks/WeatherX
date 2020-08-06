@@ -12,7 +12,6 @@
 
 - The original project, main and sub-branches of code and documentation, have been moved to a private repo.
 
-
 ### Project Summary
 
 #### The App
