@@ -142,8 +142,8 @@ dist
 build
 
 # sequelize config, db and sample results
-Server/config/
-Server/config/index.js
+Server/data/config/
+Server/data/config/index.js
 Server/data/test/*.db
 Server/data/dev/*.db
 Server/data/prod/*.db
