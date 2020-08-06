@@ -141,14 +141,12 @@ typings/
 dist
 build
 
-# sequelize config and data
-dataSource/config/index.js
-data/.DS_Store
-data/*.db
-data/config/fullSampleData.json
-data/config/SampleData.json
-data/config/config.json
-data/models/searchResults.json
+# sequelize config, db and sample results
+Server/config/
+Server/config/index.js
+Server/data/*.db
+Server/data.bak/
+Server/dataSource.bak/
 
 # dist
 dist

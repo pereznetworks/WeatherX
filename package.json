@@ -2,7 +2,7 @@
   "name": "weatherx",
   "version": "0.2.0",
   "description": "WeatherX, an app to get current and forecast weather",
-  "main": "server.js",
+  "main": "index.js",
   "jshintConfig": {
     "node": true,
     "unused": true,
@@ -11,12 +11,33 @@
     "esversion": 6,
     "strict": "implied"
   },
+  "scripts": {
+    "start": "nodemon --inspect ./server.js",
+    "testThrong": "nodemon --inspect ./index.js"
+  },
   "dependencies": {
+    "axios": "0.19.2",
+    "chai": "4.2.0",
+    "debug": "~4.1.1",
+    "dotenv": "8.2.0",
+    "express": "4.17.1",
+    "express-session": "1.17.1",
+    "helmet": "4.0.0",
+    "pg": "8.3.0",
+    "sequelize": "6.3.4",
+    "sequelize-cli": "6.2.0",
+    "throng": "4.0.0"
   },
   "devDependencies": {
+    "chai": "4.2.0",
+    "express": "4.17.1",
+    "jshint": "2.12.0",
+    "mocha": "8.1.1",
+    "nodemon": "2.0.4",
+    "morgan": "1.10.0",
+    "supertest": "4.0.2"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pereznetworks/TD-Project12.git"
