@@ -2,13 +2,7 @@
 
 ## Status: Starting fresh
 
-- I am making a clean break from my previous work on this project for at least 2 reasons:
-
-  - problems with key dependencies, like deprecated packages not updated
-
-  - key dependencies have unresolved vulnerabilities or are no longer maintained
-
-  - a lot has changed in the last 2 years
+- I am making a clean break from my previous work on this project
 
 - The original project, main and sub-branches of code and documentation, have been moved to a private repo.
 
