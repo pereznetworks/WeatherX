@@ -1,4 +1,4 @@
-# WeatherX : Current and Forecasted Weather for any location on Earth
+# WeatherX : my Weather app
 
 ## Status: Starting fresh
 
