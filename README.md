@@ -1,4 +1,4 @@
-# WeatherX : A Universal, Multi-platform App
+# WeatherX : Current and Forecasted Weather for any location on Earth
 
 ## Status: Starting fresh
 
