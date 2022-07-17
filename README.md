@@ -20,7 +20,7 @@
 
   - First, a web app version will be built.
 
-  - Then a front-end native app will be built for Google Android, Apple macOS and iOS, and Microsoft Windows 10.
+  - Then an honest effort will be made to build the app for all major mobile device platforms.
 
 #### Open Source
 
