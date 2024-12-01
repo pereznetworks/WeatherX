@@ -51,6 +51,7 @@
 
 - [Forcast.io](https://darksky.net/dev/docs)
   - for weather forecast data
+    - public api has been closed since opurchase by Apple
 
 ### Utility NPM packages to be used:
 
