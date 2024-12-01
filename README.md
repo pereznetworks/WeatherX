@@ -50,8 +50,7 @@
   - for geocoding/geolocation services
 
 - [Forcast.io](https://darksky.net/dev/docs)
-  - for weather forecast data
-    - public api has been closed since purchase by Apple
+  - public api has been closed since purchase by Apple
 
 ### Utility NPM packages to be used:
 
